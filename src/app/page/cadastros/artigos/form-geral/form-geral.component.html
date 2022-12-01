@@ -1,0 +1,89 @@
+<div class="card-body p-0">
+  <form id="kt_modal_new_target_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" >
+    <div class="row">
+      <div class="row">
+        <div class="col-sm-1">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="">Codigo</span>
+            </label>
+            <!--end::Label-->
+            <input type="text" class="form-control form-control-sm" aria-label="Sizing example input" placeholder="Inicial"
+                  aria-describedby="inputGroup-sizing-sm" readonly/>
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+        </div>
+        <div class="col-sm-7">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="required">Designação</span>
+            </label>
+            <!--end::Label-->
+            <input type="text"  [(ngModel)]="productObj.description"  name="description" class="form-control form-control-sm" placeholder="insira a descrição longa">
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-sm-4">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="">Modelo</span>
+            </label>
+            <!--end::Label-->
+            <input type="text" class="form-control form-control-sm" placeholder="insira a descrição curta">
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-8">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="">Categorias</span>
+            </label>
+            <!--end::Label-->
+            <select class="form-select selector form-select-sm" data-allow-clear="true" id="marcaSelect"
+                    data-placeholder="Selecciona o marca">
+              <option></option>
+
+              <option value="#contas">Opção</option>
+
+            </select>
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+
+
+        <div class="col-sm-12">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="required">Ficha técnica</span>
+            </label>
+            <!--end::Label-->
+            <textarea type="text" class="form-control form-control-sm h-100px" rows="10"
+                      placeholder="Enter Target Title" [(ngModel)]="productObj.datasheet"
+                      name="datasheet"></textarea>
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-12 mt-2 mb-4">
+      <div class="input-group text-right justify-content-end">
+        <button type="button" class="btn btn-sm btn-primary mr-2" (click)="saveProduct()">
+          Guardar a informação
+        </button>
+      </div>
+    </div>
+  </form>
+
+</div>
+<script src="../../../assets/js/scripts.bundle.js"></script>
