@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Products} from "../model/Products";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Injectable({
@@ -27,6 +26,10 @@ export class StorageService {
   }
 
   findAll(name: string) {
-    this.afs.collection('/' + name).snapshotChanges();
+    return this.afs.collection('/' + name).snapshotChanges();
+  }
+
+  findById(name: string, id: string) {
+    return this.afs.collection('/' + name).doc('/' + id).valueChanges();
   }
 }

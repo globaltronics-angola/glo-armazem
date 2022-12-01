@@ -19,7 +19,7 @@
 
 </head>
 <!--  class="app-default" -->
-<body id="kt_app_body"  class="app-default bgi-size-cover bgi-position-center bgi-no-repeat "
+<body id="kt_app_body" class="app-default bgi-size-cover bgi-position-center bgi-no-repeat "
       data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true"
       data-kt-app-footer-fixed="true"
       data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true"
@@ -58,13 +58,41 @@
 <script src="assets/js/custom/utilities/modals/new-target.js"></script>
 <script src="assets/js/custom/utilities/modals/users-search.js"></script>
 <script>
-  const InstanceAplication = {
+
+  window.InstanceAplication = {
     init: function () {
       KTComponents.init();
     }
   }
 
-  export default InstanceAplication;
+  window.sentMessageSuccess = {
+    init: function (text) {
+
+      toastr.options = {
+        "closeButton": false,
+        "icon": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toastr-bottom-center",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      };
+
+      toastr.success(text);
+    }
+  }
+
+  window.$ = jQuery;
+
 </script>
 </body>
 

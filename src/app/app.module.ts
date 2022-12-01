@@ -21,7 +21,9 @@ import { EansComponent } from './page/cadastros/artigos/forms-eans/eans.componen
 import { DataTablesComponent } from './page/cadastros/artigos/data-tables/data-tables.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import {environment} from "../environments/environment";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ModelosComponent } from './page/cadastros/artigos/components/modelos/modelos.component';
+
 
 
 @NgModule({
@@ -44,11 +46,13 @@ import {FormsModule} from "@angular/forms";
     FormGeralComponent,
     EansComponent,
     DataTablesComponent,
+    ModelosComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
+    ReactiveFormsModule,
     FormsModule
   ],
   providers: [],
