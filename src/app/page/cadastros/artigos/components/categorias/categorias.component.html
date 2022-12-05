@@ -1,35 +1,53 @@
 <div
-  id="new_modelos_basic"
-  class="bg-white"  data-kt-drawer="true"  data-kt-drawer-activate="true"  data-kt-drawer-toggle="#new_modelos_basic_button"
-  data-kt-drawer-close="#new_modelos_basic_close"  data-kt-drawer-width="500px">
+  id="new_categorias_basic"
+  class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true"
+  data-kt-drawer-toggle="#new_categorias_basic_button"
+  data-kt-drawer-close="#new_categorias_basic_close" data-kt-drawer-width="500px">
 
   <div class="p-5 w-100">
     <div class="text-right mb-11">
       <!--begin::Title-->
-      <h1 class="text-dark fw-bolder mt-5 text-uppercase">Gerir Modelos</h1>
+      <h1 class="text-dark fw-bolder mt-5 text-uppercase">Gerir Categorias</h1>
       <!--end::Title-->
       <!--begin::Subtitle-->
-      <div class="text-gray-500 fw-semibold fs-6">Crie, actualize ou apage o modelo</div>
+      <div class="text-gray-500 fw-semibold fs-6">Crie, actualize ou apage as categorias</div>
       <!--end::Subtitle=-->
     </div>
-    <div class="separator separator-content my-4 text-center mb-15">
-      <span class="w-125px text-center fw-semibold justify-content-center fs-7 badge badge-sm badge-primary ">Gerir modelos</span>
+    <div class="separator my-4 text-center mb-15">
     </div>
     <form id="kt_modal_new_target_form mt-5" class="form fv-plugins-bootstrap5 fv-plugins-framework">
       <div class="row">
-        <div class="row">
 
-          <div class="col-sm-10">
-            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-              <!--begin::Label-->
-              <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                <span class="required">Designação</span>
-              </label>
-              <!--end::Label-->
-              <input type="text" name="description" [(ngModel)]="modelo.name"
-                     class="form-control form-control-sm" placeholder="introduza qui o nome">
-              <div class="fv-plugins-message-container invalid-feedback"></div>
-            </div>
+
+
+        <div class="col-sm-12">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="required">Principal Categoria</span>
+            </label>
+            <!--end::Label-->
+            <select class="form-select form-select-sm rounded-end-0" id="select_categorias"  data-control="select2"
+                    data-placeholder="Select an option">
+              <option></option>
+              <option [value]="categoria.id" *ngFor="let categoria of list_categorias">
+                {{ categoria.name }}
+              </option>
+            </select>
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+        </div>
+
+        <div class="col-sm-12">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="required">Designação</span>
+            </label>
+            <!--end::Label-->
+            <input type="text" name="description" [(ngModel)]="categoria.name"
+                   class="form-control form-control-sm" placeholder="introduza qui o nome">
+            <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
 
@@ -41,7 +59,7 @@
               <span class="">Notas</span>
             </label>
             <!--end::Label-->
-            <textarea type="text" class="form-control form-control-sm h-100px" rows="10" [(ngModel)]="modelo.notes"
+            <textarea type="text" class="form-control form-control-sm h-100px" rows="10" [(ngModel)]="categoria.notes"
                       placeholder="Introduza qui alguma noto do modelo" name="datasheet"></textarea>
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
@@ -70,7 +88,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let modelo of list_modelos">
+        <tr *ngFor="let modelo of list_categorias">
           <td>{{ modelo.name}}</td>
           <td>
             <span class="badge {{ (modelo.deleted_at === 'NULL' ? 'badge-light-primary' : 'badge-light-danger')}}">
@@ -93,3 +111,4 @@
   </div>
 
 </div>
+

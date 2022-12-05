@@ -23,6 +23,10 @@ import { AngularFireModule } from '@angular/fire/compat';
 import {environment} from "../environments/environment";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ModelosComponent } from './page/cadastros/artigos/components/modelos/modelos.component';
+import { CategoriasComponent } from './page/cadastros/artigos/components/categorias/categorias.component';
+import { TipoItemsComponent } from './page/cadastros/artigos/components/tipo-items/tipo-items.component';
+import { UnidadeMedidaComponent } from './page/cadastros/artigos/components/unidade-medida/unidade-medida.component';
+import { TabelaEanComponent } from './page/cadastros/artigos/forms-eans/tabela-ean/tabela-ean.component';
 
 
 
@@ -47,6 +51,10 @@ import { ModelosComponent } from './page/cadastros/artigos/components/modelos/mo
     EansComponent,
     DataTablesComponent,
     ModelosComponent,
+    CategoriasComponent,
+    TipoItemsComponent,
+    UnidadeMedidaComponent,
+    TabelaEanComponent,
   ],
   imports: [
     BrowserModule,

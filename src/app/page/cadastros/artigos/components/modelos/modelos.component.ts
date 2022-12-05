@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {StorageService} from "../../../../../shared/storage.service";
+import * as moment from "moment/moment";
 
 @Component({
   selector: 'app-modelos',
@@ -22,8 +23,8 @@ export class ModelosComponent implements OnInit {
     const now = new Date();
 
     this.modelo.id = "";
-    this.modelo.created_at = now.toUTCString()
-    this.modelo.updated_at = now.toUTCString()
+    this.modelo.created_at = moment().format('DD MM,YYYY HH:mm:ss')
+    this.modelo.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
     this.modelo.deleted_at = this.DELETED_AT_NULL;
     this.modelo.email_auth = 'user activities';
 
@@ -51,11 +52,17 @@ export class ModelosComponent implements OnInit {
       err => {
       }
     )
+  }
+
+  private initJQuerysFunctions(){
 
   }
 
+
+
   ngOnInit(): void {
     this.findAll()
+    this.initJQuerysFunctions()
   }
 
 }

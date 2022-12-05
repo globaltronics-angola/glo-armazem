@@ -47,13 +47,15 @@
             <!--end::Label-->
 
             <div class="input-group input-group-sm flex-nowrap">
-              <select class="form-select form-select-sm rounded-end-0" id="categorias" data-control="select2" multiple
+              <select class="form-select form-select-sm rounded-end-0" id="categorias"
+                      data-control="select2" multiple
                       data-placeholder="Select an option">
                 <option></option>
-
-
+                <option [value]="cate.id" *ngFor="let cate of list_categories">
+                  {{ cate.name }}
+                </option>
               </select>
-              <button class="input-group-text btn-primary">
+              <button class="input-group-text btn-primary" id="new_categorias_basic_button">
                 <i class="bi bi-plus fs-4"></i> Nova
               </button>
             </div>
@@ -91,5 +93,7 @@
   </form>
 
   <app-modelos></app-modelos>
+  <app-categorias></app-categorias>
+
 
 </div>

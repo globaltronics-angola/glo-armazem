@@ -11,6 +11,7 @@ export class DataTablesComponent implements OnInit {
 
   STORAGE_PRODUCT: string = 'global-produtos'
   STORAGE_MODELOS: string = 'global-modelos'
+  STORAGE_CATEGORIES: string = 'global-categorias'
   list_produtos: any[] = [];
 
   constructor(private auth: AuthService, private store: StorageService) {
@@ -38,8 +39,18 @@ export class DataTablesComponent implements OnInit {
               }
             )
 
-          data.id = e.payload.doc.id;
+          if (querySelecty.categoriesIds)
+            data.categoriesData = [];
+            querySelecty.categoriesIds.forEach((categoryID: string)=>{
+              this.store.findById(this.STORAGE_CATEGORIES, categoryID).subscribe(
+                dataSetCategories => {
+                  data.categoriesData.push(dataSetCategories) ;
+                }
+              )
+            })
 
+          data.id = e.payload.doc.id;
+          console.log(data);
           return data;
         })
       },
@@ -47,6 +58,21 @@ export class DataTablesComponent implements OnInit {
       }
     )
 
+  }
+
+  findCategoryById(categoryID: string) {
+
+    (<any>window).categoryDate ;
+    this.store.findById(this.STORAGE_CATEGORIES, categoryID).subscribe(
+      res => {
+
+        (<any>window).categoryDate = res
+      }, err => {
+
+      }
+    )
+
+    return (<any>window).categoryDate
   }
 
 }
