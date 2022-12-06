@@ -1,1 +1,48 @@
-<p>clientes works!</p>
+<div class="d-flex flex-column flex-column-fluid">
+  <!--begin::Toolbar-->
+  <app-title-bar [context]="{header:'Clientes', primeiro:'Cadastros', segundo:'Actualizações'}"></app-title-bar>
+  <!--end::Toolbar-->
+
+  <!--begin::Content-->
+  <div id="kt_app_content" class="app-content flex-column-fluid">
+    <!--begin::Content container-->
+    <div id="kt_app_content_container" class="app-container container-fluid">
+      <div class="card mb-xxl-8">
+        <div class="card-body pb-0">
+          <!--begin::Navs-->
+          <div class="border-bottom m-0 p-0">
+            <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x  order-transparent fs-5 fw-bolder pb-0  mb-0 ">
+              <!--begin::Nav item-->
+              <li class="nav-item p-0">
+                <a class="nav-link text-active-primary ms-0 me-10  font-weight-light "
+                   routerLink="/cadastros/armazem/geral"
+                   routerLinkActive="active">Geral
+                </a>
+              </li>
+              <li class="nav-item p-0">
+                <a class="nav-link text-active-primary ms-0 me-10  font-weight-light "
+                   routerLink="/cadastros/armazem/armarios"
+                   routerLinkActive="active">Endereço / Nif
+                </a>
+              </li>
+              <li class="nav-item p-0">
+                <a class="nav-link text-active-primary ms-0 me-10  font-weight-light "
+                   routerLink="/cadastros/armazem/todos"
+                   routerLinkActive="active">Tabela
+                </a>
+              </li>
+
+            </ul>
+          </div>
+          <div class="pt-10">
+            <ng-content></ng-content>
+            <router-outlet main></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end::Content container-->
+
+  </div>
+  <!--end::Content-->
+</div>

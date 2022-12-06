@@ -1,0 +1,37 @@
+<div class="overflow-auto w-100">
+  <table id="kt_datatable_both_scrolls" class="table table-striped table-row-bordered gy-5 gs-7">
+    <thead>
+    <tr class="fw-semibold fs-6 text-gray-800">
+      <th class="min-w-200px">Armario</th>
+      <th class="min-w-100px">Qt. Prateleiras</th>
+      <th class="min-w-100px">Criado</th>
+      <th class="min-w-100px">Actualizado</th>
+      <th class="">Acção</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let arm of list_armarios" class="w-100">
+      <td><i class="fa fa-folder-closed text-primary"></i> &nbsp; {{ arm.name}}</td>
+      <td>
+        <span class="badge badge-light-danger">{{ arm?.prateleiras.length}}</span>
+        -
+        <span *ngFor="let pra of arm.prateleiras" class="mx-1 badge badge-light-dark">
+          <i class="fa fa-folder-closed text-warning fa-x2"></i> &nbsp; {{ pra.name }}
+        </span>
+      </td>
+      <td><span class="badge badge-light-dark">{{ arm.created_at}}</span></td>
+      <td><span class="badge badge-light-success">{{ arm.updated_at}}</span></td>
+      <td class="gap-2">
+        <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
+          <span class="svg-icon"> <i class="fa fa-edit"></i></span>
+        </button>
+        <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
+          <span class="svg-icon"> <i class="bi-trash"></i></span>
+        </button>
+      </td>
+    </tr>
+
+    </tbody>
+  </table>
+</div>

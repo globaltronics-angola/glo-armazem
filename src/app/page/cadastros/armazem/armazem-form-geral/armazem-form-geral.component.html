@@ -1,0 +1,82 @@
+<div class="card-body p-0">
+  <form id="kt_modal_new_target_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
+    <div class="row">
+      <div class="row">
+        <div class="col-sm-9">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="required">Designação</span>
+            </label>
+            <!--end::Label-->
+            <input type="text" [(ngModel)]="genericObject.name" name="description"
+                   class="form-control form-control-sm" placeholder="insira a descrição longa">
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-sm-4">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="">Região / País</span>
+            </label>
+            <!--end::Label-->
+            <select class="form-select form-select-sm" id="paises" data-control="select2"
+                    data-placeholder="Select an option">
+              <option></option>
+              <option [value]="modelo.id" *ngFor="let modelo of lista_paises">
+                {{ '(' + modelo.iso + ')' + ' - ' + modelo.name }}
+              </option>
+            </select>
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-8">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="">Endereço</span>
+            </label>
+            <!--end::Label-->
+            <input class="form-control form-control-sm" placeholder="introduza as informações principais do endereço"
+                   value="" id="tagify_endereco"/>
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+
+
+        <div class="col-sm-12">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="required">Ficha técnica</span>
+            </label>
+            <!--end::Label-->
+            <textarea type="text" class="form-control form-control-sm h-100px" rows="10"
+                      placeholder="Enter Target Title" [(ngModel)]="genericObject.datasheet"
+                      name="datasheet"></textarea>
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-12 mt-2 mb-4">
+      <div class="input-group text-right justify-content-end">
+        <button type="button" class="btn btn-sm btn-primary mr-2" (click)="save()">
+          Guardar a informação
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <app-modelos></app-modelos>
+  <app-categorias></app-categorias>
+
+
+</div>

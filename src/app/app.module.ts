@@ -27,6 +27,11 @@ import { CategoriasComponent } from './page/cadastros/artigos/components/categor
 import { TipoItemsComponent } from './page/cadastros/artigos/components/tipo-items/tipo-items.component';
 import { UnidadeMedidaComponent } from './page/cadastros/artigos/components/unidade-medida/unidade-medida.component';
 import { TabelaEanComponent } from './page/cadastros/artigos/forms-eans/tabela-ean/tabela-ean.component';
+import { ArmazemFormGeralComponent } from './page/cadastros/armazem/armazem-form-geral/armazem-form-geral.component';
+import { ArmarioPrateleirasComponent } from './page/cadastros/armazem/armario-prateleiras/armario-prateleiras.component';
+import { TabelaArmarioComponent } from './page/cadastros/armazem/tabela-armario/tabela-armario.component';
+import { GeralClientesFormsComponent } from './page/cadastros/clientes/geral-clientes-forms/geral-clientes-forms.component';
+import { FormNifClEnderecoComponent } from './page/cadastros/clientes/form-nif-cl-endereco/form-nif-cl-endereco.component';
 
 
 
@@ -55,6 +60,11 @@ import { TabelaEanComponent } from './page/cadastros/artigos/forms-eans/tabela-e
     TipoItemsComponent,
     UnidadeMedidaComponent,
     TabelaEanComponent,
+    ArmazemFormGeralComponent,
+    ArmarioPrateleirasComponent,
+    TabelaArmarioComponent,
+    GeralClientesFormsComponent,
+    FormNifClEnderecoComponent,
   ],
   imports: [
     BrowserModule,

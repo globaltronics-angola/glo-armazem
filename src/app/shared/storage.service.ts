@@ -18,11 +18,13 @@ export class StorageService {
    * @param name
    */
   create(object: any, name: string) {
-
-    object.id = this.afs.createId();
-
-
+    object.id =  this.afs.createId();
     return this.afs.collection('/' + name).add(object)
+  }
+
+  createForceMyId(object: any, name: string) {
+
+    return this.afs.collection('/' + name).doc(object.id).set(object)
   }
 
   findAll(name: string) {

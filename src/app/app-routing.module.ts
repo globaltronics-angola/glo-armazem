@@ -12,10 +12,11 @@ import {ClientesComponent} from "./page/cadastros/clientes/clientes.component";
 import {ArmazemComponent} from "./page/cadastros/armazem/armazem.component";
 import {FornecedorComponent} from "./page/cadastros/fornecedor/fornecedor.component";
 import {ServicosComponent} from "./page/cadastros/servicos/servicos.component";
-import * as path from "path";
 import {FormGeralComponent} from "./page/cadastros/artigos/form-geral/form-geral.component";
 import {EansComponent} from "./page/cadastros/artigos/forms-eans/eans.component";
 import {DataTablesComponent} from "./page/cadastros/artigos/data-tables/data-tables.component";
+import {ArmazemFormGeralComponent} from "./page/cadastros/armazem/armazem-form-geral/armazem-form-geral.component";
+import {ArmarioPrateleirasComponent} from "./page/cadastros/armazem/armario-prateleiras/armario-prateleiras.component";
 
 
 const routes: Routes = [
@@ -49,7 +50,14 @@ const routes: Routes = [
         ]
       },
       {path: 'clientes', component: ClientesComponent},
-      {path: 'armazem', component: ArmazemComponent},
+      {
+        path: 'armazem', component: ArmazemComponent,
+        children:[
+          {path: 'geral', component: ArmazemFormGeralComponent },
+          {path: 'armarios', component: ArmarioPrateleirasComponent },
+          {path: 'todos', component: ArmazemFormGeralComponent },
+        ]
+      },
       {path: 'fornecedor', component: FornecedorComponent},
       {path: 'servicos', component: ServicosComponent},
     ]
