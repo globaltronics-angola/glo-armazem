@@ -16,9 +16,10 @@
       <td>
         <span class="badge badge-light-danger">{{ arm?.prateleiras.length}}</span>
         -
-        <span *ngFor="let pra of arm.prateleiras" class="mx-1 badge badge-light-dark">
+        <span *ngFor="let pra of arm.prateleiras.slice(0,7)" class="mx-1 badge badge-light-dark">
           <i class="fa fa-folder-closed text-warning fa-x2"></i> &nbsp; {{ pra.name }}
         </span>
+
       </td>
       <td><span class="badge badge-light-dark">{{ arm.created_at}}</span></td>
       <td><span class="badge badge-light-success">{{ arm.updated_at}}</span></td>

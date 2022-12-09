@@ -1,0 +1,34 @@
+<div class="overflow-auto w-100">
+  <table id="kt_datatable_both_scrolls" class="table table-striped table-row-bordered gy-5 gs-7">
+    <thead>
+    <tr class="fw-semibold fs-6 text-gray-800">
+      <th class="min-w-200px">Nif</th>
+      <th class="min-w-100px">País</th>
+      <th class="min-w-100px">Endereço</th>
+      <th class="min-w-100px">Criado</th>
+      <th class="min-w-100px">Actualizado</th>
+      <th class="">Acção</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let nifO of list_nif_address">
+      <td>{{ nifO.nif?.toUpperCase()}}</td>
+      <td>{{ '('+nifO.countryObjs?.iso +') - '+nifO.countryObjs?.name}}</td>
+      <td><span class="badge badge-light-dark mx-2" *ngFor="let ob of  nifO.address">{{ ob}}</span></td>
+      <td>{{ nifO.created_at}}</td>
+      <td>{{  nifO.updated_at }}</td>
+
+      <td class="gap-2">
+        <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
+          <span class="svg-icon"> <i class="fa fa-edit"></i></span>
+        </button>
+        <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
+          <span class="svg-icon"> <i class="bi-trash"></i></span>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

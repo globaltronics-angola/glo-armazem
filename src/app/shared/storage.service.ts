@@ -18,7 +18,7 @@ export class StorageService {
    * @param name
    */
   create(object: any, name: string) {
-    object.id =  this.afs.createId();
+    object.id = this.afs.createId();
     return this.afs.collection('/' + name).add(object)
   }
 
@@ -32,6 +32,10 @@ export class StorageService {
   }
 
   findById(name: string, id: string) {
-    return this.afs.collection('/' + name).doc('/' + id).valueChanges();
+    return this.afs.collection('/' + name).doc('/' + id).valueChanges()
+  }
+
+  deleted(name: string, id: string) {
+    return this.afs.collection('/' + name).doc('/' + id).delete()
   }
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {StorageService} from "../../../../../shared/storage.service";
+import {StorageService} from "../../shared/storage.service";
 
 @Component({
   selector: 'app-tabela-ean',

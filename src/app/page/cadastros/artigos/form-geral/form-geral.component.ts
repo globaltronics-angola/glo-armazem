@@ -30,11 +30,7 @@ export class FormGeralComponent implements OnInit {
 
   ngOnInit(): void {
 
-    (<any>window).instanceSelectedId = "";
-    (<any>window).instanceSelectedIdCategories = "";
-    (<any>window).instanceSelectedTextCategories = "";
-
-    this.findAllModelos();
+     this.findAllModelos();
 
     this.findAllCategories()
 
@@ -48,11 +44,6 @@ export class FormGeralComponent implements OnInit {
     moment().locale('pt-br');
     this.productObj.modeloId = (<any>window).instanceSelectedId;
     this.productObj.categoriesIds = (<any>window).instanceSelectedIdCategories;
-
-    console.log((<any>window).instanceSelectedTextCategories)
-    this.productObj.categoriesText = (<any>window).instanceSelectedTextCategories;
-    console.log('não funciona')
-    const now = new Date();
 
     this.productObj.created_at = moment().format('DD MM,YYYY HH:mm:ss')
     this.productObj.updated_at = moment().format('DD MM,YYYY HH:mm:ss')

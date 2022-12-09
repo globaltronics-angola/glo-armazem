@@ -9,11 +9,11 @@ import * as moment from "moment/moment";
 })
 export class ModelosComponent implements OnInit {
 
-  modelo: any = {};
-  DELETED_AT_NULL: string = 'NULL' // propriety null if not deleted values
-  STORAGE_NAME: string = 'global-modelos' // nome da collection
+  protected modelo: any = {};
+  private DELETED_AT_NULL: string = 'NULL' // propriety null if not deleted values
+  private STORAGE_NAME: string = 'global-modelos' // nome da collection
 
-  list_modelos: any = [];
+  protected list_modelos: any = [];
 
   constructor(private store: StorageService) {
   }
@@ -54,10 +54,9 @@ export class ModelosComponent implements OnInit {
     )
   }
 
-  private initJQuerysFunctions(){
+  private initJQuerysFunctions() {
 
   }
-
 
 
   ngOnInit(): void {

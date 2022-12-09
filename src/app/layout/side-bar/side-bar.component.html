@@ -1,7 +1,5 @@
-<script src="../../../assets/js/scripts.bundle.js"></script>
 
-
-<div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" style="background: #032741!important;"
+<div id="kt_app_sidebar" class="app-sidebar flex-column " data-kt-drawer="true"
      data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}"
      data-kt-drawer-overlay="true" data-kt-drawer-width="225px" data-kt-drawer-direction="start"
      data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
@@ -9,10 +7,10 @@
   <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
     <!--begin::Logo image-->
     <a href="index.html">
-      <img alt="Logo" src="assets/media/logos/default-dark.svg"
-           class="h-25px app-sidebar-logo-default"/>
-      <img alt="Logo" src="assets/media/logos/default-small.svg"
-           class="h-20px app-sidebar-logo-minimize"/>
+      <img alt="Logo" src="/assets/global/2x/logo-txt512.png"
+           class="h-60px app-sidebar-logo-default"/>
+      <img alt="Logo" src="/assets/global/2x/logo512.png"
+           class="h-45px app-sidebar-logo-minimize"/>
     </a>
     <!--end::Logo image-->
     <!--begin::Sidebar toggle-->
@@ -86,15 +84,15 @@
             <!--begin:Menu item-->
             <app-menu-item name="Artigos" routerLink="/cadastros/artigos/geral"></app-menu-item>
             <!--end:Menu item-->
-            <app-menu-item name="Clientes" routerLink="/cadastros/clientes" ></app-menu-item>
+            <app-menu-item name="Clientes" routerLink="/cadastros/clientes/geral"></app-menu-item>
 
             <app-menu-item name="Armazem" routerLink="/cadastros/armazem/geral"></app-menu-item>
 
             <div class="menu-inner flex-column collapse" id="kt_aside_menu_collapse">
 
-              <app-menu-item name="Fornecedor" routerLink="/cadastros/fornecedor"></app-menu-item>
+              <app-menu-item name="Fornecedor" routerLink="/cadastros/fornecedor/geral"></app-menu-item>
 
-              <app-menu-item name="Serviços" routerLink="/cadastros/servicos"></app-menu-item>
+              <app-menu-item name="Serviços" routerLink="/cadastros/servicos/geral"></app-menu-item>
 
             </div>
             <div class="menu-item">
@@ -144,10 +142,10 @@
                        height="24" viewBox="0 0 24 24" fill="none">
                     <path
                       d="M20 8H16C15.4 8 15 8.4 15 9V16H10V17C10 17.6 10.4 18 11 18H16C16 16.9 16.9 16 18 16C19.1 16 20 16.9 20 18H21C21.6 18 22 17.6 22 17V13L20 8Z"
-                      fill="white"/>
+                      fill="currentColor"/>
                     <path opacity="0.3"
                           d="M20 18C20 19.1 19.1 20 18 20C16.9 20 16 19.1 16 18C16 16.9 16.9 16 18 16C19.1 16 20 16.9 20 18ZM15 4C15 3.4 14.6 3 14 3H3C2.4 3 2 3.4 2 4V13C2 13.6 2.4 14 3 14H15V4ZM6 16C4.9 16 4 16.9 4 18C4 19.1 4.9 20 6 20C7.1 20 8 19.1 8 18C8 16.9 7.1 16 6 16Z"
-                          fill="white"/>
+                          fill="currentColor"/>
                 </svg>
                 </span>
                <!--end::Svg Icon-->
@@ -170,7 +168,7 @@
 									</span>
               <div class="menu-sub menu-sub-accordion menu-active-bg pl-2">
 
-                <app-menu-item name="Entrade de Artigos"></app-menu-item>
+                <app-menu-item name="Entrade de Artigos" routerLink="/movimentos/entradas/tabela"></app-menu-item>
                 <!--end:Menu item-->
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
 									<span class="menu-link">
@@ -182,7 +180,7 @@
 									</span>
                   <div class="menu-sub menu-sub-accordion menu-active-bg pl-2">
 
-                    <app-menu-item name="Requisição de Artigos"></app-menu-item>
+                    <app-menu-item name="Requisição de Artigos" ></app-menu-item>
 
                     <app-menu-item name="Requisição de Serviços"></app-menu-item>
 
@@ -196,10 +194,8 @@
 
               </div>
               <app-menu-item name="Devoluções de Artigos"></app-menu-item>
-            <!--begin:Menu item-->
+              <!--begin:Menu item-->
             </div>
-
-
 
 
           </div>

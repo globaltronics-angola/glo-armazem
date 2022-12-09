@@ -9,8 +9,8 @@
               <span class="required">Designação</span>
             </label>
             <!--end::Label-->
-            <input type="text" [(ngModel)]="productObj.name" name="description"
-                   class="form-control form-control-sm" placeholder="insira a descrição longa">
+            <input type="text" [(ngModel)]="productObj.name" name="description" class="form-control form-control-sm"
+              placeholder="insira a descrição longa">
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
@@ -24,8 +24,8 @@
             </label>
             <!--end::Label-->
             <div class="input-group input-group-sm flex-nowrap">
-              <select class="form-select form-select-sm rounded-end-0" id="modelos"  data-control="select2"
-                      data-placeholder="Select an option">
+              <select class="form-select form-select-sm rounded-end-0" id="modelos" data-control="select2"
+                data-placeholder="Select an option">
                 <option></option>
                 <option [value]="modelo.id" *ngFor="let modelo of list_modelos">
                   {{ modelo.name }}
@@ -47,9 +47,8 @@
             <!--end::Label-->
 
             <div class="input-group input-group-sm flex-nowrap">
-              <select class="form-select form-select-sm rounded-end-0" id="categorias"
-                      data-control="select2" multiple
-                      data-placeholder="Select an option">
+              <select class="form-select form-select-sm rounded-end-0" id="categorias" data-control="select2" multiple
+                data-placeholder="Select an option">
                 <option></option>
                 <option [value]="cate.id" *ngFor="let cate of list_categories">
                   {{ cate.name }}
@@ -76,7 +75,7 @@
             </label>
             <!--end::Label-->
             <textarea type="text" class="form-control form-control-sm h-100px" rows="10"
-                      placeholder="Enter Target Title" [(ngModel)]="productObj.datasheet" name="datasheet"></textarea>
+              placeholder="Enter Target Title" [(ngModel)]="productObj.datasheet" name="datasheet"></textarea>
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
 

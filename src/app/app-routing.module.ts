@@ -17,6 +17,30 @@ import {EansComponent} from "./page/cadastros/artigos/forms-eans/eans.component"
 import {DataTablesComponent} from "./page/cadastros/artigos/data-tables/data-tables.component";
 import {ArmazemFormGeralComponent} from "./page/cadastros/armazem/armazem-form-geral/armazem-form-geral.component";
 import {ArmarioPrateleirasComponent} from "./page/cadastros/armazem/armario-prateleiras/armario-prateleiras.component";
+import {
+  GeralClientesFormsComponent
+} from "./page/cadastros/clientes/geral-clientes-forms/geral-clientes-forms.component";
+import {
+  FormNifClEnderecoComponent
+} from "./page/cadastros/clientes/form-nif-cl-endereco/form-nif-cl-endereco.component";
+import {TabelasClientesComponent} from "./page/cadastros/clientes/tabelas-clientes/tabelas-clientes.component";
+import {
+  FormsGeralFornecedoresComponent
+} from "./page/cadastros/fornecedor/forms-geral-fornecedores/forms-geral-fornecedores.component";
+import {
+  DatatableFornecedoresComponent
+} from "./page/cadastros/fornecedor/datatable-fornecedores/datatable-fornecedores.component";
+import {
+  FornecedorNifEnderecosComponent
+} from "./page/cadastros/fornecedor/fornecedor-nif-enderecos/fornecedor-nif-enderecos.component";
+import {FormGeralServicoComponent} from "./page/cadastros/servicos/form-geral-servico/form-geral-servico.component";
+import {ReferenciaServisoComponent} from "./page/cadastros/servicos/referencia-serviso/referencia-serviso.component";
+import {DatatableServicesComponent} from "./page/cadastros/servicos/datatable-services/datatable-services.component";
+import {EntradaArtigosComponent} from "./page/movimentos/entrada-artigos/entrada-artigos.component";
+import {LancamentoComponent} from "./page/movimentos/entrada-artigos/lancamento/lancamento.component";
+import {
+  FormularioLancamentoComponent
+} from "./page/movimentos/entrada-artigos/formulario-lancamento/formulario-lancamento.component";
 
 
 const routes: Routes = [
@@ -49,18 +73,51 @@ const routes: Routes = [
 
         ]
       },
-      {path: 'clientes', component: ClientesComponent},
       {
-        path: 'armazem', component: ArmazemComponent,
-        children:[
-          {path: 'geral', component: ArmazemFormGeralComponent },
-          {path: 'armarios', component: ArmarioPrateleirasComponent },
-          {path: 'todos', component: ArmazemFormGeralComponent },
+        path: 'clientes', component: ClientesComponent,
+        children: [
+          {path: 'geral', component: GeralClientesFormsComponent},
+          {path: 'nif-enderecos', component: FormNifClEnderecoComponent},
+          {path: 'todos', component: TabelasClientesComponent}
         ]
       },
-      {path: 'fornecedor', component: FornecedorComponent},
-      {path: 'servicos', component: ServicosComponent},
+      {
+        path: 'armazem', component: ArmazemComponent,
+        children: [
+          {path: 'geral', component: ArmazemFormGeralComponent},
+          {path: 'armarios', component: ArmarioPrateleirasComponent},
+          {path: 'todos', component: ArmazemFormGeralComponent},
+        ]
+      },
+      {
+        path: 'fornecedor', component: FornecedorComponent,
+        children: [
+          {path: 'geral', component: FormsGeralFornecedoresComponent},
+          {path: 'nif-address', component: FornecedorNifEnderecosComponent},
+          {path: 'todos', component: DatatableFornecedoresComponent},
+        ]
+      },
+      {
+        path: 'servicos', component: ServicosComponent,
+        children: [
+          {path: 'geral', component: FormGeralServicoComponent},
+          {path: 'eans', component: ReferenciaServisoComponent},
+          {path: 'todos', component: DatatableServicesComponent},
+        ]
+      },
     ]
+  },
+  {
+    path: 'movimentos', component: MainAppComponent,
+    children: [
+      {
+        path: 'entradas', component: EntradaArtigosComponent,
+        children: [
+          {path: 'tabela', component: LancamentoComponent},
+          {path: 'entradas', component: FormularioLancamentoComponent}
+        ]
+      }
+    ],
   },
 
   {path: '**', component: PageNotFoundComponent}

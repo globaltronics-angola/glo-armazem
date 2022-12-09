@@ -1,0 +1,184 @@
+<div class="card-body p-0">
+  <form id="kt_modal_new_target_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#">
+
+    <div class="row">
+      <div class="col-12 col-lg-8 col-sm-8 mb-4">
+        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <span class="required">Titulo</span>
+          </label>
+          <!--end::Label-->
+          <input type="text" class="form-control form-control-sm" placeholder="de titulo ao movimento de entrada">
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+          <div class="fv-plugins-message-container text-muted small">
+            É importante que nomes, ou de referencia a entrada dos produtos
+          </div>
+          <!--  <span class="mt-3 text-muted font-italic ml-5">Selecciona o produto para configurar o codigo de barra</span> -->
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-4 col-sm-8 mb-4">
+        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6  mb-2">
+            <span class="">Data</span>
+          </label>
+          <!--end::Label-->
+          <input type="text" class="form-control form-control-sm" id="select_data_movimento"
+                 placeholder="Selecciona a data prevista da entrada dos produtos">
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+          <div class="fv-plugins-message-container text-muted small">Digite aqui a data prevista para entrada dos itens
+            compratos
+          </div>
+          <!--  <span class="mt-3 text-muted font-italic ml-5">Selecciona o produto para configurar o codigo de barra</span> -->
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-12 col-sm-12 ">
+        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6  mb-2">
+            <span class="">Detalhe descritivo</span>
+          </label>
+          <!--end::Label-->
+          <textarea type="text" class="form-control form-control-sm" rows="5"
+                    placeholder="de uma descrição de relatorio do movimento de entrada"></textarea>
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+          <!--  <span class="mt-3 text-muted font-italic ml-5">Selecciona o produto para configurar o codigo de barra</span> -->
+        </div>
+      </div>
+      <div class="separator separator-dashed my-4"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <span class="required">Referência / Ean</span>
+          </label>
+          <!--end::Label-->
+          <div class="input-group input-group-sm input-group-solid flex-nowrap">
+            <!--end::Label-->
+            <div class="overflow-hidden flex-grow-1">
+              <select class="form-select form-select-sm selector rounded-end-0" data-control="select2"
+                      data-allow-clear="true"
+                      data-placeholder="Selecciona o modelo" id="selectedProduct">
+                <option></option>
+                <option [value]="pro.id" *ngFor="let pro of list_produtos">
+                  {{ pro.ean + ' - ' + (pro.type_data ? pro.type_data.name : 'ñ definido') + ' - ' + (pro.product_data ? pro.product_data.name : 'undefined') }}
+                </option>
+              </select>
+            </div>
+            <span class="input-group-text"> <i class="fa fa-search"></i></span>
+          </div>
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+          <div class="fv-plugins-message-container text-muted">referencia do produto a processar na entrada</div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <span class="required">Custo (Valor)</span>
+          </label>
+          <div class="input-group input-group-sm flex-nowrap">
+            <!--end::Label-->
+
+            <input type="number" class="form-control form-control-sm" placeholder="Valor estimado"
+                   name="target_title" [(ngModel)]="itensCompra.valor">
+            <span class="w-50">
+              <select class="form-select form-select-sm selector rounded-start-0" data-control="select2"
+                      data-allow-clear="true"
+                      data-placeholder="Selecciona a moeda" id="selectedCountry">
+                <option></option>
+                <option [value]="county.id" *ngFor="let county of list_countries">
+                  {{ county.iso}}
+                </option>
+              </select>
+            </span>
+          </div>
+
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+      </div>
+
+      <div class="col-sm-2">
+        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <span class="">Imposto (%)</span>
+          </label>
+
+          <input type="number" class="form-control form-control-sm " placeholder="Valor / persentual"
+                 name="persentagem" [(ngModel)]="itensCompra.persentagem">
+
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+      </div>
+
+      <div class="col-sm-2">
+        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <span class="required">Qt itens</span>
+          </label>
+          <!--end::Label-->
+
+          <input type="number" class="form-control form-control-sm " placeholder="Quantidade do item"
+                 name="target_title" [(ngModel)]="itensCompra.qt_item">
+
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <span class="required">Data Compra</span>
+          </label>
+          <!--end::Label-->
+
+          <input type="number" id="select_compra" class="form-control form-control-sm " placeholder="Quantidade do item"
+                 name="target_title">
+
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+      </div>
+
+      <div class="col-sm-8">
+        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 mb-2">
+            <span class="">Outras informações </span>
+          </label>
+
+          <input type="text" class="form-control form-control-sm" id="tagify_others"
+                 placeholder="Outras anotações importante na entrada do produto ">
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 mt-2 mb-4">
+      <div class="input-group text-right justify-content-end">
+        <button type="button" class="btn btn-sm btn-primary mr-2 btn-sm" (click)="addListItems()">
+          Adicionar no Carrim
+        </button>
+
+        <button type="button" class="btn btn-sm btn-success mr-2 btn-sm" (click)="save()">
+          Finalizar o Processo
+        </button>
+        <button type="button" class="btn btn-sm btn-danger mr-2 btn-sm" (click)="canceler()">
+          Cancelar o Processo
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <app-tabela-item-entrada></app-tabela-item-entrada>
+</div>
+<app-tipo-items></app-tipo-items>
+<app-unidade-medida></app-unidade-medida>
