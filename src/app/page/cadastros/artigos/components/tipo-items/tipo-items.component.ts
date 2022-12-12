@@ -23,17 +23,14 @@ export class TipoItemsComponent implements OnInit{
 
 
   save() {
-
-    const now = new Date();
-
-    this.tiposItens.id = "";
+    this.tiposItens.id = this.store.getId();
     this.tiposItens.created_at = moment().format('DD MM,YYYY HH:mm:ss')
     this.tiposItens.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
     this.tiposItens.deleted_at = this.DELETED_AT_NULL;
     this.tiposItens.email_auth = 'user activities';
 
 
-    this.store.create(this.tiposItens, this.STORAGE_NAME_TIPOITENS).then(
+    this.store.createdForceGenerateId(this.tiposItens, this.STORAGE_NAME_TIPOITENS).then(
       () => {
         (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
       },
@@ -44,6 +41,7 @@ export class TipoItemsComponent implements OnInit{
   }
 
   ngOnInit(): void {
+
     this.findAllTypeItems()
   }
 

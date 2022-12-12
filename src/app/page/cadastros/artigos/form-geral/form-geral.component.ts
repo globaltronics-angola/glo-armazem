@@ -30,7 +30,7 @@ export class FormGeralComponent implements OnInit {
 
   ngOnInit(): void {
 
-     this.findAllModelos();
+    this.findAllModelos();
 
     this.findAllCategories()
 
@@ -50,12 +50,11 @@ export class FormGeralComponent implements OnInit {
     this.productObj.deleted_at = this.DELETED_AT_NULL;
     this.productObj.email_auth = 'user activities';
 
-    this.productObj.id = ""
+    this.productObj.id = this.store.getId().toUpperCase()
 
-    this.store.create(this.productObj, this.STORAGE_PRODUCT).then(
+    this.store.createdForceGenerateId(this.productObj, this.STORAGE_PRODUCT).then(
       resp => {
         (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
-        console.log(resp.id)
       },
       err => {
         alert('Ocorreu um determido erro ')
@@ -93,19 +92,14 @@ export class FormGeralComponent implements OnInit {
   }
 
 
-  eventChang() {
-    (<any>window).$(function ($: any) {
+  eventChang(): void {
 
-      $('#modelos').select2();
+    (<any>window).$(($: any) => {
 
-      $('#categorias').select2();
-
-      $('#modelos').on('change', (event: any) => {
+      $('#modelos').select2().on('change', (event: any) => {
         (<any>window).instanceSelectedId = event.target.value
-
       })
-
-      $('#categorias').on('change', (event: any) => {
+      $('#categorias').select2().on('change', (event: any) => {
         (<any>window).instanceSelectedIdCategories = $('#categorias').select2("val");
       })
 

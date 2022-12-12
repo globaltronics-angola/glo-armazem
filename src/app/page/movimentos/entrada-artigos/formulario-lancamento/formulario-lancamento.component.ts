@@ -23,29 +23,60 @@ export class FormularioLancamentoComponent implements OnInit {
 
   itensCompra: any = {}
   listItemsCompra: any[] = []
+  movement: any = {}
+
+  idMovement : string = ""
 
   constructor(private store: StorageService) {
   }
 
-  save() {
+  async save() {
 
-    this.itensCompra.others = (<any>window).instanceSelectedValueOthers.split(',')
+    const idMovement = this.idMovement
 
-    this.itensCompra.paises = (<any>window).instanceSelectedIdCountry
+    this.movement.dateMovimento = (<any>window).instanceSelectedDateItensCompra
 
-    this.itensCompra.dataCompra = (<any>window).instanceSelectedDateItensCompra
+    this.movement.created_at = moment().format('DD MM,YYYY HH:mm:ss')
+    this.movement.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
+    this.movement.deleted_at = ServiceUtil.DELETED_AT_NULL;
+    this.movement.email_auth = 'user activities';
+    this.movement.id = idMovement
 
-    console.log(this.itensCompra)
+    const listUpdated = await ServiceMovimentoItems.findTemporalAll(this.store)
+
+    this.store.createdForceGenerateId(this.movement, ServiceUtil.STORAGE_MOVEMENT).then(
+      () => {
+
+        listUpdated.forEach((dataShit: any) => {
+
+          let instanceDateItemMovement = dataShit
+          instanceDateItemMovement.id = dataShit.id
+          instanceDateItemMovement.movimentoId = idMovement
+          instanceDateItemMovement.status = ServiceUtil.VALUE_AT_STATUS_ACTIVE
+
+          this.store.createdForceGenerateId(instanceDateItemMovement, ServiceUtil.STORAGE_ITEM_MOVIMENTO).then(() => {
+            (<any>window).sentMessageSuccess.init('Foi inserido com sucesso obrigado!')
+          }, err => {
+          })
+
+        });
+
+      },
+      err => {
+        alert('Ocorreu um determido erro ')
+      }
+    );
 
 
   }
-
 
   initJQuerysFunctions() {
 
     (<any>window).instanceSelectedValueOthers = "";
     (<any>window).instanceSelectedIdCountry = "";
     (<any>window).instanceSelectedDateItensCompra = "";
+    (<any>window).instanceSelectedDateItensCompraMovimento = "";
+
 
     (<any>window).$(function ($: any) {
 
@@ -105,10 +136,9 @@ export class FormularioLancamentoComponent implements OnInit {
 
     this.itensCompra.dataCompra = (<any>window).instanceSelectedDateItensCompra
 
-    this.store.create(this.itensCompra, ServiceUtil.STORAGE_ITEM_MOVIMENTO).then(
+    this.store.createdForceGenerateId(this.itensCompra, ServiceUtil.STORAGE_ITEM_MOVIMENTO).then(
       resp => {
         (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
-
       },
       err => {
         alert('Ocorreu um determido erro ')
@@ -124,19 +154,19 @@ export class FormularioLancamentoComponent implements OnInit {
     this.list_countries = await ServiceCountry.findAllCountries(this.store)
 
     this.list_produtos = await ServiceEan.findAll(this.store)
-    console.log(this.itensCompra)
 
+    this.idMovement = this.store.getId();
   }
 
 
-  async canceler() {
+  async cancelerMovement(): Promise<any> {
 
-    let listDelite = await ServiceMovimentoItems.findTemporalAll(this.store)
+    const listDelete = await ServiceMovimentoItems.findTemporalAll(this.store)
 
-    await listDelite.forEach((e: any) => {
+    await listDelete.forEach((e: any) => {
       this.store.deleted(ServiceUtil.STORAGE_ITEM_MOVIMENTO, e.id).then(
         () => {
-            (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
+          (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
         },
         err => {
 

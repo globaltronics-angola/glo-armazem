@@ -26,7 +26,7 @@
                 <span class="required">Designação</span>
               </label>
               <!--end::Label-->
-              <input type="text" name="description" [(ngModel)]="modelo.name"
+              <input type="text" name="description" [(ngModel)]="type.name"
                      class="form-control form-control-sm" placeholder="introduza qui o nome">
               <div class="fv-plugins-message-container invalid-feedback"></div>
             </div>
@@ -41,7 +41,7 @@
               <span class="">Notas</span>
             </label>
             <!--end::Label-->
-            <textarea type="text" class="form-control form-control-sm h-100px" rows="10" [(ngModel)]="modelo.notes"
+            <textarea type="text" class="form-control form-control-sm h-100px" rows="10" [(ngModel)]="type.notes"
                       placeholder="Introduza qui alguma noto do modelo" name="datasheet"></textarea>
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>

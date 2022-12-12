@@ -29,4 +29,10 @@ export default class ServiceCountry {
       )));
 
   }
+
+  static findOrderBy(store: StorageService) {
+    let data = store.findAllOrderName(ServiceCountry.STORAGE_COUNTRIES);
+    console.log(data)
+    return data
+  }
 }

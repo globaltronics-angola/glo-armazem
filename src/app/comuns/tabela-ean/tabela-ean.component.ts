@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {StorageService} from "../../shared/storage.service";
+import ServiceCountry from "../../Services/ServiceCountry";
+import ServiceEan from "../../Services/ServiceEan";
 
 @Component({
   selector: 'app-tabela-ean',
@@ -46,6 +48,13 @@ export class TabelaEanComponent implements OnInit {
               }
             )
 
+          querySelecty.country = {}
+          if (querySelecty.country_key)
+            this.store.findById(ServiceCountry.STORAGE_COUNTRIES, querySelecty.country_key).subscribe(
+              dataSetC => {
+                dataW.country = dataSetC
+              }
+            )
 
           return dataW;
         })
@@ -58,11 +67,19 @@ export class TabelaEanComponent implements OnInit {
 
 
   initJQuerysFunciotions() {
-    (<any>window).$(($: any)=> {
+    (<any>window).$(($: any) => {
 
-      $('#selectProdutos').on('change', (e : any)=>{
+      $('#selectProdutos').on('change', (e: any) => {
         this.findAllEans(e.target.value)
       })
+
+    })
+  }
+
+  deleteSelectedEan(id: string) {
+    this.store.deleted(ServiceEan.STORAGE_NAME_EAN, id).then(() => {
+      (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
+    }, err => {
 
     })
   }

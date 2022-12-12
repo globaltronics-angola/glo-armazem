@@ -2,6 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import * as Tagify from "@yaireo/tagify";
 import {StorageService} from "../../../../shared/storage.service";
 import * as moment from "moment/moment";
+// @ts-ignore
+import Paises from "./paises-gentilicos-google-maps.json"
+// @ts-ignore
+import PaisesPhone from "./countryPhoneCodes.json"
 
 
 @Component({
@@ -24,6 +28,41 @@ export class ArmazemFormGeralComponent implements OnInit {
 
   constructor(private store: StorageService) {
   }
+
+  testing(){
+    Paises.forEach((paises: any) => {
+
+      let myPaise: any = {}
+      let county: any = PaisesPhone.find((ps: any) => ps.iso == paises.sigla)
+
+      myPaise.id = this.store.getId()
+      myPaise.name = paises.nome_pais
+      myPaise.genero = paises.gentilico
+      myPaise.iso = paises.sigla
+      //myPaise.phone = "";
+      //myPaise.phone = county?.code;
+
+      myPaise.externalResquestyCounty = paises
+      myPaise.externalResquestyCountyTo = (county ? county : {
+        "country": paises.nome_pais,
+        "code": "Not found",
+        "iso": paises.sigla
+      })
+
+
+      this.store.createdForceGenerateId(myPaise, this.STORAGE_PAISES).then(
+        resp => {
+          //  (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
+          console.log('any success full info')
+        },
+        err => {
+          alert('Ocorreu um determido erro ')
+        }
+      );
+
+    })
+  }
+
 
   save() {
     moment().locale('pt-br');

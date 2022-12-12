@@ -9,7 +9,7 @@ import * as moment from "moment/moment";
 })
 export class TiposComponent implements OnInit {
 
-  protected modelo: any = {};
+  protected type: any = {};
   private DELETED_AT_NULL: string = 'NULL' // propriety null if not deleted values
   private STORAGE_NAME: string = 'global-tipos' // nome da collection
 
@@ -20,13 +20,14 @@ export class TiposComponent implements OnInit {
 
   save(): void {
 
-    this.modelo.id = "";
-    this.modelo.created_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.modelo.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.modelo.deleted_at = this.DELETED_AT_NULL;
-    this.modelo.email_auth = 'user activities';
+    this.type.id = this.store.getId();
 
-    this.store.create(this.modelo, this.STORAGE_NAME).then(
+    this.type.created_at = moment().format('DD MM,YYYY HH:mm:ss')
+    this.type.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
+    this.type.deleted_at = this.DELETED_AT_NULL;
+    this.type.email_auth = 'user activities';
+
+    this.store.createdForceGenerateId(this.type, this.STORAGE_NAME).then(
       () => {
 
         (<any>window).sentMessageSuccess.init('foi inserido com sucesso')

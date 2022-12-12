@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {StorageService} from "../../../../shared/storage.service";
-import SaveService from './SaveService'
 import * as moment from "moment/moment";
+import ServiceCountry from "../../../../Services/ServiceCountry";
 
 @Component({
   selector: 'app-forms-eans',
   templateUrl: './eans.component.html',
   styleUrls: ['./eans.component.css']
 })
-export class EansComponent implements OnInit, SaveService {
+export class EansComponent implements OnInit {
 
   private STORAGE_PRODUCT: string = 'global-produtos'
   private STORAGE_MODELOS: string = 'global-modelos'
@@ -19,19 +19,21 @@ export class EansComponent implements OnInit, SaveService {
   private DELETED_AT_NULL: string = "NULL"
 
 
-  public list_type_items: any[] = []
-  public list_unidades: any[] = []
-  public list_produtos: any[] = [];
+  list_type_items: any[] = []
+  list_unidades: any[] = []
+  list_produtos: any[] = [];
+  list_country: any[] = [];
 
   // Objecto responsavel para construir o ean
   protected eanRefeModel: any = {}
 
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.findAllProduts()
     this.findAllTypeItems()
     this.initJQuerys()
     this.findAllUnidades()
+    this.list_country = await ServiceCountry.findAllCountries(this.store)
 
 
   }
@@ -92,11 +94,20 @@ export class EansComponent implements OnInit, SaveService {
   }
 
   initJQuerys() {
+    (<any>window).instanceSelectedIdProduct = "";
+    (<any>window).instanceSelectedIdCountry = "";
+    (<any>window).instanceSelectedIdType = "";
+    (<any>window).instanceSelectedIdMedida = "";
 
     (<any>window).$(function ($: any) {
       $('#selectProdutos').select2()
         .on('change', (e: any) => {
           (<any>window).instanceSelectedIdProduct = e.target.value
+        })
+
+      $('#origemEan').select2()
+        .on('change', (e: any) => {
+          (<any>window).instanceSelectedIdCountry = e.target.value
         })
 
       $('#loteSelectType').select2({
@@ -110,7 +121,6 @@ export class EansComponent implements OnInit, SaveService {
       }).on('change', (e: any) => {
         (<any>window).instanceSelectedIdMedida = e.target.value
       })
-
 
 
     })
@@ -135,7 +145,7 @@ export class EansComponent implements OnInit, SaveService {
 
   save() {
 
-    this.eanRefeModel.id = "";
+    this.eanRefeModel.id = this.eanRefeModel.ean
     this.eanRefeModel.created_at = moment().format('DD MM, YYYY HH:mm:ss')
     this.eanRefeModel.updated_at = moment().format('DD MM, YYYY HH:mm:ss')
 
@@ -145,11 +155,12 @@ export class EansComponent implements OnInit, SaveService {
     this.eanRefeModel.type_item = (<any>window).instanceSelectedIdType;
     this.eanRefeModel.product_key = (<any>window).instanceSelectedIdProduct;
     this.eanRefeModel.unidade_key = (<any>window).instanceSelectedIdMedida;
+    this.eanRefeModel.country_key = (<any>window).instanceSelectedIdCountry;
 
 
     console.log(this.eanRefeModel)
 
-    this.store.create(this.eanRefeModel, this.STORAGE_NAME_EAN).then(
+    this.store.createForceMyId(this.eanRefeModel, this.STORAGE_NAME_EAN).then(
       () => {
         (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
       },

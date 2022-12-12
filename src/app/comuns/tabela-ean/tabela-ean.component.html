@@ -4,8 +4,8 @@
     <tr class="fw-semibold fs-6 text-gray-800">
       <th class="min-w-200px">Ean</th>
       <th class="min-w-100px">Tipo</th>
-      <th class="min-w-100px">Quantidade</th>
-      <th class="min-w-100px">Conversão</th>
+      <th class="min-w-100px">Origem</th>
+      <th class="min-w-100px">QT / Conversão</th>
       <th class="min-w-100px">Medida</th>
       <th class="min-w-100px">Data</th>
       <th class="">Acção</th>
@@ -15,17 +15,18 @@
     </thead>
     <tbody>
     <tr *ngFor="let produt of list_ean_produto">
-      <td>{{ produt.ean}}</td>
+      <td><span style="letter-spacing: 8px">{{ produt.ean}}</span></td>
       <td>{{ produt.type_data?.name}}</td>
-      <td><span class="badge badge-light-dark">{{ produt.qt_item}}</span>  </td>
-      <td>{{ produt.qt_converted}}</td>
+      <td><span class="badge badge-light-dark">{{ produt.country?.name}}</span>  </td>
+      <td>{{produt.qt_item +' / '+ produt.qt_converted}}</td>
       <td>{{  produt.unidade_data?.sigla + ' - '+produt.unidade_data?.name}}</td>
       <td>{{ produt.created_at}}</td>
       <td class="gap-2">
         <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
           <span class="svg-icon"> <i class="fa fa-edit"></i></span>
         </button>
-        <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
+        <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1"
+          (click)="deleteSelectedEan(produt.id)">
           <span class="svg-icon"> <i class="bi-trash"></i></span>
         </button>
       </td>

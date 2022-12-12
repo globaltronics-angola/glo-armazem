@@ -5,14 +5,13 @@ import * as moment from "moment/moment";
 @Component({
   selector: 'app-unidade-medida',
   templateUrl: './unidade-medida.component.html',
-  styles: [
-  ]
+  styles: []
 })
-export class UnidadeMedidaComponent implements OnInit{
+export class UnidadeMedidaComponent implements OnInit {
 
   private STORAGE_NAME_UNIDADE: string = "global-unidade-medida"
-  private DELETED_AT_NULL : string = "NULL"
-  list_unidades : any[] = []
+  private DELETED_AT_NULL: string = "NULL"
+  list_unidades: any[] = []
 
   protected unidadeMedida: any = {}
 
@@ -20,6 +19,8 @@ export class UnidadeMedidaComponent implements OnInit{
   }
 
   ngOnInit(): void {
+
+
     this.findAllUnidades()
   }
 
@@ -39,17 +40,13 @@ export class UnidadeMedidaComponent implements OnInit{
 
   save() {
 
-    const now = new Date();
-
-    this.unidadeMedida.id = "";
-
     this.unidadeMedida.created_at = moment().format('DD MM,YYYY HH:mm:ss')
     this.unidadeMedida.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
     this.unidadeMedida.deleted_at = this.DELETED_AT_NULL;
     this.unidadeMedida.email_auth = 'user activities';
+    this.unidadeMedida.id = this.store.getId();
 
-
-    this.store.create(this.unidadeMedida, this.STORAGE_NAME_UNIDADE).then(
+    this.store.createdForceGenerateId(this.unidadeMedida, this.STORAGE_NAME_UNIDADE).then(
       () => {
         (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
       },

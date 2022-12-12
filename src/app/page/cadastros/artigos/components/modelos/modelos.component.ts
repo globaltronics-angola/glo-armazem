@@ -19,16 +19,13 @@ export class ModelosComponent implements OnInit {
   }
 
   save() {
-
-    const now = new Date();
-
-    this.modelo.id = "";
+    this.modelo.id = this.store.getId();
     this.modelo.created_at = moment().format('DD MM,YYYY HH:mm:ss')
     this.modelo.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
     this.modelo.deleted_at = this.DELETED_AT_NULL;
     this.modelo.email_auth = 'user activities';
 
-    this.store.create(this.modelo, this.STORAGE_NAME).then(
+    this.store.createdForceGenerateId(this.modelo, this.STORAGE_NAME).then(
       () => {
 
         (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
@@ -60,6 +57,7 @@ export class ModelosComponent implements OnInit {
 
 
   ngOnInit(): void {
+
     this.findAll()
     this.initJQuerysFunctions()
   }

@@ -64,8 +64,6 @@ export class TabelaItemEntradaComponent implements OnInit {
               }
             )
 
-          console.log(dataW)
-
           return dataW;
 
         }).filter(e => e.movimentoId == 'NULL')

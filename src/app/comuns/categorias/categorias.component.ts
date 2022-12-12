@@ -17,7 +17,8 @@ export class CategoriasComponent implements OnInit {
   private STORAGE_NAME_CATEGORIA: string = "global-categorias"
 
   ngOnInit(): void {
-    (<any>window).instanceSelectedId = "null"
+
+
     this.findAllCategories()
     this.initJQueryFunctions()
   }
@@ -28,16 +29,15 @@ export class CategoriasComponent implements OnInit {
 
   save() {
 
-    const now = new Date();
+    this.categoria.id = this.store.getId();
 
-    this.categoria.id = "";
     this.categoria.created_at = moment().format('DD MM,YYYY HH:mm:ss')
     this.categoria.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
     this.categoria.deleted_at = this.DELETED_AT_NULL;
     this.categoria.email_auth = 'user activities';
     this.categoria.categories_id = (<any>window).instanceSelectedId;
 
-    this.store.create(this.categoria, this.STORAGE_NAME_CATEGORIA).then(
+    this.store.createdForceGenerateId(this.categoria, this.STORAGE_NAME_CATEGORIA).then(
       () => {
 
         (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
@@ -65,7 +65,7 @@ export class CategoriasComponent implements OnInit {
   }
 
   initJQueryFunctions() {
-
+    (<any>window).instanceSelectedId = "";
     (<any>window).$(function ($: any) {
 
       $('#select_categorias').select2();
