@@ -1,0 +1,168 @@
+<div class="card-body p-0">
+  <form id="kt_modal_new_target_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#">
+
+    <div class="row">
+
+      <div class="col-12 col-lg-8 col-sm-8 mb-4">
+        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <span class="required">Tipo</span>
+          </label>
+          <div class="input-group input-group-sm input-group-solid flex-nowrap">
+            <!--end::Label-->
+            <div class="overflow-hidden flex-grow-1">
+              <select class="form-select form-select-sm selector rounded-end-0" data-control="select2"
+                      data-allow-clear="true"
+                      data-placeholder="Selecciona o modelo" id="selectTypeRequisition">
+                <option></option>
+                <option [value]="pro.id" *ngFor="let pro of listRequisition">
+                  {{ pro.name }}
+                </option>
+              </select>
+            </div>
+
+            <button class="input-group-text" id="new_type_requisition_basic_button"><i class="fa fa-plus"></i> &nbsp; Novo</button>
+          </div>
+          <!--end::Label-->
+
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+          <div class="fv-plugins-message-container text-muted small">
+            É importante que nomes, ou de referencia a entrada dos produtos
+          </div>
+          <!--  <span class="mt-3 text-muted font-italic ml-5">Selecciona o produto para configurar o codigo de barra</span> -->
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-4 col-sm-6 mb-4">
+        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 mb-2">
+            <span class="">Destinatário</span>
+          </label>
+
+          <input type="text"  class="form-control form-control-sm"
+                 placeholder="Nome da entidade ou local de destino">
+          <!--end::Label-->
+
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+          <div class="fv-plugins-message-container text-muted small">
+            É importante que nomes, ou de referencia a entrada dos produtos
+          </div>
+          <!--  <span class="mt-3 text-muted font-italic ml-5">Selecciona o produto para configurar o codigo de barra</span> -->
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-10 col-sm-8 ">
+        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6  mb-2">
+            <span class="">Observação</span>
+          </label>
+          <!--end::Label-->
+          <textarea type="text" class="form-control form-control-sm" rows="5" [(ngModel)]="movement.datasheet"
+                    placeholder="de uma descrição de relatorio do movimento de entrada" name="datasheet"></textarea>
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+          <!--  <span class="mt-3 text-muted font-italic ml-5">Selecciona o produto para configurar o codigo de barra</span> -->
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-2 col-sm-4 justify-content-center text-center">
+        <qrcode [qrdata]="idMovement" [width]="150" [errorCorrectionLevel]="'M'"></qrcode>
+      </div>
+
+    </div>
+
+    <div class="accordion accordion-icon-toggle" id="kt_accordion_2">
+      <!--begin::Item-->
+      <div class="">
+        <!--begin::Header-->
+        <div class="separator separator-dashed my-4"></div>
+
+        <div class="accordion-header d-flex" data-bs-toggle="collapse" data-bs-target="#kt_accordion_2_item_1">
+          <div class="fv-plugins-message-container text-primary text-right mb-4"><i class="bi bi-bookmarks-fill"></i>
+            Formulário de item da requisição
+          </div>
+        </div>
+        <!--end::Header-->
+
+        <!--begin::Body-->
+        <div id="kt_accordion_2_item_1" class="fs-6 collapse p-3" data-bs-parent="#kt_accordion_2">
+
+          <div class="row ">
+
+            <div class="col-sm-4">
+              <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                <!--begin::Label-->
+                <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                  <span class="required">Referência / Ean</span>
+                </label>
+                <!--end::Label-->
+                <div class="input-group input-group-sm input-group-solid flex-nowrap">
+                  <!--end::Label-->
+                  <div class="overflow-hidden flex-grow-1">
+                    <select class="form-select form-select-sm selector rounded-end-0" data-control="select2"
+                            data-allow-clear="true"
+                            data-placeholder="Selecciona o modelo" id="selectedProduct">
+                      <option></option>
+                      <option [value]="pro.id" *ngFor="let pro of list_produtos">
+                        {{
+                        pro.ean + ' - ' + (pro.type_data ? pro.type_data.name : 'ñ definido') + ' - ' + (pro.product_data ? pro.product_data.name : 'undefined')
+                        }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <span class="input-group-text"> <i class="fa fa-search"></i></span>
+                </div>
+                <div class="fv-plugins-message-container invalid-feedback"></div>
+                <div class="fv-plugins-message-container text-muted">referencia do produto a processar na entrada</div>
+              </div>
+            </div>
+
+            <div class="col-sm-2">
+              <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                <!--begin::Label-->
+                <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                  <span class="required">Qt itens</span>
+                </label>
+                <!--end::Label-->
+
+                <input type="number" class="form-control form-control-sm " placeholder="Quantidade do item"
+                       name="target_title" [(ngModel)]="itensCompra.qt_item">
+
+                <div class="fv-plugins-message-container invalid-feedback"></div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <!--end::Body-->
+      </div>
+      <!--end::Item-->
+      <div class="separator separator-dashed mb-5 "></div>
+    </div>
+
+    <div class="col-12 mt-2 mb-4">
+      <div class="input-group text-right justify-content-end">
+        <button type="button" class="btn btn-sm btn-primary mr-2 btn-sm" (click)="addListItems()">
+          Adicionar no Carrim
+        </button>
+
+        <button type="button" class="btn btn-sm btn-success mr-2 btn-sm" (click)="save()">
+          Finalizar o Processo
+        </button>
+        <button type="button" class="btn btn-sm btn-danger mr-2 btn-sm" (click)="cancelerMovement()">
+          Cancelar o Processo
+        </button>
+      </div>
+    </div>
+
+  </form>
+
+  <app-item-requisicao></app-item-requisicao>
+  <app-requisicao-type></app-requisicao-type>
+</div>
+<app-tipo-items></app-tipo-items>
+<app-unidade-medida></app-unidade-medida>

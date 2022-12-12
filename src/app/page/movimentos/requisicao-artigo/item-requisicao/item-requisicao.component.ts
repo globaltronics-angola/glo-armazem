@@ -5,11 +5,11 @@ import ServiceEan from "../../../../Services/ServiceEan";
 import ServiceCountry from "../../../../Services/ServiceCountry";
 
 @Component({
-  selector: 'app-tabela-item-entrada',
-  templateUrl: './tabela-item-entrada.component.html',
+  selector: 'app-item-requisicao',
+  templateUrl: './item-requisicao.component.html',
   styles: []
 })
-export class TabelaItemEntradaComponent implements OnInit {
+export class ItemRequisicaoComponent implements OnInit {
 
   list_items: any[] = []
 
@@ -17,12 +17,12 @@ export class TabelaItemEntradaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.findAllItemTemporal()
+    this.findAllItem()
 
   }
 
 
-  findAllItemTemporal() {
+  findAllItem() {
 
     this.store.findAll(ServiceUtil.STORAGE_ITEM_MOVIMENTO).subscribe(
       respY => {
@@ -52,7 +52,6 @@ export class TabelaItemEntradaComponent implements OnInit {
                   )
 
 
-
                 if (dataW.eanData)
                   this.store.findById(ServiceEan.STORAGE_NAME_TIPOITENS, dataW.eanData.type_item).subscribe(
                     eanResType => {
@@ -74,7 +73,7 @@ export class TabelaItemEntradaComponent implements OnInit {
 
           return dataW;
 
-        }).filter(e => e.movimentoId == 'NULL' && e.typeMovimento == "INPUT")
+        }).filter(e => e.movimentoId == 'NULL' && e.typeMovimento == "REQUISITION")
       },
       err => {
       }
@@ -86,14 +85,13 @@ export class TabelaItemEntradaComponent implements OnInit {
     return num;//Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
   }
 
-  deleteInfo(attr: any){
+  deleteInfo(attr: any) {
     this.store.deleted(ServiceUtil.STORAGE_ITEM_MOVIMENTO, attr).then(
-      ()=>{
+      () => {
         (<any>window).sentMessageSuccess.init('Foi eliminado com sucesso obrigado!')
-      }, err =>{
+      }, err => {
 
       }
     )
   }
-
 }

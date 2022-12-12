@@ -1,22 +1,22 @@
 import {Component, OnInit} from '@angular/core';
-import ServiceCountry from "../../../../Services/ServiceCountry";
-import {StorageService} from "../../../../shared/storage.service";
-import * as Tagify from "@yaireo/tagify";
-import * as moment from "moment";
-import ServiceUtil from "../../../../Services/ServiceUtil";
-import ServiceEan from "../../../../Services/ServiceEan";
-import ServiceMovimentoItems from "../../../../Services/ServiceMovimentoItems";
-import ServiceArmazem from "../../../../Services/ServiceArmazem";
-import ServiceArmario from "../../../../Services/ServiceArmario";
 import ServicePrateleias from "../../../../Services/ServicePrateleias";
+import {StorageService} from "../../../../shared/storage.service";
+import * as moment from "moment/moment";
+import ServiceUtil from "../../../../Services/ServiceUtil";
+import ServiceMovimentoItems from "../../../../Services/ServiceMovimentoItems";
+import * as Tagify from "@yaireo/tagify";
+import ServiceCountry from "../../../../Services/ServiceCountry";
+import ServiceEan from "../../../../Services/ServiceEan";
+import ServiceArmazem from "../../../../Services/ServiceArmazem";
 import ServiceFornecedores from "../../../../Services/ServiceFornecedores";
+import ServiceArmario from "../../../../Services/ServiceArmario";
 
 @Component({
-  selector: 'app-formulario-lancamento',
-  templateUrl: './formulario-lancamento.component.html',
-  styles: []
+  selector: 'app-form-requisicao',
+  templateUrl: './form-requisicao.component.html',
+  styleUrls: ['./form-requisicao.component.css']
 })
-export class FormularioLancamentoComponent implements OnInit {
+export class FormRequisicaoComponent implements OnInit {
 
   eanRefeModel: any = {};
   list_produtos: any[] = []
@@ -24,6 +24,7 @@ export class FormularioLancamentoComponent implements OnInit {
   list_type_items: any[] = []
 
   list_countries: any[] = []
+  listRequisition: any[] = []
 
   itensCompra: any = {}
   listItemsCompra: any[] = []
@@ -38,8 +39,7 @@ export class FormularioLancamentoComponent implements OnInit {
 
   listFornecedores: any[] = []
 
-  // .typeMovimento == "INPUT"
-  TYPE_MOVEMENT: string = "INPUT"
+  TYPE_MOVEMENT: string = "REQUISITION"
 
 
   constructor(private store: StorageService) {
@@ -229,9 +229,22 @@ export class FormularioLancamentoComponent implements OnInit {
     this.listArmazem = await ServiceArmazem.findAll(this.store);
 
     this.listFornecedores = await ServiceFornecedores.findAll(this.store);
-
+    this.listNewRequisition()
   }
 
+  listNewRequisition() {
+    this.store.findAll(ServiceUtil.STORAGE_TYPE_REQUISITION).subscribe(
+      resp => {
+        this.listRequisition = resp.map((ea: any) => {
+          const data = ea.payload.doc.data();
+          data.id = ea.payload.doc.id;
+          return data;
+        })
+      }, err => {
+
+      }
+    )
+  }
 
   async cancelerMovement(): Promise<any> {
 
@@ -248,4 +261,5 @@ export class FormularioLancamentoComponent implements OnInit {
       )
     })
   }
+
 }

@@ -27,7 +27,7 @@ export default class ServiceEan {
           if (data.product_key)
             store.findById(ServiceEan.STORAGE_PRODUCT, data.product_key).subscribe(
               dataProdUU => {
-                data.product_data = (dataProdUU ? dataProdUU : 'NULL')
+                data.product_data = dataProdUU
               }
             )
 

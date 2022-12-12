@@ -12,7 +12,9 @@ export default class ServiceUtil{
   // tables
   static STORAGE_ITEM_MOVIMENTO = "global-movements-items"
   static STORAGE_MOVEMENT = "global-movements"
-  static STORAGE_EAN = "global-ean-referencias"
+  static STORAGE_EAN = "global-ean-referencias";
+  static STORAGE_FORNECEDOR = "global-forncedores";
+  static STORAGE_TYPE_REQUISITION = "global-type-requisition";
 
 
 

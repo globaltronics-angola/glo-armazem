@@ -5,9 +5,6 @@
       <th class="min-w-200px">Produto / Referencia</th>
       <th class="min-w-100px">Tipo Referencia</th>
       <th class="min-w-100px">QT</th>
-      <th class="min-w-100px">Custo</th>
-      <th class="min-w-100px">Fornecedor</th>
-      <th class="min-w-100px">Data Compra</th>
       <th class="">Acção</th>
     </tr>
     </thead>
@@ -16,9 +13,7 @@
       <td>{{ produt.ean + ', ' + produt.productData?.name}}</td>
       <td>{{ produt.typeData?.name}}</td>
       <td><span class="badge badge-light-dark">{{ produt.qt_item  }}</span></td>
-      <td>{{kFormatter(produt.valor) + ' ' + produt.moeda?.iso}}</td>
-      <td>{{  produt.fornecedor?.name}}</td>
-      <td>{{ produt.dataCompra}}</td>
+
       <td class="gap-2">
         <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
           <span class="svg-icon"> <i class="fa fa-edit"></i></span>

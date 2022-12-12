@@ -41,6 +41,8 @@ import {LancamentoComponent} from "./page/movimentos/entrada-artigos/lancamento/
 import {
   FormularioLancamentoComponent
 } from "./page/movimentos/entrada-artigos/formulario-lancamento/formulario-lancamento.component";
+import {RequisicaoArtigoComponent} from "./page/movimentos/requisicao-artigo/requisicao-artigo.component";
+import {FormRequisicaoComponent} from "./page/movimentos/requisicao-artigo/form-requisicao/form-requisicao.component";
 
 
 const routes: Routes = [
@@ -115,6 +117,13 @@ const routes: Routes = [
         children: [
           {path: 'tabela', component: LancamentoComponent},
           {path: 'entradas', component: FormularioLancamentoComponent}
+        ]
+      },
+      {
+        path: 'requisicao', component: RequisicaoArtigoComponent,
+        children: [
+          {path: 'tabela', component: LancamentoComponent},
+          {path: 'formulario', component: FormRequisicaoComponent}
         ]
       }
     ],

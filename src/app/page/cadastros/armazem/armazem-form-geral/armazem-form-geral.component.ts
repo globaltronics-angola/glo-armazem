@@ -29,7 +29,7 @@ export class ArmazemFormGeralComponent implements OnInit {
   constructor(private store: StorageService) {
   }
 
-  testing(){
+  testing() {
     Paises.forEach((paises: any) => {
 
       let myPaise: any = {}
@@ -75,12 +75,11 @@ export class ArmazemFormGeralComponent implements OnInit {
     this.genericObject.deleted_at = this.DELETED_AT_NULL;
     this.genericObject.email_auth = 'user activities';
 
-    this.genericObject.id = ""
+    this.genericObject.id = this.store.getId()
 
-    this.store.create(this.genericObject, this.STORAGE_ARMAZENS).then(
+    this.store.createdForceGenerateId(this.genericObject, this.STORAGE_ARMAZENS).then(
       resp => {
         (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
-        console.log(resp.id)
       },
       err => {
         alert('Ocorreu um determido erro ')
@@ -99,7 +98,7 @@ export class ArmazemFormGeralComponent implements OnInit {
 
       var enderecosTagify = document.querySelector("#tagify_endereco");
       // @ts-ignore
-      this.tagifyInst = new Tagify(enderecosTagify,{
+      this.tagifyInst = new Tagify(enderecosTagify, {
         originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
       });
 

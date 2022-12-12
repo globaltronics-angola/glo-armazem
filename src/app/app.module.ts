@@ -68,6 +68,10 @@ import {
   TabelaItemEntradaComponent
 } from './page/movimentos/entrada-artigos/tabela-item-entrada/tabela-item-entrada.component';
 import {QRCodeModule} from "angularx-qrcode";
+import { FormRequisicaoComponent } from './page/movimentos/requisicao-artigo/form-requisicao/form-requisicao.component';
+import { DatatableRequisicaoComponent } from './page/movimentos/requisicao-artigo/datatable-requisicao/datatable-requisicao.component';
+import { ItemRequisicaoComponent } from './page/movimentos/requisicao-artigo/item-requisicao/item-requisicao.component';
+import { RequisicaoTypeComponent } from './comuns/requisicao-type/requisicao-type.component';
 
 
 
@@ -123,6 +127,10 @@ import {QRCodeModule} from "angularx-qrcode";
     LancamentoComponent,
     FormularioLancamentoComponent,
     TabelaItemEntradaComponent,
+    FormRequisicaoComponent,
+    DatatableRequisicaoComponent,
+    ItemRequisicaoComponent,
+    RequisicaoTypeComponent,
   ],
   imports: [
     BrowserModule,

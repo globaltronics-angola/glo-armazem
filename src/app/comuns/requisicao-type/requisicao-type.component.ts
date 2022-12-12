@@ -1,17 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {StorageService} from "../../shared/storage.service";
-import * as moment from "moment/moment";
+import * as moment from "moment";
+import ServiceUtil from "../../Services/ServiceUtil";
 
 @Component({
-  selector: 'app-tipos',
-  templateUrl: './tipos.component.html',
-  styleUrls: ['./tipos.component.css']
+  selector: 'app-requisicao-type',
+  templateUrl: './requisicao-type.component.html',
+  styles: [
+  ]
 })
-export class TiposComponent implements OnInit {
-
+export class RequisicaoTypeComponent implements OnInit{
   protected type: any = {};
   private DELETED_AT_NULL: string = 'NULL' // propriety null if not deleted values
-  private STORAGE_NAME: string = 'global-tipos' // nome da collection
 
   protected list_modelos: any = [];
 
@@ -27,7 +27,7 @@ export class TiposComponent implements OnInit {
     this.type.deleted_at = this.DELETED_AT_NULL;
     this.type.email_auth = 'user activities';
 
-    this.store.createdForceGenerateId(this.type, this.STORAGE_NAME).then(
+    this.store.createdForceGenerateId(this.type, ServiceUtil.STORAGE_TYPE_REQUISITION).then(
       () => {
 
         (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
@@ -40,7 +40,7 @@ export class TiposComponent implements OnInit {
   }
 
   findAll() {
-    this.store.findAll(this.STORAGE_NAME).subscribe(
+    this.store.findAll(ServiceUtil.STORAGE_TYPE_REQUISITION).subscribe(
       resp => {
         this.list_modelos = resp.map((e: any) => {
           const data = e.payload.doc.data();
@@ -61,5 +61,4 @@ export class TiposComponent implements OnInit {
     this.findAll()
     this.initJQuerysFunctions()
   }
-
 }
