@@ -4,7 +4,8 @@
     <div class="row justify-content-end d-none">
       <div class="col-sm-3">
         <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-          <input type="text" class="form-control form-control-sm " style="letter-spacing: 8px" placeholder="Chave do Ean"
+          <input type="text" class="form-control form-control-sm " style="letter-spacing: 8px"
+                 placeholder="Chave do Ean"
                  name="id" [(ngModel)]="eanRefeModel.id">
         </div>
       </div>
@@ -23,7 +24,7 @@
                   data-placeholder="Selecciona o produto">
             <option></option>
             <option [value]="prod.id" *ngFor="let prod of list_produtos">
-              {{ (prod.modelo? prod.modelo.name : 'Não Identificado') + ' - ' + prod.name }}
+              {{ (prod.modelo ? prod.modelo.name : 'Não Identificado') + ' - ' + prod.name }}
             </option>
           </select>
           <!-- <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -38,8 +39,8 @@
     </div>
     <div class="row">
 
-      <div class="row">
-        <div class="col-sm-6">
+      <div class="row col-12">
+        <div class="col-sm-6 col-12 ">
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
             <!--begin::Label-->
             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -59,94 +60,99 @@
         </div>
       </div>
 
-      <div class="col-sm-3">
-        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-          <!--begin::Label-->
-          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-            <span class="">Origem </span>
-          </label>
+      <div class="row w-100 overflow-auto">
 
-          <!--end::Label-->
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xxl-auto min-w-350px">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="">Origem </span>
+            </label>
 
-          <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
-                  data-placeholder="Selecciona o modelo" id="origemEan">
-            <option></option>
-            <option [value]="country.id" *ngFor="let country of list_country">
-              {{ country.name }}
-            </option>
-          </select>
+            <!--end::Label-->
 
-
-        </div>
-      </div>
-
-      <div class="col-sm-3">
-        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-          <!--begin::Label-->
-          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-            <span class="required">Tipo de item</span>
-          </label>
-          <!--end::Label-->
-          <div class="input-group input-group-sm input-group-solid flex-nowrap">
-            <select class="form-select form-select-sm selector"
-                    id="loteSelectType" data-allow-clear="true"
-                    data-placeholder="Selecciona o tipo de lote">
+            <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
+                    data-placeholder="Selecciona o modelo" id="origemEan">
               <option></option>
-              <option [value]="items.id" *ngFor="let items of list_type_items">
-                {{ items.name }}
+              <option [value]="country.id" *ngFor="let country of list_country">
+                {{ country.name }}
               </option>
             </select>
-            <button class="input-group-text" style="max-width: 80px; min-width: 80px" id="new_tipos_itens_basic_button">
-              <i class="fa fa-plus"></i> &nbsp; Novo
-            </button>
+
+
           </div>
-          <div class="fv-plugins-message-container invalid-feedback"></div>
         </div>
-      </div>
 
-      <div class="col-sm-3">
-        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-          <!--begin::Label-->
-          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-            <span class="required">Quantidade</span>
-          </label>
-          <!--end::Label-->
-          <div class="input-group">
-            <input type="number" class="form-control form-control-sm " placeholder="Caixa"
-                   name="target_title" [(ngModel)]="eanRefeModel.qt_item">
-
-            <input type="number" class="form-control form-control-sm " placeholder="Conversão"
-                   name="target_title" [(ngModel)]="eanRefeModel.qt_converted">
-          </div>
-
-          <div class="fv-plugins-message-container invalid-feedback"></div>
-        </div>
-      </div>
-
-
-      <div class="col-sm-3">
-        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-          <!--begin::Label-->
-          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-            <span class="required">Medida </span>
-          </label>
-          <div class="input-group input-group-sm input-group-solid flex-nowrap">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xxl-auto min-w-350px">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="required">Tipo de item</span>
+            </label>
             <!--end::Label-->
-            <div class="overflow-hidden flex-grow-1">
-              <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
-                      data-placeholder="Selecciona o modelo" id="unidadeSelected">
+            <div class="input-group input-group-sm input-group-solid flex-nowrap">
+              <select class="form-select form-select-sm selector"
+                      id="loteSelectType" data-allow-clear="true"
+                      data-placeholder="Selecciona o tipo de lote">
                 <option></option>
-                <option [value]="unidade.id" *ngFor="let unidade of list_unidades">
-                  {{ unidade.sigla + ' - ' + unidade.name }}
+                <option [value]="items.id" *ngFor="let items of list_type_items">
+                  {{ items.name }}
                 </option>
               </select>
+              <button class="input-group-text" style="max-width: 80px; min-width: 80px"
+                      id="new_tipos_itens_basic_button">
+                <i class="fa fa-plus"></i> &nbsp; Novo
+              </button>
             </div>
-            <button class="input-group-text" style="max-width: 80px; min-width: 80px" id="new_unicadade_basic_button"><i
-              class="fa fa-plus"></i> &nbsp; Nova
-            </button>
+            <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
-
         </div>
+
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xxl-auto min-w-350px">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="required">Quantidade</span>
+            </label>
+            <!--end::Label-->
+            <div class="input-group">
+              <input type="number" class="form-control form-control-sm " placeholder="Caixa"
+                     name="target_title" [(ngModel)]="eanRefeModel.qt_item">
+
+              <input type="number" class="form-control form-control-sm " placeholder="Conversão"
+                     name="target_title" [(ngModel)]="eanRefeModel.qt_converted">
+            </div>
+
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xxl-auto min-w-350px">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="required">Medida </span>
+            </label>
+            <div class="input-group input-group-sm input-group-solid flex-nowrap">
+              <!--end::Label-->
+              <div class="overflow-hidden flex-grow-1">
+                <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
+                        data-placeholder="Selecciona o modelo" id="unidadeSelected">
+                  <option></option>
+                  <option [value]="unidade.id" *ngFor="let unidade of list_unidades">
+                    {{ unidade.sigla + ' - ' + unidade.name }}
+                  </option>
+                </select>
+              </div>
+              <button class="input-group-text" style="max-width: 80px; min-width: 80px" id="new_unicadade_basic_button">
+                <i
+                  class="fa fa-plus"></i> &nbsp; Nova
+              </button>
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
     </div>
@@ -160,6 +166,6 @@
   </form>
 
   <app-tabela-ean></app-tabela-ean>
+
 </div>
-<app-tipo-items></app-tipo-items>
-<app-unidade-medida></app-unidade-medida>
+

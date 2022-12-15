@@ -72,6 +72,10 @@ import { FormRequisicaoComponent } from './page/movimentos/requisicao-artigo/for
 import { DatatableRequisicaoComponent } from './page/movimentos/requisicao-artigo/datatable-requisicao/datatable-requisicao.component';
 import { ItemRequisicaoComponent } from './page/movimentos/requisicao-artigo/item-requisicao/item-requisicao.component';
 import { RequisicaoTypeComponent } from './comuns/requisicao-type/requisicao-type.component';
+import { DatatablePedidosEmCursoComponent } from './page/movimentos/requisicao-artigo/datatable-requisicao/datatable-pedidos-em-curso/datatable-pedidos-em-curso.component';
+import { NewProductComponent } from './page/movimentos/entrada-artigos/formulario-lancamento/new-product/new-product.component';
+import { NewLocalizacaoComponent } from './page/movimentos/entrada-artigos/formulario-lancamento/new-localizacao/new-localizacao.component';
+import { NewFornecedorComponent } from './page/movimentos/entrada-artigos/formulario-lancamento/new-fornecedor/new-fornecedor.component';
 
 
 
@@ -131,6 +135,10 @@ import { RequisicaoTypeComponent } from './comuns/requisicao-type/requisicao-typ
     DatatableRequisicaoComponent,
     ItemRequisicaoComponent,
     RequisicaoTypeComponent,
+    DatatablePedidosEmCursoComponent,
+    NewProductComponent,
+    NewLocalizacaoComponent,
+    NewFornecedorComponent,
   ],
   imports: [
     BrowserModule,

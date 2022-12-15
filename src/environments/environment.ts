@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyCw902ILcHux-slf_WvN0NXWZPMQccHAj4",
-    authDomain: "glo-stock-v001.firebaseapp.com",
-    projectId: "glo-stock-v001",
-    storageBucket: "glo-stock-v001.appspot.com",
-    messagingSenderId: "123698997328",
-    appId: "1:123698997328:web:188142fbe97ae043e00955",
-    measurementId: "G-MLNYMRF6CS"
+    apiKey: "AIzaSyCAgUryCYJlMz9YUUBGK7wr5HxkE1XXahc",
+    authDomain: "global-tronic-armazem.firebaseapp.com",
+    projectId: "global-tronic-armazem",
+    storageBucket: "global-tronic-armazem.appspot.com",
+    messagingSenderId: "459641650463",
+    appId: "1:459641650463:web:b3d086daa278adec63442a",
+    measurementId: "G-5SMRCRQTR0"
   }
 };
 
@@ -21,6 +21,16 @@ export const environment = {
  *
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
+ *
+ *
+ * apiKey: "AIzaSyCw902ILcHux-slf_WvN0NXWZPMQccHAj4",
+    authDomain: "glo-stock-v001.firebaseapp.com",
+    projectId: "glo-stock-v001",
+    storageBucket: "glo-stock-v001.appspot.com",
+    messagingSenderId: "123698997328",
+    appId: "1:123698997328:web:188142fbe97ae043e00955",
+    measurementId: "G-MLNYMRF6CS"
+ *
  */
 
 // Import 'zone.js/plugins/zone-error';

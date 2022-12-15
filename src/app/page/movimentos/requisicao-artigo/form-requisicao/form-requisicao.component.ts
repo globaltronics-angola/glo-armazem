@@ -10,7 +10,10 @@ import ServiceEan from "../../../../Services/ServiceEan";
 import ServiceArmazem from "../../../../Services/ServiceArmazem";
 import ServiceFornecedores from "../../../../Services/ServiceFornecedores";
 import ServiceArmario from "../../../../Services/ServiceArmario";
+import ServiceNifClient from "../../../../Services/ServiceNifClient";
 
+
+//  import { FormBuilder, FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
 @Component({
   selector: 'app-form-requisicao',
   templateUrl: './form-requisicao.component.html',
@@ -23,7 +26,7 @@ export class FormRequisicaoComponent implements OnInit {
   list_unidades: any[] = []
   list_type_items: any[] = []
 
-  list_countries: any[] = []
+  listCountriesE: any[] = []
   listRequisition: any[] = []
 
   itensCompra: any = {}
@@ -41,6 +44,9 @@ export class FormRequisicaoComponent implements OnInit {
 
   TYPE_MOVEMENT: string = "REQUISITION"
 
+  listOption: any[] = [];
+
+  listClients: any[] = []
 
   constructor(private store: StorageService) {
   }
@@ -63,35 +69,14 @@ export class FormRequisicaoComponent implements OnInit {
     this.movement.armazemkey = (<any>window).instanceSelectedArmazemId;
 
     const listUpdated = await ServiceMovimentoItems.findTemporalAll(this.store)
+    ServiceMovimentoItems.updatedItemMovement(listUpdated, idMovement, this.store)
 
-    this.store.createdForceGenerateId(this.movement, ServiceUtil.STORAGE_MOVEMENT).then(
-      () => {
-
-        listUpdated.forEach((dataShit: any) => {
-
-          let instanceDateItemMovement = dataShit
-          instanceDateItemMovement.id = dataShit.id
-          instanceDateItemMovement.movimentoId = idMovement
-          instanceDateItemMovement.status = ServiceUtil.VALUE_AT_STATUS_ACTIVE
-
-          this.store.createdForceGenerateId(instanceDateItemMovement, ServiceUtil.STORAGE_ITEM_MOVIMENTO).then(() => {
-            (<any>window).sentMessageSuccess.init('Foi inserido com sucesso obrigado!')
-          }, err => {
-          })
-
-        });
-
-        this.idMovement = this.store.getId()
-      },
-      err => {
-        alert('Ocorreu um determido erro ')
-      }
-    );
 
 
   }
 
   initJQuerysFunctions() {
+
 
     (<any>window).instanceSelectedValueOthers = "";
     (<any>window).instanceSelectedIdCountry = "";
@@ -111,32 +96,15 @@ export class FormRequisicaoComponent implements OnInit {
     (<any>window).$(function ($: any) {
 
       // components da localização
+      (<any>window).InstanceAplication.init()
 
-      $('#selectedArmazem').select2().on('change', async (e: any) => {
+
+      $('#selectArmazemRequisition').select2().on('change', async (e: any) => {
         (<any>window).instanceSelectedArmazemId = e.target.value
 
-        ServiceArmario.LISTA_ARMAZEM_ARMARIOS = await ServiceArmario.findAllByArmazem((<any>window).storeFire, e.target.value)
       })
-
-      $('#selectedArmario').select2().on('change', async (e: any) => {
-        (<any>window).instanceSelectedArmarioId = e.target.value
-        ServicePrateleias.LISTA_ARMARIOS_PRATELEIRAS = await ServicePrateleias.findAllByArmario((<any>window).storeFire, e.target.value)
-      })
-
-      $('#selectedPrateleira').select2().on('change', (e: any) => {
-        (<any>window).instanceSelectedPrateleiraId = e.target.value
-      })
-
-      $('#selectFornecedor').select2().on('change', (e: any) => {
-        (<any>window).instanceSelectedFornecedorId = e.target.value
-      })
-
 
       // components principais
-
-      $('#selectedCountry').select2().on('change', (e: any) => {
-        (<any>window).instanceSelectedIdCountry = e.target.value
-      })
 
       $('#selectedProduct').select2().on('change', (e: any) => {
         (<any>window).instanceSelectedIdProducts = e.target.value
@@ -157,16 +125,17 @@ export class FormRequisicaoComponent implements OnInit {
         }
       });
 
-      const othersTagify = document.querySelector("#tagify_others");
+
+      /*let othersMyTagify = document.querySelector("#tagify_others");
       // @ts-ignore
-      new Tagify(othersTagify, {
+      new Tagify(othersMyTagify, {
         originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
-      });
+      });*/
 
       // @ts-ignore
-      othersTagify.addEventListener('change', (e: any) => {
-        (<any>window).instanceSelectedValueOthers = e.target.value
-      })
+      /*othersMyTagify.addEventListener('change', (eY: any) => {
+        (<any>window).instanceSelectedValueOthers = eY.target.value
+      })*/
 
 
     })
@@ -213,14 +182,19 @@ export class FormRequisicaoComponent implements OnInit {
 
   async ngOnInit() {
 
-    (<any>window).storeFire = this.store;
-
+    this.setNewOptions();
+    this.idMovement = "not found id";
 
     this.ServiceArmario = ServiceArmario;
-    this.ServicePrateleira = ServicePrateleias;
 
-    this.initJQuerysFunctions()
-    this.list_countries = await ServiceCountry.findAllCountries(this.store)
+    (<any>window).storeFire = this.store;
+
+    this.listClients = await ServiceNifClient.findAll(this.store);
+    this.ServicePrateleira = await ServicePrateleias;
+
+    await this.initJQuerysFunctions();
+
+    this.listCountriesE = await ServiceCountry.findAllCountries(this.store);
 
     this.list_produtos = await ServiceEan.findAll(this.store)
 
@@ -229,7 +203,10 @@ export class FormRequisicaoComponent implements OnInit {
     this.listArmazem = await ServiceArmazem.findAll(this.store);
 
     this.listFornecedores = await ServiceFornecedores.findAll(this.store);
+
     this.listNewRequisition()
+
+
   }
 
   listNewRequisition() {
@@ -261,5 +238,40 @@ export class FormRequisicaoComponent implements OnInit {
       )
     })
   }
+
+  campoClienteClick() {
+
+  }
+
+  /**
+   * ***Name*** : Munzambi Ntemo Miguel
+   * ***Date*** : 15 de Desembro de 2022
+   *
+   * ***Description*** ....
+   *
+   * ```ts
+   * setNewOptions() {
+   * this.listOption = [
+   *   {id: 1, name: "Campos Cliente (Parceiro)", isselected: false},
+   *   {id: 2, name: "Campos do Cliente normal", isselected: false},
+   *   {id: 3, name: "Com o Campo Nif do Cliente", isselected: false},
+   *   {id: 4, name: "Armazem e Localização", isselected: false},
+   *   {id: 5, name: "Outro requeisitante", isselected: false} // this is other request
+   * ]
+   *}
+   * tanks
+   *
+   */
+
+  setNewOptions() {
+    this.listOption = [
+      {id: 1, name: "Campos Cliente (Parceiro)", isselected: false},
+      {id: 2, name: "Campos do Cliente normal", isselected: false},
+      {id: 3, name: "Com o Campo Nif do Cliente", isselected: false},
+      {id: 4, name: "Armazem e Localização", isselected: false},
+      {id: 5, name: "Outro requeisitante", isselected: false} // this is other request
+    ]
+  }
+
 
 }

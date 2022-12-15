@@ -20,7 +20,8 @@
       <td>{{  produt.fornecedor?.name}}</td>
       <td>{{ produt.dataCompra}}</td>
       <td class="gap-2">
-        <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
+        <button type="button" (click)="emitFunctionalityUp(produt)"
+                class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
           <span class="svg-icon"> <i class="fa fa-edit"></i></span>
         </button>
         <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1"

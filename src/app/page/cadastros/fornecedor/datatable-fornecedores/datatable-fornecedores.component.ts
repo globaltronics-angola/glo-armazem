@@ -16,6 +16,7 @@ export class DatatableFornecedoresComponent implements OnInit {
   }
 
   async ngOnInit() {
+    (<any>window).InstanceAplication.init()
     this.list_forncedors = await ServiceFornecedor.findAll(this.store)
   }
 

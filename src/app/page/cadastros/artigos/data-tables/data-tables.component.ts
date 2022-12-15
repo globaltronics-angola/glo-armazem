@@ -19,7 +19,10 @@ export class DataTablesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    (<any>window).InstanceAplication.init()
     this.findAlProduts()
+
+
   }
 
 

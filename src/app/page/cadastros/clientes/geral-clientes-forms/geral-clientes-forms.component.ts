@@ -20,7 +20,8 @@ export class GeralClientesFormsComponent implements OnInit {
 
 
   save() {
-    moment().locale('pt-br');
+
+    // @ignore-duplicate
     this.client.departmentId = (<any>window).instanceSelectedIdDepartments;
 
     this.client.others = (<any>window).instanceSelectedValueOtherInfo.split(',');
@@ -30,12 +31,14 @@ export class GeralClientesFormsComponent implements OnInit {
     this.client.deleted_at = this.DELETED_AT_NULL;
     this.client.email_auth = 'user activities';
 
-    this.client.id = ""
+    this.client.id = this.store.getId()
+
     console.log(this.client)
-    this.store.create(this.client, this.STORAGE_CLIENTS).then(
+
+    this.store.createdForceGenerateId(this.client, this.STORAGE_CLIENTS).then(
       resp => {
         (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
-        console.log(resp.id)
+        console.log(resp)
       },
       err => {
         alert('Ocorreu um determido erro ')
@@ -44,6 +47,9 @@ export class GeralClientesFormsComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    (<any>window).InstanceAplication.init()
+
     this.initJQuerysFuncitions()
     this.findAllDepartments()
   }
@@ -88,7 +94,6 @@ export class GeralClientesFormsComponent implements OnInit {
       }
     )
   }
-
 
 
 }

@@ -6,11 +6,9 @@ import * as moment from "moment/moment";
 @Component({
   selector: 'app-forms-geral-fornecedores',
   templateUrl: './forms-geral-fornecedores.component.html',
-  styles: [
-  ]
+  styles: []
 })
-export class FormsGeralFornecedoresComponent implements OnInit{
-
+export class FormsGeralFornecedoresComponent implements OnInit {
 
 
   private DELETED_AT_NULL: any = "NULL"
@@ -25,9 +23,10 @@ export class FormsGeralFornecedoresComponent implements OnInit{
   }
 
 
-
   initJQuerysFuncitions() {
+
     (<any>window).$(function ($: any) {
+
 
       $('#departamentosSelectForne').select2().on('change', (e: any) => {
         (<any>window).instanceSelectedIdDepartments = e.target.value
@@ -47,9 +46,11 @@ export class FormsGeralFornecedoresComponent implements OnInit{
       })
 
     })
+
   }
 
   ngOnInit(): void {
+    (<any>window).InstanceAplication.init()
     this.initJQuerysFuncitions()
 
     this.findAllDepartments()

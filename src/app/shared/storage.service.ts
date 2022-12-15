@@ -53,6 +53,12 @@ export class StorageService {
     return this.afs.collection('/' + name).doc('/' + id).valueChanges()
   }
 
+
+  /**
+   *
+   * @param name collection Name
+   * @param id
+   */
   deleted(name: string, id: string) {
     return this.afs.collection('/' + name).doc('/' + id).delete()
   }

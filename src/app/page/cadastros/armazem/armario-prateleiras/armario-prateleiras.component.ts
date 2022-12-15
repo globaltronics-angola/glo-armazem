@@ -24,6 +24,9 @@ export class ArmarioPrateleirasComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    (<any>window).InstanceAplication.init()
+
     this.findAllArmazens()
 
     this.initJQueryScripts()

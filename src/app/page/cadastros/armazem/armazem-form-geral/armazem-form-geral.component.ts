@@ -91,6 +91,8 @@ export class ArmazemFormGeralComponent implements OnInit {
   initJQueryFunctions() {
     (<any>window).$(($: any) => {
 
+
+
       $('#paises').select2().on('change', (event: any) => {
         (<any>window).instanceSelectedId = event.target.value
 
@@ -112,8 +114,14 @@ export class ArmazemFormGeralComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    (<any>window).InstanceAplication.init()
+
     this.findAllPaises()
+
     this.initJQueryFunctions()
+
+
   }
 
   findAllPaises() {

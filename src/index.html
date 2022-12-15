@@ -15,7 +15,7 @@
 
   <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
   <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
-
+  <link href="assets/plugins/custom/jstree/jstree.bundle.css" rel="stylesheet" type="text/css" />
 
 </head>
 <!--  class="app-default" -->
@@ -57,11 +57,15 @@
 <script src="assets/js/custom/utilities/modals/create-app.js"></script>
 <script src="assets/js/custom/utilities/modals/new-target.js"></script>
 <script src="assets/js/custom/utilities/modals/users-search.js"></script>
+<script src="assets/plugins/custom/jstree/jstree.bundle.js"></script>
 <script>
 
   window.InstanceAplication = {
     init: function () {
-      KTComponents.init();
+      KTUtil.onDOMContentLoaded(function() {
+        KTComponents.init();
+      });
+
     }
   }
 
@@ -90,7 +94,7 @@
       toastr.success(text);
     }
   }
-
+  window.KTUtil = KTUtil;
   window.$ = jQuery;
 
 </script>

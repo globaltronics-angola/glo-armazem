@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {StorageService} from "../../shared/storage.service";
+import ServiceUtil from "../../Services/ServiceUtil";
 
 @Component({
   selector: 'app-tabelas-nif-address',
@@ -50,6 +51,14 @@ export class TabelasNifAddressComponent implements OnInit {
         this.findAllAddressNif(e.target.value)
       })
 
+
+    })
+  }
+
+  deleteNif(id: string) {
+    this.store.deleted(ServiceUtil.STORAGE_NIF_CLIENTS, id).then(() => {
+      (<any>window).sentMessageSuccess.init('foi removido com sucesso')
+    }, err => {
 
     })
   }

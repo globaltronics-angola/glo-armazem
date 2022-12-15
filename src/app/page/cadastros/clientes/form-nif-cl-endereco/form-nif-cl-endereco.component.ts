@@ -33,8 +33,6 @@ export class FormNifClEnderecoComponent implements OnInit {
 
   save() {
 
-    moment().locale('pt-br');
-
     this.addressNifOb.clientId = (<any>window).instanceSelectedIdcliente;
     this.addressNifOb.country = (<any>window).instanceSelectedIdCountry;
 
@@ -46,8 +44,9 @@ export class FormNifClEnderecoComponent implements OnInit {
     this.addressNifOb.deleted_at = this.DELETED_AT_NULL;
 
     this.addressNifOb.email_auth = 'user activities';
+    this.addressNifOb.id = this.addressNifOb.nif
 
-    this.store.create(this.addressNifOb, this.STORAGE_CLIENTS_ADDRESS_NIF).then(
+    this.store.createdForceGenerateId(this.addressNifOb, this.STORAGE_CLIENTS_ADDRESS_NIF).then(
       () => {
         (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
       },
@@ -59,6 +58,9 @@ export class FormNifClEnderecoComponent implements OnInit {
 
 
   initJQueryScriptsFunctions() {
+
+    (<any>window).InstanceAplication.init()
+
     (<any>window).$(($: any) => {
       $('#paisesClients').select2().on('change', (e: any) => {
         (<any>window).instanceSelectedIdCountry = e.target.value

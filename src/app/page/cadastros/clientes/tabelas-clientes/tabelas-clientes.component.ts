@@ -13,6 +13,7 @@ export class TabelasClientesComponent implements OnInit{
    list_clients: any[] = []
 
  async ngOnInit(){
+   (<any>window).InstanceAplication.init()
     this.list_clients = await ServiceClients.findAll(this.store)
   }
 
@@ -22,4 +23,13 @@ export class TabelasClientesComponent implements OnInit{
   findAll(){
 
   }
+
+
+    deleteClient(id: string){
+     this.store.deleted(ServiceClients.STORAGE_CLIENTS, id).then(()=>{
+       (<any>window).sentMessageSuccess.init('foi removido com sucesso')
+     }, err=>{
+
+     })
+    }
 }

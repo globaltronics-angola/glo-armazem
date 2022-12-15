@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {StorageService} from "../../../../shared/storage.service";
 import ServiceUtil from "../../../../Services/ServiceUtil";
 import ServiceEan from "../../../../Services/ServiceEan";
 import ServiceCountry from "../../../../Services/ServiceCountry";
+import ServiceEmitter from "../../../../Services/ServiceEmitter";
+
 
 @Component({
   selector: 'app-tabela-item-entrada',
@@ -13,7 +15,7 @@ export class TabelaItemEntradaComponent implements OnInit {
 
   list_items: any[] = []
 
-  constructor(private store: StorageService) {
+  constructor(private store: StorageService, private _emittor: ServiceEmitter) {
   }
 
   ngOnInit(): void {
@@ -94,6 +96,13 @@ export class TabelaItemEntradaComponent implements OnInit {
 
       }
     )
+  }
+
+
+  public emitFunctionalityUp(attr: any){
+
+
+
   }
 
 }

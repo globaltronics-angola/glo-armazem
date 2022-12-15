@@ -25,8 +25,7 @@ export class FornecedorNifEnderecosComponent implements OnInit {
 
     this.initJQueryScriptsFunctions()
     this.lista_paises = await ServiceCountry.findAllCountries(this.store)
-    this.lista_clientes = await ServiceFornecedor.findAll(this.store)
-    console.log(this.lista_paises);
+    this.listFornecedores();
   }
 
   constructor(private store: StorageService) {
@@ -60,6 +59,7 @@ export class FornecedorNifEnderecosComponent implements OnInit {
   }
 
   initJQueryScriptsFunctions() {
+
     (<any>window).$(($: any) => {
       $('#paisesClients').select2().on('change', (e: any) => {
         (<any>window).instanceSelectedIdCountry = e.target.value
@@ -81,6 +81,23 @@ export class FornecedorNifEnderecosComponent implements OnInit {
       })
 
     })
+  }
+
+
+  listFornecedores() {
+
+
+    this.store.findAll(ServiceFornecedor.STORAGE_FORNECEDOR).subscribe((resp) => {
+      this.lista_clientes = resp.map((resT: any) => {
+        const data = resT.payload.doc.data()
+        data.id = resT.payload.doc.id
+        return data;
+      })
+    }, error => {
+
+    })
+
+
   }
 
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import ServiceCountry from "../../../../Services/ServiceCountry";
 import {StorageService} from "../../../../shared/storage.service";
 import * as Tagify from "@yaireo/tagify";
@@ -10,6 +10,7 @@ import ServiceArmazem from "../../../../Services/ServiceArmazem";
 import ServiceArmario from "../../../../Services/ServiceArmario";
 import ServicePrateleias from "../../../../Services/ServicePrateleias";
 import ServiceFornecedores from "../../../../Services/ServiceFornecedores";
+import ServiceEmitter from "../../../../Services/ServiceEmitter";
 
 @Component({
   selector: 'app-formulario-lancamento',
@@ -17,6 +18,8 @@ import ServiceFornecedores from "../../../../Services/ServiceFornecedores";
   styles: []
 })
 export class FormularioLancamentoComponent implements OnInit {
+
+  @Input() listener : any = {}
 
   eanRefeModel: any = {};
   list_produtos: any[] = []
@@ -32,7 +35,7 @@ export class FormularioLancamentoComponent implements OnInit {
 
   movement: any = {}
 
-  idMovement: string = ""
+  idMovement: string = "1111000011"
   ServiceArmario: ServiceArmario | any;
   ServicePrateleira: ServicePrateleias | any;
 
@@ -42,12 +45,19 @@ export class FormularioLancamentoComponent implements OnInit {
   TYPE_MOVEMENT: string = "INPUT"
 
 
-  constructor(private store: StorageService) {
+  async onUpdated() {
+    this.list_produtos = await ServiceEan.findAll(this.store)
+    this.listFornecedores = await ServiceFornecedores.findAll(this.store);
+  }
+
+
+  constructor(private store: StorageService ) {
+
   }
 
   async save() {
 
-    const idMovement = this.idMovement
+
 
     this.movement.dateMovimento = (<any>window).instanceSelectedDateItensCompra
 
@@ -56,31 +66,19 @@ export class FormularioLancamentoComponent implements OnInit {
     this.movement.deleted_at = ServiceUtil.DELETED_AT_NULL;
     this.movement.email_auth = 'user activities';
 
-    this.movement.id = idMovement
+    this.movement.id = this.idMovement
 
     this.movement.typeMovimento = this.TYPE_MOVEMENT
 
     this.movement.armazemkey = (<any>window).instanceSelectedArmazemId;
 
-    const listUpdated = await ServiceMovimentoItems.findTemporalAll(this.store)
+    const listUpdatedA = await ServiceMovimentoItems.findTemporalAllInput(this.store)
+
+    ServiceMovimentoItems.updatedItemMovement(listUpdatedA, this.idMovement, this.store)
+
 
     this.store.createdForceGenerateId(this.movement, ServiceUtil.STORAGE_MOVEMENT).then(
       () => {
-
-        listUpdated.forEach((dataShit: any) => {
-
-          let instanceDateItemMovement = dataShit
-          instanceDateItemMovement.id = dataShit.id
-          instanceDateItemMovement.movimentoId = idMovement
-          instanceDateItemMovement.status = ServiceUtil.VALUE_AT_STATUS_ACTIVE
-
-          this.store.createdForceGenerateId(instanceDateItemMovement, ServiceUtil.STORAGE_ITEM_MOVIMENTO).then(() => {
-            (<any>window).sentMessageSuccess.init('Foi inserido com sucesso obrigado!')
-          }, err => {
-          })
-
-        });
-
         this.idMovement = this.store.getId()
       },
       err => {
@@ -220,6 +218,7 @@ export class FormularioLancamentoComponent implements OnInit {
     this.ServicePrateleira = ServicePrateleias;
 
     this.initJQuerysFunctions()
+
     this.list_countries = await ServiceCountry.findAllCountries(this.store)
 
     this.list_produtos = await ServiceEan.findAll(this.store)
@@ -247,5 +246,15 @@ export class FormularioLancamentoComponent implements OnInit {
         }
       )
     })
+  }
+
+  calcularQuantidades(){
+
+    const listPendnts = [];
+
+  }
+
+  ngOnDestroy() {
+   // this._emitters.emitter.unsubscribe();
   }
 }

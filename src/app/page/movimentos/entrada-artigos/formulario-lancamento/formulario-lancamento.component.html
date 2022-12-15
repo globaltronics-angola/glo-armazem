@@ -1,7 +1,10 @@
 <div class="card-body p-0">
   <form id="kt_modal_new_target_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#">
 
+
+
     <div class="row justify-content-end">
+
       <div class="col-12 col-lg-6 col-sm-8 mb-4">
         <div class="d-flex flex-column fv-row fv-plugins-icon-container">
           <!--begin::Label-->
@@ -24,6 +27,23 @@
           <!--  <span class="mt-3 text-muted font-italic ml-5">Selecciona o produto para configurar o codigo de barra</span> -->
         </div>
       </div>
+      <div class="col-auto mb-4">
+        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <span class="">&nbsp;</span>
+          </label>
+          <!--end::Label-->
+
+          <button class="btn btn-sm btn-primary col-auto" (click)="onUpdated()"><i class="bi bi-cloud-download"></i>
+            Atualize
+          </button>
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+
+          <!--  <span class="mt-3 text-muted font-italic ml-5">Selecciona o produto para configurar o codigo de barra</span> -->
+        </div>
+      </div>
+
     </div>
 
 
@@ -88,7 +108,9 @@
         <div class="separator separator-dashed my-4"></div>
 
         <div class="accordion-header d-flex" data-bs-toggle="collapse" data-bs-target="#kt_accordion_2_item_1">
-          <div class="fv-plugins-message-container text-primary text-right mb-4"><i class="bi bi-bookmarks-fill"></i> Formulário de item do movimento</div>
+          <div class="fv-plugins-message-container text-primary text-right mb-4"><i class="bi bi-bookmarks-fill"></i>
+            Formulário de item do movimento
+          </div>
         </div>
         <!--end::Header-->
 
@@ -98,11 +120,11 @@
 
           <div class="row">
 
-            <div class="col-sm-4">
+            <div class="col-sm-3">
               <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
                 <!--begin::Label-->
                 <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                  <span class="required">Armario</span>
+                  <span class="required">Armário</span>
                 </label>
                 <!--end::Label-->
                 <select class="form-select form-select-sm selector" data-control="select2"
@@ -118,7 +140,7 @@
               </div>
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-3">
               <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
                 <!--begin::Label-->
                 <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -133,6 +155,21 @@
                     {{ pro.name }}
                   </option>
                 </select>
+
+                <div class="fv-plugins-message-container invalid-feedback"></div>
+              </div>
+            </div>
+
+            <div class="col-auto">
+              <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+                <!--begin::Label-->
+                <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                  <span class="">&nbsp;</span>
+                </label>
+                <!--end::Label-->
+                <button class="btn btn-sm btn-primary " id="new_aarmazens_basic_button"><i class="fa fa-plus"></i>
+                  &nbsp;Nova Localização
+                </button>
 
                 <div class="fv-plugins-message-container invalid-feedback"></div>
               </div>
@@ -158,19 +195,22 @@
                       <option></option>
                       <option [value]="pro.id" *ngFor="let pro of list_produtos">
                         {{
-                        pro.ean + ' - ' + (pro.type_data ? pro.type_data.name : 'ñ definido') + ' - ' + (pro.product_data? pro.product_data.name : 'undefined')
+                        pro.ean + ' - ' + (pro.type_data ? pro.type_data.name : 'ñ definido') + ' - ' + (pro.product_data ? pro.product_data.name : 'undefined')
                         }}
                       </option>
                     </select>
                   </div>
 
-                  <span class="input-group-text"> <i class="fa fa-search"></i></span>
+                  <button class="input-group-text" id="new_produtos_basic_button">
+                    <i class="fa fa-plus"></i> &nbsp; New
+                  </button>
                 </div>
                 <div class="fv-plugins-message-container invalid-feedback"></div>
                 <div class="fv-plugins-message-container text-muted">referencia do produto a processar na entrada</div>
               </div>
             </div>
-            <div class="col-sm-4">
+
+            <div class="col-sm-3">
               <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                 <!--begin::Label-->
                 <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -197,16 +237,20 @@
               </div>
             </div>
 
-            <div class="col-sm-2">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xxl-auto min-w-350px">
               <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                 <!--begin::Label-->
                 <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                  <span class="required">Qt itens</span>
+                  <span class="required">Qt. Itens</span>
                 </label>
                 <!--end::Label-->
+                <div class="input-group">
+                  <input type="number" class="form-control form-control-sm " placeholder="Caixa"
+                         name="qt_item" [(ngModel)]="itensCompra.qt_item">
 
-                <input type="number" class="form-control form-control-sm " placeholder="Quantidade do item"
-                       name="target_title" [(ngModel)]="itensCompra.qt_item">
+                  <input type="number" class="form-control form-control-sm " placeholder="Conversão"
+                         name="qt_item_conversao" [(ngModel)]="itensCompra.qt_item_conversao">
+                </div>
 
                 <div class="fv-plugins-message-container invalid-feedback"></div>
               </div>
@@ -220,7 +264,8 @@
                 </label>
                 <!--end::Label-->
 
-                <input type="number" id="select_compra" class="form-control form-control-sm " placeholder="Quantidade do item"
+                <input type="number" id="select_compra" class="form-control form-control-sm "
+                       placeholder="Quantidade do item"
                        name="target_title">
 
                 <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -234,19 +279,26 @@
                   <span class="">Fornecedor</span>
                 </label>
 
-                <select class="form-select form-select-sm selector " data-control="select2"
-                        data-allow-clear="true"
-                        data-placeholder="Selecciona a moeda" id="selectFornecedor">
-                  <option></option>
-                  <option [value]="forne.id" *ngFor="let forne of listFornecedores">
-                    {{ forne.name }}
-                  </option>
-                </select>
+                <div class="input-group input-group-sm input-group-solid flex-nowrap">
+                  <!--end::Label-->
+                  <div class="overflow-hidden flex-grow-1">
+                    <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
+                            data-placeholder="Selecciona o modelo" id="selectFornecedor">
+                      <option></option>
+                      <option  *ngFor="let forNd of listFornecedores" [value]="forNd.id">
+                        {{  forNd.name }}
+                      </option>
+                    </select>
+                  </div>
+                  <button class="input-group-text" style="max-width: 80px; min-width: 80px" id="new_fornecedorProd_basic_button">
+                    <i
+                      class="fa fa-plus"></i> &nbsp; Nova
+                  </button>
+                </div>
 
                 <div class="fv-plugins-message-container invalid-feedback"></div>
               </div>
             </div>
-
 
 
             <div class="col-sm-8">
@@ -286,7 +338,9 @@
     </div>
 
   </form>
-
+  <app-new-fornecedor></app-new-fornecedor>
+  <app-new-localizacao></app-new-localizacao>
+  <app-new-product></app-new-product>
   <app-tabela-item-entrada></app-tabela-item-entrada>
 </div>
 <app-tipo-items></app-tipo-items>

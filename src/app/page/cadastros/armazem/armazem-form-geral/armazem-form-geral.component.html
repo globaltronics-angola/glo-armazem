@@ -30,8 +30,25 @@
                 {{ '(' + modelo.iso + ')' + ' - ' + modelo.name }}
               </option>
             </select>
+
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
+        </div>
+        <div class="col-12 col-sm-auto {{ lista_paises.length< 1?'':'d-none'}}" >
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="">&nbsp;</span>
+            </label>
+            <!--end::Label-->
+            <button type="button" class="btn btn-sm btn-warning mr-2 "
+                    (click)="testing()">
+              Gerar novos paises
+            </button>
+
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+
         </div>
         <div class="col-12 col-sm-8">
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
@@ -72,9 +89,7 @@
           Guardar a informação
         </button>
 
-        <button type="button" class="btn btn-sm btn-primary mr-2" (click)="testing()">
-          Gerar os paises
-        </button>
+
       </div>
     </div>
   </form>

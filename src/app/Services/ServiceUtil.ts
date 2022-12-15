@@ -15,6 +15,7 @@ export default class ServiceUtil{
   static STORAGE_EAN = "global-ean-referencias";
   static STORAGE_FORNECEDOR = "global-forncedores";
   static STORAGE_TYPE_REQUISITION = "global-type-requisition";
+  static STORAGE_NIF_CLIENTS = "global-nif-clients";
 
 
 

@@ -27,6 +27,9 @@ export class ReferenciaServisoComponent implements OnInit{
   protected eanRefeModel: any = {}
 
   ngOnInit(): void {
+
+    (<any>window).InstanceAplication.init()
+
     this.findAllService()
     this.findAllTypeItems()
     this.initJQuerysInits()

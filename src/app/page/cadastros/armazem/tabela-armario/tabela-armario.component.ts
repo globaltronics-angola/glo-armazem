@@ -18,7 +18,11 @@ export class TabelaArmarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    (<any>window).InstanceAplication.init()
+
     this.findAllArmarios()
+
   }
 
   findAllArmarios() {
@@ -42,7 +46,6 @@ export class TabelaArmarioComponent implements OnInit {
             }
           );
 
-          console.log(data)
           return data;
         })
       },
@@ -51,4 +54,10 @@ export class TabelaArmarioComponent implements OnInit {
     )
   }
 
+  listParameter(attr: any): [] {
+
+    console.log(attr.slice(0,3))
+
+    return attr
+  }
 }

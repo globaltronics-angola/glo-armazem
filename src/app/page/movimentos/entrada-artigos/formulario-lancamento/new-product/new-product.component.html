@@ -1,0 +1,55 @@
+<div
+  id="new_produtos_basic"
+  class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true"
+  data-kt-drawer-toggle="#new_produtos_basic_button"
+  data-kt-drawer-close="#new_produtos_basic_close" data-kt-drawer-width="1000px">
+
+  <div class="p-5 w-100">
+    <div class="text-right mb-4">
+      <!--begin::Title-->
+      <h1 class="text-dark fw-bolder mt-5 text-uppercase">Novo Produto</h1>
+      <!--end::Title-->
+      <!--begin::Subtitle-->
+      <div class="text-gray-500 fw-semibold fs-6">Crie, actualize ou apage os produtos</div>
+      <!--end::Subtitle=-->
+    </div>
+    <div class="separator my-4 text-center mb-2">
+    </div>
+
+    <div class="card-body pb-0">
+      <!--begin::Navs-->
+      <ul class="nav nav-tabs nav-line-tabs mb-5 fs-6">
+        <li class="nav-item">
+          <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_1">Geral</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_2">Eans</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_3">Todos Artigos</a>
+        </li>
+      </ul>
+
+      <div class="tab-content" id="myTabContent">
+
+        <div class="tab-pane fade show active" id="kt_tab_pane_1" role="tabpanel">
+          <app-form-geral></app-form-geral>
+        </div>
+
+        <div class="tab-pane fade" id="kt_tab_pane_2" role="tabpanel">
+          <app-forms-eans></app-forms-eans>
+        </div>
+
+        <div class="tab-pane fade" id="kt_tab_pane_3" role="tabpanel">
+          <app-data-tables></app-data-tables>
+        </div>
+
+
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
+

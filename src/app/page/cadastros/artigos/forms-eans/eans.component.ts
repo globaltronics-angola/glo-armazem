@@ -29,6 +29,9 @@ export class EansComponent implements OnInit {
 
 
   async ngOnInit() {
+
+    (<any>window).InstanceAplication.init()
+
     this.findAllProduts()
     this.findAllTypeItems()
     this.initJQuerys()

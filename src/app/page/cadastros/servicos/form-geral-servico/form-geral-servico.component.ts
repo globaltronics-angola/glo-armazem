@@ -30,6 +30,8 @@ export class FormGeralServicoComponent implements OnInit{
 
   ngOnInit(): void {
 
+    (<any>window).InstanceAplication.init()
+
     this.findAllModelos();
 
     this.findAllCategories()

@@ -43,6 +43,7 @@ import {
 } from "./page/movimentos/entrada-artigos/formulario-lancamento/formulario-lancamento.component";
 import {RequisicaoArtigoComponent} from "./page/movimentos/requisicao-artigo/requisicao-artigo.component";
 import {FormRequisicaoComponent} from "./page/movimentos/requisicao-artigo/form-requisicao/form-requisicao.component";
+import {DatatableRequisicaoComponent} from "./page/movimentos/requisicao-artigo/datatable-requisicao/datatable-requisicao.component";
 
 
 const routes: Routes = [
@@ -122,7 +123,7 @@ const routes: Routes = [
       {
         path: 'requisicao', component: RequisicaoArtigoComponent,
         children: [
-          {path: 'tabela', component: LancamentoComponent},
+          {path: 'tabela', component: DatatableRequisicaoComponent},
           {path: 'formulario', component: FormRequisicaoComponent}
         ]
       }
