@@ -265,11 +265,11 @@ export class FormRequisicaoComponent implements OnInit {
 
   setNewOptions() {
     this.listOption = [
-      {id: 1, name: "Campos Cliente (Parceiro)", isselected: false},
+     // {id: 1, name: "Campos Cliente (Parceiro)", isselected: false},
       {id: 2, name: "Campos do Cliente normal", isselected: false},
-      {id: 3, name: "Com o Campo Nif do Cliente", isselected: false},
-      {id: 4, name: "Armazem e Localização", isselected: false},
-      {id: 5, name: "Outro requeisitante", isselected: false} // this is other request
+      {id: 3, name: "Com o Campo Nif do Cliente", isselected: false}
+     // {id: 4, name: "Armazem e Localização", isselected: false},
+     // {id: 5, name: "Outro requeisitante", isselected: false} // this is other request
     ]
   }
 

@@ -13,8 +13,7 @@
             <!--end::Label-->
             <div class="overflow-hidden flex-grow-1">
               <select class="form-select form-select-sm selector rounded-end-0" data-control="select2"
-                      data-allow-clear="true"
-                      data-placeholder="Selecciona o modelo" id="selectTypeRequisition">
+                data-allow-clear="true" data-placeholder="Selecciona o modelo" id="selectTypeRequisition">
                 <option></option>
                 <option [value]="proRd.id" *ngFor="let proRd of listRequisition">
                   {{ proRd.name }}
@@ -47,7 +46,7 @@
           <div>
             <!--begin::Toggle-->
             <button type="button" class="btn btn-primary rotate btn-sm" data-kt-menu-trigger="click"
-                    data-kt-menu-placement="bottom-start" data-kt-menu-offset="30px, 30px">
+              data-kt-menu-placement="bottom-start" data-kt-menu-offset="30px, 30px">
               Outros itens
               <span class="svg-icon svg-icon-3 rotate-180 ms-3 me-0">&bigtriangledown;</span>
             </button>
@@ -55,17 +54,15 @@
 
             <!--begin::Menu-->
             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded
-            menu-gray-800 menu-state-bg-light-primary fw-semibold w-300px p-4"
-                 data-kt-menu="true">
+            menu-gray-800 menu-state-bg-light-primary fw-semibold w-300px p-4" data-kt-menu="true">
 
 
               <!--begin::Menu item-->
               <div *ngFor="let item of listOption">
                 <div class="menu-item px-3 mb-3">
                   <div class="form-check form-check-sm form-check-custom form-check-solid">
-                    <input class="form-check-input form-check-sm" type="checkbox"
-                           (change)="campoClienteClick()" [(ngModel)]="item.isselected" name="isselected"
-                           id="form_checkbox{{ item.id}}"/>
+                    <input class="form-check-input form-check-sm" type="checkbox" (change)="campoClienteClick()"
+                      [(ngModel)]="item.isselected" name="isselected" id="form_checkbox{{ item.id}}" />
                     <label class="form-check-label" for="form_checkbox{{ item.id}}">
                       {{ item.name }}
                     </label>
@@ -94,8 +91,7 @@
             <!--end::Label-->
             <div class="overflow-hidden flex-grow-1">
               <select class="form-select form-select-sm selector rounded-end-0" data-control="select2"
-                      data-allow-clear="true"
-                      data-placeholder="Selecciona o modelo" id="selectClientesRequisition">
+                data-allow-clear="true" data-placeholder="Selecciona o modelo" id="selectClientesRequisition">
                 <option></option>
                 <option [value]="pro.id" *ngFor="let pro of listClients">
                   {{ pro.nif?.toUpperCase() + ' - ' + pro.clienteObj?.name }}
@@ -126,7 +122,7 @@
             </label>
             <!--end::Label-->
             <input type="text" name="nameClient" [(ngModel)]="movement.nameClient" class="form-control form-control-sm"
-                   placeholder="insira a descrição longa">
+              placeholder="insira a descrição longa">
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
@@ -138,12 +134,106 @@
             </label>
             <!--end::Label-->
             <input type="text" name="nifCliente" [(ngModel)]="movement.nifCliente" class="form-control form-control-sm"
-                   placeholder="insira a descrição longa">
+              placeholder="insira a descrição longa">
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
       </div>
 
+      <div class="accordion accordion-icon-toggle" id="kt_accordion_2">
+        <!--begin::Item-->
+        <div class="">
+          <!--begin::Header-->
+          <div class="separator separator-dashed my-4"></div>
+
+          <div class="accordion-header d-flex" data-bs-toggle="collapse" data-bs-target="#kt_accordion_2_item_1">
+            <div class="fv-plugins-message-container text-primary text-right mb-4"><i class="bi bi-bookmarks-fill"></i>
+              Formulário de item da requisição
+            </div>
+          </div>
+          <!--end::Header-->
+
+          <!--begin::Body-->
+          <div id="kt_accordion_2_item_1" class="fs-6 collapse show p-3" data-bs-parent="#kt_accordion_2">
+
+            <div class="row w-100">
+
+              <div class="col-sm-4">
+                <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+                  <!--begin::Label-->
+                  <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                    <span class="required">Referência / Ean</span>
+                  </label>
+                  <!--end::Label-->
+                  <div class="input-group input-group-sm input-group-solid flex-nowrap">
+                    <!--end::Label-->
+                    <div class="overflow-hidden flex-grow-1">
+                      <select class="form-select form-select-sm selector rounded-end-0" data-control="select2"
+                        data-allow-clear="true" data-placeholder="Selecciona o modelo" id="selectedProduct">
+                        <option></option>
+                        <option [value]="pro.id" *ngFor="let pro of list_produtos">
+                          {{
+                          pro.ean + ' - ' + (pro.type_data ? pro.type_data.name : 'ñ definido') + ' - ' +
+                          (pro.product_data ? pro.product_data.name : 'undefined')
+                          }}
+                        </option>
+                      </select>
+                    </div>
+
+                    <span class="input-group-text"> <i class="fa fa-search"></i></span>
+                  </div>
+                  <div class="fv-plugins-message-container invalid-feedback"></div>
+                  <div class="fv-plugins-message-container text-muted">referencia do produto a processar na entrada
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-2">
+                <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+                  <!--begin::Label-->
+                  <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                    <span class="required">Qt itens</span>
+                  </label>
+                  <!--end::Label-->
+
+                  <input type="number" class="form-control form-control-sm " placeholder="Quantidade do item"
+                    name="target_title" [(ngModel)]="itensCompra.qt_item">
+
+                  <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+              </div>
+
+              <div class="col-auto">
+                <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+                  <!--begin::Label-->
+                  <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                    <span class="">&nbsp;</span>
+                  </label>
+                  <!--end::Label-->
+
+                  <button type="button" class="btn btn-sm btn-primary mr-2 btn-sm" (click)="addListItems()">
+                    Adicionar no Carrim
+                  </button>
+
+                  <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+              </div>
+
+
+
+            </div>
+
+          </div>
+          <!--end::Body-->
+        </div>
+
+        <!-- Seleção de um armazem do estoque
+          Foi ocultada a funcionalidade de indicar o armazem porque no momento não é necessario
+
+        -->
+      </div>
+
+      <app-item-requisicao></app-item-requisicao>
 
       <div class="col-12 col-lg-10 col-sm-8 ">
         <div class="d-flex flex-column fv-row fv-plugins-icon-container">
@@ -153,7 +243,7 @@
           </label>
           <!--end::Label-->
           <textarea type="text" class="form-control form-control-sm" rows="5" [(ngModel)]="movement.datasheet"
-                    placeholder="de uma descrição de relatorio do movimento de entrada" name="datasheet"></textarea>
+            placeholder="de uma descrição de relatorio do movimento de entrada" name="datasheet"></textarea>
           <div class="fv-plugins-message-container invalid-feedback"></div>
           <!--  <span class="mt-3 text-muted font-italic ml-5">Selecciona o produto para configurar o codigo de barra</span> -->
         </div>
@@ -165,123 +255,11 @@
 
     </div>
 
-    <div class="accordion accordion-icon-toggle" id="kt_accordion_2">
-      <!--begin::Item-->
-      <div class="">
-        <!--begin::Header-->
-        <div class="separator separator-dashed my-4"></div>
 
-        <div class="accordion-header d-flex" data-bs-toggle="collapse" data-bs-target="#kt_accordion_2_item_1">
-          <div class="fv-plugins-message-container text-primary text-right mb-4"><i class="bi bi-bookmarks-fill"></i>
-            Formulário de item da requisição
-          </div>
-        </div>
-        <!--end::Header-->
-
-        <!--begin::Body-->
-        <div id="kt_accordion_2_item_1" class="fs-6 collapse p-3" data-bs-parent="#kt_accordion_2">
-
-          <div class="row w-100">
-
-            <div class="col-sm-4">
-              <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
-                <!--begin::Label-->
-                <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                  <span class="required">Referência / Ean</span>
-                </label>
-                <!--end::Label-->
-                <div class="input-group input-group-sm input-group-solid flex-nowrap">
-                  <!--end::Label-->
-                  <div class="overflow-hidden flex-grow-1">
-                    <select class="form-select form-select-sm selector rounded-end-0" data-control="select2"
-                            data-allow-clear="true"
-                            data-placeholder="Selecciona o modelo" id="selectedProduct">
-                      <option></option>
-                      <option [value]="pro.id" *ngFor="let pro of list_produtos">
-                        {{
-                        pro.ean + ' - ' + (pro.type_data ? pro.type_data.name : 'ñ definido') + ' - ' + (pro.product_data ? pro.product_data.name : 'undefined')
-                        }}
-                      </option>
-                    </select>
-                  </div>
-
-                  <span class="input-group-text"> <i class="fa fa-search"></i></span>
-                </div>
-                <div class="fv-plugins-message-container invalid-feedback"></div>
-                <div class="fv-plugins-message-container text-muted">referencia do produto a processar na entrada</div>
-              </div>
-            </div>
-
-            <div class="col-sm-2">
-              <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
-                <!--begin::Label-->
-                <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                  <span class="required">Qt itens</span>
-                </label>
-                <!--end::Label-->
-
-                <input type="number" class="form-control form-control-sm " placeholder="Quantidade do item"
-                       name="target_title" [(ngModel)]="itensCompra.qt_item">
-
-                <div class="fv-plugins-message-container invalid-feedback"></div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-        <!--end::Body-->
-      </div>
-
-      <!-- Seleção de um armazem do estoque -->
-      <div class="col-12 col-sm-6  col-lg-4 w-100 pt-2 justify-content-end bg-light-danger">
-
-        <div class="col-6 mb-4 float-end {{ listOption[3].isselected?'': 'd-none'}}">
-          <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 mb-2 mt-2">
-              <span class="">Armazem</span>
-            </label>
-            <div class="input-group input-group-sm input-group-solid flex-nowrap">
-              <!--end::Label-->
-              <div class="overflow-hidden flex-grow-1">
-                <select class="form-select form-select-sm selector rounded-end-0" data-control="select2"
-                        data-allow-clear="true"
-                        data-placeholder="Selecciona o modelo" id="selectArmazemRequisition">
-                  <option></option>
-                  <option [value]="pro.id" *ngFor="let pro of listArmazem">
-                    {{ pro.name }}
-                  </option>
-                </select>
-              </div>
-
-              <button class="input-group-text" id="new_type_requisition_basic_button"><i class="fa fa-plus"></i>
-                &nbsp;
-                Novo
-              </button>
-            </div>
-            <!--end::Label-->
-
-            <div class="fv-plugins-message-container invalid-feedback"></div>
-            <div class="fv-plugins-message-container text-muted small">
-              Selecione o armazam destinatario ...
-            </div>
-            <!--  <span class="mt-3 text-muted font-italic ml-5">Selecciona o produto para configurar o codigo de barra</span> -->
-          </div>
-        </div>
-      </div>
-      <!-- informação do armazem -->
-
-
-      <div class="separator separator-dashed mb-5 "></div>
-
-    </div>
 
     <div class="col-12 mt-2 mb-4">
       <div class="input-group text-right justify-content-end">
-        <button type="button" class="btn btn-sm btn-primary mr-2 btn-sm" (click)="addListItems()">
-          Adicionar no Carrim
-        </button>
+
 
         <button type="button" class="btn btn-sm btn-success mr-2 btn-sm" (click)="save()">
           Finalizar o Processo
@@ -294,7 +272,7 @@
 
   </form>
 
-  <app-item-requisicao></app-item-requisicao>
+
   <app-requisicao-type></app-requisicao-type>
 </div>
 <app-tipo-items></app-tipo-items>
