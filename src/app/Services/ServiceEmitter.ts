@@ -1,18 +1,15 @@
-import {Injectable} from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
-import {BehaviorSubject} from "rxjs";
+export class ServiceEmitter {
 
-@Injectable()
-export default class ServiceEmitter {
+  private static emitters: {
+    [correntEnvent: string]: EventEmitter<any>
+  } = {}
 
-  // @ts-ignore
-  private messageDateSource = new BehaviorSubject<any>();
-  correntDataSource = this.messageDateSource.asObservable();
-
-  constructor() {
+  static get (correntEnvent:string): EventEmitter<any> {
+    if (!this.emitters[correntEnvent])
+      this.emitters[correntEnvent] = new EventEmitter<any>();
+    return this.emitters[correntEnvent];
   }
 
-  changeMessage(message: any) {
-    this.messageDateSource.next(message)
-  }
 }

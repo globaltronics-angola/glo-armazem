@@ -2,7 +2,6 @@
   <form id="kt_modal_new_target_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#">
 
 
-
     <div class="row justify-content-end">
 
       <div class="col-12 col-lg-6 col-sm-8 mb-4">
@@ -17,7 +16,7 @@
                   data-placeholder="Selecciona o modelo" id="selectedArmazem">
             <option></option>
             <option [value]="pro.id" *ngFor="let pro of listArmazem">
-              {{  pro.name }}
+              {{ pro.name }}
             </option>
 
           </select>
@@ -132,7 +131,7 @@
                         data-placeholder="Selecciona o modelo" id="selectedArmario">
                   <option></option>
                   <option [value]="pro.id" *ngFor="let pro of ServiceArmario.LISTA_ARMAZEM_ARMARIOS">
-                    {{  pro.name  }}
+                    {{ pro.name }}
                   </option>
                 </select>
 
@@ -195,7 +194,7 @@
                       <option></option>
                       <option [value]="pro.id" *ngFor="let pro of list_produtos">
                         {{
-                        pro.ean + ' - ' + (pro.type_data ? pro.type_data.name : 'ñ definido') + ' - ' + (pro.product_data ? pro.product_data.name : 'undefined')
+                          pro.ean + ' - ' + (pro.type_data ? pro.type_data.name : 'ñ definido') + ' - ' + (pro.product_data ? pro.product_data.name : 'undefined')
                         }}
                       </option>
                     </select>
@@ -285,12 +284,13 @@
                     <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
                             data-placeholder="Selecciona o modelo" id="selectFornecedor">
                       <option></option>
-                      <option  *ngFor="let forNd of listFornecedores" [value]="forNd.id">
-                        {{  forNd.name }}
+                      <option *ngFor="let forNd of listFornecedores" [value]="forNd.id">
+                        {{ forNd.name }}
                       </option>
                     </select>
                   </div>
-                  <button class="input-group-text" style="max-width: 80px; min-width: 80px" id="new_fornecedorProd_basic_button">
+                  <button class="input-group-text" style="max-width: 80px; min-width: 80px"
+                          id="new_fornecedorProd_basic_button">
                     <i
                       class="fa fa-plus"></i> &nbsp; Nova
                   </button>
@@ -332,6 +332,10 @@
           Finalizar o Processo
         </button>
         <button type="button" class="btn btn-sm btn-danger mr-2 btn-sm" (click)="cancelerMovement()">
+          Cancelar o Processo
+        </button>
+
+        <button type="button" class="btn btn-sm btn-warning mr-2 btn-sm d-none" (click)="onTesting()">
           Cancelar o Processo
         </button>
       </div>

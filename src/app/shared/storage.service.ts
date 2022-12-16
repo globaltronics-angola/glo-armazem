@@ -41,7 +41,7 @@ export class StorageService {
       .snapshotChanges();
   }
 
-  findAllOrderName(collectName: string){
+  findAllOrderName(collectName: string) {
     const dataStore = this.afs.firestore;
 
     return dataStore.collection('/' + collectName)
@@ -51,6 +51,33 @@ export class StorageService {
 
   findById(name: string, id: string) {
     return this.afs.collection('/' + name).doc('/' + id).valueChanges()
+  }
+
+
+  /**
+   .collection("global-prateleiras")
+   .where("armario", "==", "A0001-GCX07VTJWRXHJIVC4IC4")
+
+   */
+
+  getForeStore() {
+    return this.afs.firestore;
+  }
+
+  async findByOther(collect: string, nameField: string = "", context: string = "") {
+    const dataStore = this.afs.firestore;
+    let list: any[] = []
+    await dataStore.collection('/' + collect)
+      .where("armario", "==", "A0001-GCX07VTJWRXHJIVC4IC4")
+      .get()
+      .then(snap => {
+        snap.forEach(doc => {
+          list.push(doc.data())
+          return doc.data();
+        });
+      });
+
+    return list;
   }
 
 

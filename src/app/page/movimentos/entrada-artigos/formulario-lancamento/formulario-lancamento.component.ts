@@ -10,7 +10,7 @@ import ServiceArmazem from "../../../../Services/ServiceArmazem";
 import ServiceArmario from "../../../../Services/ServiceArmario";
 import ServicePrateleias from "../../../../Services/ServicePrateleias";
 import ServiceFornecedores from "../../../../Services/ServiceFornecedores";
-import ServiceEmitter from "../../../../Services/ServiceEmitter";
+import {ServiceEmitter} from "../../../../Services/ServiceEmitter";
 
 @Component({
   selector: 'app-formulario-lancamento',
@@ -19,7 +19,7 @@ import ServiceEmitter from "../../../../Services/ServiceEmitter";
 })
 export class FormularioLancamentoComponent implements OnInit {
 
-  @Input() listener : any = {}
+  @Input() listener: any = {}
 
   eanRefeModel: any = {};
   list_produtos: any[] = []
@@ -44,19 +44,23 @@ export class FormularioLancamentoComponent implements OnInit {
   // .typeMovimento == "INPUT"
   TYPE_MOVEMENT: string = "INPUT"
 
-
   async onUpdated() {
     this.list_produtos = await ServiceEan.findAll(this.store)
     this.listFornecedores = await ServiceFornecedores.findAll(this.store);
   }
 
 
-  constructor(private store: StorageService ) {
+  constructor(private store: StorageService) {
 
+    ServiceEmitter.get('sendItemsMovimento').subscribe(this.onSetInfoDataSource);
+    ServiceEmitter.get('sendItemsMovimento').subscribe(data => this.itensCompra = data);
+  }
+
+  onTesting() {
+    console.log(this.itensCompra)
   }
 
   async save() {
-
 
 
     this.movement.dateMovimento = (<any>window).instanceSelectedDateItensCompra
@@ -112,12 +116,31 @@ export class FormularioLancamentoComponent implements OnInit {
 
       $('#selectedArmazem').select2().on('change', async (e: any) => {
         (<any>window).instanceSelectedArmazemId = e.target.value
-
-        ServiceArmario.LISTA_ARMAZEM_ARMARIOS = await ServiceArmario.findAllByArmazem((<any>window).storeFire, e.target.value)
+        ServiceArmario.LISTA_ARMAZEM_ARMARIOS = [];
+        (<any>window).storeFire.getForeStore().collection('/' + ServiceArmario.STORAGE_ARMARIOS)
+          .where("armazem", "==", e.target.value)
+          .get()
+          .then((snapS: any) => {
+            snapS.forEach((doc: any) => {
+              ServiceArmario.LISTA_ARMAZEM_ARMARIOS.push(doc.data());
+            });
+          });
       })
 
       $('#selectedArmario').select2().on('change', async (e: any) => {
         (<any>window).instanceSelectedArmarioId = e.target.value
+        ServicePrateleias.LISTA_ARMARIOS_PRATELEIRAS = [];
+
+        (<any>window).storeFire.getForeStore().collection('/' + ServicePrateleias.STORAGE_PREATELEIRAS)
+          .where("armario", "==", e.target.value)
+          .get()
+          .then((snapS: any) => {
+            snapS.forEach((doc: any) => {
+              ServicePrateleias.LISTA_ARMARIOS_PRATELEIRAS.push(doc.data());
+            });
+          });
+
+
         ServicePrateleias.LISTA_ARMARIOS_PRATELEIRAS = await ServicePrateleias.findAllByArmario((<any>window).storeFire, e.target.value)
       })
 
@@ -141,11 +164,12 @@ export class FormularioLancamentoComponent implements OnInit {
       })
 
 
+      // (<any>window).flatData =
       $("#select_compra").flatpickr({
         dateFormat: "d, m Y",
         onChange: function (selectedDates: any, dateStr: any, instance: any) {
           (<any>window).instanceSelectedDateItensCompra = dateStr
-        }
+        },
       });
 
       $("#select_data_movimento").flatpickr({
@@ -163,7 +187,7 @@ export class FormularioLancamentoComponent implements OnInit {
 
       // @ts-ignore
       othersTagify.addEventListener('change', (e: any) => {
-        (<any>window).instanceSelectedValueOthers = e.target.value
+        (<any>window).instanceSelectedValueOthers = e.target.value.split(',')
       })
 
 
@@ -172,7 +196,9 @@ export class FormularioLancamentoComponent implements OnInit {
   }
 
   addListItems() {
-    this.itensCompra.others = (<any>window).instanceSelectedValueOthers.split(',')
+
+    console.log(this.itensCompra.id)
+    this.itensCompra.others = (<any>window).instanceSelectedValueOthers
 
     this.itensCompra.paises = (<any>window).instanceSelectedIdCountry
 
@@ -195,14 +221,15 @@ export class FormularioLancamentoComponent implements OnInit {
     ]
     this.itensCompra.dataCompra = (<any>window).instanceSelectedDateItensCompra
 
-    this.itensCompra.id = this.store.getId().toUpperCase()
 
     this.store.createdForceGenerateId(this.itensCompra, ServiceUtil.STORAGE_ITEM_MOVIMENTO).then(
       resp => {
         (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
+        this.itensCompra.id = this.store.getId().toUpperCase()
       },
       err => {
         alert('Ocorreu um determido erro ')
+
       }
     );
 
@@ -212,10 +239,13 @@ export class FormularioLancamentoComponent implements OnInit {
   async ngOnInit() {
 
     (<any>window).storeFire = this.store;
-
+    this.itensCompra.id = this.store.getId().toUpperCase()
 
     this.ServiceArmario = ServiceArmario;
     this.ServicePrateleira = ServicePrateleias;
+
+    this.ServiceArmario.LISTA_ARMAZEM_ARMARIOS = await ServiceArmario.findAll(this.store)
+    this.ServicePrateleira.LISTA_ARMARIOS_PRATELEIRAS = await ServicePrateleias.findAll(this.store)
 
     this.initJQuerysFunctions()
 
@@ -226,6 +256,7 @@ export class FormularioLancamentoComponent implements OnInit {
     this.idMovement = this.store.getId();
 
     this.listArmazem = await ServiceArmazem.findAll(this.store);
+
 
     this.listFornecedores = await ServiceFornecedores.findAll(this.store);
 
@@ -248,13 +279,57 @@ export class FormularioLancamentoComponent implements OnInit {
     })
   }
 
-  calcularQuantidades(){
+  calcularQuantidades() {
 
     const listPendnts = [];
 
   }
 
+
   ngOnDestroy() {
-   // this._emitters.emitter.unsubscribe();
+    // this._emitters.emitter.unsubscribe();
+    if (this.itensCompra) this.itensCompra.unsubscribe();
   }
+
+  onSetInfoDataSource(attr: any): void {
+    (<any>window).$(($: any) => {
+
+      (<any>window).instanceSelectedValueOthers = attr.others;
+      (<any>window).instanceSelectedIdCountry = attr.paisesID;
+      (<any>window).instanceSelectedDateItensCompra = attr.dataCompra;
+
+      // components da localizaçao
+      (<any>window).instanceSelectedArmazemId = attr.localizacao[0];
+      (<any>window).instanceSelectedArmarioId = attr.localizacao[1];
+      (<any>window).instanceSelectedPrateleiraId = attr.localizacao[2];
+
+      (<any>window).instanceSelectedFornecedorId = attr.fornecedorId;
+      (<any>window).instanceSelectedIdProducts = attr.ean;
+
+
+      $('#selectedArmazem').val(attr.localizacao[0]).select2();
+
+
+      $('#selectedPrateleira').val(attr.localizacao[2]).select2();
+
+      $('#selectedArmario').val(attr.localizacao[1]).select2();
+
+      $('#selectedProduct').val(attr.ean).select2();
+
+      $('#selectFornecedor').val(attr.fornecedorId).select2();
+
+      $('#select_compra').val(attr.dataCompra);
+
+      $('#selectedCountry').val(attr.paisesID).select2();
+
+
+      $('#tagify_others').val(attr.others)
+
+      $('#kt_accordion_2_item_1').addClass('show');
+
+      console.log(attr.others)
+    })
+
+  }
+
 }

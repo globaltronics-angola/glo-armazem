@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyCAgUryCYJlMz9YUUBGK7wr5HxkE1XXahc",
-    authDomain: "global-tronic-armazem.firebaseapp.com",
-    projectId: "global-tronic-armazem",
-    storageBucket: "global-tronic-armazem.appspot.com",
-    messagingSenderId: "459641650463",
-    appId: "1:459641650463:web:b3d086daa278adec63442a",
-    measurementId: "G-5SMRCRQTR0"
+    apiKey: "AIzaSyBn78WwiWkNosAWtSUHHxt12GYGGhqQMD8",
+    authDomain: "global-tronic-0012.firebaseapp.com",
+    projectId: "global-tronic-0012",
+    storageBucket: "global-tronic-0012.appspot.com",
+    messagingSenderId: "732606873333",
+    appId: "1:732606873333:web:5dfbe48c227575f69c4fbc",
+    measurementId: "G-5QT2R86Q58"
   }
 };
 
@@ -23,13 +23,13 @@ export const environment = {
  * on performance if an error is thrown.
  *
  *
- * apiKey: "AIzaSyCw902ILcHux-slf_WvN0NXWZPMQccHAj4",
-    authDomain: "glo-stock-v001.firebaseapp.com",
-    projectId: "glo-stock-v001",
-    storageBucket: "glo-stock-v001.appspot.com",
-    messagingSenderId: "123698997328",
-    appId: "1:123698997328:web:188142fbe97ae043e00955",
-    measurementId: "G-MLNYMRF6CS"
+ *  apiKey: "AIzaSyCAgUryCYJlMz9YUUBGK7wr5HxkE1XXahc",
+    authDomain: "global-tronic-armazem.firebaseapp.com",
+    projectId: "global-tronic-armazem",
+    storageBucket: "global-tronic-armazem.appspot.com",
+    messagingSenderId: "459641650463",
+    appId: "1:459641650463:web:b3d086daa278adec63442a",
+    measurementId: "G-5SMRCRQTR0"
  *
  */
 

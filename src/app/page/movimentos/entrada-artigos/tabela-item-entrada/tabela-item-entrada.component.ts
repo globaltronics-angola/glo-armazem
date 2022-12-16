@@ -1,9 +1,9 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {StorageService} from "../../../../shared/storage.service";
 import ServiceUtil from "../../../../Services/ServiceUtil";
 import ServiceEan from "../../../../Services/ServiceEan";
 import ServiceCountry from "../../../../Services/ServiceCountry";
-import ServiceEmitter from "../../../../Services/ServiceEmitter";
+import {ServiceEmitter} from "../../../../Services/ServiceEmitter";
 
 
 @Component({
@@ -15,7 +15,9 @@ export class TabelaItemEntradaComponent implements OnInit {
 
   list_items: any[] = []
 
-  constructor(private store: StorageService, private _emittor: ServiceEmitter) {
+  constructor(private store: StorageService) {
+
+
   }
 
   ngOnInit(): void {
@@ -33,8 +35,9 @@ export class TabelaItemEntradaComponent implements OnInit {
           const querySelected = e.payload.doc.data();
           const dataW = querySelected
           dataW.id = e.payload.doc.id;
+          dataW.fornecedorId = dataW.fornecedor;
 
-          if (dataW.fornecedor)
+          if (dataW.fornecedorId)
             this.store.findById(ServiceUtil.STORAGE_FORNECEDOR, dataW.fornecedor).subscribe(
               eanResProForne => {
                 dataW.fornecedor = eanResProForne
@@ -54,7 +57,6 @@ export class TabelaItemEntradaComponent implements OnInit {
                   )
 
 
-
                 if (dataW.eanData)
                   this.store.findById(ServiceEan.STORAGE_NAME_TIPOITENS, dataW.eanData.type_item).subscribe(
                     eanResType => {
@@ -66,7 +68,7 @@ export class TabelaItemEntradaComponent implements OnInit {
               }
             )
 
-
+          dataW.paisesID = dataW.paises;
           if (dataW.paises)
             this.store.findById(ServiceCountry.STORAGE_COUNTRIES, dataW.paises).subscribe(
               moedas => {
@@ -88,21 +90,20 @@ export class TabelaItemEntradaComponent implements OnInit {
     return num;//Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
   }
 
-  deleteInfo(attr: any){
+  deleteInfo(attr: any) {
     this.store.deleted(ServiceUtil.STORAGE_ITEM_MOVIMENTO, attr).then(
-      ()=>{
+      () => {
         (<any>window).sentMessageSuccess.init('Foi eliminado com sucesso obrigado!')
-      }, err =>{
+      }, err => {
 
       }
     )
   }
 
 
-  public emitFunctionalityUp(attr: any){
+  emitFunctionalityUp(attr: any) {
 
-
-
+    ServiceEmitter.get('sendItemsMovimento').emit(attr)
   }
 
 }

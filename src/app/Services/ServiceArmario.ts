@@ -5,7 +5,7 @@ import {map} from "rxjs/operators";
 
 export default class ServiceArmario {
 
-  private static STORAGE_ARMARIOS: string = "global-armarios"
+   static STORAGE_ARMARIOS: string = "global-armarios"
 
   static LISTA_ARMAZEM_ARMARIOS: any[] = []
 
