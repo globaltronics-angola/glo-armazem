@@ -1,7 +1,8 @@
 <div
   id="new_type_requisition_basic"
-  class="bg-white"  data-kt-drawer="true"  data-kt-drawer-activate="true"  data-kt-drawer-toggle="#new_type_requisition_basic_button"
-  data-kt-drawer-close="#new_type_requisition_basic_close"  data-kt-drawer-width="500px">
+  class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true"
+  data-kt-drawer-toggle="#new_type_requisition_basic_button"
+  data-kt-drawer-close="#new_type_requisition_basic_close" data-kt-drawer-width="500px">
 
   <div class="p-5 w-100">
     <div class="text-right mb-11">
@@ -78,10 +79,12 @@
             </span>
           </td>
           <td class="gap-2">
-            <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
+            <button type="button" (click)="editObjs(modelo)"
+                    class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
               <span class="svg-icon"> <i class="fa fa-edit"></i></span>
             </button>
-            <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
+            <button type="button" (click)="deleteObj(modelo)"
+                    class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
               <span class="svg-icon"> <i class="bi-trash"></i></span>
             </button>
           </td>

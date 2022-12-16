@@ -17,6 +17,8 @@ export default class ServiceUtil{
   static STORAGE_TYPE_REQUISITION = "global-type-requisition";
   static STORAGE_NIF_CLIENTS = "global-nif-clients";
 
+  static STORAGE_MODELO = "global-modelos";
+
 
 
 }

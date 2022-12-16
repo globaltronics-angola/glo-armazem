@@ -65,12 +65,10 @@
           <th class="min-w-200px">Designação</th>
           <th class="min-w-100px">Estado</th>
           <th class="">Acção</th>
-
-
         </tr>
         </thead>
-        <tbody>
-        <tr *ngFor="let modelo of list_modelos">
+        <tbody *ngIf="list_modelos$ |async as modelos">
+        <tr *ngFor="let modelo of modelos">
           <td>{{ modelo.name}}</td>
           <td>
             <span class="badge {{ (modelo.deleted_at === 'NULL' ? 'badge-light-primary' : 'badge-light-danger')}}">

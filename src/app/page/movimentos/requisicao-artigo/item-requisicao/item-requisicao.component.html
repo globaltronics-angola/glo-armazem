@@ -2,7 +2,9 @@
   <table id="kt_datatable_both_scrolls" class="table table-striped table-row-bordered gy-5 gs-7">
     <thead>
     <tr class="fw-semibold fs-6 text-gray-800">
-      <th class="min-w-200px">Produto / Referencia</th>
+      <th class="min-w-200px">Produto</th>
+      <th class="min-w-200px">Ean / Referência</th>
+      <th class="min-w-200px">Modelo</th>
       <th class="min-w-100px">Tipo Referencia</th>
       <th class="min-w-100px">QT</th>
       <th class="">Acção</th>
@@ -10,12 +12,15 @@
     </thead>
     <tbody>
     <tr *ngFor="let produt of list_items">
-      <td>{{ produt.ean + ', ' + produt.productData?.name}}</td>
+      <td>{{ produt.productData.name}}</td>
+      <td>{{ produt.ean}}</td>
+      <td>{{ produt.modeloObj?.name}}</td>
       <td>{{ produt.typeData?.name}}</td>
       <td><span class="badge badge-light-dark">{{ produt.qt_item  }}</span></td>
 
       <td class="gap-2">
-        <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
+        <button type="button" (click)="clickedBtnEdit(produt)"
+                class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
           <span class="svg-icon"> <i class="fa fa-edit"></i></span>
         </button>
         <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1"

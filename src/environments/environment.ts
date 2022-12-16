@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyBn78WwiWkNosAWtSUHHxt12GYGGhqQMD8",
-    authDomain: "global-tronic-0012.firebaseapp.com",
-    projectId: "global-tronic-0012",
-    storageBucket: "global-tronic-0012.appspot.com",
-    messagingSenderId: "732606873333",
-    appId: "1:732606873333:web:5dfbe48c227575f69c4fbc",
-    measurementId: "G-5QT2R86Q58"
+    apiKey: "AIzaSyCeLisPpI1WFVVSnVQItu9wxcK_9aOw2Dw",
+    authDomain: "global-tronic-storage.firebaseapp.com",
+    projectId: "global-tronic-storage",
+    storageBucket: "global-tronic-storage.appspot.com",
+    messagingSenderId: "600427051403",
+    appId: "1:600427051403:web:c09f0e59d6fb447823978e",
+    measurementId: "G-BVP4S842CX"
   }
 };
 

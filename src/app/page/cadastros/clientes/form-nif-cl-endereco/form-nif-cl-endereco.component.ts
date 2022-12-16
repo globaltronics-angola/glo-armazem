@@ -21,7 +21,7 @@ export class FormNifClEnderecoComponent implements OnInit {
   private STORAGE_CLIENTS_ADDRESS_NIF: string = "global-nif-clients"
 
   async ngOnInit() {
-
+    (<any>window).InstanceAplication.init();
     this.initJQueryScriptsFunctions()
     this.lista_paises = await ServiceCountry.findAllCountries(this.store)
     this.lista_clientes = await Util.findAllClients(this.store)
@@ -59,7 +59,7 @@ export class FormNifClEnderecoComponent implements OnInit {
 
   initJQueryScriptsFunctions() {
 
-    (<any>window).InstanceAplication.init()
+
 
     (<any>window).$(($: any) => {
       $('#paisesClients').select2().on('change', (e: any) => {

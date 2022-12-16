@@ -78,7 +78,10 @@ import { NewLocalizacaoComponent } from './page/movimentos/entrada-artigos/formu
 import { NewFornecedorComponent } from './page/movimentos/entrada-artigos/formulario-lancamento/new-fornecedor/new-fornecedor.component';
 
 
-
+const test = <T>(val:T)=>{
+    console.log('init')
+    return val;
+}
 
 @NgModule({
   declarations: [
@@ -143,7 +146,7 @@ import { NewFornecedorComponent } from './page/movimentos/entrada-artigos/formul
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(test(environment.firebase)),
     ReactiveFormsModule,
     QRCodeModule,
     FormsModule,

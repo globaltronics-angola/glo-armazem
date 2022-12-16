@@ -7,7 +7,7 @@
         <div class="d-flex flex-column fv-row fv-plugins-icon-container">
           <!--begin::Label-->
           <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-            <span class="required">Tipo</span>
+            <span class="required">De uma</span>
           </label>
           <div class="input-group input-group-sm input-group-solid flex-nowrap">
             <!--end::Label-->
@@ -21,7 +21,8 @@
               </select>
             </div>
 
-            <button class="input-group-text" id="new_type_requisition_basic_button"><i class="fa fa-plus"></i> &nbsp;
+            <button type="button" class="input-group-text" id="new_type_requisition_basic_button"
+              (focus)="false"><i class="fa fa-plus"></i> &nbsp;
               Novo
             </button>
           </div>
@@ -81,40 +82,23 @@
         </div>
       </div>
 
-      <div class="col-12 mb-4 {{ listOption[0].isselected?'': 'd-none'}}">
-        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-          <!--begin::Label-->
-          <label class="d-flex align-items-center fs-6 mb-2">
-            <span class="">Cliente / Parceiro</span>
-          </label>
-          <div class="input-group input-group-sm input-group-solid flex-nowrap">
+
+      <div class="col-12 mb-4 row {{ listOption[0].isselected?'': 'd-none'}}">
+        <div class="col-sm-6">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="required">Nif</span>
+            </label>
             <!--end::Label-->
-            <div class="overflow-hidden flex-grow-1">
-              <select class="form-select form-select-sm selector rounded-end-0" data-control="select2"
-                data-allow-clear="true" data-placeholder="Selecciona o modelo" id="selectClientesRequisition">
-                <option></option>
-                <option [value]="pro.id" *ngFor="let pro of listClients">
-                  {{ pro.nif?.toUpperCase() + ' - ' + pro.clienteObj?.name }}
-                </option>
-              </select>
-            </div>
-
-            <button class="input-group-text" id="new_type_requisition_basic_button"><i class="fa fa-plus"></i> &nbsp;
-              Novo
-            </button>
+            <input type="text" name="nifCliente" (input)="seachingClient()"
+                   [(ngModel)]="movement.nifCliente" class="form-control form-control-sm"
+              placeholder="insira a descrição longa">
+            <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
-          <!--end::Label-->
-
-          <div class="fv-plugins-message-container invalid-feedback"></div>
-          <div class="fv-plugins-message-container text-muted small">
-            É importante que nomes, ou de referencia a entrada dos produtos
-          </div>
-          <!--  <span class="mt-3 text-muted font-italic ml-5">Selecciona o produto para configurar o codigo de barra</span> -->
         </div>
-      </div>
 
-      <div class="col-12 mb-4 row {{ listOption[1].isselected?'': 'd-none'}}">
-        <div class="{{ listOption[2].isselected?'col-sm-6': 'col-sm-12'}}">
+        <div class="col-sm-6">
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
             <!--begin::Label-->
             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -126,18 +110,7 @@
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
-        <div class="col-sm-6 {{ listOption[2].isselected?'': 'd-none'}}">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="required">Nif</span>
-            </label>
-            <!--end::Label-->
-            <input type="text" name="nifCliente" [(ngModel)]="movement.nifCliente" class="form-control form-control-sm"
-              placeholder="insira a descrição longa">
-            <div class="fv-plugins-message-container invalid-feedback"></div>
-          </div>
-        </div>
+
       </div>
 
       <div class="accordion accordion-icon-toggle" id="kt_accordion_2">
@@ -196,8 +169,9 @@
                   </label>
                   <!--end::Label-->
 
-                  <input type="number" class="form-control form-control-sm " placeholder="Quantidade do item"
-                    name="target_title" [(ngModel)]="itensCompra.qt_item">
+                  <input type="number" class="form-control form-control-sm " id="quantidadeItem"
+                   placeholder="Quantidade do item"  (keyup.enter)="enteredNewItem()"
+                    name="qt_item" [(ngModel)]="itensCompra.qt_item">
 
                   <div class="fv-plugins-message-container invalid-feedback"></div>
                 </div>
@@ -205,17 +179,14 @@
 
               <div class="col-auto">
                 <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
-                  <!--begin::Label-->
+
                   <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                     <span class="">&nbsp;</span>
                   </label>
-                  <!--end::Label-->
 
                   <button type="button" class="btn btn-sm btn-primary mr-2 btn-sm" (click)="addListItems()">
                     Adicionar no Carrim
                   </button>
-
-                  <div class="fv-plugins-message-container invalid-feedback"></div>
                 </div>
               </div>
 
@@ -257,14 +228,16 @@
 
 
 
-    <div class="col-12 mt-2 mb-4">
+    <div class="col-12 mt-2 mb-4 position-fixed fixed-bottom " style="bottom: 45px; left: -35px; z-index: 110">
       <div class="input-group text-right justify-content-end">
 
 
-        <button type="button" class="btn btn-sm btn-success mr-2 btn-sm" (click)="save()">
-          Finalizar o Processo
+        <button type="button" class="btn btn-sm btn-light-success mr-2 btn-sm btn" (click)="save()">
+          Finalizar o Process
         </button>
-        <button type="button" class="btn btn-sm btn-danger mr-2 btn-sm" (click)="cancelerMovement()">
+        &nbsp;
+        &nbsp;
+        <button type="button" class="btn btn-sm btn-light-danger mr-2 btn-sm" (click)="cancelerMovement()">
           Cancelar o Processo
         </button>
       </div>

@@ -11,6 +11,8 @@ import ServiceArmazem from "../../../../Services/ServiceArmazem";
 import ServiceFornecedores from "../../../../Services/ServiceFornecedores";
 import ServiceArmario from "../../../../Services/ServiceArmario";
 import ServiceNifClient from "../../../../Services/ServiceNifClient";
+import {ServiceEmitter} from "../../../../Services/ServiceEmitter";
+import ServiceClients from "../../../../Services/ServiceClients";
 
 
 //  import { FormBuilder, FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
@@ -20,6 +22,7 @@ import ServiceNifClient from "../../../../Services/ServiceNifClient";
   styleUrls: ['./form-requisicao.component.css']
 })
 export class FormRequisicaoComponent implements OnInit {
+  [x: string]: any;
 
   eanRefeModel: any = {};
   list_produtos: any[] = []
@@ -49,6 +52,8 @@ export class FormRequisicaoComponent implements OnInit {
   listClients: any[] = []
 
   constructor(private store: StorageService) {
+    ServiceEmitter.get('sendItemsMovimentoSaida').subscribe(data => this.itensCompra = data)
+    ServiceEmitter.get('sendItemsMovimentoSaida').subscribe(this.subcriberFunctionality)
   }
 
   async save() {
@@ -70,7 +75,6 @@ export class FormRequisicaoComponent implements OnInit {
 
     const listUpdated = await ServiceMovimentoItems.findTemporalAll(this.store)
     ServiceMovimentoItems.updatedItemMovement(listUpdated, idMovement, this.store)
-
 
 
   }
@@ -99,11 +103,6 @@ export class FormRequisicaoComponent implements OnInit {
       (<any>window).InstanceAplication.init()
 
 
-      $('#selectArmazemRequisition').select2().on('change', async (e: any) => {
-        (<any>window).instanceSelectedArmazemId = e.target.value
-
-      })
-
       // components principais
 
       $('#selectedProduct').select2().on('change', (e: any) => {
@@ -124,19 +123,6 @@ export class FormRequisicaoComponent implements OnInit {
           (<any>window).instanceSelectedDateItensCompraMovimento = dateStr
         }
       });
-
-
-      /*let othersMyTagify = document.querySelector("#tagify_others");
-      // @ts-ignore
-      new Tagify(othersMyTagify, {
-        originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
-      });*/
-
-      // @ts-ignore
-      /*othersMyTagify.addEventListener('change', (eY: any) => {
-        (<any>window).instanceSelectedValueOthers = eY.target.value
-      })*/
-
 
     })
 
@@ -166,11 +152,11 @@ export class FormRequisicaoComponent implements OnInit {
     ]
     this.itensCompra.dataCompra = (<any>window).instanceSelectedDateItensCompra
 
-    this.itensCompra.id = this.store.getId().toUpperCase()
 
     this.store.createdForceGenerateId(this.itensCompra, ServiceUtil.STORAGE_ITEM_MOVIMENTO).then(
       resp => {
         (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
+        this.itensCompra.id = this.store.getId().toUpperCase()
       },
       err => {
         alert('Ocorreu um determido erro ')
@@ -184,6 +170,7 @@ export class FormRequisicaoComponent implements OnInit {
 
     this.setNewOptions();
     this.idMovement = "not found id";
+    this.itensCompra.id = this.store.getId().toUpperCase()
 
     this.ServiceArmario = ServiceArmario;
 
@@ -265,13 +252,43 @@ export class FormRequisicaoComponent implements OnInit {
 
   setNewOptions() {
     this.listOption = [
-     // {id: 1, name: "Campos Cliente (Parceiro)", isselected: false},
-      {id: 2, name: "Campos do Cliente normal", isselected: false},
-      {id: 3, name: "Com o Campo Nif do Cliente", isselected: false}
-     // {id: 4, name: "Armazem e Localização", isselected: false},
-     // {id: 5, name: "Outro requeisitante", isselected: false} // this is other request
+      {id: 0, name: "Campos do Cliente", isselected: false}
     ]
   }
 
+  enteredNewItem() {
+    this.addListItems()
+  }
 
+  subcriberFunctionality(attr: any) {
+    (<any>window).$(($: any) => {
+      (<any>window).instanceSelectedIdProducts = attr.ean
+      $('#selectedProduct').val(attr.ean).select2();
+    })
+  }
+
+
+  seachingClient() {
+
+    try {
+      this.store.findById(ServiceUtil.STORAGE_NIF_CLIENTS, this.movement.nifCliente).subscribe(
+        (respp: any) => {
+          let data = respp
+
+          if (data.clientId)
+            this.store.findById(ServiceClients.STORAGE_CLIENTS, data.clientId).subscribe(
+              (cliente: any) => {
+                console.log(cliente);
+              })
+
+        },
+        error => {
+
+        }
+      )
+    } catch (error: any) {
+
+    }
+
+  }
 }

@@ -20,7 +20,6 @@ import {ServiceEmitter} from "../../../../Services/ServiceEmitter";
 export class FormularioLancamentoComponent implements OnInit {
 
   @Input() listener: any = {}
-
   eanRefeModel: any = {};
   list_produtos: any[] = []
   list_unidades: any[] = []
@@ -219,6 +218,7 @@ export class FormularioLancamentoComponent implements OnInit {
       (<any>window).instanceSelectedArmarioId,
       (<any>window).instanceSelectedPrateleiraId,
     ]
+
     this.itensCompra.dataCompra = (<any>window).instanceSelectedDateItensCompra
 
 
@@ -332,4 +332,10 @@ export class FormularioLancamentoComponent implements OnInit {
 
   }
 
+
+
+  onChange($event: any) {
+    console.log('hello')
+    alert('i m, ')
+  }
 }

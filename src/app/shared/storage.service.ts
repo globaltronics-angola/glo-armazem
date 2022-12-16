@@ -7,6 +7,7 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 export class StorageService {
 
   constructor(private afs: AngularFirestore) {
+    console.log('nova instancia')
   }
 
   /**
@@ -37,6 +38,7 @@ export class StorageService {
   }
 
   findAll(name: string) {
+    console.log('finnd all')
     return this.afs.collection('/' + name)
       .snapshotChanges();
   }

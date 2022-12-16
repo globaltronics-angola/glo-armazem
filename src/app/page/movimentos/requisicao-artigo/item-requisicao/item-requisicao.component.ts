@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {StorageService} from "../../../../shared/storage.service";
+import { Component, OnInit } from '@angular/core';
+import { StorageService } from "../../../../shared/storage.service";
 import ServiceUtil from "../../../../Services/ServiceUtil";
 import ServiceEan from "../../../../Services/ServiceEan";
 import ServiceCountry from "../../../../Services/ServiceCountry";
+import {ServiceEmitter} from "../../../../Services/ServiceEmitter";
 
 @Component({
   selector: 'app-item-requisicao',
@@ -48,6 +49,13 @@ export class ItemRequisicaoComponent implements OnInit {
                   this.store.findById(ServiceEan.STORAGE_PRODUCT, dataW.eanData.product_key).subscribe(
                     eanResPro => {
                       dataW.productData = eanResPro
+
+                      // vamos pegar as informações do modelo do produto
+                      this.store.findById(ServiceUtil.STORAGE_MODELO, dataW.productData.modeloId).subscribe(
+                        (modelo: any) => {
+                          dataW.modeloObj = modelo
+                        }
+                      )
                     }
                   )
 
@@ -94,4 +102,9 @@ export class ItemRequisicaoComponent implements OnInit {
       }
     )
   }
+
+  clickedBtnEdit(attr: any){
+    ServiceEmitter.get('sendItemsMovimentoSaida').emit(attr)
+  }
+
 }
