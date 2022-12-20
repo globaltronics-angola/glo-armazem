@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {StorageService} from "../../shared/storage.service";
+import { Component, OnInit } from '@angular/core';
+import { StorageService } from "../../shared/storage.service";
 import * as moment from "moment";
 import ServiceCategories from 'src/app/Services/ServiceCategories';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-categorias',
@@ -10,13 +11,11 @@ import ServiceCategories from 'src/app/Services/ServiceCategories';
 })
 export class CategoriasComponent implements OnInit {
 
+  protected category: ServiceCategories;
+  protected listCategories: Observable<any>;
 
-  // indicando para um objecto que pode gerar qualquer resultado
-  protected categoria: any = {}
-  protected list_categorias: any[] = []
-  private DELETED_AT_NULL: string = "NULL"
-  private STORAGE_NAME_CATEGORIA: string = "global-categorias"
-  category: ServiceCategories;
+  private window = (<any>window);
+
 
   ngOnInit(): void {
     this.findAllCategories()
@@ -25,28 +24,25 @@ export class CategoriasComponent implements OnInit {
 
   constructor(private store: StorageService) {
     this.category = new ServiceCategories(this.store);
+    this.listCategories = this.category.findAll();
   }
 
 
   save() {
-    this.categoria.save()
+    this.category.save()
   }
 
   findAllCategories() {
   }
 
   initJQueryFunctions() {
-    (<any>window).instanceSelectedId = "";
-    (<any>window).$(function ($: any) {
+    this.window.instanceSelectedId = "";
 
-      $('#select_categorias').select2();
-
-      $('#select_categorias').select2();
-
-      $('#select_categorias').on('change', (event: any) => {
-        (<any>window).instanceSelectedId = event.target.value
-      })
+    const selectCategory = this.window.$('#select_categorias');
+    selectCategory.select2().on('change', (event: any) => {
+      this.window.instanceSelectedId = event.target.value
     })
+
 
   }
 }
