@@ -28,6 +28,7 @@ export class CategoriasComponent implements OnInit {
 
   save() {
 
+    this.category.Categories.category_id = this.window.instanceSelectedId
     this.category.save()
   }
 
@@ -38,7 +39,17 @@ export class CategoriasComponent implements OnInit {
     selectCategory.select2().on('change', (event: any) => {
       this.window.instanceSelectedId = event.target.value
     })
+  }
 
+  editing(category: any) {
+    this.category.Categories = category;
+    this.category.Categories.updated_mode = true
 
   }
+
+  delete(category: any) {
+    this.category.Categories = category;
+    this.category.delete()
+  }
+
 }

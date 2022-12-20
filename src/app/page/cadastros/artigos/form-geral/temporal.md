@@ -1,5 +1,8 @@
-<div class="card-body p-0">
-  <form id="kt_modal_new_target_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
+
+
+```html
+
+<form id="kt_modal_new_target_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
     <div class="row">
       <div class="row">
         <div class="col-sm-9">
@@ -91,9 +94,3 @@
       </div>
     </div>
   </form>
-
-  <app-modelos></app-modelos>
-  <app-categorias></app-categorias>
-
-
-</div>

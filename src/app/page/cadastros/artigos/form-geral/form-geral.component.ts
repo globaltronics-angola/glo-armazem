@@ -4,6 +4,7 @@ import { StorageService } from "../../../../shared/storage.service";
 import ServiceArticles from 'src/app/Services/ServiceArticles';
 import ServiceModelArticle from 'src/app/Services/ServiceModelArticle';
 import { Observable, Subscription } from "rxjs";
+import ServiceCategories from 'src/app/Services/ServiceCategories';
 
 @Component({
   selector: 'app-form-geral',
@@ -15,7 +16,7 @@ export class FormGeralComponent implements OnInit {
 
 
   listModel: Observable<any>;
-  list_categories: any = [];
+  listCategories: Observable<any>;
 
   article: ServiceArticles;
   private window = (<any>window);
@@ -27,6 +28,7 @@ export class FormGeralComponent implements OnInit {
 
     this.article = new ServiceArticles(this.store);
     this.listModel = new ServiceModelArticle(this.store).findAll();
+    this.listCategories = new ServiceCategories(this.store).findAll();
   }
 
   ngOnInit(): void {

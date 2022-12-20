@@ -25,7 +25,7 @@ export class TiposComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void { }
 
   ngOnInit(): void {
-    this.initJQuerysFunctions()
+
   }
 
 
@@ -61,10 +61,6 @@ export class TiposComponent implements OnInit, OnDestroy {
     })
   }
 
-
-  private initJQuerysFunctions() {
-
-  }
 
 
 

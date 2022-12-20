@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {StorageService} from "../../../../../shared/storage.service";
-import * as moment from "moment";
+import { Component, OnInit } from '@angular/core';
+import { StorageService } from "../../../../../shared/storage.service";
+import ServiceTypeEanArticle from 'src/app/Services/ServiceTypeEanArticle';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tipo-items',
@@ -8,43 +9,32 @@ import * as moment from "moment";
   styles: [
   ]
 })
-export class TipoItemsComponent implements OnInit{
+export class TipoItemsComponent implements OnInit {
 
-  protected list_tipos: any[] = []
 
-  protected tiposItens: any = {}
-
-  private DELETED_AT_NULL: string = "NULL"
-  private STORAGE_NAME_TIPOITENS: string = "global-tipo-itens"
+  typeItem: ServiceTypeEanArticle;
+  listTypeEanArticle: Observable<any[]>;
 
 
   constructor(private store: StorageService) {
+    this.typeItem = new ServiceTypeEanArticle(this.store);
+    this.listTypeEanArticle = this.typeItem.findAll();
   }
 
 
   save() {
-    this.tiposItens.id = this.store.getId();
-    this.tiposItens.created_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.tiposItens.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.tiposItens.deleted_at = this.DELETED_AT_NULL;
-    this.tiposItens.email_auth = 'user activities';
-
-
-    this.store.createdForceGenerateId(this.tiposItens, this.STORAGE_NAME_TIPOITENS).then(
-      () => {
-        (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
-      },
-      err => {
-        alert('ocorencia de erro no sistema')
-      }
-    );
+    this.typeItem.save();
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-    this.findAllTypeItems()
+  editing(data: any) {
+    this.typeItem.IObjectClass = data;
+    this.typeItem.IObjectClass.updated_mode = true;
   }
 
-
-  findAllTypeItems() {}
+  delete(model: any) {
+    this.typeItem.IObjectClass = model;
+    this.typeItem.delete()
+  }
 }

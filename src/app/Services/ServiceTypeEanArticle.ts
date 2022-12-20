@@ -1,5 +1,4 @@
 import { StorageService } from "../shared/storage.service";
-import { firstValueFrom } from "rxjs";
 import { map } from "rxjs/operators";
 import * as moment from "moment";
 import ServiceUtil from "./ServiceUtil";
@@ -8,11 +7,11 @@ import { Injectable } from "@angular/core";
 @Injectable({
   providedIn: 'root'
 })
-export default class ServiceModelArticle {
+export default class ServiceTypeEanArticle {
 
-  static STORAGE_MODEL: string = "global-model-article";
+  static STORAGE_NAME: string = "global-type-ean-article";
 
-  Model = {
+  IObjectClass = {
     id: "NULL",
     name: undefined,
     details: undefined,
@@ -29,23 +28,25 @@ export default class ServiceModelArticle {
   constructor(private store: StorageService) { }
 
   public findAll() {
-    return this.store.findAll(ServiceModelArticle.STORAGE_MODEL)
+    return this.store.findAll(ServiceTypeEanArticle.STORAGE_NAME)
       .pipe(map(this.convertToModel))
   }
 
   public save(): void {
 
-    if (!this.Model.updated_mode) {
-      this.Model.id = this.store.getId().toUpperCase();
-      this.Model.created_at = moment().format('DD MM,YYYY HH:mm:ss')
+    if (!this.IObjectClass.updated_mode) {
+      this.IObjectClass.id = this.store.getId().toUpperCase();
+      this.IObjectClass.created_at = moment().format('DD MM,YYYY HH:mm:ss')
     }
 
-    this.Model.updated_mode = false;
+    this.IObjectClass.updated_mode = false;
 
-    this.store.createdForceGenerateId(this.Model, ServiceModelArticle.STORAGE_MODEL)
+    this.store.createdForceGenerateId(this.IObjectClass, ServiceTypeEanArticle.STORAGE_NAME)
       .then(
         () => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
+          this.IObjectClass.name = undefined
+          this.IObjectClass.details = undefined
         },
         err => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)
@@ -65,14 +66,12 @@ export default class ServiceModelArticle {
     })
   }
 
-  public delete(){
-    this.store.deleted(ServiceModelArticle.STORAGE_MODEL, this.Model.id).then(
+  public delete() {
+    this.store.deleted(ServiceTypeEanArticle.STORAGE_NAME, this.IObjectClass.id).then(
       () => {
         this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS_DELETE)
       }
     )
-
   }
-
 
 }

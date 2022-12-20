@@ -105,10 +105,10 @@ export class StorageService {
 
   /**
    *
-   * @param name collection Name
+   * @param nameCollection collection Name
    * @param id
    */
-  deleted(name: string, id: string) {
-    return this.afs.collection('/' + name).doc('/' + id).delete()
+  deleted(nameCollection: string, id: string) {
+    return this.afs.collection('/' + nameCollection).doc('/' + id).delete()
   }
 }

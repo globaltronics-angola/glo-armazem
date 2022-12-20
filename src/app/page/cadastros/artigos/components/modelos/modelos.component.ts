@@ -24,5 +24,16 @@ export class ModelosComponent implements OnInit {
     this.modelArticle.save()
   }
 
+
+  editing(data: any) {
+    this.modelArticle.Model = data;
+    this.modelArticle.Model.updated_mode = true;
+  }
+
+  delete(model: any) {
+    this.modelArticle.Model = model;
+    this.modelArticle.delete()
+  }
+
 }
 

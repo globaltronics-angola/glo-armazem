@@ -16,8 +16,9 @@ export default class ServiceCategories {
     name: undefined,
     details: undefined,
     category_id: "NULL",
-    created_at: moment().format('DD MM,YYYY HH:mm:ss'),
+    created_at: "NULL",
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
+    updated_mode: false,
     deleted_at: "NULL",
     email_auth: "NULL"
   }
@@ -34,14 +35,30 @@ export default class ServiceCategories {
 
   public save(): void {
 
-    this.Categories.id = this.store.getId().toUpperCase();
+    if (!this.Categories.updated_mode) {
+      this.Categories.id = this.store.getId().toUpperCase();
+      this.Categories.created_at = moment().format('DD MM,YYYY HH:mm:ss');
+    }
+
+    this.Categories.updated_mode = false;
+
     this.store.createdForceGenerateId(this.Categories, ServiceCategories.STORAGE_CATEGORIES)
       .then(() => {
         this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
+        this.Categories.name = undefined;
+        this.Categories.details = undefined;
+
       }, err => {
         this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)
       })
 
+  }
+
+
+  public delete() {
+    this.store.deleted(ServiceCategories.STORAGE_CATEGORIES, this.Categories.id).then(() => {
+      this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS_DELETE)
+    });
   }
 
 

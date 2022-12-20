@@ -1,8 +1,6 @@
-<div
-  id="new_unicadade_basic"
-  class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true"
-  data-kt-drawer-toggle="#new_unicadade_basic_button"
-  data-kt-drawer-close="#new_unicadade_basic_close" data-kt-drawer-width="500px">
+<div id="new_unicadade_basic" class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true"
+  data-kt-drawer-toggle="#new_unicadade_basic_button" data-kt-drawer-close="#new_unicadade_basic_close"
+  data-kt-drawer-width="500px">
 
   <div class="p-5 w-100">
     <div class="text-right mb-11">
@@ -26,11 +24,12 @@
             </label>
             <!--end::Label-->
 
-            <input type="text" name="description" [(ngModel)]="unidadeMedida.sigla"
-                   class="form-control form-control-sm mb-3" maxlength="10" placeholder="sigla" style="max-width: 180px!important;">
+            <input type="text" name="description" [(ngModel)]="unityArtice.IObjectClass.acronym"
+              class="form-control form-control-sm mb-3" maxlength="10" placeholder="sigla"
+              style="max-width: 180px!important;">
 
-            <input type="text" name="description" [(ngModel)]="unidadeMedida.name"
-                   class="form-control form-control-sm " placeholder="Extenso">
+            <input type="text" name="description" [(ngModel)]="unityArtice.IObjectClass.name"
+              class="form-control form-control-sm " placeholder="Extenso">
 
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
@@ -44,8 +43,9 @@
               <span class="">Notas</span>
             </label>
             <!--end::Label-->
-            <textarea type="text" class="form-control form-control-sm h-100px" rows="10" [(ngModel)]="unidadeMedida.notes"
-                      placeholder="Introduza qui alguma noto do modelo" name="datasheet"></textarea>
+            <textarea type="text" class="form-control form-control-sm h-100px" rows="10"
+              [(ngModel)]="unityArtice.IObjectClass.details" placeholder="Introduza qui alguma noto do modelo"
+              name="datasheet"></textarea>
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
 
@@ -64,31 +64,31 @@
     <div class="overflow-auto w-100">
       <table id="kt_datatable_both_scrolls" class="table table-striped table-row-bordered gy-5 gs-7">
         <thead>
-        <tr class="fw-semibold fs-6 text-gray-800">
-          <th class="min-w-200px">Designação</th>
-          <th class="min-w-100px">Estado</th>
-          <th class="">Acção</th>
+          <tr class="fw-semibold fs-6 text-gray-800">
+            <th class="min-w-200px">Designação</th>
+            <th class="min-w-100px">Estado</th>
+            <th class="">Acção</th>
 
 
-        </tr>
+          </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let modelo of list_unidades">
-          <td>{{ modelo.sigla + ' - ' +modelo.name}}</td>
-          <td>
-            <span class="badge {{ (modelo.deleted_at === 'NULL' ? 'badge-light-primary' : 'badge-light-danger')}}">
-              {{ (modelo.deleted_at === 'NULL' ? 'active' : 'delected')}}
-            </span>
-          </td>
-          <td class="gap-2">
-            <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
-              <span class="svg-icon"> <i class="fa fa-edit"></i></span>
-            </button>
-            <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
-              <span class="svg-icon"> <i class="bi-trash"></i></span>
-            </button>
-          </td>
-        </tr>
+          <tr *ngFor="let unity of listUnityArticle | async">
+            <td>{{ unity.acronym + ' - ' +unity.name}}</td>
+            <td>
+              <span class="badge {{ (unity.deleted_at === 'NULL' ? 'badge-light-primary' : 'badge-light-danger')}}">
+                {{ (unity.deleted_at === 'NULL' ? 'active' : 'delected')}}
+              </span>
+            </td>
+            <td class="gap-2">
+              <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
+                <span class="svg-icon"> <i class="fa fa-edit"></i></span>
+              </button>
+              <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
+                <span class="svg-icon"> <i class="bi-trash"></i></span>
+              </button>
+            </td>
+          </tr>
 
         </tbody>
       </table>
@@ -96,4 +96,3 @@
   </div>
 
 </div>
-
