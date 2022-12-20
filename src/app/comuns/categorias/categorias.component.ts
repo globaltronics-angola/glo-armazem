@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from "../../shared/storage.service";
-import * as moment from "moment";
 import ServiceCategories from 'src/app/Services/ServiceCategories';
 import { Observable } from 'rxjs';
 
@@ -11,14 +10,13 @@ import { Observable } from 'rxjs';
 })
 export class CategoriasComponent implements OnInit {
 
-  protected category: ServiceCategories;
+  category: ServiceCategories;
   protected listCategories: Observable<any>;
 
-  private window = (<any>window);
+  private window: any = (<any>window)
 
 
   ngOnInit(): void {
-    this.findAllCategories()
     this.initJQueryFunctions()
   }
 
@@ -29,14 +27,12 @@ export class CategoriasComponent implements OnInit {
 
 
   save() {
+
     this.category.save()
   }
 
-  findAllCategories() {
-  }
-
   initJQueryFunctions() {
-    this.window.instanceSelectedId = "";
+    this.window.instanceSelectedId = "NULL";
 
     const selectCategory = this.window.$('#select_categorias');
     selectCategory.select2().on('change', (event: any) => {

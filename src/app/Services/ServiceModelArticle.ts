@@ -3,8 +3,11 @@ import { firstValueFrom } from "rxjs";
 import { map } from "rxjs/operators";
 import * as moment from "moment";
 import ServiceUtil from "./ServiceUtil";
+import { Injectable } from "@angular/core";
 
-
+@Injectable({
+  providedIn: 'root'
+})
 export default class ServiceModelArticle {
 
   static STORAGE_MODEL: string = "global-model-article";

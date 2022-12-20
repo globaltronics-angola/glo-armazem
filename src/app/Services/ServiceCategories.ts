@@ -2,8 +2,11 @@ import { StorageService } from "../shared/storage.service";
 import { map } from "rxjs/operators";
 import * as moment from "moment";
 import ServiceUtil from "./ServiceUtil";
+import { Injectable } from "@angular/core";
 
-
+@Injectable({
+  providedIn: 'root'
+})
 export default class ServiceCategories {
 
   static STORAGE_CATEGORIES: string = "global-categories-article";
@@ -12,7 +15,7 @@ export default class ServiceCategories {
     id: "NULL",
     name: undefined,
     details: undefined,
-    category_id: undefined,
+    category_id: "NULL",
     created_at: moment().format('DD MM,YYYY HH:mm:ss'),
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
     deleted_at: "NULL",

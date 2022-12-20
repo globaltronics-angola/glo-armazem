@@ -1,8 +1,5 @@
-<div
-  id="new_categorias_basic"
-  class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true"
-  data-kt-drawer-toggle="#new_categorias_basic_button"
-  data-kt-drawer-close="#new_categorias_basic_close"
+<div id="new_categorias_basic" class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true"
+  data-kt-drawer-toggle="#new_categorias_basic_button" data-kt-drawer-close="#new_categorias_basic_close"
   data-kt-drawer-width="500px">
 
   <div class="p-5 w-100">
@@ -30,13 +27,11 @@
               <span class="required">Principal Categoria</span>
             </label>
             <!--end::Label-->
-            <select class="form-select form-select-sm rounded-end-0"
-              id="select_categorias" data-control="select2"
+            <select class="form-select form-select-sm rounded-end-0" id="select_categorias" data-control="select2"
               data-placeholder="Select an option">
               <option></option>
-              <option [value]="categoria.id" *ngFor="let categoria of
-                listCategories| async">
-                {{ categoria.name }}
+              <option [value]="category.id" *ngFor="let category of  listCategories| async">
+                {{ category.name }}
               </option>
             </select>
             <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -50,11 +45,8 @@
               <span class="required">Designação</span>
             </label>
             <!--end::Label-->
-            <input type="text" name="description"
-              [(ngModel)]="category.Categories.name"
-              class="form-control form-control-sm" name="name"
-              placeholder="introduza qui o
-              nome">
+            <input type="text" name="description" [(ngModel)]="category.Categories.name"
+              class="form-control form-control-sm" name="name" placeholder="introduza qui o nome">
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
@@ -68,9 +60,8 @@
               <span class="">Notas</span>
             </label>
             <!--end::Label-->
-            <textarea type="text" class="form-control form-control-sm h-100px"
-              rows="10" [(ngModel)]="category.Categories.details"
-              placeholder="Introduza qui alguma noto do modelo"
+            <textarea type="text" class="form-control form-control-sm h-100px" rows="10"
+              [(ngModel)]="category.Categories.details" placeholder="Introduza qui alguma noto do modelo"
               name="datasheet"></textarea>
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
@@ -80,8 +71,7 @@
       </div>
       <div class="col-12 mt-2 mb-4">
         <div class="input-group text-right justify-content-end">
-          <button type="button" class="btn btn-sm btn-primary mr-2"
-            (click)="save()">
+          <button type="button" class="btn btn-sm btn-primary mr-2" (click)="save()">
             Guardar a informação
           </button>
         </div>
