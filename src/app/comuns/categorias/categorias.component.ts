@@ -50,18 +50,6 @@ export class CategoriasComponent implements OnInit {
   }
 
   findAllCategories() {
-    this.store.findAll(this.STORAGE_NAME_CATEGORIA).subscribe(
-      resp => {
-        this.list_categorias = resp.map((e: any) => {
-          const data = e.payload.doc.data();
-          data.id = e.payload.doc.id;
-          return data;
-        })
-      },
-      err => {
-      }
-    )
-
   }
 
   initJQueryFunctions() {

@@ -19,6 +19,9 @@ export default class ServiceUtil{
 
   static STORAGE_MODELO = "global-modelos";
 
+  static MESSAGE_SUCCESS = "Foi inserido a informação com sucesso!"
+  static MESSAGE_ERROR = "Não foi inserido a informação com sucesso, possivel ocorrência de erro!"
+
 
 
 }

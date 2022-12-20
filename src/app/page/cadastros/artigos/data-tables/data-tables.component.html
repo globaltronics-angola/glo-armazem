@@ -13,21 +13,21 @@
 
     </tr>
     </thead>
-    <tbody>
-    <tr *ngFor="let produt of list_produtos">
-      <td style="max-width: 140px!important; min-width: 140px!important;">{{ produt.created_at }}</td>
-      <td>{{ produt.name}}</td>
-      <td><span class="badge badge-light-dark">{{ produt.modelo?.name}}</span></td>
+    <tbody *ngIf="list_articles |async as articles">
+    <tr *ngFor="let article of articles">
+      <td style="max-width: 140px!important; min-width: 140px!important;">{{ article.created_at }}</td>
+      <td>{{ article.name}}</td>
+      <td><span class="badge badge-light-dark">{{ article.modelo?.name}}</span></td>
       <td style="max-width: 210px!important;">
         <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; ">
-          <span class="badge badge-light-info"  *ngFor="let cate of produt.categoriesData">{{ cate?.name }}</span>
+          <span class="badge badge-light-info"  *ngFor="let cate of article.categoriesData">{{ cate?.name }}</span>
         </div>
       </td>
       <td style="max-width: 110px!important;">
-        {{ produt.updated_at }}
+        {{ article.updated_at }}
       </td>
       <td style="max-width: 260px!important; min-width: 260px!important;">
-        <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; ">{{ produt.datasheet }}</div>
+        <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; ">{{ article.datasheet }}</div>
       </td>
       <td class="gap-2">
         <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">

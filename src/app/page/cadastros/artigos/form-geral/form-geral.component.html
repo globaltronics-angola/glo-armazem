@@ -9,7 +9,7 @@
               <span class="required">Designação</span>
             </label>
             <!--end::Label-->
-            <input type="text" [(ngModel)]="productObj.name" name="description" class="form-control form-control-sm"
+            <input type="text" [(ngModel)]="article.Article.name" name="description" class="form-control form-control-sm"
               placeholder="insira a descrição longa">
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
@@ -75,7 +75,7 @@
             </label>
             <!--end::Label-->
             <textarea type="text" class="form-control form-control-sm h-100px" rows="10"
-              placeholder="Enter Target Title" [(ngModel)]="productObj.datasheet" name="datasheet"></textarea>
+              placeholder="Enter Target Title" [(ngModel)]="article.Article.details" name="datasheet"></textarea>
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
 

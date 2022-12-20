@@ -76,7 +76,7 @@ import { DatatablePedidosEmCursoComponent } from './page/movimentos/requisicao-a
 import { NewProductComponent } from './page/movimentos/entrada-artigos/formulario-lancamento/new-product/new-product.component';
 import { NewLocalizacaoComponent } from './page/movimentos/entrada-artigos/formulario-lancamento/new-localizacao/new-localizacao.component';
 import { NewFornecedorComponent } from './page/movimentos/entrada-artigos/formulario-lancamento/new-fornecedor/new-fornecedor.component';
-
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 const test = <T>(val:T)=>{
     console.log('init')
@@ -147,11 +147,10 @@ const test = <T>(val:T)=>{
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(test(environment.firebase)),
+    AngularFirestoreModule.enablePersistence(),
     ReactiveFormsModule,
     QRCodeModule,
     FormsModule,
-
-
   ],
   providers: [],
   bootstrap: [AppComponent]

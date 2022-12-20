@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {AngularFirestore} from "@angular/fire/compat/firestore";
+import { Injectable } from '@angular/core';
+import { AngularFirestore } from "@angular/fire/compat/firestore";
 
 @Injectable({
   providedIn: 'root'
@@ -28,9 +28,29 @@ export class StorageService {
     return this.afs.collection('/' + name).add(object)
   }
 
-  createdForceGenerateId(object: any, name: string) {
-    return this.afs.collection('/' + name).doc(object.id).set(object)
+  /**
+   * ***Munzambi Ntemo Miguel***
+   *
+   * @param attr
+   * @param collectionName
+   *
+   * Esta função tem como objectivo guardar as informações
+   * de um objecto no firebase, sendo assim com os parametros
+   * Objeto a ser inserido em seguida o nome da coleção
+   *
+   * ```ts
+   *
+   * const firebase = require('firebase');
+   * createdForceGenerateId(attr: any, collectionName: string) {
+   *    return this.afs.collection('/' + collectionName).doc(attr.id).set(attr)
+   * }
+   * ```
+   *
+   */
+  createdForceGenerateId(attr: any, collectionName: string): Promise<void> {
+    return this.afs.collection('/' + collectionName).doc(attr.id).set(attr)
   }
+
 
   createForceMyId(object: any, name: string) {
 

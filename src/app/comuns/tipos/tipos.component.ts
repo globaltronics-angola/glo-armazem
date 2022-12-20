@@ -1,8 +1,8 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {StorageService} from "../../shared/storage.service";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { StorageService } from "../../shared/storage.service";
 import * as moment from "moment/moment";
-import {Observable, Subscription} from "rxjs";
-import {map} from "rxjs/operators";
+import { Observable, Subscription } from "rxjs";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: 'app-tipos',
@@ -15,13 +15,14 @@ export class TiposComponent implements OnInit, OnDestroy {
   private DELETED_AT_NULL: string = 'NULL' // propriety null if not deleted values
   private STORAGE_NAME: string = 'global-tipos' // nome da collection
 
-  list_modelos$:Observable<any[]> |undefined;
-sink:Subscription |undefined
+  list_modelos$: Observable<any[]> | undefined;
+
+  sink: Subscription | undefined
+
   constructor(private store: StorageService) {
-  this.list_modelos$ =  this.store.findAll(this.STORAGE_NAME).pipe(map(this.convertToModel))
+    this.list_modelos$ = this.store.findAll(this.STORAGE_NAME).pipe(map(this.convertToModel))
   }
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void { }
 
   ngOnInit(): void {
     this.initJQuerysFunctions()
@@ -52,7 +53,7 @@ sink:Subscription |undefined
 
 
 
-  convertToModel(resp:any){
+  convertToModel(resp: any) {
     return resp.map((e: any) => {
       const data = e.payload.doc.data();
       data.id = e.payload.doc.id;

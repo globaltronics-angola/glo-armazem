@@ -46,17 +46,5 @@ export class TipoItemsComponent implements OnInit{
   }
 
 
-  findAllTypeItems() {
-    this.store.findAll(this.STORAGE_NAME_TIPOITENS).subscribe(
-      resp => {
-        this.list_tipos = resp.map((e: any) => {
-          const data = e.payload.doc.data();
-          data.id = e.payload.doc.id;
-          return data;
-        })
-      },
-      err => {
-      }
-    )
-  }
+  findAllTypeItems() {}
 }
