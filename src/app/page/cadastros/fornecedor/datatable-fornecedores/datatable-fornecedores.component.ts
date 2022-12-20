@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import ServiceFornecedor from "../../../../Services/ServiceFornecedor";
-import {StorageService} from "../../../../shared/storage.service";
+import { StorageService } from "../../../../shared/storage.service";
 
 @Component({
   selector: 'app-datatable-fornecedores',
@@ -17,8 +17,12 @@ export class DatatableFornecedoresComponent implements OnInit {
 
   async ngOnInit() {
     (<any>window).InstanceAplication.init()
-    this.list_forncedors = await ServiceFornecedor.findAll(this.store)
+    await this.listFornecedor()
   }
 
 
+  async listFornecedor() {
+    this.list_forncedors = await ServiceFornecedor.findAll(this.store)
+    this.list_forncedors.map(async e => e.departmentObj = await ServiceFornecedor.findDepartment(this.store, e.departmentId))
+  }
 }
