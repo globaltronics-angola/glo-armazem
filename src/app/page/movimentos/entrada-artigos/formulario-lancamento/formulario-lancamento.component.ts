@@ -332,8 +332,6 @@ export class FormularioLancamentoComponent implements OnInit {
 
   }
 
-
-
   onChange($event: any) {
     console.log('hello')
     alert('i m, ')
