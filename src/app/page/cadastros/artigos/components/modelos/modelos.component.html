@@ -68,8 +68,8 @@
             <th class="">Acção</th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let model of listModelArticles|async">
+        <tbody *ngIf="listModelArticles |async as articles">
+          <tr *ngFor="let model of articles">
             <td>{{ model.name}}</td>
             <td>
               <span class="badge {{ (model.deleted_at === 'NULL' ? 'badge-light-primary' : 'badge-light-danger')}}">

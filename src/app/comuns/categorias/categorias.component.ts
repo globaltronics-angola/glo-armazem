@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {StorageService} from "../../shared/storage.service";
 import * as moment from "moment";
+import ServiceCategories from 'src/app/Services/ServiceCategories';
 
 @Component({
   selector: 'app-categorias',
@@ -15,38 +16,20 @@ export class CategoriasComponent implements OnInit {
   protected list_categorias: any[] = []
   private DELETED_AT_NULL: string = "NULL"
   private STORAGE_NAME_CATEGORIA: string = "global-categorias"
+  category: ServiceCategories;
 
   ngOnInit(): void {
-
-
     this.findAllCategories()
     this.initJQueryFunctions()
   }
 
   constructor(private store: StorageService) {
+    this.category = new ServiceCategories(this.store);
   }
 
 
   save() {
-
-    this.categoria.id = this.store.getId();
-
-    this.categoria.created_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.categoria.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.categoria.deleted_at = this.DELETED_AT_NULL;
-    this.categoria.email_auth = 'user activities';
-    this.categoria.categories_id = (<any>window).instanceSelectedId;
-
-    this.store.createdForceGenerateId(this.categoria, this.STORAGE_NAME_CATEGORIA).then(
-      () => {
-
-        (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
-
-      },
-      err => {
-        alert('ocorencia de erro no sistema')
-      }
-    );
+    this.categoria.save()
   }
 
   findAllCategories() {

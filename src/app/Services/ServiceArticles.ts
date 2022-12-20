@@ -57,12 +57,8 @@ export default class ServiceArticles {
 
   convertToArticle(resp: any) {
     return resp.map((e: any) => {
-
       const data = e.payload.doc.data();
       data.id = e.payload.doc.id;
-
-
-
 
       return data;
     })

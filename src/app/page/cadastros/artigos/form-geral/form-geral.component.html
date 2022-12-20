@@ -9,8 +9,8 @@
               <span class="required">Designação</span>
             </label>
             <!--end::Label-->
-            <input type="text" [(ngModel)]="article.Article.name" name="description" class="form-control form-control-sm"
-              placeholder="insira a descrição longa">
+            <input type="text" [(ngModel)]="article.Article.name" name="description"
+              class="form-control form-control-sm" placeholder="insira a descrição longa">
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
@@ -24,11 +24,11 @@
             </label>
             <!--end::Label-->
             <div class="input-group input-group-sm flex-nowrap">
-              <select class="form-select form-select-sm rounded-end-0" id="modelos" data-control="select2"
+              <select class="form-select form-select-sm rounded-end-0" id="model" data-control="select2"
                 data-placeholder="Select an option">
                 <option></option>
-                <option [value]="modelo.id" *ngFor="let modelo of list_modelos">
-                  {{ modelo.name }}
+                <option *ngFor="let model of listModel| async" [value]="model.id">
+                  {{ model.name }}
                 </option>
               </select>
               <button class="input-group-text btn-primary" id="new_modelos_basic_button">
@@ -47,13 +47,14 @@
             <!--end::Label-->
 
             <div class="input-group input-group-sm flex-nowrap">
-              <select class="form-select form-select-sm rounded-end-0" id="categorias" data-control="select2" multiple
+              <select class="form-select form-select-sm rounded-end-0" id="categories" data-control="select2" multiple
                 data-placeholder="Select an option">
                 <option></option>
                 <option [value]="cate.id" *ngFor="let cate of list_categories">
                   {{ cate.name }}
                 </option>
               </select>
+
               <button class="input-group-text btn-primary" id="new_categorias_basic_button">
                 <i class="bi bi-plus fs-4"></i> Nova
               </button>

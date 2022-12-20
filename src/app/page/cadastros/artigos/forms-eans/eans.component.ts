@@ -45,54 +45,10 @@ export class EansComponent implements OnInit {
   }
 
   findAllTypeItems() {
-    this.store.findAll(this.STORAGE_NAME_TIPOITENS).subscribe(
-      respY => {
-        this.list_type_items = respY.map((e: any) => {
-          const dataW = e.payload.doc.data();
-          dataW.id = e.payload.doc.id;
-          return dataW;
-        })
-      },
-      err => {
-      }
-    )
+
   }
 
   findAllProduts() {
-    this.store.findAll(this.STORAGE_PRODUCT).subscribe(
-      resp => {
-        this.list_produtos = resp.map((e: any) => {
-
-          let querySelecty: any = e.payload.doc.data();
-
-          const data = querySelecty;
-
-          if (querySelecty.modeloId)
-            this.store.findById(this.STORAGE_MODELOS, querySelecty.modeloId).subscribe(
-              dataSet => {
-                data.modelo = dataSet
-              }
-            )
-
-          if (querySelecty.categoriesIds) {
-            data.categoriesData = [];
-            querySelecty.categoriesIds.forEach((categoryID: string) => {
-              this.store.findById(this.STORAGE_CATEGORIES, categoryID).subscribe(
-                dataSetCategories => {
-                  data.categoriesData.push(dataSetCategories);
-                }
-              )
-            })
-          }
-
-          data.id = e.payload.doc.id;
-
-          return data;
-        })
-      },
-      err => {
-      }
-    )
 
   }
 
