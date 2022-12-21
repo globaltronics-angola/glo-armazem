@@ -4,6 +4,7 @@ import { AuthService } from "../../../../shared/auth.service";
 import { StorageService } from "../../../../shared/storage.service";
 import { concatMap, flatMap, map, mergeMap, switchMap, tap } from "rxjs/operators";
 import ServiceArticles from 'src/app/Services/ServiceArticles';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -13,7 +14,7 @@ import ServiceArticles from 'src/app/Services/ServiceArticles';
 })
 export class DataTablesComponent implements OnInit {
 
-  list_articles: Promise<any> | undefined;
+  list_articles: Observable<any[]>;
   Article: ServiceArticles;
 
   constructor(private auth: AuthService,

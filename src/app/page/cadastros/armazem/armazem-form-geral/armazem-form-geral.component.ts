@@ -16,7 +16,8 @@ import PaisesPhone from "./countryPhoneCodes.json"
 export class ArmazemFormGeralComponent implements OnInit {
 
 
-  private STORAGE_PAISES: string = "global-paises"
+  private STORAGE_PAISES: string = "global-countries";
+
   private STORAGE_ARMAZENS: string = "global-armazens"
   private DELETED_AT_NULL: string = "NULL"
 

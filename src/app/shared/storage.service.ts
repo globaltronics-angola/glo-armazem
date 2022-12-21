@@ -71,8 +71,14 @@ export class StorageService {
       .get();
   }
 
-  findById(name: string, id: string) {
-    return this.afs.collection('/' + name).doc('/' + id).valueChanges()
+  /**
+   *
+   * @param nameCollection
+   * @param id
+   * @returns
+   */
+  findById(nameCollection: string, id: string) {
+    return this.afs.collection('/' + nameCollection).doc('/' + id).valueChanges()
   }
 
 

@@ -5,8 +5,7 @@
       <div class="col-sm-3">
         <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
           <input type="text" class="form-control form-control-sm " style="letter-spacing: 8px"
-                 placeholder="Chave do Ean"
-                 name="id" [(ngModel)]="eanRefeModel.id">
+            placeholder="Chave do Ean" name="id" [(ngModel)]="eanMode.IObjectClass.ean">
         </div>
       </div>
     </div>
@@ -19,11 +18,10 @@
             <span class="required">Seleção de Artigo</span>
           </label>
           <!--end::Label-->
-          <select class="form-select form-select-sm selector"
-                  id="selectProdutos" data-allow-clear="true"
-                  data-placeholder="Selecciona o produto">
+          <select class="form-select form-select-sm selector" id="selectProdutos"
+            data-allow-clear="true" data-placeholder="Selecciona o produto">
             <option></option>
-            <option [value]="prod.id" *ngFor="let prod of list_produtos">
+            <option [value]="prod.id" *ngFor="let prod of listArticles |  async">
               {{ (prod.modelo ? prod.modelo.name : 'Não Identificado') + ' - ' + prod.name }}
             </option>
           </select>
@@ -49,11 +47,11 @@
             <!--end::Label-->
             <div class="input-group">
               <input type="text" class="form-control form-control-sm" style="letter-spacing: 8px" maxlength="13"
-                     placeholder="Enter Target Title" [(ngModel)]="eanRefeModel.ean"
-                     name="codeeans">
-              <span class="input-group-text cursor-pointer" id="generate_key">
+                placeholder="Enter Target Title" [(ngModel)]="eanMode.IObjectClass.ean" name="codeeans">
+              <span class="input-group-text cursor-pointer" (click)="generateRef()"
+               id="generate_key">
                 <i class="fa fa-sync-alt"></i>
-            </span>
+              </span>
             </div>
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
@@ -72,9 +70,9 @@
             <!--end::Label-->
 
             <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
-                    data-placeholder="Selecciona o modelo" id="origemEan">
+              data-placeholder="Selecciona o modelo" id="origemEan">
               <option></option>
-              <option [value]="country.id" *ngFor="let country of list_country">
+              <option [value]="country.id" *ngFor="let country of listCountry | async">
                 {{ country.name }}
               </option>
             </select>
@@ -91,16 +89,15 @@
             </label>
             <!--end::Label-->
             <div class="input-group input-group-sm input-group-solid flex-nowrap">
-              <select class="form-select form-select-sm selector"
-                      id="loteSelectType" data-allow-clear="true"
-                      data-placeholder="Selecciona o tipo de lote">
+              <select class="form-select form-select-sm selector" data-control="select2" id="loteSelectType"
+                data-allow-clear="true" data-placeholder="Selecciona o tipo de lote">
                 <option></option>
-                <option [value]="items.id" *ngFor="let items of list_type_items">
+                <option [value]="items.id" *ngFor="let items of listTypeItems | async">
                   {{ items.name }}
                 </option>
               </select>
               <button class="input-group-text" style="max-width: 80px; min-width: 80px"
-                      id="new_tipos_itens_basic_button">
+                id="new_tipos_itens_basic_button">
                 <i class="fa fa-plus"></i> &nbsp; Novo
               </button>
             </div>
@@ -116,11 +113,11 @@
             </label>
             <!--end::Label-->
             <div class="input-group">
-              <input type="number" class="form-control form-control-sm " placeholder="Caixa"
-                     name="target_title" [(ngModel)]="eanRefeModel.qt_item">
+              <input type="number" class="form-control form-control-sm " placeholder="Caixa" name="target_title"
+                [(ngModel)]="eanMode.IObjectClass.quantity">
 
-              <input type="number" class="form-control form-control-sm " placeholder="Conversão"
-                     name="target_title" [(ngModel)]="eanRefeModel.qt_converted">
+              <input type="number" class="form-control form-control-sm " placeholder="Conversão" name="target_title"
+                [(ngModel)]="eanMode.IObjectClass.conversion">
             </div>
 
             <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -137,16 +134,15 @@
               <!--end::Label-->
               <div class="overflow-hidden flex-grow-1">
                 <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
-                        data-placeholder="Selecciona o modelo" id="unidadeSelected">
+                  data-placeholder="Selecciona o modelo" id="unidadeSelected">
                   <option></option>
-                  <option [value]="unidade.id" *ngFor="let unidade of list_unidades">
-                    {{ unidade.sigla + ' - ' + unidade.name }}
+                  <option [value]="unity.id" *ngFor="let unity of listUnity |async">
+                    {{ unity.acronym + ' - ' + unity.name }}
                   </option>
                 </select>
               </div>
               <button class="input-group-text" style="max-width: 80px; min-width: 80px" id="new_unicadade_basic_button">
-                <i
-                  class="fa fa-plus"></i> &nbsp; Nova
+                <i class="fa fa-plus"></i> &nbsp; Nova
               </button>
             </div>
 
@@ -168,4 +164,3 @@
   <app-tabela-ean></app-tabela-ean>
 
 </div>
-

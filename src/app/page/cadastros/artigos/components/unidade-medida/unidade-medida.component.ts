@@ -11,18 +11,28 @@ import { Observable } from 'rxjs';
 export class UnidadeMedidaComponent implements OnInit {
 
 
-  unityArtice: ServiceUnityEanArticle;
+  unityArticle: ServiceUnityEanArticle;
   listUnityArticle: Observable<any[]>;
 
   constructor(private store: StorageService) {
-    this.unityArtice = new ServiceUnityEanArticle(this.store);
-    this.listUnityArticle = this.unityArtice.findAll();
+    this.unityArticle = new ServiceUnityEanArticle(this.store);
+    this.listUnityArticle = this.unityArticle.findAll();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   save() {
-    this.unityArtice.save();
+    this.unityArticle.save();
+  }
+
+  editing(data: any) {
+    this.unityArticle.IObjectClass = data;
+    this.unityArticle.IObjectClass.updated_mode = true;
+  }
+
+  delete(model: any) {
+    this.unityArticle.IObjectClass = model;
+    this.unityArticle.delete()
   }
 
 }

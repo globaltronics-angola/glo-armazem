@@ -1,5 +1,6 @@
 import { StorageService } from "../shared/storage.service";
-import { map } from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
+import { firstValueFrom } from "rxjs";
 import * as moment from "moment";
 import ServiceUtil from "./ServiceUtil";
 import { Injectable } from "@angular/core";
@@ -10,7 +11,7 @@ import { Injectable } from "@angular/core";
 
 export default class ServiceUnityEanArticle {
 
-  static STORAGE_NAME: string = "global-type-ean-article";
+  static STORAGE_NAME: string = "global-unity-ean-article";
 
   IObjectClass = {
     id: "NULL",
@@ -75,5 +76,13 @@ export default class ServiceUnityEanArticle {
       }
     )
   }
+
+  public async findById(id: string) {
+    return await firstValueFrom(this.store.findById(ServiceUnityEanArticle.STORAGE_NAME, id).pipe(tap(val => {
+      return val
+    })))
+  }
+
+
 
 }

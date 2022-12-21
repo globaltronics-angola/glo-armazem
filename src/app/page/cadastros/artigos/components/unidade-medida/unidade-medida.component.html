@@ -24,11 +24,11 @@
             </label>
             <!--end::Label-->
 
-            <input type="text" name="description" [(ngModel)]="unityArtice.IObjectClass.acronym"
+            <input type="text" name="description" [(ngModel)]="unityArticle.IObjectClass.acronym"
               class="form-control form-control-sm mb-3" maxlength="10" placeholder="sigla"
               style="max-width: 180px!important;">
 
-            <input type="text" name="description" [(ngModel)]="unityArtice.IObjectClass.name"
+            <input type="text" name="description" [(ngModel)]="unityArticle.IObjectClass.name"
               class="form-control form-control-sm " placeholder="Extenso">
 
             <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -44,7 +44,7 @@
             </label>
             <!--end::Label-->
             <textarea type="text" class="form-control form-control-sm h-100px" rows="10"
-              [(ngModel)]="unityArtice.IObjectClass.details" placeholder="Introduza qui alguma noto do modelo"
+              [(ngModel)]="unityArticle.IObjectClass.details" placeholder="Introduza qui alguma noto do modelo"
               name="datasheet"></textarea>
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
@@ -81,10 +81,12 @@
               </span>
             </td>
             <td class="gap-2">
-              <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
+              <button type="button" (click)="editing(unity)"
+                class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
                 <span class="svg-icon"> <i class="fa fa-edit"></i></span>
               </button>
-              <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
+              <button type="button" (click)="delete(unity)"
+                class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
                 <span class="svg-icon"> <i class="bi-trash"></i></span>
               </button>
             </td>

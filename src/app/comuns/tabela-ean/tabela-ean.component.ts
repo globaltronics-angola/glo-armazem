@@ -1,7 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {StorageService} from "../../shared/storage.service";
+import { Component, OnInit } from '@angular/core';
+import { StorageService } from "../../shared/storage.service";
 import ServiceCountry from "../../Services/ServiceCountry";
 import ServiceEan from "../../Services/ServiceEan";
+import ServiceEanArticleOrService from 'src/app/Services/ServiceEanArticleOrService';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import ServiceUnityEanArticle from 'src/app/Services/ServiceUnityEanArticle';
 
 @Component({
   selector: 'app-tabela-ean',
@@ -16,53 +20,32 @@ export class TabelaEanComponent implements OnInit {
   private STORAGE_NAME_TIPOITENS: string = "global-tipo-itens"
   private STORAGE_NAME_UNIDADE: string = "global-unidade-medida"
 
+  listArticleEan: any[] = [];
+
+  eanArticles: ServiceEanArticleOrService;
+
   ngOnInit(): void {
-    this.findAllEans()
+
     this.initJQuerysFunciotions()
   }
 
   constructor(private store: StorageService) {
+
+    this.eanArticles = new ServiceEanArticleOrService(this.store);
+    this.findAllEans();
+
+    // data.unity_data = ;
   }
 
-  findAllEans(productKey: any = '') {
-    this.store.findAll(this.STORAGE_NAME_EAN).subscribe(
-      respY => {
-        this.list_ean_produto = respY.map((e: any) => {
 
+  async findAllEans() {
+    this.listArticleEan = await new ServiceEanArticleOrService(this.store).findAll();
+    this.listArticleEan
+      .map(async e => e.unity_data = await new ServiceUnityEanArticle(this.store)
+        .findById(e.unity_id));
 
-          const querySelecty = e.payload.doc.data();
-          const dataW = querySelecty
-          dataW.id = e.payload.doc.id;
-
-          if (querySelecty.type_item)
-            this.store.findById(this.STORAGE_NAME_TIPOITENS, querySelecty.type_item).subscribe(
-              dataSet => {
-                dataW.type_data = dataSet
-              }
-            )
-
-          if (querySelecty.unidade_key)
-            this.store.findById(this.STORAGE_NAME_UNIDADE, querySelecty.unidade_key).subscribe(
-              dataSet => {
-                dataW.unidade_data = dataSet
-              }
-            )
-
-          querySelecty.country = {}
-          if (querySelecty.country_key)
-            this.store.findById(ServiceCountry.STORAGE_COUNTRIES, querySelecty.country_key).subscribe(
-              dataSetC => {
-                dataW.country = dataSetC
-              }
-            )
-
-          return dataW;
-        })
-          .filter(e => e.product_key == productKey)
-      },
-      err => {
-      }
-    )
+    this.listArticleEan.map(async e => e.country_data = await new ServiceCountry(this.store)
+      .findById(e.country_id));
   }
 
 
@@ -70,7 +53,7 @@ export class TabelaEanComponent implements OnInit {
     (<any>window).$(($: any) => {
 
       $('#selectProdutos').on('change', (e: any) => {
-        this.findAllEans(e.target.value)
+        // event fillters
       })
 
     })
@@ -82,6 +65,11 @@ export class TabelaEanComponent implements OnInit {
     }, err => {
 
     })
+  }
+
+  async findUnity(e: string) {
+    return await new ServiceUnityEanArticle(this.store).findById(e)
+
   }
 
 

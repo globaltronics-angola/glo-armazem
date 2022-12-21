@@ -1,7 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {StorageService} from "../../../../shared/storage.service";
-import * as moment from "moment/moment";
-import ServiceCountry from "../../../../Services/ServiceCountry";
+import { Component, OnInit } from '@angular/core';
+import { StorageService } from "../../../../shared/storage.service";
+import ServiceEanArticleOrService from 'src/app/Services/ServiceEanArticleOrService';
+import { Observable } from 'rxjs';
+import ServiceArticles from 'src/app/Services/ServiceArticles';
+import ServiceCountry from 'src/app/Services/ServiceCountry';
+import ServiceTypeEanArticle from 'src/app/Services/ServiceTypeEanArticle';
+import ServiceUnityEanArticle from 'src/app/Services/ServiceUnityEanArticle';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-forms-eans',
@@ -10,125 +15,91 @@ import ServiceCountry from "../../../../Services/ServiceCountry";
 })
 export class EansComponent implements OnInit {
 
-  private STORAGE_PRODUCT: string = 'global-produtos'
-  private STORAGE_MODELOS: string = 'global-modelos'
-  private STORAGE_CATEGORIES: string = 'global-categorias'
-  private STORAGE_NAME_TIPOITENS: string = "global-tipo-itens"
-  private STORAGE_NAME_UNIDADE: string = "global-unidade-medida"
-  private STORAGE_NAME_EAN: string = "global-ean-referencias"
-  private DELETED_AT_NULL: string = "NULL"
+  eanMode: ServiceEanArticleOrService;
+  private window = (<any>window);
 
 
-  list_type_items: any[] = []
-  list_unidades: any[] = []
-  list_produtos: any[] = [];
-  list_country: any[] = [];
+
+  protected listArticles: Observable<any>
+  protected listCountry: Observable<any>
+  protected listTypeItems: Observable<any>
+  protected listUnity: Observable<any>
 
   // Objecto responsavel para construir o ean
-  protected eanRefeModel: any = {}
-
 
   async ngOnInit() {
 
-    (<any>window).InstanceAplication.init()
-
-    this.findAllProduts()
-    this.findAllTypeItems()
+    this.window.InstanceAplication.init()
     this.initJQuerys()
-    this.findAllUnidades()
-    this.list_country = await ServiceCountry.findAllCountries(this.store)
-
 
   }
 
   constructor(private store: StorageService) {
+
+
+
+    this.eanMode = new ServiceEanArticleOrService(this.store)
+
+    this.listArticles = new ServiceArticles(this.store).findAll()
+    this.listCountry = ServiceCountry.findAll(this.store);
+    this.listTypeItems = new ServiceTypeEanArticle(this.store).findAll()
+    this.listUnity = new ServiceUnityEanArticle(this.store).findAll()
+
   }
 
-  findAllTypeItems() {
 
-  }
-
-  findAllProduts() {
-
-  }
 
   initJQuerys() {
-    (<any>window).instanceSelectedIdProduct = "";
-    (<any>window).instanceSelectedIdCountry = "";
-    (<any>window).instanceSelectedIdType = "";
-    (<any>window).instanceSelectedIdMedida = "";
 
-    (<any>window).$(function ($: any) {
-      $('#selectProdutos').select2()
-        .on('change', (e: any) => {
-          (<any>window).instanceSelectedIdProduct = e.target.value
-        })
+    this.window.instanceSelectedIdProduct = "";
+    this.window.instanceSelectedIdCountry = "";
+    this.window.instanceSelectedIdType = "";
+    this.window.instanceSelectedIdMedida = "";
 
-      $('#origemEan').select2()
-        .on('change', (e: any) => {
-          (<any>window).instanceSelectedIdCountry = e.target.value
-        })
-
-      $('#loteSelectType').select2({
-        minimumResultsForSearch: -1
-      }).on('change', (e: any) => {
-        (<any>window).instanceSelectedIdType = e.target.value
-      })
-
-      $('#unidadeSelected').select2({
-        minimumResultsForSearch: -1
-      }).on('change', (e: any) => {
-        (<any>window).instanceSelectedIdMedida = e.target.value
-      })
+    const selectArticle = this.window.$('#selectProdutos')
+    const selectCountry = this.window.$('#origemEan')
+    const selectTypeLotEan = this.window.$('#loteSelectType')
+    const selectUnity = this.window.$('#unidadeSelected')
 
 
+    selectArticle.select2().on('change', (e: any) => {
+      this.window.instanceSelectedIdProduct = e.target.value
+    })
+    selectCountry.select2().on('change', (e: any) => {
+      this.window.instanceSelectedIdCountry = e.target.value
+    })
+
+
+    selectTypeLotEan.select2({
+      minimumResultsForSearch: -1
+    }).on('change', (e: any) => {
+      this.window.instanceSelectedIdType = e.target.value
+    })
+
+    selectUnity.select2({
+      minimumResultsForSearch: -1
+    }).on('change', (e: any) => {
+      this.window.instanceSelectedIdMedida = e.target.value
     })
 
   }
 
 
-  findAllUnidades(): void {
-    this.store.findAll(this.STORAGE_NAME_UNIDADE).subscribe(
-      resp => {
-        this.list_unidades = resp.map((e: any) => {
-          const data = e.payload.doc.data();
-          data.id = e.payload.doc.id;
-          return data;
-        })
-      },
-      err => {
-      }
-    )
-  }
-
-
   save() {
 
-    this.eanRefeModel.id = this.eanRefeModel.ean
-    this.eanRefeModel.created_at = moment().format('DD MM, YYYY HH:mm:ss')
-    this.eanRefeModel.updated_at = moment().format('DD MM, YYYY HH:mm:ss')
+    this.eanMode.IObjectClass.type_id = this.window.instanceSelectedIdType;
+    this.eanMode.IObjectClass.article_id = this.window.instanceSelectedIdProduct;
+    this.eanMode.IObjectClass.unity_id = this.window.instanceSelectedIdMedida;
+    this.eanMode.IObjectClass.country_id = this.window.instanceSelectedIdCountry;
 
-    this.eanRefeModel.deleted_at = this.DELETED_AT_NULL;
-    this.eanRefeModel.email_auth = 'user activities';
+    this.eanMode.save()
 
-    this.eanRefeModel.type_item = (<any>window).instanceSelectedIdType;
-    this.eanRefeModel.product_key = (<any>window).instanceSelectedIdProduct;
-    this.eanRefeModel.unidade_key = (<any>window).instanceSelectedIdMedida;
-    this.eanRefeModel.country_key = (<any>window).instanceSelectedIdCountry;
-
-
-    console.log(this.eanRefeModel)
-
-    this.store.createForceMyId(this.eanRefeModel, this.STORAGE_NAME_EAN).then(
-      () => {
-        (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
-      },
-      err => {
-        alert('ocorencia de erro no sistema')
-      }
-    );
   }
 
-  updated() {
+  generateRef() {
+    // DD MM,YYYY HH:mm:ss
+    if (!this.eanMode.IObjectClass.ean)
+      this.eanMode.IObjectClass.ean = moment().format("HHmmssDMMYYYY");
+
   }
 }
