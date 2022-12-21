@@ -7,6 +7,7 @@ import ServiceCountry from 'src/app/Services/ServiceCountry';
 import ServiceTypeEanArticle from 'src/app/Services/ServiceTypeEanArticle';
 import ServiceUnityEanArticle from 'src/app/Services/ServiceUnityEanArticle';
 import * as moment from 'moment';
+import { ServiceEmitter } from 'src/app/Services/ServiceEmitter';
 
 @Component({
   selector: 'app-forms-eans',
@@ -93,6 +94,7 @@ export class EansComponent implements OnInit {
     this.eanMode.IObjectClass.country_id = this.window.instanceSelectedIdCountry;
 
     this.eanMode.save()
+    ServiceEmitter.get('sendNewLine').emit({"article_id": this.window.instanceSelectedIdProduct,})
 
   }
 
@@ -100,6 +102,7 @@ export class EansComponent implements OnInit {
     // DD MM,YYYY HH:mm:ss
     if (!this.eanMode.IObjectClass.ean)
       this.eanMode.IObjectClass.ean = moment().format("HHmmssDMMYYYY");
-
   }
+
+
 }
