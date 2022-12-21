@@ -93,5 +93,12 @@ export default class ServiceEanArticleOrService implements OnDestroy {
     )
   }
 
+ async findByArticleId(id: string) {
+    const list = await this.store.findByOther(ServiceEanArticleOrService.STORAGE_NAME, 'article_id', id);
+
+    console.log(list);
+    return list
+  }
+
 
 }

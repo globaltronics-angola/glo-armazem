@@ -6,6 +6,7 @@ import ServiceEanArticleOrService from 'src/app/Services/ServiceEanArticleOrServ
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import ServiceUnityEanArticle from 'src/app/Services/ServiceUnityEanArticle';
+import ServiceTypeEanArticle from 'src/app/Services/ServiceTypeEanArticle';
 
 @Component({
   selector: 'app-tabela-ean',
@@ -16,14 +17,11 @@ export class TabelaEanComponent implements OnInit {
 
   protected list_ean_produto: any[] = [];
 
-  private STORAGE_NAME_EAN: string = "global-ean-referencias"
-  private STORAGE_NAME_TIPOITENS: string = "global-tipo-itens"
-  private STORAGE_NAME_UNIDADE: string = "global-unidade-medida"
 
   listArticleEan: any[] = [];
 
   eanArticles: ServiceEanArticleOrService;
-
+  private window = (<any>window);
   ngOnInit(): void {
 
     this.initJQuerysFunciotions()
@@ -38,22 +36,28 @@ export class TabelaEanComponent implements OnInit {
   }
 
 
-  async findAllEans() {
-    this.listArticleEan = await new ServiceEanArticleOrService(this.store).findAll();
+  async findAllEans(id: any = "") {
+    this.listArticleEan = await new ServiceEanArticleOrService(this.store)
+    .findByArticleId(id);
+
     this.listArticleEan
       .map(async e => e.unity_data = await new ServiceUnityEanArticle(this.store)
         .findById(e.unity_id));
 
     this.listArticleEan.map(async e => e.country_data = await new ServiceCountry(this.store)
       .findById(e.country_id));
+
+    this.listArticleEan.map(async e => e.type_data = await new ServiceTypeEanArticle(this.store)
+      .findById(e.type_id));
+
   }
 
 
   initJQuerysFunciotions() {
-    (<any>window).$(($: any) => {
-
+    this.window.$(($: any) => {
       $('#selectProdutos').on('change', (e: any) => {
-        // event fillters
+        this.findAllEans(e.target.options[e.target.selectedIndex].value);
+        
       })
 
     })
@@ -61,10 +65,15 @@ export class TabelaEanComponent implements OnInit {
 
   deleteSelectedEan(id: string) {
     this.store.deleted(ServiceEan.STORAGE_NAME_EAN, id).then(() => {
-      (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
+      this.window.sentMessageSuccess.init('foi inserido com sucesso')
     }, err => {
 
     })
+  }
+
+
+  public listenersData() {
+    this.findAllEans();
   }
 
   async findUnity(e: string) {

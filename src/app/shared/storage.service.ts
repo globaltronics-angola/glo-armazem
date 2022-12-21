@@ -96,7 +96,7 @@ export class StorageService {
     const dataStore = this.afs.firestore;
     let list: any[] = []
     await dataStore.collection('/' + collect)
-      .where("armario", "==", "A0001-GCX07VTJWRXHJIVC4IC4")
+      .where(nameField, "==", context)
       .get()
       .then(snap => {
         snap.forEach(doc => {

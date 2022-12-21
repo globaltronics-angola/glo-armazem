@@ -1,5 +1,6 @@
 import { StorageService } from "../shared/storage.service";
 import { map, tap } from "rxjs/operators";
+import { firstValueFrom } from "rxjs";
 import * as moment from "moment";
 import ServiceUtil from "./ServiceUtil";
 import { Injectable } from "@angular/core";
@@ -79,5 +80,8 @@ export default class ServiceTypeEanArticle {
       }
     )
   }
+
+
+ 
 
 }
