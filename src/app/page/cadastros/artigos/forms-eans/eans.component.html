@@ -21,7 +21,7 @@
           <select class="form-select form-select-sm selector" id="selectProdutos"
             data-allow-clear="true" data-placeholder="Selecciona o produto">
             <option></option>
-            <option [value]="prod.id" *ngFor="let prod of listArticles |  async">
+            <option [value]="prod|json" *ngFor="let prod of listArticles |  async">
               {{ (prod.modelo ? prod.modelo.name : 'Não Identificado') + ' - ' + prod.name }}
             </option>
           </select>
@@ -72,7 +72,7 @@
             <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
               data-placeholder="Selecciona o modelo" id="origemEan">
               <option></option>
-              <option [value]="country.id" *ngFor="let country of listCountry | async">
+              <option [value]="country|json" *ngFor="let country of listCountry | async">
                 {{ country.name }}
               </option>
             </select>
@@ -92,7 +92,7 @@
               <select class="form-select form-select-sm selector" data-control="select2" id="loteSelectType"
                 data-allow-clear="true" data-placeholder="Selecciona o tipo de lote">
                 <option></option>
-                <option [value]="items.id" *ngFor="let items of listTypeItems | async">
+                <option [value]="items|json" *ngFor="let items of listTypeItems | async">
                   {{ items.name }}
                 </option>
               </select>
@@ -136,7 +136,7 @@
                 <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
                   data-placeholder="Selecciona o modelo" id="unidadeSelected">
                   <option></option>
-                  <option [value]="unity.id" *ngFor="let unity of listUnity |async">
+                  <option [value]="unity|json" *ngFor="let unity of listUnity |async">
                     {{ unity.acronym + ' - ' + unity.name }}
                   </option>
                 </select>

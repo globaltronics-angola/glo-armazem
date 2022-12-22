@@ -16,10 +16,10 @@
     <tbody >
       <tr *ngFor="let ean of listArticleEan ">
         <td><span style="letter-spacing: 8px">{{ ean.ean}}</span></td>
-        <td>{{ ean.type_data?.name}}</td>
-        <td><span class="badge badge-light-dark">{{ ean.country_data?.name}}</span> </td>
+        <td>{{ ean.type_id?.name}}</td>
+        <td><span class="badge badge-light-dark">{{ ean.country_id?.name}}</span> </td>
         <td>{{ean.quantity +' / '+ ean.conversion}}</td>
-        <td>{{ ean.unity_data?.acronym + ' - '+ ean.unity_data?.name}}</td>
+        <td>{{ ean.unity_id?.acronym + ' - '+ ean.unity_id?.name}}</td>
         <td>{{ ean.created_at}}</td>
         <td class="gap-2">
           <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">

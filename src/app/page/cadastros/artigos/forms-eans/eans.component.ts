@@ -88,13 +88,14 @@ export class EansComponent implements OnInit {
 
   save() {
 
-    this.eanMode.IObjectClass.type_id = this.window.instanceSelectedIdType;
-    this.eanMode.IObjectClass.article_id = this.window.instanceSelectedIdProduct;
-    this.eanMode.IObjectClass.unity_id = this.window.instanceSelectedIdMedida;
-    this.eanMode.IObjectClass.country_id = this.window.instanceSelectedIdCountry;
+    this.eanMode.IObjectClass.type_id = JSON.parse(this.window.instanceSelectedIdType);
+    this.eanMode.IObjectClass.article_id = JSON.parse(this.window.instanceSelectedIdProduct);
+    this.eanMode.IObjectClass.unity_id = JSON.parse(this.window.instanceSelectedIdMedida);
+    this.eanMode.IObjectClass.country_id = JSON.parse(this.window.instanceSelectedIdCountry);
 
     this.eanMode.save()
-    ServiceEmitter.get('sendNewLine').emit({"article_id": this.window.instanceSelectedIdProduct,})
+    
+    ServiceEmitter.get('sendNewLine').emit(this.eanMode.IObjectClass)
 
   }
 

@@ -17,7 +17,7 @@ import { ServiceEmitter } from 'src/app/Services/ServiceEmitter';
 export class TabelaEanComponent implements OnInit, OnDestroy {
 
 
-  protected list_ean_produto: any[] = [];
+  static list_ean_produto: any[] = [];
 
 
   listArticleEan: any[] = [];
@@ -35,10 +35,10 @@ export class TabelaEanComponent implements OnInit, OnDestroy {
     this.eanArticles = new ServiceEanArticleOrService(this.store);
     this.findAllEan();
 
-    this.snKnow = ServiceEmitter.get("sendNewLine").subscribe(this.findAllEan)
+    this.snKnow = ServiceEmitter.get("sendNewLine").subscribe(e =>this.listArticleEan.push(e));
     // data.unity_data = ;
   }
-  
+
   ngOnDestroy(): void {
     this.snKnow?.unsubscribe();
   }
@@ -48,15 +48,6 @@ export class TabelaEanComponent implements OnInit, OnDestroy {
     this.listArticleEan = await new ServiceEanArticleOrService(this.store)
       .findByArticleId(id);
 
-    this.listArticleEan
-      .map(async e => e.unity_data = await new ServiceUnityEanArticle(this.store)
-        .findById(e.unity_id));
-
-    this.listArticleEan.map(async e => e.country_data = await new ServiceCountry(this.store)
-      .findById(e.country_id));
-
-    this.listArticleEan.map(async e => e.type_data = await new ServiceTypeEanArticle(this.store)
-      .findById(e.type_id));
 
   }
 
@@ -79,9 +70,6 @@ export class TabelaEanComponent implements OnInit, OnDestroy {
     }, err => { })
   }
 
-  async findUnity(e: string) {
-    return await new ServiceUnityEanArticle(this.store).findById(e)
-  }
 
 
 }
