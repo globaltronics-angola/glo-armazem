@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../../../../shared/auth.service";
 import { StorageService } from "../../../../shared/storage.service";
 import ServiceArticles from 'src/app/Services/ServiceArticles';
@@ -15,16 +15,18 @@ import ServiceCategories from 'src/app/Services/ServiceCategories';
 export class FormGeralComponent implements OnInit {
 
 
-  listModel: Observable<any>;
-  listCategories: Observable<any>;
+  listModel: Observable<any> | null = null;
+
+  listCategories: Observable<any> | null = null;
 
   article: ServiceArticles;
+
+
   private window = (<any>window);
 
   sinKnow: Subscription | undefined
 
-  constructor(private auth: AuthService,
-    private store: StorageService) {
+  constructor(private auth: AuthService, private store: StorageService) {
 
     this.article = new ServiceArticles(this.store);
     this.listModel = new ServiceModelArticle(this.store).findAll();
@@ -37,8 +39,10 @@ export class FormGeralComponent implements OnInit {
   }
 
   save() {
-    this.article.Article.model_id = this.window.instanceSelectedId;
-    this.article.Article.category_id = this.window.instanceSelectedIdCategories;
+
+    this.article.Article.model_id = JSON.parse(this.window.instanceSelectedId.toString());
+    this.article.Article.category_id = JSON.parse('[' + this.window.instanceSelectedIdCategories.toString().replace('\n', '') + ']');
+
     this.article.save();
   }
 

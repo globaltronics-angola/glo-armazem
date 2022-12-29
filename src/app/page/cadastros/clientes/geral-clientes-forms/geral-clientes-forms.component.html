@@ -9,8 +9,8 @@
               <span class="required">Entidade</span>
             </label>
             <!--end::Label-->
-            <input type="text" name="description" [(ngModel)]="client.name"
-                   class="form-control form-control-sm" placeholder="insira a descrição longa">
+            <input type="text" name="description" [(ngModel)]="this.client.IObjectClass.name"
+              class="form-control form-control-sm" placeholder="insira a descrição longa">
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
@@ -25,10 +25,10 @@
             <!--end::Label-->
             <div class="input-group input-group-sm flex-nowrap">
               <select class="form-select form-select-sm rounded-end-0" id="departmentsSelect" data-control="select2"
-                      data-placeholder="Select an option">
+                data-placeholder="Select an option">
                 <option></option>
-                <option [value]="modelo.id" *ngFor="let modelo of list_departments  ">
-                  {{ modelo.name }}
+                <option [value]="department|json" *ngFor="let department of listDepartments | async  ">
+                  {{ department.name }}
                 </option>
               </select>
               <button class="input-group-text btn-primary" id="new_depatments_basic_button">
@@ -46,7 +46,7 @@
             </label>
             <!--end::Label-->
             <input class="form-control form-control-sm" placeholder="introduza as informações principais do endereço"
-                   value="" id="otherInfoMultipleItems"/>
+              value="" id="otherInfoMultipleItems" />
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
@@ -63,8 +63,7 @@
             </label>
             <!--end::Label-->
             <textarea type="text" class="form-control form-control-sm h-100px" rows="10"
-                      placeholder="Enter Target Title"
-                      name="datasheet"  [(ngModel)]="client.notes"></textarea>
+              placeholder="Enter Target Title" name="details" [(ngModel)]="this.client.IObjectClass.details"></textarea>
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
 

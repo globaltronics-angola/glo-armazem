@@ -1,67 +1,58 @@
-import {Component, OnInit} from '@angular/core';
-import {StorageService} from "../../shared/storage.service";
-import ServiceUtil from "../../Services/ServiceUtil";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { StorageService } from "../../shared/storage.service";
+import ServiceNifClient from 'src/app/Services/ServiceNifClient';
+import { ServiceEmitter } from 'src/app/Services/ServiceEmitter';
+import { firstValueFrom, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tabelas-nif-address',
   templateUrl: './tabelas-nif-address.component.html',
-  styleUrls: ['./tabelas-nif-address.component.css']
+  styleUrls: []
 })
-export class TabelasNifAddressComponent implements OnInit {
+export class TabelasNifAddressComponent implements OnInit, OnDestroy {
 
-  public list_nif_address: any[] = []
 
-  private STORAGE_NIF_CLIENT: string = "global-nif-clients"
-  private STORAGE_PAISES: string = "global-paises"
+  listNifAddress: any[] = [];
+  private window = (<any>window)
+  clientNif: ServiceNifClient;
+  snKnow: Subscription | undefined;
+  instanceRequest: any;
+
 
   constructor(private store: StorageService) {
+    this.clientNif = new ServiceNifClient(this.store);
+    this.snKnow = ServiceEmitter.get("sendNewNif")
+      .subscribe(async () => this.listNifAddress
+        = await this.clientNif.findByArticleId(this.instanceRequest));
+
+    this.findAll();
+
   }
 
-  async ngOnInit() {
-    this.initJQueryScriptsFunctions()
-    this.findAllAddressNif()
-  }
+  ngOnDestroy(): void { this.snKnow?.unsubscribe() }
 
-
-  findAllAddressNif(idCliente: string = "") {
-    this.store.findAll(this.STORAGE_NIF_CLIENT).subscribe(
-      (resp: any) => {
-        this.list_nif_address = resp.map((e: any) => {
-          const data = e.payload.doc.data();
-          data.id = e.payload.doc.id;
-
-          if (data.country)
-            this.store.findById(this.STORAGE_PAISES, data.country).subscribe(
-              dataSet => {
-                data.countryObjs = dataSet
-              }
-            )
-          return data;
-        }).filter((nifClient: any) => nifClient.clientId == idCliente)
-      }
-    )
-  }
+  async ngOnInit() { this.initJQueryScriptsFunctions() }
 
   initJQueryScriptsFunctions() {
-    (<any>window).$(($: any) => {
-
-
-      $('#clientesSelecs').select2().on('change', (e: any) => {
-
-        this.findAllAddressNif(e.target.value)
-      })
-
-
+    const selectClient = this.window.$('#clientsSelects');
+    selectClient.select2().on('change', async (e: any) => {
+      this.listNifAddress = await this.clientNif.findByArticleId(e.target.value);
+      this.instanceRequest = e.target.value
     })
   }
 
-  deleteNif(id: string) {
-    this.store.deleted(ServiceUtil.STORAGE_NIF_CLIENTS, id).then(() => {
-      (<any>window).sentMessageSuccess.init('foi removido com sucesso')
-    }, err => {
-
-    })
+  async findAll() {
+    this.listNifAddress = await firstValueFrom(new ServiceNifClient(this.store).findAll());
   }
+
+  async delete(attr: any) {
+    this.clientNif.IObjectClass = attr;
+    this.clientNif.delete()
+    this.listNifAddress = await this.clientNif.findByArticleId(this.instanceRequest);
+  }
+
+
+
 
 
 }

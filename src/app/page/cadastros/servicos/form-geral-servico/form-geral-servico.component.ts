@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {Products} from "../../../../model/products";
-import {AuthService} from "../../../../shared/auth.service";
-import {StorageService} from "../../../../shared/storage.service";
-import * as moment from "moment/moment";
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from "../../../../shared/auth.service";
+import { StorageService } from "../../../../shared/storage.service";
+import ServiceServicos from 'src/app/Services/ServiceServicos';
+import ServiceTipos from 'src/app/Services/ServiceTipos';
+import { Observable } from 'rxjs';
+import ServiceCategories from 'src/app/Services/ServiceCategories';
 
 @Component({
   selector: 'app-form-geral-servico',
@@ -10,110 +12,56 @@ import * as moment from "moment/moment";
   styles: [
   ]
 })
-export class FormGeralServicoComponent implements OnInit{
+export class FormGeralServicoComponent implements OnInit {
 
-
-  products: Products[] = [];
-  services: any = {};
-  list_modelos: any = [];
-  list_categories: any = [];
-
-  private STORAGE_MODELOS: string = 'global-tipos'
-  private STORAGE_PRODUCT: string = 'global-services'
-  private STORAGE_CATEGORIES: string = 'global-categorias'
-
-  private DELETED_AT_NULL: string = 'NULL'
+  private window = (<any>window);
+  oo: ServiceServicos;
+  listType: Observable<any>;
+  listCategory: Observable<any>;
 
   constructor(private auth: AuthService, private store: StorageService) {
+    this.oo = new ServiceServicos(this.store);
+    this.listType = new ServiceTipos(this.store).findAll();
+    this.listCategory = new ServiceCategories(this.store).findAll();
+
 
   }
 
+
   ngOnInit(): void {
 
-    (<any>window).InstanceAplication.init()
-
-    this.findAllModelos();
-
-    this.findAllCategories()
-
-    // calling event change
+    this.window.InstanceAplication.init()
     this.eventChang();
-
-
   }
 
 
   save() {
-    moment().locale('pt-br');
-    this.services.modeloId = (<any>window).instanceSelectedId;
-    this.services.categoriesIds = (<any>window).instanceSelectedIdCategories;
 
-    this.services.created_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.services.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.services.deleted_at = this.DELETED_AT_NULL;
-    this.services.email_auth = 'user activities';
+    this.oo.IObjectClass.type = JSON.parse(this.window.instanceSelectedId.toString());
 
-    this.services.id = ""
+    this.oo.IObjectClass.categories = JSON.parse('[' + this.window.instanceSelectedIdCategories.toString().replace('\n', '') + ']');
 
-    this.store.create(this.services, this.STORAGE_PRODUCT).then(
-      resp => {
-        (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
-        console.log(resp.id)
-      },
-      err => {
-        alert('Ocorreu um determido erro ')
-      }
-    );
+
+    this.oo.save()
+
   }
 
 
-  findAllModelos() {
-    this.store.findAll(this.STORAGE_MODELOS).subscribe(
-      resp => {
-        this.list_modelos = resp.map((e: any) => {
-          const data = e.payload.doc.data();
-          data.id = e.payload.doc.id;
-          return data;
-        })
-      },
-      err => {
-      }
-    )
-  }
-
-  findAllCategories() {
-    this.store.findAll(this.STORAGE_CATEGORIES).subscribe(
-      resp => {
-        this.list_categories = resp.map((e: any) => {
-          const data = e.payload.doc.data();
-          data.id = e.payload.doc.id;
-          return data;
-        })
-      },
-      err => {
-      }
-    )
-  }
 
 
   eventChang() {
-    (<any>window).$(function ($: any) {
 
-      $('#modelos').select2();
+    const tiposSevico = this.window.$('#modelos');
+    const categorySevico = this.window.$('#categorias');
 
-      $('#categorias').select2();
-
-      $('#modelos').on('change', (event: any) => {
-        (<any>window).instanceSelectedId = event.target.value
-
-      })
-
-      $('#categorias').on('change', (event: any) => {
-        (<any>window).instanceSelectedIdCategories = $('#categorias').select2("val");
-      })
-
+    tiposSevico.select2().on('change', (event: any) => {
+      this.window.instanceSelectedId = event.target.value
+      console.log(this.window.instanceSelectedId)
     })
 
+    categorySevico.select2().on('change', (event: any) => {
+      this.window.instanceSelectedIdCategories = categorySevico.select2("val");
+    })
 
   }
 

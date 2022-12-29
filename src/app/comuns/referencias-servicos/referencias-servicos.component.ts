@@ -1,5 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {StorageService} from "../../shared/storage.service";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
+import ServiceEanArticleOrService from 'src/app/Services/ServiceEanArticleOrService';
+import { ServiceEmitter } from 'src/app/Services/ServiceEmitter';
+import { StorageService } from "../../shared/storage.service";
 
 @Component({
   selector: 'app-referencias-servicos',
@@ -7,46 +10,38 @@ import {StorageService} from "../../shared/storage.service";
   styles: [
   ]
 })
-export class ReferenciasServicosComponent implements OnInit{
-  protected list_ean_sevicos: any[] = [];
+export class ReferenciasServicosComponent implements OnInit, OnDestroy {
 
-  private STORAGE_NAME_EAN: string = "global-ean-referencias"
-  private STORAGE_NAME_TIPOITENS: string = "global-tipo-itens"
-  private STORAGE_NAME_UNIDADE: string = "global-unidade-medida"
+  protected list_ean_sevicos: any[] = [];
+  private window = (<any>window);
+  snKnow: any;
+
+
 
   ngOnInit(): void {
-    this.findAllEans()
+
     this.initJQuerysFunciotions()
   }
 
   constructor(private store: StorageService) {
+    this.findAll()
+    this.snKnow = ServiceEmitter.get("sendNewLineRe").subscribe(e => this.list_ean_sevicos.push(e));
+  }
+  ngOnDestroy(): void {
+    this.snKnow.unsubscribe();
   }
 
-  findAllEans(productKey: any = '') {
-    this.store.findAll(this.STORAGE_NAME_EAN).subscribe(
-      respY => {
-        this.list_ean_sevicos = respY.map((e: any) => {
-
-          const dataW = e.payload.doc.data()
-          dataW.id = e.payload.doc.id;
-
-
-          return dataW;
-        })
-          .filter(e => e.product_key == productKey)
-      },
-      err => {
-      }
-    )
+  // firstValueFrom
+  async findAll() {
+    this.list_ean_sevicos = await firstValueFrom(new ServiceEanArticleOrService(this.store).findAll());
   }
 
 
   initJQuerysFunciotions() {
-    (<any>window).$(($: any)=> {
+    this.window.$('#selectProdutos').on('change', async (e: any) => {
 
-      $('#selectProdutos').on('change', (e : any)=>{
-        this.findAllEans(e.target.value)
-      })
+      this.list_ean_sevicos = await new ServiceEanArticleOrService(this.store)
+        .findByArticleId(e.target.value)
 
     })
   }

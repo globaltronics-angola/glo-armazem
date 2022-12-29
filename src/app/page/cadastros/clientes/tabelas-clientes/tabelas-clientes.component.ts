@@ -1,35 +1,36 @@
-import {Component, OnInit} from '@angular/core';
-import {StorageService} from "../../../../shared/storage.service";
+import { Component, OnInit } from '@angular/core';
+import { StorageService } from "../../../../shared/storage.service";
 import ServiceClients from "../../../../Services/ServiceClients";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tabelas-clientes',
   templateUrl: './tabelas-clientes.component.html',
   styles: []
 })
-export class TabelasClientesComponent implements OnInit{
+export class TabelasClientesComponent implements OnInit {
 
 
-   list_clients: any[] = []
+  private window = (<any>window);
+  listClients: Observable<any>;
+  client: ServiceClients;
 
- async ngOnInit(){
-   (<any>window).InstanceAplication.init()
-    this.list_clients = await ServiceClients.findAll(this.store)
+  async ngOnInit() {
+    this.window.InstanceAplication.init()
+
+
   }
 
   constructor(private store: StorageService) {
+    this.client = new ServiceClients(this.store);
+    this.listClients = this.client.findAll();
   }
 
-  findAll(){
-
+  delete(attr: any) {
+    this.client.IObjectClass = attr;
+    this.client.delete()
   }
 
 
-    deleteClient(id: string){
-     this.store.deleted(ServiceClients.STORAGE_CLIENTS, id).then(()=>{
-       (<any>window).sentMessageSuccess.init('foi removido com sucesso')
-     }, err=>{
 
-     })
-    }
 }

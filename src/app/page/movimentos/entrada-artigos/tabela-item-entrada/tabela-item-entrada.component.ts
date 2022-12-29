@@ -1,8 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {StorageService} from "../../../../shared/storage.service";
 import ServiceUtil from "../../../../Services/ServiceUtil";
-import ServiceEan from "../../../../Services/ServiceEan";
-import ServiceCountry from "../../../../Services/ServiceCountry";
 import {ServiceEmitter} from "../../../../Services/ServiceEmitter";
 
 
@@ -13,7 +11,7 @@ import {ServiceEmitter} from "../../../../Services/ServiceEmitter";
 })
 export class TabelaItemEntradaComponent implements OnInit {
 
-  list_items: any[] = []
+  listItems: any[] = []
 
   constructor(private store: StorageService) {
 
@@ -28,61 +26,6 @@ export class TabelaItemEntradaComponent implements OnInit {
 
   findAllItemTemporal() {
 
-    this.store.findAll(ServiceUtil.STORAGE_ITEM_MOVIMENTO).subscribe(
-      respY => {
-        this.list_items = respY.map((e: any) => {
-
-          const querySelected = e.payload.doc.data();
-          const dataW = querySelected
-          dataW.id = e.payload.doc.id;
-          dataW.fornecedorId = dataW.fornecedor;
-
-          if (dataW.fornecedorId)
-            this.store.findById(ServiceUtil.STORAGE_FORNECEDOR, dataW.fornecedor).subscribe(
-              eanResProForne => {
-                dataW.fornecedor = eanResProForne
-              }
-            )
-
-          if (dataW.ean)
-            this.store.findById(ServiceEan.STORAGE_NAME_EAN, dataW.ean).subscribe(
-              eanResp => {
-                dataW.eanData = eanResp
-
-                if (dataW.eanData)
-                  this.store.findById(ServiceEan.STORAGE_PRODUCT, dataW.eanData.product_key).subscribe(
-                    eanResPro => {
-                      dataW.productData = eanResPro
-                    }
-                  )
-
-
-                if (dataW.eanData)
-                  this.store.findById(ServiceEan.STORAGE_NAME_TIPOITENS, dataW.eanData.type_item).subscribe(
-                    eanResType => {
-                      dataW.typeData = eanResType
-                    }
-                  )
-
-
-              }
-            )
-
-          dataW.paisesID = dataW.paises;
-          if (dataW.paises)
-            this.store.findById(ServiceCountry.STORAGE_COUNTRIES, dataW.paises).subscribe(
-              moedas => {
-                dataW.moeda = moedas
-              }
-            )
-
-          return dataW;
-
-        }).filter(e => e.movimentoId == 'NULL' && e.typeMovimento == "INPUT")
-      },
-      err => {
-      }
-    )
   }
 
   kFormatter(num: number) {

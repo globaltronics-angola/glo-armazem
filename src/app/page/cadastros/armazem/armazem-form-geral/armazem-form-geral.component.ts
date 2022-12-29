@@ -1,11 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as Tagify from "@yaireo/tagify";
-import {StorageService} from "../../../../shared/storage.service";
+import { StorageService } from "../../../../shared/storage.service";
 import * as moment from "moment/moment";
 // @ts-ignore
 import Paises from "./paises-gentilicos-google-maps.json"
 // @ts-ignore
 import PaisesPhone from "./countryPhoneCodes.json"
+
+import ServiceStorage from 'src/app/Services/ServiceStorage';
+import ServiceCountry from 'src/app/Services/ServiceCountry';
+import { Observable } from 'rxjs';
+
 
 
 @Component({
@@ -15,20 +20,70 @@ import PaisesPhone from "./countryPhoneCodes.json"
 })
 export class ArmazemFormGeralComponent implements OnInit {
 
+  serviceStorage: ServiceStorage;
+  listCountry: Observable<any>;
 
-  private STORAGE_PAISES: string = "global-countries";
+  private STORAGE_PAISES = "global-countries";
 
-  private STORAGE_ARMAZENS: string = "global-armazens"
-  private DELETED_AT_NULL: string = "NULL"
 
-  protected genericObject: any = {}
+  private window = (<any>window);
 
-  protected lista_paises: any[] = []
-  private tagifyInst: any;
 
 
   constructor(private store: StorageService) {
+    this.serviceStorage = new ServiceStorage(this.store);
+    this.listCountry = new ServiceCountry(this.store).findAll();
+
   }
+
+
+
+  save() {
+
+
+    this.serviceStorage.IObjectClass.country = JSON.parse(this.window.instanceSelectedId);
+    this.serviceStorage.IObjectClass.address = this.window.instanceSelectedValueEnder.split(',');
+
+    this.serviceStorage.save()
+
+  }
+
+
+  initJQueryFunctions() {
+
+    const countrySelect = this.window.$('#selectCountry');
+    const enddessTagify = document.querySelector("#tagifyAddress");
+
+    countrySelect.select2().on('change', (event: any) => {
+      this.window.instanceSelectedId = event.target.value
+    })
+
+
+
+    // @ts-ignore
+    new Tagify(enddessTagify, {
+      originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
+    });
+
+    // @ts-ignore
+    enddessTagify.addEventListener('change', (e: any) => {
+      this.window.instanceSelectedValueEnder = e.target.value
+    })
+
+  }
+
+  ngOnInit(): void {
+
+    (<any>window).InstanceAplication.init()
+
+
+
+    this.initJQueryFunctions()
+
+
+  }
+
+
 
   testing() {
     Paises.forEach((paises: any) => {
@@ -36,7 +91,8 @@ export class ArmazemFormGeralComponent implements OnInit {
       let myPaise: any = {}
       let county: any = PaisesPhone.find((ps: any) => ps.iso == paises.sigla)
 
-      myPaise.id = this.store.getId()
+      myPaise.id = paises.sigla.toUpperCase()
+
       myPaise.name = paises.nome_pais
       myPaise.genero = paises.gentilico
       myPaise.iso = paises.sigla
@@ -64,78 +120,4 @@ export class ArmazemFormGeralComponent implements OnInit {
     })
   }
 
-
-  save() {
-    moment().locale('pt-br');
-    this.genericObject.paise = (<any>window).instanceSelectedId;
-
-    this.genericObject.enderco = (<any>window).instanceSelectedValueEnder.split(',');
-
-    this.genericObject.created_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.genericObject.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.genericObject.deleted_at = this.DELETED_AT_NULL;
-    this.genericObject.email_auth = 'user activities';
-
-    this.genericObject.id = this.store.getId()
-
-    this.store.createdForceGenerateId(this.genericObject, this.STORAGE_ARMAZENS).then(
-      resp => {
-        (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
-      },
-      err => {
-        alert('Ocorreu um determido erro ')
-      }
-    );
-  }
-
-
-  initJQueryFunctions() {
-    (<any>window).$(($: any) => {
-
-
-
-      $('#paises').select2().on('change', (event: any) => {
-        (<any>window).instanceSelectedId = event.target.value
-
-      })
-
-      var enderecosTagify = document.querySelector("#tagify_endereco");
-      // @ts-ignore
-      this.tagifyInst = new Tagify(enderecosTagify, {
-        originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
-      });
-
-      // @ts-ignore
-      enderecosTagify.addEventListener('change', (e: any) => {
-        (<any>window).instanceSelectedValueEnder = e.target.value
-      })
-
-
-    })
-  }
-
-  ngOnInit(): void {
-
-    (<any>window).InstanceAplication.init()
-
-    this.findAllPaises()
-
-    this.initJQueryFunctions()
-
-
-  }
-
-  findAllPaises() {
-    this.store.findAll(this.STORAGE_PAISES).subscribe(
-      resp => {
-        this.lista_paises = resp.map((e: any) => {
-          const data = e.payload.doc.data();
-          data.id = e.payload.doc.id;
-          return data;
-        })
-      },
-      err => {
-      }
-    )
-  }
 }

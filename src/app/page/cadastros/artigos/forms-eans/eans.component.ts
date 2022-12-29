@@ -93,8 +93,11 @@ export class EansComponent implements OnInit {
     this.eanMode.IObjectClass.unity_id = JSON.parse(this.window.instanceSelectedIdMedida);
     this.eanMode.IObjectClass.country_id = JSON.parse(this.window.instanceSelectedIdCountry);
 
+    this.eanMode.IObjectClass.id = this.eanMode.IObjectClass.ean.toUpperCase();
+
+
     this.eanMode.save()
-    
+
     ServiceEmitter.get('sendNewLine').emit(this.eanMode.IObjectClass)
 
   }

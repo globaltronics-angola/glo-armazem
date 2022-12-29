@@ -1,6 +1,6 @@
 import { StorageService } from "../shared/storage.service";
 import { map, tap, switchMap } from "rxjs/operators";
-import { firstValueFrom, Subscription } from "rxjs";
+import { firstValueFrom, Observable, Subscription } from "rxjs";
 import * as moment from "moment";
 import ServiceUtil from "./ServiceUtil";
 import { Injectable, OnDestroy } from "@angular/core";
@@ -42,62 +42,46 @@ export default class ServiceEanArticleOrService implements OnDestroy {
   }
 
   public findAll() {
-    return firstValueFrom(this.store.findAll(ServiceEanArticleOrService.STORAGE_NAME)
-      .pipe(map(this.convertToModel)))
+    return this.store.findAll(ServiceEanArticleOrService.STORAGE_NAME).pipe(
+      map(this.convertToModel))
   }
 
+  public findArticles() {
 
+    return this.store.findByDifferenceName(ServiceEanArticleOrService.STORAGE_NAME, 'type_id', 'NULL');
+  }
 
   public save(): void {
 
-    if (!this.IObjectClass.updated_mode) {
-
-      this.IObjectClass.created_at = moment().format('DD MM,YYYY HH:mm:ss')
-    }
+    if (!this.IObjectClass.updated_mode) { this.IObjectClass.created_at = moment().format('DD MM,YYYY HH:mm:ss') }
 
     this.IObjectClass.id = this.IObjectClass.ean
     this.IObjectClass.updated_mode = false;
 
     this.store.createdForceGenerateId(this.IObjectClass, ServiceEanArticleOrService.STORAGE_NAME)
-      .then(
-        () => {
-          this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
-        },
-        err => {
-          this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)
-        }
-      )
+      .then(() => { this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS) },
+        err => { this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR) })
 
   }
 
 
-  convertToModel(resp: any) {
-    return resp.map((e: any) => {
-
-      const data = e.payload.doc.data();
-      data.id = e.payload.doc.id;
-
-
-
-
-
-      return data;
-    })
-  }
+  convertToModel(resp: any) { return resp.map((e: any) => { return e.payload.doc.data(); }) }
 
   public delete() {
-    this.store.deleted(ServiceEanArticleOrService.STORAGE_NAME, this.IObjectClass.id).then(
-      () => {
-        this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS_DELETE)
-      }
-    )
+    this.store.deleted(ServiceEanArticleOrService.STORAGE_NAME, this.IObjectClass.id)
+      .then(() => { this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS_DELETE) })
   }
 
- async findByArticleId(id: string) {
-    const list = await this.store.findByOther(ServiceEanArticleOrService.STORAGE_NAME, 'article_id', id);
+  async findByArticleId(id: string) {
 
-    console.log(list);
-    return list
+    if (id) {
+      const article = JSON.parse(id.toString())
+      const list = await this.store.findByOther(ServiceEanArticleOrService.STORAGE_NAME, 'article_id', article);
+      return list
+    }
+
+    console.log(id)
+    return []
   }
 
 

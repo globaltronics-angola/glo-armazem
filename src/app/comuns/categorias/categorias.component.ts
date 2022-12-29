@@ -11,7 +11,8 @@ import { Observable } from 'rxjs';
 export class CategoriasComponent implements OnInit {
 
   category: ServiceCategories;
-  protected listCategories: Observable<any>;
+  protected listCategories: Observable<any>| null = null;
+  ;
 
   private window: any = (<any>window)
 

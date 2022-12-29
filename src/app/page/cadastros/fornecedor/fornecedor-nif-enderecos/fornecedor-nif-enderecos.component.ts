@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as Tagify from "@yaireo/tagify";
-import * as moment from "moment";
 import ServiceCountry from "../../../../Services/ServiceCountry";
-import Util from "../../../../../External/Utlil";
-import {StorageService} from "../../../../shared/storage.service";
+import { StorageService } from "../../../../shared/storage.service";
 import ServiceFornecedor from "../../../../Services/ServiceFornecedor";
+import ServiceNifClient from 'src/app/Services/ServiceNifClient';
+import { Observable } from 'rxjs';
+import { ServiceEmitter } from 'src/app/Services/ServiceEmitter';
 
 @Component({
   selector: 'app-fornecedor-nif-enderecos',
@@ -13,91 +14,54 @@ import ServiceFornecedor from "../../../../Services/ServiceFornecedor";
 })
 export class FornecedorNifEnderecosComponent implements OnInit {
 
-  lista_paises: any[] = []
-  lista_clientes: any[] = []
+  private window = (<any>window)
 
-  addressNifOb: any = {}
-
-  private DELETED_AT_NULL: string = "NULL"
-  private STORAGE_CLIENTS_ADDRESS_NIF: string = "global-nif-clients"
+  serviceNifClient: ServiceNifClient;
+  listFornecedor: Observable<any>;
+  listCountry: Observable<any>;
 
   async ngOnInit() {
-
     this.initJQueryScriptsFunctions()
-    this.lista_paises = await ServiceCountry.findAllCountries(this.store)
-    this.listFornecedores();
   }
 
   constructor(private store: StorageService) {
+    this.serviceNifClient = new ServiceNifClient(this.store);
+    this.listFornecedor = new ServiceFornecedor(this.store).findAll();
+    this.listCountry = new ServiceCountry(this.store).findAll();
   }
 
   save() {
 
-    moment().locale('pt-br');
+    this.serviceNifClient.IObjectClass.client = JSON.parse(this.window.instanceSelectedIdClient);
+    this.serviceNifClient.IObjectClass.country = JSON.parse(this.window.instanceSelectedIdCountry);
 
-    this.addressNifOb.clientId = (<any>window).instanceSelectedIdcliente;
-    this.addressNifOb.country = (<any>window).instanceSelectedIdCountry;
+    this.serviceNifClient.IObjectClass.id = this.serviceNifClient.IObjectClass.nif.toUpperCase();
 
+    this.serviceNifClient.IObjectClass.address = this.window.instanceSelectedValueAddress.split(',');
+    ServiceEmitter.get('sendNewNif').emit(this.serviceNifClient.IObjectClass)
+    this.serviceNifClient.save()
 
-    this.addressNifOb.address = (<any>window).instanceSelectedValueAddress.split(',');
-
-    this.addressNifOb.created_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.addressNifOb.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.addressNifOb.deleted_at = this.DELETED_AT_NULL;
-
-    this.addressNifOb.email_auth = 'user activities';
-    this.addressNifOb.id = this.addressNifOb.nif.toUpperCase();
-
-    this.store.createForceMyId(this.addressNifOb, this.STORAGE_CLIENTS_ADDRESS_NIF).then(
-      () => {
-        (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
-      },
-      err => {
-        alert('Ocorreu um determido erro ')
-      }
-    );
   }
 
   initJQueryScriptsFunctions() {
 
-    (<any>window).$(($: any) => {
-      $('#paisesClients').select2().on('change', (e: any) => {
-        (<any>window).instanceSelectedIdCountry = e.target.value
-      })
+    const selectCountry = this.window.$('#paisesClients');
+    const selectClient = this.window.$('#clientsSelects');
+    const address = document.querySelector("#addressPuts");
 
-      $('#clientesSelecs').select2().on('change', (e: any) => {
-        (<any>window).instanceSelectedIdcliente = e.target.value
-      })
+    selectCountry.select2().on('change', (e: any) => { this.window.instanceSelectedIdCountry = e.target.value })
+    selectClient.select2().on('change', (e: any) => { this.window.instanceSelectedIdClient = e.target.value })
 
-      const address = document.querySelector("#addressPuts");
-      // @ts-ignore
-      new Tagify(address, {
-        originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
-      });
 
-      // @ts-ignore
-      address.addEventListener('change', (e: any) => {
-        (<any>window).instanceSelectedValueAddress = e.target.value
-      })
+    // @ts-ignore
+    new Tagify(address, {
+      originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
+    });
 
+    // @ts-ignore
+    address.addEventListener('change', (e: any) => {
+      this.window.instanceSelectedValueAddress = e.target.value
     })
-  }
-
-
-  listFornecedores() {
-
-
-    this.store.findAll(ServiceFornecedor.STORAGE_FORNECEDOR).subscribe((resp) => {
-      this.lista_clientes = resp.map((resT: any) => {
-        const data = resT.payload.doc.data()
-        data.id = resT.payload.doc.id
-        return data;
-      })
-    }, error => {
-
-    })
-
-
   }
 
 }

@@ -1,12 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { StorageService } from "../../shared/storage.service";
-import ServiceCountry from "../../Services/ServiceCountry";
-import ServiceEan from "../../Services/ServiceEan";
+import { StorageService } from "../../../../shared/storage.service";
 import ServiceEanArticleOrService from 'src/app/Services/ServiceEanArticleOrService';
-import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
-import ServiceUnityEanArticle from 'src/app/Services/ServiceUnityEanArticle';
-import ServiceTypeEanArticle from 'src/app/Services/ServiceTypeEanArticle';
+import { Subscription } from 'rxjs';
+
 import { ServiceEmitter } from 'src/app/Services/ServiceEmitter';
 
 @Component({
@@ -65,9 +61,9 @@ export class TabelaEanComponent implements OnInit, OnDestroy {
   }
 
   deleteSelectedEan(id: string) {
-    this.store.deleted(ServiceEan.STORAGE_NAME_EAN, id).then(() => {
+    /* this.store.deleted(ServiceEan.STORAGE_NAME_EAN, id).then(() => {
       this.window.sentMessageSuccess.init('foi inserido com sucesso')
-    }, err => { })
+    }, err => { }) */
   }
 
 

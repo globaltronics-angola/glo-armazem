@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/compat/firestore";
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -107,6 +108,48 @@ export class StorageService {
 
     return list;
   }
+
+
+  async findByStart(collect: string, nameField: string = "", context: string = "") {
+    const dataStore = this.afs.firestore;
+    let list: any[] = []
+    await dataStore.collection('/' + collect)
+      .orderBy(nameField, 'asc')
+      .startAt(context)
+      .endAt([context+"\uf8ff"])
+      .get()
+      .then(snap => {
+        snap.forEach(doc => {
+          list.push(doc.data())
+          return doc.data();
+        });
+      });
+
+    return list;
+  }
+
+
+  findByDifferenceName(collect: string, nameField: string = "", context: string = "") {
+    const dataStore = this.afs.firestore;
+    let list: any[] = []
+
+
+    dataStore.collection('/' + collect)
+    .where(nameField, "!=", context)
+    .get()
+    .then(snap => {
+      snap.forEach(doc => {
+        list.push(doc.data())
+        return doc.data();
+      });
+    });
+
+   
+
+    return list;
+
+  }
+
 
 
   /**

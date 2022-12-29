@@ -3,6 +3,7 @@ import { StorageService } from "../../shared/storage.service";
 import * as moment from "moment/moment";
 import { Observable, Subscription } from "rxjs";
 import { map } from "rxjs/operators";
+import ServiceTipos from 'src/app/Services/ServiceTipos';
 
 @Component({
   selector: 'app-tipos',
@@ -18,48 +19,24 @@ export class TiposComponent implements OnInit, OnDestroy {
   list_modelos$: Observable<any[]> | undefined;
 
   sink: Subscription | undefined
+  typeClass: ServiceTipos;
 
   constructor(private store: StorageService) {
-    this.list_modelos$ = this.store.findAll(this.STORAGE_NAME).pipe(map(this.convertToModel))
-  }
-  ngOnDestroy(): void { }
+    this.typeClass = new ServiceTipos(this.store);
 
-  ngOnInit(): void {
+    this.list_modelos$ = this.typeClass.findAll();
 
   }
+  ngOnDestroy(): void {}
 
+  ngOnInit(): void {}
 
   save(): void {
 
-    this.type.id = this.store.getId();
-
-    this.type.created_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.type.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.type.deleted_at = this.DELETED_AT_NULL;
-    this.type.email_auth = 'user activities';
-
-    this.store.createdForceGenerateId(this.type, this.STORAGE_NAME).then(
-      () => {
-
-        (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
-
-      },
-      err => {
-        alert('ocorencia de erro no sistema')
-      }
-    );
+    this.typeClass.save()
   }
 
 
-
-
-  convertToModel(resp: any) {
-    return resp.map((e: any) => {
-      const data = e.payload.doc.data();
-      data.id = e.payload.doc.id;
-      return data;
-    })
-  }
 
 
 

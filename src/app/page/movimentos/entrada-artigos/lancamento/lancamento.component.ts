@@ -17,7 +17,7 @@ export class LancamentoComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.list_produtos = await ServiceMovimento.findINPUT(this.store)
+   // this.list_produtos = await ServiceMovimento.findINPUT(this.store)
   }
 
   somarGeral(dataArry: any) {
@@ -27,7 +27,7 @@ export class LancamentoComponent implements OnInit {
 
 
   deleteMovementAndItems(attr: string) {
-    this.store.deleted(ServiceUtil.STORAGE_MOVEMENT, attr).then(async () => {
+    /* this.store.deleted(ServiceUtil.STORAGE_MOVEMENT, attr).then(async () => {
 
       const listMyItems = await ServiceMovimentoItems.findByMovement(this.store, attr);
       console.log('success full')
@@ -41,7 +41,7 @@ export class LancamentoComponent implements OnInit {
 
     }, err => {
 
-    })
+    }) */
   }
 
 

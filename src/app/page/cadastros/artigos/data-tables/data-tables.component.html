@@ -1,43 +1,45 @@
 <div class="overflow-auto w-100">
   <table id="kt_datatable_both_scrolls" class="table table-striped table-row-bordered gy-5 gs-7">
     <thead>
-    <tr class="fw-semibold fs-6 text-gray-800">
-      <th style="max-width: 160px!important; min-width: 160px!important;">Data</th>
-      <th class="min-w-300px">Designação</th>
-      <th class="min-w-200px">Modelo</th>
-      <th class="min-w-200px">Categorias</th>
-      <th style="max-width: 140px!important; min-width: 140px!important;">Actualizado</th>
-      <th class="min-w-200px">Ficha tecnica</th>
-      <th class="">Acção</th>
+      <tr class="fw-semibold fs-6 text-gray-800">
+        <th style="max-width: 160px!important; min-width: 160px!important;">Data</th>
+        <th class="min-w-300px">Designação</th>
+        <th class="min-w-200px">Modelo</th>
+        <th class="min-w-200px">Categorias</th>
+        <th style="max-width: 140px!important; min-width: 140px!important;">Actualizado</th>
+        <th class="min-w-200px">Ficha tecnica</th>
+        <th class="">Acção</th>
 
 
-    </tr>
+      </tr>
     </thead>
     <tbody *ngIf="list_articles |async as articles">
-    <tr *ngFor="let article of articles">
-      <td style="max-width: 140px!important; min-width: 140px!important;">{{ article.created_at }}</td>
-      <td>{{ article.name}}</td>
-      <td><span class="badge badge-light-dark">{{ article.modelo?.name}}</span></td>
-      <td style="max-width: 210px!important;">
-        <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; ">
-          <span class="badge badge-light-info"  *ngFor="let cate of article.categoriesData">{{ cate?.name }}</span>
-        </div>
-      </td>
-      <td style="max-width: 110px!important;">
-        {{ article.updated_at }}
-      </td>
-      <td style="max-width: 260px!important; min-width: 260px!important;">
-        <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; ">{{ article.datasheet }}</div>
-      </td>
-      <td class="gap-2">
-        <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
-          <span class="svg-icon"> <i class="fa fa-edit"></i></span>
-        </button>
-        <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
-          <span class="svg-icon"> <i class="bi-trash"></i></span>
-        </button>
-      </td>
-    </tr>
+      <tr *ngFor="let article of articles">
+        <td style="max-width: 140px!important; min-width: 140px!important;">{{ article.created_at }}</td>
+        <td>{{ article.name}}</td>
+        <td><span class="badge badge-light-dark">{{ article.model_id?.name}}</span></td>
+        <td style="max-width: 230px!important;">
+          <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; ">
+            <span *ngFor="let cate of article.category_id">
+              <span class="badge badge-light-info">{{ cate?.name }}</span>,
+            </span>
+          </div>
+        </td>
+        <td style="max-width: 110px!important;">
+          {{ article.updated_at }}
+        </td>
+        <td style="max-width: 260px!important; min-width: 260px!important;">
+          <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; ">{{ article.details }}</div>
+        </td>
+        <td class="gap-2">
+          <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
+            <span class="svg-icon"> <i class="fa fa-edit"></i></span>
+          </button>
+          <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
+            <span class="svg-icon"> <i class="bi-trash"></i></span>
+          </button>
+        </td>
+      </tr>
 
     </tbody>
   </table>

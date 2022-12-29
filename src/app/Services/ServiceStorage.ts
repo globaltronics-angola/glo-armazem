@@ -8,16 +8,18 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export default class ServiceFornecedor {
+export default class ServiceStorage {
 
-  static STORAGE_NAME: string = "global-fornecedor"
+  static STORAGE_NAME: string = "global-storage";
+
   private window: any = (<any>window)
 
   IObjectClass = {
     id: "NULL",
     name: undefined,
-    department: undefined,
-    others: undefined,
+    country: undefined,
+    address: undefined,
+    ambry: [],
     details: undefined,
     created_at: "NULL",
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
@@ -30,7 +32,7 @@ export default class ServiceFornecedor {
 
 
   findAll() {
-    return this.store.findAll(ServiceFornecedor.STORAGE_NAME).pipe(
+    return this.store.findAll(ServiceStorage.STORAGE_NAME).pipe(
       map(this.convertToArticle)
     )
   }
@@ -44,18 +46,21 @@ export default class ServiceFornecedor {
 
     this.IObjectClass.updated_mode = false;
 
-    this.store.createdForceGenerateId(this.IObjectClass, ServiceFornecedor.STORAGE_NAME)
+    this.store.createdForceGenerateId(this.IObjectClass, ServiceStorage.STORAGE_NAME)
       .then(
         () => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
           this.IObjectClass.name = undefined
           this.IObjectClass.details = undefined
-          this.IObjectClass.department = undefined
         },
         err => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)
         }
       )
+
+  }
+
+  saveCabinetsAndShelves(){
 
   }
 
@@ -71,7 +76,7 @@ export default class ServiceFornecedor {
 
 
   public delete() {
-    this.store.deleted(ServiceFornecedor.STORAGE_NAME, this.IObjectClass.id).then(() => {
+    this.store.deleted(ServiceStorage.STORAGE_NAME, this.IObjectClass.id).then(() => {
       this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS_DELETE)
     });
   }

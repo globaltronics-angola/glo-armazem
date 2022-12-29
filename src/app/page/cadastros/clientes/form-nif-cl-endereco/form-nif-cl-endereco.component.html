@@ -6,14 +6,14 @@
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
             <!--begin::Label-->
             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="required">Designação</span>
+              <span class="required">Nome do Cliente</span>
             </label>
             <!--end::Label-->
-            <select class="form-select form-select-sm" id="clientesSelecs" data-control="select2"
-                    data-placeholder="Select an option">
+            <select class="form-select form-select-sm" id="clientsSelects" data-control="select2"
+              data-placeholder="Select an option">
               <option></option>
-              <option [value]="cl.id" *ngFor="let cl of lista_clientes">
-                {{ cl.name }}
+              <option [value]="client|json" *ngFor="let client of listClient | async ">
+                {{ client.name }}
               </option>
             </select>
             <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -26,8 +26,8 @@
               <span class="required">Nif</span>
             </label>
             <!--end::Label-->
-            <input class="form-control form-control-sm" style="letter-spacing: 8px"  placeholder="introduza aqui o nif do cliente"
-                   [(ngModel)]="addressNifOb.nif" name="nif" />
+            <input class="form-control form-control-sm" style="letter-spacing: 8px"
+              placeholder="introduza aqui o nif do cliente" [(ngModel)]="nif.IObjectClass.nif" name="nif" />
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
@@ -40,11 +40,11 @@
               <span class="">Região / País</span>
             </label>
             <!--end::Label-->
-            <select class="form-select form-select-sm" id="paisesClients" data-control="select2"
-                    data-placeholder="Select an option">
+            <select class="form-select form-select-sm" id="countryClients" data-control="select2"
+              data-placeholder="Select an option">
               <option></option>
-              <option [value]="modelo.id" *ngFor="let modelo of lista_paises">
-                {{ '(' + modelo.iso + ')' + ' - ' + modelo.name }}
+              <option [value]="country|json" *ngFor="let country of listCountry | async ">
+                {{ '(' + country.iso + ')' + ' - ' + country.name }}
               </option>
             </select>
             <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -58,7 +58,7 @@
             </label>
             <!--end::Label-->
             <input class="form-control form-control-sm" placeholder="introduza as informações principais do endereço"
-                   value="" id="addressPuts"/>
+              value="" id="addressPuts" />
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>

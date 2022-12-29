@@ -1,17 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import ServicePrateleias from "../../../../Services/ServicePrateleias";
-import {StorageService} from "../../../../shared/storage.service";
+import { StorageService } from "../../../../shared/storage.service";
 import * as moment from "moment/moment";
 import ServiceUtil from "../../../../Services/ServiceUtil";
 import ServiceMovimentoItems from "../../../../Services/ServiceMovimentoItems";
 import * as Tagify from "@yaireo/tagify";
 import ServiceCountry from "../../../../Services/ServiceCountry";
-import ServiceEan from "../../../../Services/ServiceEan";
-import ServiceArmazem from "../../../../Services/ServiceArmazem";
+import ServiceArmazem from "../../../../Services/ServiceStorage";
 import ServiceFornecedores from "../../../../Services/ServiceFornecedores";
 import ServiceArmario from "../../../../Services/ServiceArmario";
 import ServiceNifClient from "../../../../Services/ServiceNifClient";
-import {ServiceEmitter} from "../../../../Services/ServiceEmitter";
+import { ServiceEmitter } from "../../../../Services/ServiceEmitter";
 import ServiceClients from "../../../../Services/ServiceClients";
 
 
@@ -73,8 +72,8 @@ export class FormRequisicaoComponent implements OnInit {
 
     this.movement.armazemkey = (<any>window).instanceSelectedArmazemId;
 
-    const listUpdated = await ServiceMovimentoItems.findTemporalAll(this.store)
-    ServiceMovimentoItems.updatedItemMovement(listUpdated, idMovement, this.store)
+   // const listUpdated = await ServiceMovimentoItems.findTemporalAll(this.store)
+   // ServiceMovimentoItems.updatedItemMovement(listUpdated, idMovement, this.store)
 
 
   }
@@ -176,20 +175,20 @@ export class FormRequisicaoComponent implements OnInit {
 
     (<any>window).storeFire = this.store;
 
-    this.listClients = await ServiceNifClient.findAll(this.store);
+    // this.listClients = await ServiceNifClient.findAll(this.store);
     this.ServicePrateleira = await ServicePrateleias;
 
     await this.initJQuerysFunctions();
 
     this.listCountriesE = await ServiceCountry.findAllCountries(this.store);
 
-    this.list_produtos = await ServiceEan.findAll(this.store)
+    // this.list_produtos = await ServiceEan.findAll(this.store)
 
     this.idMovement = this.store.getId();
 
-    this.listArmazem = await ServiceArmazem.findAll(this.store);
+    // this.listArmazem = await ServiceArmazem.findAll(this.store);
 
-    this.listFornecedores = await ServiceFornecedores.findAll(this.store);
+    //this.listFornecedores = await ServiceFornecedores.findAll(this.store);
 
     this.listNewRequisition()
 
@@ -212,9 +211,9 @@ export class FormRequisicaoComponent implements OnInit {
 
   async cancelerMovement(): Promise<any> {
 
-    const listDelete = await ServiceMovimentoItems.findTemporalAll(this.store)
+    // const listDelete = await ServiceMovimentoItems.findTemporalAll(this.store)
 
-    await listDelete.forEach((e: any) => {
+    /* await listDelete.forEach((e: any) => {
       this.store.deleted(ServiceUtil.STORAGE_ITEM_MOVIMENTO, e.id).then(
         () => {
           (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
@@ -223,7 +222,7 @@ export class FormRequisicaoComponent implements OnInit {
 
         }
       )
-    })
+    }) */
   }
 
   campoClienteClick() {
@@ -252,7 +251,7 @@ export class FormRequisicaoComponent implements OnInit {
 
   setNewOptions() {
     this.listOption = [
-      {id: 0, name: "Campos do Cliente", isselected: false}
+      { id: 0, name: "Campos do Cliente", isselected: false }
     ]
   }
 
@@ -270,25 +269,7 @@ export class FormRequisicaoComponent implements OnInit {
 
   seachingClient() {
 
-    try {
-      this.store.findById(ServiceUtil.STORAGE_NIF_CLIENTS, this.movement.nifCliente).subscribe(
-        (respp: any) => {
-          let data = respp
 
-          if (data.clientId)
-            this.store.findById(ServiceClients.STORAGE_CLIENTS, data.clientId).subscribe(
-              (cliente: any) => {
-                console.log(cliente);
-              })
-
-        },
-        error => {
-
-        }
-      )
-    } catch (error: any) {
-
-    }
 
   }
 }

@@ -24,10 +24,10 @@
             </label>
             <!--end::Label-->
             <div class="input-group input-group-sm flex-nowrap">
-              <select class="form-select form-select-sm rounded-end-0" id="model" data-control="select2"
+              <select class="form-select form-select-sm rounded-end-0" id="modelArticles" data-control="select2"
                 data-placeholder="Select an option">
                 <option></option>
-                <option *ngFor="let model of listModel| async" [value]="model.id">
+                <option *ngFor="let model of listModel| async" [value]="model|json">
                   {{ model.name }}
                 </option>
               </select>
@@ -50,7 +50,7 @@
               <select class="form-select form-select-sm rounded-end-0" id="categories" data-control="select2" multiple
                 data-placeholder="Select an option">
                 <option></option>
-                <option [value]="cate.id" *ngFor="let cate of listCategories | async">
+                <option [value]="cate|json" *ngFor="let cate of listCategories | async">
                   {{ cate.name }}
                 </option>
               </select>

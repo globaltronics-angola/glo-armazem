@@ -1,136 +1,60 @@
+import { StorageService } from "../shared/storage.service";
+import { map } from "rxjs/operators";
+import * as moment from "moment";
 import ServiceUtil from "./ServiceUtil";
-import ServiceEan from "./ServiceEan";
-import {firstValueFrom} from "rxjs";
-import {map} from "rxjs/operators";
-import {StorageService} from "../shared/storage.service";
+import { Injectable } from '@angular/core';
 
+
+@Injectable({
+  providedIn: 'root'
+})
 export default class ServiceMovimentoItems {
 
-
-  static findTemporalAll(store: StorageService) {
-
-    return firstValueFrom(store.findAll(ServiceUtil.STORAGE_ITEM_MOVIMENTO).pipe(
-      map(respY => {
-        return respY.map((e: any) => {
-
-          const querySelected = e.payload.doc.data();
-          const dataW = querySelected
-          dataW.id = e.payload.doc.id;
+  static STORAGE_NAME: string = "global-move-items"
 
 
-          if (dataW.ean)
-            store.findById(ServiceEan.STORAGE_NAME_EAN, dataW.ean).subscribe(
-              eanResp => {
-                dataW.eanData = eanResp
 
-                if (dataW.eanData)
-                  store.findById(ServiceEan.STORAGE_PRODUCT, dataW.eanData.product_key).subscribe(
-                    eanResPro => {
-                      dataW.productData = eanResPro
-                    }
-                  )
+  private window: any = (<any>window)
 
-                if (dataW.eanData)
-                  store.findById(ServiceEan.STORAGE_NAME_TIPOITENS, dataW.eanData.type_item).subscribe(
-                    eanResType => {
-                      dataW.typeData = eanResType
-                    }
-                  )
+  oItem = {
+    id: "NULL",
+    article: undefined,
+    localStorage: "NULL",
+    financialCost: "NULL",
+    localCurrency: undefined,
+    quantity: undefined,
+    conversion: undefined,
+    dateOfPurchase: undefined,
+    provider: undefined,
+    others: undefined,
+    created_at: "NULL",
+    updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
+    updated_mode: false,
+    deleted_at: "NULL",
+    email_auth: "NULL",
+    status: false,
+    moveType: "NULL",
+  }
+
+  constructor(private store: StorageService) { }
 
 
-              }
-            )
+  findAll() { return this.store.findAll(ServiceMovimentoItems.STORAGE_NAME).pipe(map(this.convertToArticle)) }
 
-          return dataW;
+  save(): void {
 
-        }).filter(e => e.movimentoId == 'NULL' && e.typeMovimento == 'REQUISITION')
-      })
-    ))
+    if (!this.oItem.updated_mode) { this.oItem.created_at = moment().format('DD MM,YYYY HH:mm:ss') }
+    if (!this.oItem.id) { this.oItem.id = this.store.getId().toUpperCase(); }
 
+    this.oItem.updated_mode = false;
+
+    this.store.createdForceGenerateId(this.oItem, ServiceMovimentoItems.STORAGE_NAME)
+      .then(() => { this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS) },
+        err => { this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR) })
 
   }
 
 
-  static findTemporalAllInput(store: StorageService) {
+  convertToArticle(resp: any) { return resp.map((e: any) => { return e.payload.doc.data(); }) }
 
-    return firstValueFrom(store.findAll(ServiceUtil.STORAGE_ITEM_MOVIMENTO).pipe(
-      map(respY => {
-        return respY.map((e: any) => {
-
-          const querySelected = e.payload.doc.data();
-          const dataW = querySelected
-          dataW.id = e.payload.doc.id;
-
-
-          if (dataW.ean)
-            store.findById(ServiceEan.STORAGE_NAME_EAN, dataW.ean).subscribe(
-              eanResp => {
-                dataW.eanData = eanResp
-
-                if (dataW.eanData)
-                  store.findById(ServiceEan.STORAGE_PRODUCT, dataW.eanData.product_key).subscribe(
-                    eanResPro => {
-                      dataW.productData = eanResPro
-                    }
-                  )
-
-                if (dataW.eanData)
-                  store.findById(ServiceEan.STORAGE_NAME_TIPOITENS, dataW.eanData.type_item).subscribe(
-                    eanResType => {
-                      dataW.typeData = eanResType
-                    }
-                  )
-
-
-              }
-            )
-
-          return dataW;
-
-        }).filter(e => e.movimentoId == 'NULL' && e.typeMovimento == 'INPUT')
-      })
-    ))
-
-
-  }
-
-
-  static findByMovement(store: StorageService, idMoviment: string) {
-    return firstValueFrom(store.findAll(ServiceUtil.STORAGE_ITEM_MOVIMENTO).pipe(
-      map(respY => {
-        return respY.map((e: any) => {
-
-          const querySelected = e.payload.doc.data();
-          const dataW = querySelected
-          dataW.id = e.payload.doc.id;
-
-          return dataW;
-
-        }).filter(e => e.movimentoId == idMoviment)
-      })
-    ))
-
-  }
-
-  /**
-   *
-   * @param listUpdatedA Lista de itens do movimento
-   * @param idMovement a chave actual do movimento
-   * @param store instancia de persistencia
-   */
-  static updatedItemMovement(listUpdatedA : any[] ,idMovement: string,  store: StorageService ){
-    listUpdatedA.forEach((dataShitC: any) => {
-
-      let instanceDateItemMovement = dataShitC
-      instanceDateItemMovement.id = dataShitC.id
-      instanceDateItemMovement.movimentoId = idMovement
-      instanceDateItemMovement.status = ServiceUtil.VALUE_AT_STATUS_ACTIVE
-
-      store.createdForceGenerateId(instanceDateItemMovement, ServiceUtil.STORAGE_ITEM_MOVIMENTO).then(() => {
-        (<any>window).sentMessageSuccess.init('Foi inserido com sucesso obrigado!')
-      }, err => {
-      })
-
-    });
-  }
 }

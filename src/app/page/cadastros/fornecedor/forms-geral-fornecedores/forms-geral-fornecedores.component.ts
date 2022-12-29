@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as Tagify from "@yaireo/tagify";
-import {StorageService} from "../../../../shared/storage.service";
-import * as moment from "moment/moment";
+import { StorageService } from "../../../../shared/storage.service";
+import ServiceDepartment from 'src/app/Services/ServiceDepartment';
+import { Observable } from 'rxjs';
+import ServiceFornecedor from 'src/app/Services/ServiceFornecedor';
 
 @Component({
   selector: 'app-forms-geral-fornecedores',
@@ -11,90 +13,54 @@ import * as moment from "moment/moment";
 export class FormsGeralFornecedoresComponent implements OnInit {
 
 
-  private DELETED_AT_NULL: any = "NULL"
-  list_departments: any[] = []
+  private window = (<any>window);
 
-  fornecedor: any = {}
-
-  private STORAGE_DEPARTMENTS: any = "global-departments"
-  private STORAGE_CLIENTS: string = "global-forncedores"
+  listDepartment: Observable<any>;
+  serviceFornecedor: ServiceFornecedor;
 
   constructor(private store: StorageService) {
+    this.listDepartment = new ServiceDepartment(this.store).findAll()
+    this.serviceFornecedor = new ServiceFornecedor(this.store);
   }
 
 
   initJQuerysFuncitions() {
 
-    (<any>window).$(function ($: any) {
 
+    const selectDepartment = this.window.$('#departamentosSelectForne');
 
-      $('#departamentosSelectForne').select2().on('change', (e: any) => {
-        (<any>window).instanceSelectedIdDepartments = e.target.value
+    selectDepartment.select2().on('change', (e: any) => {
+      this.window.instanceSelectedIdDepartments = e.target.value
+    })
 
-      })
+    const otherInfo = document.querySelector("#otherInfoMultipleItems");
 
-      const otherInfo = document.querySelector("#otherInfoMultipleItems");
+    // @ts-ignore
+    new Tagify(otherInfo, {
+      originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
+    });
 
-      // @ts-ignore
-      new Tagify(otherInfo, {
-        originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
-      });
-
-      // @ts-ignore
-      otherInfo.addEventListener('change', (e: any) => {
-        (<any>window).instanceSelectedValueOtherInfo = e.target.value
-      })
-
+    // @ts-ignore
+    otherInfo.addEventListener('change', (e: any) => {
+      this.window.instanceSelectedValueOtherInfo = e.target.value
     })
 
   }
 
   ngOnInit(): void {
-    (<any>window).InstanceAplication.init()
+    this.window.InstanceAplication.init()
     this.initJQuerysFuncitions()
 
-    this.findAllDepartments()
   }
 
 
   save() {
-    moment().locale('pt-br');
-    this.fornecedor.others = []
-    this.fornecedor.departmentId = "NULL"
 
-    this.fornecedor.departmentId = (<any>window).instanceSelectedIdDepartments;
+    this.serviceFornecedor.IObjectClass.department = JSON.parse(this.window.instanceSelectedIdDepartments.toString());
+    this.serviceFornecedor.IObjectClass.others = this.window.instanceSelectedValueOtherInfo?.split(',');
 
-    this.fornecedor.others = (<any>window).instanceSelectedValueOtherInfo?.split(',');
-
-    this.fornecedor.created_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.fornecedor.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.fornecedor.deleted_at = this.DELETED_AT_NULL;
-    this.fornecedor.email_auth = 'user activities';
-
-    this.fornecedor.id = ""
-    console.log(this.fornecedor)
-    this.store.create(this.fornecedor, this.STORAGE_CLIENTS).then(
-      resp => {
-        (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
-        console.log(resp.id)
-      },
-      err => {
-        alert('Ocorreu um determido erro ')
-      }
-    );
+    this.serviceFornecedor.save();
   }
 
-  findAllDepartments() {
-    this.store.findAll(this.STORAGE_DEPARTMENTS).subscribe(
-      resp => {
-        this.list_departments = resp.map((e: any) => {
-          const data = e.payload.doc.data();
-          data.id = e.payload.doc.id;
-          return data;
-        })
-      },
-      err => {
-      }
-    )
-  }
+
 }

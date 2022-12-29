@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as Tagify from "@yaireo/tagify";
-import {StorageService} from "../../../../shared/storage.service";
-import * as moment from "moment";
+import { Observable } from 'rxjs';
+import ServiceClients from 'src/app/Services/ServiceClients';
+import ServiceDepartment from 'src/app/Services/ServiceDepartment';
+import { StorageService } from "../../../../shared/storage.service";
 
 @Component({
   selector: 'app-geral-clientes-forms',
@@ -10,90 +12,53 @@ import * as moment from "moment";
 })
 export class GeralClientesFormsComponent implements OnInit {
 
-  list_departments: any[] = []
-  client: any = {}
-
-  private DELETED_AT_NULL: any = "NULL"
-
-  private STORAGE_DEPARTMENTS: any = "global-departments"
-  private STORAGE_CLIENTS: string = "global-clients"
+  private window = (<any>window);
+  private jquery = (<any>window).$;
+  client: ServiceClients;
+  listDepartments: Observable<any>;
 
 
   save() {
 
-    // @ignore-duplicate
-    this.client.departmentId = (<any>window).instanceSelectedIdDepartments;
-
-    this.client.others = (<any>window).instanceSelectedValueOtherInfo.split(',');
-
-    this.client.created_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.client.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.client.deleted_at = this.DELETED_AT_NULL;
-    this.client.email_auth = 'user activities';
-
-    this.client.id = this.store.getId()
-
-    console.log(this.client)
-
-    this.store.createdForceGenerateId(this.client, this.STORAGE_CLIENTS).then(
-      resp => {
-        (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
-        console.log(resp)
-      },
-      err => {
-        alert('Ocorreu um determido erro ')
-      }
-    );
+    this.client.IObjectClass.department = JSON.parse(this.window.instanceSelectedIdDepartments)
+    this.client.IObjectClass.others = this.window.instanceSelectedValueOtherInfo.split(',')
+    this.client.save();
   }
 
   ngOnInit() {
 
-    (<any>window).InstanceAplication.init()
+    this.window.InstanceAplication.init()
 
-    this.initJQuerysFuncitions()
-    this.findAllDepartments()
+    this.initFunctions()
+
   }
 
   constructor(private store: StorageService) {
+    this.client = new ServiceClients(this.store);
+    this.listDepartments = new ServiceDepartment(this.store).findAll();
   }
 
 
-  initJQuerysFuncitions() {
-    (<any>window).$(function ($: any) {
+  initFunctions() {
 
-      $('#departmentsSelect').select2().on('change', (e: any) => {
-        (<any>window).instanceSelectedIdDepartments = e.target.value
+    const selectDepartment = this.jquery('#departmentsSelect')
+    selectDepartment.select2().on('change', (e: any) => {
+      this.window.instanceSelectedIdDepartments = e.target.value
+    })
 
-      })
+    const otherInfo = document.querySelector("#otherInfoMultipleItems");
 
-      const otherInfo = document.querySelector("#otherInfoMultipleItems");
+    // @ts-ignore
+    new Tagify(otherInfo, {
+      originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
+    });
 
-      // @ts-ignore
-      new Tagify(otherInfo, {
-        originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
-      });
-
-      // @ts-ignore
-      otherInfo.addEventListener('change', (e: any) => {
-        (<any>window).instanceSelectedValueOtherInfo = e.target.value
-      })
-
+    // @ts-ignore
+    otherInfo.addEventListener('change', (e: any) => {
+      this.window.instanceSelectedValueOtherInfo = e.target.value
     })
   }
 
-  findAllDepartments() {
-    this.store.findAll(this.STORAGE_DEPARTMENTS).subscribe(
-      resp => {
-        this.list_departments = resp.map((e: any) => {
-          const data = e.payload.doc.data();
-          data.id = e.payload.doc.id;
-          return data;
-        })
-      },
-      err => {
-      }
-    )
-  }
 
 
 }

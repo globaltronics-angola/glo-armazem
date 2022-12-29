@@ -18,8 +18,8 @@
             <span class="required">Seleção de Artigo</span>
           </label>
           <!--end::Label-->
-          <select class="form-select form-select-sm selector" id="selectProdutos"
-            data-allow-clear="true" data-placeholder="Selecciona o produto">
+          <select class="form-select form-select-sm selector" id="selectProdutos" data-allow-clear="true"
+            data-placeholder="Selecciona o produto">
             <option></option>
             <option [value]="prod|json" *ngFor="let prod of listArticles |  async">
               {{ (prod.modelo ? prod.modelo.name : 'Não Identificado') + ' - ' + prod.name }}
@@ -48,8 +48,7 @@
             <div class="input-group">
               <input type="text" class="form-control form-control-sm" style="letter-spacing: 8px" maxlength="13"
                 placeholder="Enter Target Title" [(ngModel)]="eanMode.IObjectClass.ean" name="codeeans">
-              <span class="input-group-text cursor-pointer" (click)="generateRef()"
-               id="generate_key">
+              <span class="input-group-text cursor-pointer" (click)="generateRef()" id="generate_key">
                 <i class="fa fa-sync-alt"></i>
               </span>
             </div>
@@ -162,5 +161,8 @@
   </form>
 
   <app-tabela-ean></app-tabela-ean>
+
+  <app-tipo-items></app-tipo-items>
+  <app-unidade-medida></app-unidade-medida>
 
 </div>

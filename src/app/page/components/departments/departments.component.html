@@ -25,7 +25,7 @@
                 <span class="required">Designação</span>
               </label>
               <!--end::Label-->
-              <input type="text" name="description" [(ngModel)]="department.name"
+              <input type="text" name="description" [(ngModel)]="department.IObjectClass.name"
                      class="form-control form-control-sm" placeholder="introduza qui o nome">
               <div class="fv-plugins-message-container invalid-feedback"></div>
             </div>
@@ -40,7 +40,7 @@
               <span class="">Notas</span>
             </label>
             <!--end::Label-->
-            <textarea type="text" class="form-control form-control-sm h-100px" rows="10" [(ngModel)]="department.notes"
+            <textarea type="text" class="form-control form-control-sm h-100px" rows="10" [(ngModel)]="department.IObjectClass.details"
                       placeholder="Introduza qui alguma noto do depatments" name="datasheet"></textarea>
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
@@ -69,7 +69,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let depatment of list_departments">
+        <tr *ngFor="let depatment of listDepartment | async">
           <td>{{ depatment?.name}}</td>
           <td>
             <span class="badge {{ (depatment?.deleted_at === 'NULL' ? 'badge-light-primary' : 'badge-light-danger')}}">
@@ -77,10 +77,12 @@
             </span>
           </td>
           <td class="gap-2">
-            <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
+            <button type="button" (click)="editing(depatment)"
+              class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
               <span class="svg-icon"> <i class="fa fa-edit"></i></span>
             </button>
-            <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
+            <button type="button" (click)="delete(depatment)"
+            class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
               <span class="svg-icon"> <i class="bi-trash"></i></span>
             </button>
           </td>

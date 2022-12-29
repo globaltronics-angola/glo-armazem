@@ -5,19 +5,16 @@
         <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
           <!--begin::Label-->
           <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-            <span class="required">Seleção de Artigo</span>
+            <span class="required">Seleção do Serviços</span>
           </label>
           <!--end::Label-->
-          <select class="form-select form-select-sm selector"
-                  id="selectProdutos" data-allow-clear="true"
-                  data-placeholder="Selecciona o produto">
+          <select class="form-select form-select-sm selector" data-control="select2" id="selectProdutos"
+            data-allow-clear="true" data-placeholder="Selecciona o serviço">
             <option></option>
-            <option [value]="prod.id" *ngFor="let prod of list_produtos">
-              {{ (prod.modelo?.name ? prod.modelo?.name : 'Não Identificado') + ' - ' + prod.name }}
+            <option [value]="s|json" *ngFor="let s of listServices|async">
+              {{ s.name }}
             </option>
           </select>
-          <!-- <div class="fv-plugins-message-container invalid-feedback"></div>
-           <span class="mt-3 text-muted font-italic ml-5">Selecciona o produto para configurar o codigo de barra</span> -->
         </div>
       </div>
       <div class="col-4 col-lg-4 col-sm-12">
@@ -36,10 +33,9 @@
           <!--end::Label-->
           <div class="input-group">
             <input type="text" class="form-control form-control-sm" style="letter-spacing: 8px" maxlength="13"
-                   placeholder="Enter Target Title" [(ngModel)]="eanRefeModel.ean"
-                   name="codeeans">
+              placeholder="Enter Target Title" [(ngModel)]="ean.IObjectClass.ean" name="ean">
             <span class="input-group-text cursor-pointer" id="generate_key">
-                <i class="fa fa-sync-alt"></i>
+              <i class="fa fa-sync-alt"></i>
             </span>
           </div>
           <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -57,5 +53,3 @@
 
   <app-referencias-servicos></app-referencias-servicos>
 </div>
-<app-tipo-items></app-tipo-items>
-<app-unidade-medida></app-unidade-medida>

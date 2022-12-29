@@ -12,7 +12,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let produt of list_items">
+    <tr *ngFor="let produt of listItems">
       <td>{{ produt.ean + ', ' + produt.productData?.name}}</td>
       <td>{{ produt.typeData?.name}}</td>
       <td><span class="badge badge-light-dark">{{ produt.qt_item  }}</span></td>

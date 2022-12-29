@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import ServiceFornecedor from "../../../../Services/ServiceFornecedor";
 import { StorageService } from "../../../../shared/storage.service";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-datatable-fornecedores',
@@ -10,19 +11,22 @@ import { StorageService } from "../../../../shared/storage.service";
 export class DatatableFornecedoresComponent implements OnInit {
 
   list_forncedors: any[] = []
-
+  private window = (<any>window);
+  listForncedores: Observable<any>;
 
   constructor(private store: StorageService) {
+    this.listForncedores = new ServiceFornecedor(this.store).findAll();
+
   }
 
+
   async ngOnInit() {
-    (<any>window).InstanceAplication.init()
+    this.window.InstanceAplication.init()
     await this.listFornecedor()
   }
 
 
   async listFornecedor() {
-    this.list_forncedors = await ServiceFornecedor.findAll(this.store)
-    this.list_forncedors.map(async e => e.departmentObj = await ServiceFornecedor.findDepartment(this.store, e.departmentId))
+
   }
 }

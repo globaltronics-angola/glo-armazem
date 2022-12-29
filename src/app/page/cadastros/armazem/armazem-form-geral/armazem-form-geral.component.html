@@ -9,8 +9,8 @@
               <span class="required">Designação</span>
             </label>
             <!--end::Label-->
-            <input type="text" [(ngModel)]="genericObject.name" name="description"
-                   class="form-control form-control-sm" placeholder="insira a descrição longa">
+            <input type="text" [(ngModel)]="serviceStorage.IObjectClass.name" name="description"
+              class="form-control form-control-sm" placeholder="insira a descrição longa">
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
@@ -23,26 +23,25 @@
               <span class="">Região / País</span>
             </label>
             <!--end::Label-->
-            <select class="form-select form-select-sm" id="paises" data-control="select2"
-                    data-placeholder="Select an option">
+            <select class="form-select form-select-sm" id="selectCountry" data-control="select2"
+              data-placeholder="Select an option">
               <option></option>
-              <option [value]="modelo.id" *ngFor="let modelo of lista_paises">
-                {{ '(' + modelo.iso + ')' + ' - ' + modelo.name }}
+              <option [value]="country|json" *ngFor="let country of listCountry | async">
+                {{ '(' + country.iso + ')' + ' - ' + country.name }}
               </option>
             </select>
 
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
-        <div class="col-12 col-sm-auto {{ lista_paises.length< 1?'':'d-none'}}" >
+        <div *ngIf="listCountry| async as countries" class="col-12 col-sm-auto {{ countries.length< 1?'':'d-none'}}">
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
             <!--begin::Label-->
             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
               <span class="">&nbsp;</span>
             </label>
             <!--end::Label-->
-            <button type="button" class="btn btn-sm btn-warning mr-2 "
-                    (click)="testing()">
+            <button type="button" class="btn btn-sm btn-warning mr-2 " (click)="testing()">
               Gerar novos paises
             </button>
 
@@ -58,7 +57,7 @@
             </label>
             <!--end::Label-->
             <input class="form-control form-control-sm" placeholder="introduza as informações principais do endereço"
-                   value="" id="tagify_endereco"/>
+              value="" id="tagifyAddress" />
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
@@ -75,8 +74,8 @@
             </label>
             <!--end::Label-->
             <textarea type="text" class="form-control form-control-sm h-100px" rows="10"
-                      placeholder="Enter Target Title" [(ngModel)]="genericObject.datasheet"
-                      name="datasheet"></textarea>
+              placeholder="Enter Target Title" [(ngModel)]="serviceStorage.IObjectClass.details"
+              name="details"></textarea>
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
 
@@ -93,9 +92,5 @@
       </div>
     </div>
   </form>
-
-  <app-modelos></app-modelos>
-  <app-categorias></app-categorias>
-
 
 </div>

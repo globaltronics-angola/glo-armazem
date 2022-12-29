@@ -1,7 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {StorageService} from "../../../../shared/storage.service";
+import { Component, OnInit } from '@angular/core';
+import { StorageService } from "../../../../shared/storage.service";
 import * as Tagify from "@yaireo/tagify";
 import * as moment from "moment";
+import ServiceStorage from 'src/app/Services/ServiceStorage';
+import { Observable } from 'rxjs';
+import ServiceArmario from 'src/app/Services/ServiceArmario';
 
 @Component({
   selector: 'app-armario-prateleiras',
@@ -10,7 +13,8 @@ import * as moment from "moment";
 })
 export class ArmarioPrateleirasComponent implements OnInit {
 
-  private STORAGE_ARMAZENS: string = "global-armazens"
+  private window = (<any>window);
+
   private STORAGE_ARMARIOS: string = "global-armarios"
   private STORAGE_PRATELEIRAS: string = "global-prateleiras"
   private DELETED_AT_NULL: string = "NULL"
@@ -22,109 +26,54 @@ export class ArmarioPrateleirasComponent implements OnInit {
 
   private prateleiras: any[] = []
 
+  listStorage: Observable<any>;
+  serviceArmario: ServiceArmario;
+
 
   ngOnInit(): void {
 
-    (<any>window).InstanceAplication.init()
-
-    this.findAllArmazens()
-
+    this.window.InstanceAplication.init()
     this.initJQueryScripts()
   }
 
 
   constructor(private store: StorageService) {
+
+    this.listStorage = new ServiceStorage(this.store).findAll()
+    this.serviceArmario = new ServiceArmario(this.store);
+
   }
 
   async save() {
 
-    moment().locale('pt-br');
+    this.serviceArmario.IObjectClass.storage = JSON.parse(this.window.instanceSelectedIdStorage.toString());
+    this.serviceArmario.IObjectClass.storage_id = JSON.parse(this.window.instanceSelectedIdStorage.toString())?.id;
 
-    this.armarioO.armazem = (<any>window).instanceSelectedIdArmazem;
+    this.serviceArmario.IObjectClass.id = (
+      JSON.parse(this.window.instanceSelectedIdStorage.toString()).name.replace(' ', '-') + '-'
+      + JSON.parse(this.window.instanceSelectedIdStorage)?.id).toUpperCase();
 
-    this.armarioO.created_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.armarioO.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.armarioO.deleted_at = this.DELETED_AT_NULL;
-    this.armarioO.email_auth = 'user activities';
-
-    this.armarioO.id = (this.armarioO.armario + '-' + (<any>window).instanceSelectedIdArmazem).toUpperCase()
-
-    this.prateleiras = await (<any>window).instanceSelectedValuePrateleira?.split(',')
-
-    this.armarioO.name = this.armarioO.armario.toUpperCase()
-
-    await console.log(this.prateleiras + '  send success full')
-
-    await this.store.createForceMyId(this.armarioO, this.STORAGE_ARMARIOS).then(
-      resp => {
-        (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
-        this.prateleiras.forEach((localArray: any) => {
-          this.createdPrateleira(localArray, this.armarioO.id)
-        })
-      },
-      err => {
-        alert('Ocorreu um determido erro ')
-      }
-    );
+    this.serviceArmario.IObjectClass.shelf = this.window.instanceSelectedIdShelf.split(",")
+    this.serviceArmario.save();
   }
-
-  private createdPrateleira(a: any, armario_id: any) {
-
-    let proteleiraO: any = {}
-
-    proteleiraO.created_at = moment().format('DD MM,YYYY HH:mm:ss')
-    proteleiraO.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
-    proteleiraO.deleted_at = this.DELETED_AT_NULL;
-
-    proteleiraO.email_auth = 'user activities';
-    proteleiraO.id = (a + '-' + armario_id).toUpperCase();
-    proteleiraO.armario = armario_id;
-    proteleiraO.name = (a).toUpperCase();
-
-    this.store.createForceMyId(proteleiraO, this.STORAGE_PRATELEIRAS).then(
-      () => {
-      },
-      err => {
-        alert('Ocorreu um determido erro ')
-      }
-    )
-  }
-
-  findAllArmazens() {
-    this.store.findAll(this.STORAGE_ARMAZENS).subscribe(
-      resp => {
-        this.list_armazens = resp.map((e: any) => {
-          const data = e.payload.doc.data();
-          data.id = e.payload.doc.id;
-          return data;
-        })
-      },
-      err => {
-      }
-    )
-  }
-
 
   initJQueryScripts() {
-    (<any>window).$(($: any) => {
 
-      $('#armazensSelect').select2().on('change', (event: any) => {
-        (<any>window).instanceSelectedIdArmazem = event.target.value
+    const storageSelect = this.window.$('#storageSelect');
+    const prateleirasItemsTagify = document.querySelector("#prateleirasItens");
 
-      })
+    storageSelect.select2().on('change', (event: any) => {
+      this.window.instanceSelectedIdStorage = event.target.value
+    })
 
-      var prateleirasItensTagify = document.querySelector("#prateleirasItens");
-      // @ts-ignore
-      new Tagify(prateleirasItensTagify, {
-        originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
-      });
+    // @ts-ignore
+    new Tagify(prateleirasItemsTagify, {
+      originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
+    });
 
-      // @ts-ignore
-      prateleirasItensTagify.addEventListener('change', (e: any) => {
-        (<any>window).instanceSelectedValuePrateleira = e.target.value
-      })
-
-
+    // @ts-ignore
+    prateleirasItemsTagify.addEventListener('change', (e: any) => {
+      this.window.instanceSelectedIdShelf = e.target.value
     })
   }
 }

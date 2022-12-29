@@ -18,7 +18,10 @@ export class ModelosComponent implements OnInit {
     this.modelArticle = new ServiceModelArticle(this.store);
     this.listModelArticles = this.modelArticle.findAll();
   }
-  ngOnInit() { }
+
+  ngOnInit() {
+  }
+
 
   save() {
     this.modelArticle.save()
