@@ -35,7 +35,7 @@ export class TabelaEanComponent implements OnInit, OnDestroy {
     this.eanArticles = new ServiceEanArticleOrService(this.store);
     this.findAllEan();
 
-    this.snKnow = ServiceEmitter.get("sendNewLine").subscribe(e =>this.listArticleEan.push(e));
+    this.snKnow = ServiceEmitter.get("sendNewLine").subscribe(e => this.listArticleEan.push(e));
     // data.unity_data = ;
   }
 
