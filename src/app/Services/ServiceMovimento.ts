@@ -69,6 +69,8 @@ export default class ServiceMovimento {
       .then(() => {
         this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
         ServiceEmitter.get('actionSendMovimento').emit("");
+
+        this.oItem.id = this.store.getId()
       },
         err => { this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR) })
 

@@ -26,7 +26,5 @@ export class DatatableFornecedoresComponent implements OnInit {
   }
 
 
-  async listFornecedor() {
-
-  }
+  async listFornecedor() {  }
 }

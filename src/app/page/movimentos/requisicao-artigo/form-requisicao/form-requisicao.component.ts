@@ -64,23 +64,28 @@ export class FormRequisicaoComponent implements OnInit {
 
   async save() {
 
+    this.move.oItem.id = this.idMovement
     this.move.oItem.items = this.listItems;
     this.move.oItem.moveType = this.TYPE_MOVEMENT;
 
     this.move.save();
 
     ServiceEmitter.get("actionSendMovimento").emit("");
+
+    this.idMovement = this.store.getId()
+    
   }
 
 
   addListItems() {
 
-    this.item.oItem.id = this.idMovement
+
     this.item.oItem.moveType = this.TYPE_MOVEMENT
     this.item.oItem.move = ServiceUtil.VALUE_AT_NULLABLE
     this.item.oItem.move_id = ServiceUtil.VALUE_AT_NULLABLE
 
     this.item.save();
+
     ServiceEmitter.get('actionSendMovimento').emit("")
 
   }
