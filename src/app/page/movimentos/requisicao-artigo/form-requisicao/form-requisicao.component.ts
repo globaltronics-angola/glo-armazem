@@ -16,6 +16,8 @@ import ServiceRequestType from 'src/app/Services/ServiceRequestType';
 import { Observable } from 'rxjs';
 import ServiceEanArticleOrService from 'src/app/Services/ServiceEanArticleOrService';
 import ServiceMovimento from 'src/app/Services/ServiceMovimento';
+import { AuthService } from 'src/app/shared/auth.service';
+import { Router } from '@angular/router';
 
 
 //  import { FormBuilder, FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
@@ -49,9 +51,10 @@ export class FormRequisicaoComponent implements OnInit {
 
 
 
-  constructor(private store: StorageService) {
+  constructor(private store: StorageService, private auth: AuthService, private router: Router) {
 
-
+    if (!auth.user)
+      this.router.navigate(['/auth/sign-in']).then();
 
     this.setNewOptions()
     this.listTypeRequest = new ServiceRequestType(this.store).findAll();
@@ -68,12 +71,15 @@ export class FormRequisicaoComponent implements OnInit {
     this.move.oItem.items = this.listItems;
     this.move.oItem.moveType = this.TYPE_MOVEMENT;
 
+ 
+
+
     this.move.save();
 
     ServiceEmitter.get("actionSendMovimento").emit("");
 
     this.idMovement = this.store.getId()
-    
+
   }
 
 

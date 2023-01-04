@@ -16,7 +16,7 @@ export default class ServiceEanArticleOrService implements OnDestroy {
   static STORAGE_NAME: string = "global-ean-reference";
   STORAGE_UNITY_ARTICLE: string = "global-unity-ean-article";
 
-  IObjectClass = {
+  IObjectClass: any  = {
     id: "NULL",
     ean: "",
     unity_id: "NULL",
@@ -35,7 +35,11 @@ export default class ServiceEanArticleOrService implements OnDestroy {
   private window: any = (<any>window)
   snKnow: Subscription | undefined
 
-  constructor(private store: StorageService) { }
+  constructor(private store: StorageService) {
+    let user = new ServiceUtil().getSession()
+
+    this.IObjectClass.user = user;
+   }
 
   ngOnDestroy(): void {
     this.snKnow?.unsubscribe();

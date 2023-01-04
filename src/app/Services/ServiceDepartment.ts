@@ -16,7 +16,7 @@ export default class ServiceDepartment {
 
   private window: any = (<any>window)
 
-  IObjectClass = {
+  IObjectClass:any = {
     id: "NULL",
     name: undefined,
     details: undefined,
@@ -28,7 +28,9 @@ export default class ServiceDepartment {
   }
 
   constructor(private store: StorageService) {
+    let user = new ServiceUtil().getSession()
 
+    this.IObjectClass.user = user;
   }
 
 

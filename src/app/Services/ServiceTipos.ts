@@ -12,7 +12,7 @@ export default class ServiceTipos {
   static STORAGE_CATEGORIES: string = "global-type-service";
 
 
-  OO = {
+  OO:any = {
     id: "NULL",
     name: undefined,
     details: undefined,
@@ -26,7 +26,11 @@ export default class ServiceTipos {
   private window: any = (<any>window)
 
 
-  constructor(private store: StorageService) { }
+  constructor(private store: StorageService) {
+    let user = new ServiceUtil().getSession()
+
+    this.OO.user = user;
+   }
 
   public findAll() {
     return this.store.findAll(ServiceTipos.STORAGE_CATEGORIES)

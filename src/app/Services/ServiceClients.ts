@@ -13,7 +13,7 @@ export default class ServiceClients {
   static STORAGE_NAME: string = "global-clients"
   private window: any = (<any>window)
 
-  IObjectClass = {
+  IObjectClass:any = {
     id: "NULL",
     name: undefined,
     department: "NULL",
@@ -27,7 +27,9 @@ export default class ServiceClients {
   }
 
   constructor(private store: StorageService) {
+    let user = new ServiceUtil().getSession()
 
+    this.IObjectClass.user = user;
   }
 
 

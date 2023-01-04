@@ -20,7 +20,7 @@
 
 
 
-<div class="overflow-auto w-100"  >
+<div class="overflow-auto w-100">
 
   <table class="table align-middle table-row-dashed fs-6 gy-4 " id="kt_customers_tableOut">
     <!--begin::Table head-->
@@ -64,7 +64,14 @@
 
       <tr *ngFor="let item of mov.items" class="border-bottom px-2 py-2 font-weight-normal "
         style="font-weight: lighter;">
-        <td class="min-w-100px px-10">&nbsp; -- -- --</td>
+        <td class="min-w-100px px-10">&nbsp; &nbsp; &nbsp; &nbsp;
+          <div class="cursor-pointer symbol symbol-35px symbol-md-40px"
+            data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
+            data-kt-menu-placement="bottom-end">
+            <img [src]="user?.photoURL"  />
+          </div>
+
+        </td>
         <td>{{ item.quantity }}</td>
 
 
@@ -111,5 +118,3 @@
   </table>
 
 </div>
-
-

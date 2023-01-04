@@ -16,7 +16,7 @@ export default class ServiceServicos {
 
   private window: any = (<any>window)
 
-  IObjectClass = {
+  IObjectClass:any = {
     id: "NULL",
     name: undefined,
     type: "NULL",
@@ -29,7 +29,10 @@ export default class ServiceServicos {
     email_auth: "NULL"
   }
 
-  constructor(private store: StorageService) {}
+  constructor(private store: StorageService) {
+    let user = new ServiceUtil().getSession()
+    this.IObjectClass.user = user;
+  }
 
 
   findAll() {

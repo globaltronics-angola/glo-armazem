@@ -16,7 +16,7 @@ export default class ServiceArticles {
 
   private window: any = (<any>window)
 
-  Article = {
+  Article: any = {
     id: "NULL",
     name: undefined,
     model_id: "NULL",
@@ -32,6 +32,9 @@ export default class ServiceArticles {
   }
 
   constructor(private store: StorageService) {
+    let user = new ServiceUtil().getSession()
+
+    this.Article.user = user;
 
   }
 

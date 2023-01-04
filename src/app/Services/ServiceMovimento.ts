@@ -14,7 +14,7 @@ export default class ServiceMovimento {
 
   static STORAGE_NAME: string = "global-move"
   static STORAGE_MOVE_ITEM: string = "global-move-items"
-  static storeInstance: StorageService;
+
 
 
   private window = (<any>window)
@@ -36,12 +36,17 @@ export default class ServiceMovimento {
     updated_mode: false,
     deleted_at: "NULL",
     email_auth: "NULL",
+    user: "NULL",
     status: true,
     moveType: "NULL",
   }
 
 
-  constructor(private store: StorageService) { ServiceMovimento.storeInstance = store; }
+  constructor(private store: StorageService) {
+    let user = new ServiceUtil().getSession()
+
+    this.oItem.user = user;
+  }
 
 
   findAll() { return this.store.findAll(ServiceMovimento.STORAGE_NAME).pipe(map(this.convertToArticle)) }

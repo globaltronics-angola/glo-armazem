@@ -16,7 +16,7 @@ export default class ServiceMovimentoItems {
 
   private window: any = (<any>window)
 
-  oItem = {
+  oItem: any = {
     id: "NULL",
     article: undefined,
     localStorage: "",
@@ -42,7 +42,12 @@ export default class ServiceMovimentoItems {
     moveType: "NULL",
   }
 
-  constructor(private store: StorageService) { }
+  constructor(private store: StorageService) {
+    let user = new ServiceUtil().getSession()
+
+    this.oItem.user = user;
+
+  }
 
 
   findAll() { return this.store.findAll(ServiceMovimentoItems.STORAGE_NAME).pipe(map(this.convertToArticle)) }

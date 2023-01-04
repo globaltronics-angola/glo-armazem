@@ -1,21 +1,35 @@
-import {Injectable} from '@angular/core';
-import {AngularFireAuth} from '@angular/fire/compat/auth';
-import {Router} from "@angular/router";
-import {GoogleAuthProvider} from "@angular/fire/auth"
+import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from "@angular/router";
+import { GoogleAuthProvider } from "@angular/fire/auth"
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private fireAuth: AngularFireAuth, private router: Router) {  }
+
+  user: any;
+  constructor(private fireAuth: AngularFireAuth, private router: Router) {
+
+    let userInfo = sessionStorage.getItem('_user') as string
+    if (userInfo != '')
+      this.user = JSON.parse(userInfo);
+
+    console.log(this.user);
+  }
 
   // Sign In method
   signIn(email: string, password: string) {
     this.fireAuth.signInWithEmailAndPassword(email, password).then(
-      () => {
-        localStorage.setItem('token', 'true');
+      (resp: any) => {
+        localStorage.setItem('token', resp.user?.refreshToken);
         this.router.navigate(['/']).then();
+
+
+        this.user = resp.user;
+        sessionStorage.setItem('_user', JSON.stringify(resp.user));
       },
       err => {
         console.log('email and password invalid');
@@ -55,16 +69,24 @@ export class AuthService {
 
 
   // Sign In with Google provider service
-  signInGoogleProvider(){
+  signInGoogleProvider() {
     return this.fireAuth.signInWithPopup(new GoogleAuthProvider).then(
-      resp =>{
+      resp => {
         this.router.navigate(['/']).then()
         localStorage.setItem('token', JSON.stringify(resp.user?.uid))
+        this.user = resp.user;
+
+        sessionStorage.setItem('_user', JSON.stringify(this.user));
       },
-      err =>{
-          console.log(err.message)
+      err => {
+        console.log(err.message)
       }
     );
+  }
+
+
+  private getUser(_token: string): any {
+    return JSON.parse(atob(_token.split('.')[1]))
   }
 
 }

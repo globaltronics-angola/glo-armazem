@@ -4,6 +4,7 @@ import ServiceUtil from 'src/app/Services/ServiceUtil';
 import { StorageService } from 'src/app/shared/storage.service';
 //@ts-ignore
 import pdfMake from "pdfmake/build/pdfmake";
+import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
   selector: 'app-datatable-requisicao',
@@ -15,9 +16,10 @@ export class DatatableRequisicaoComponent implements OnInit {
   listMove: any[] = []
   utilFunctions: ServiceUtil;
 
-
-  constructor(private store: StorageService) {
+  user: any = {}
+  constructor(private store: StorageService, private auth: AuthService) {
     this.utilFunctions = new ServiceUtil()
+    this.user =  auth.user;
   }
 
   async ngOnInit() {

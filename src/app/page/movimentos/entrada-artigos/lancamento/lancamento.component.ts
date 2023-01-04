@@ -2,14 +2,9 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import ServiceMovimentoItems from "../../../../Services/ServiceMovimentoItems";
 import ServiceMovimento from "../../../../Services/ServiceMovimento";
 import { StorageService } from "../../../../shared/storage.service";
-import ServiceUtil from "../../../../Services/ServiceUtil";
-import moment from 'moment';
-
 
 import jsPDF from 'jspdf';
-
-import { writeFileSync } from 'node:fs';
-import { format } from 'node:util';
+import html2canvas from 'html2canvas';
 
 
 @Component({
@@ -19,36 +14,81 @@ import { format } from 'node:util';
 })
 export class LancamentoComponent implements OnInit {
 
-  @ViewChild("tableEntered", { static: true }) tablePdf!: ElementRef;
+ // @ViewChild("tableEntered", { static: true }) tablePdf!: ElementRef;
 
   listMove: any[] = []
   window = (<any>window)
+  movSelect: any = {}
 
+  constructor(private store: StorageService) { }
 
-  constructor(private store: StorageService) {
-
-
-  }
-
-  generatePdf(attr: any) { }
 
   makeJSPdf(attr: any) {
 
-    let pdf = new jsPDF('p', 'pt', 'a4');
 
-    pdf.html(
-      '<h1>Hello Munzambi Miguel</h1>',
-      {
-        callback: (pdf) => {
-          pdf.save("Relatorio De Entrada");
-        }
-      });
 
+    // @ts-ignore
+    var generateData = function(amount) {
+      var result = [];
+      var data = {
+        coin: "100",
+        game_group: "GameGroup",
+        game_name: "XPTO2",
+        game_version: "25",
+        machine: "20485861",
+        vlt: "0"
+      };
+
+        // @ts-ignore
+      for (var i = 0; i < amount; i += 1) {
+          // @ts-ignore
+        data.id = (i + 1).toString();
+        result.push(Object.assign({}, data));
+      }
+      return result;
+    };
+    
+    function createHeaders(keys:any) {
+      var result = [];
+      for (var i = 0; i < keys.length; i += 1) {
+        result.push({
+          id: keys[i],
+          name: keys[i],
+          prompt: keys[i],
+          width: 100,
+          padding: 2
+        });
+      }
+      return result;
     }
+    
+    let headers:any = createHeaders([
+      "id",
+      "coin",
+      "game_group",
+      "game_name",
+      "game_version",
+      "machine",
+      "vlt"
+    ]);
+    
+    var doc = new jsPDF();
+    doc.setFontSize(12);
+    doc.text("textando tas as funcões",10,10)
+    doc.table(10, 40, generateData(10), headers, { autoSize: true });
 
-  filesystem(attr: any) {
 
-    // writeFileSync('message.text', `${format(attr)}\n`, { flag: 'a' });
+    doc.output('dataurlnewwindow');
+    doc.save()
+
+
+      // let PDF = new jsPDF();
+
+      // PDF.text('Ola munzambi', 10,10)
+
+      // PDF.output('dataurlnewwindow');
+      // PDF.save()
+
 
   }
 

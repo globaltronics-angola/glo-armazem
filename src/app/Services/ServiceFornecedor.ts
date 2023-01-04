@@ -13,7 +13,7 @@ export default class ServiceFornecedor {
   static STORAGE_NAME: string = "global-fornecedor"
   private window: any = (<any>window)
 
-  IObjectClass = {
+  IObjectClass:any = {
     id: "NULL",
     name: undefined,
     department: undefined,
@@ -26,7 +26,11 @@ export default class ServiceFornecedor {
     email_auth: "NULL"
   }
 
-  constructor(private store: StorageService) { }
+  constructor(private store: StorageService) {
+    let user = new ServiceUtil().getSession()
+
+    this.IObjectClass.user = user;
+   }
 
 
   findAll() {

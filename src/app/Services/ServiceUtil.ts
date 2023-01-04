@@ -7,6 +7,7 @@ export default class ServiceUtil{
   static VALUE_AT_STATUS_ACTIVE = "active"
   static VALUE_AT_STATUS_DISABLE = "disable"
 
+  private user:any;
 
 
   // tables
@@ -29,6 +30,14 @@ export default class ServiceUtil{
       return JSON.parse(data.toString());
 
     return {};
+  }
+
+  getSession(){
+    let userInfo = sessionStorage.getItem('_user') as string
+    if (userInfo != '')
+      this.user = JSON.parse(userInfo);
+
+      return this.user;
   }
 
 

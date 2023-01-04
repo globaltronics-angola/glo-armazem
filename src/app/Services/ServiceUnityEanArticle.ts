@@ -13,7 +13,7 @@ export default class ServiceUnityEanArticle {
 
   static STORAGE_NAME: string = "global-unity-ean-article";
 
-  IObjectClass = {
+  IObjectClass:any = {
     id: "NULL",
     name: undefined,
     acronym: undefined,
@@ -28,7 +28,10 @@ export default class ServiceUnityEanArticle {
   private window: any = (<any>window)
 
 
-  constructor(private store: StorageService) { }
+  constructor(private store: StorageService) {
+    let user = new ServiceUtil().getSession()
+    this.IObjectClass.user = user;
+  }
 
   public findAll() {
     return this.store.findAll(ServiceUnityEanArticle.STORAGE_NAME)

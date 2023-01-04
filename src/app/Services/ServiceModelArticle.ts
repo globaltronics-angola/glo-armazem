@@ -12,7 +12,7 @@ export default class ServiceModelArticle {
 
   static STORAGE_MODEL: string = "global-model-article";
 
-  Model = {
+  Model:any = {
     id: "NULL",
     name: undefined,
     details: undefined,
@@ -26,7 +26,12 @@ export default class ServiceModelArticle {
   private window: any = (<any>window)
 
 
-  constructor(private store: StorageService) { }
+  constructor(private store: StorageService) {
+    let user = new ServiceUtil().getSession()
+
+    this.Model.user = user;
+
+  }
 
   public findAll() {
     return this.store.findAll(ServiceModelArticle.STORAGE_MODEL)

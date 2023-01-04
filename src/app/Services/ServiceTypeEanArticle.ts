@@ -12,7 +12,7 @@ export default class ServiceTypeEanArticle {
 
   static STORAGE_NAME: string = "global-type-ean-article";
 
-  IObjectClass = {
+  IObjectClass:any = {
     id: "NULL",
     name: undefined,
     details: undefined,
@@ -26,7 +26,11 @@ export default class ServiceTypeEanArticle {
   private window: any = (<any>window)
 
 
-  constructor(private store: StorageService) { }
+  constructor(private store: StorageService) {
+    let user = new ServiceUtil().getSession()
+
+    this.IObjectClass.user = user;
+   }
 
   public findAll() {
     return this.store.findAll(ServiceTypeEanArticle.STORAGE_NAME)

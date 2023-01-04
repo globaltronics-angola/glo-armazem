@@ -14,7 +14,7 @@ export default class ServiceStorage {
 
   private window: any = (<any>window)
 
-  IObjectClass = {
+  IObjectClass:any = {
     id: "NULL",
     name: undefined,
     country: undefined,
@@ -28,7 +28,10 @@ export default class ServiceStorage {
     email_auth: "NULL"
   }
 
-  constructor(private store: StorageService) { }
+  constructor(private store: StorageService) {
+    let user = new ServiceUtil().getSession()
+    this.IObjectClass.user = user;
+   }
 
 
   findAll() {

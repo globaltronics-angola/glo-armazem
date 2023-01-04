@@ -5,6 +5,7 @@ import ServiceUtil from "./ServiceUtil";
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from "rxjs";
 import ServiceStorage from "./ServiceStorage";
+import { AuthService } from "../shared/auth.service";
 
 
 @Injectable({
@@ -22,6 +23,7 @@ export default class ServiceArmario {
     name: "",
     storage: {},
     storage_id: "NULL",
+    user: "NULL",
     shelf: [],
     created_at: "NULL",
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
@@ -36,13 +38,22 @@ export default class ServiceArmario {
     ambry: this.IObjectClass,
     ambry_id: "NULL",
     created_at: "NULL",
+    user: "NULL",
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
     updated_mode: false,
     deleted_at: "NULL",
     email_auth: "NULL"
   };
 
-  constructor(private store: StorageService) { }
+
+
+  constructor(private store: StorageService) {
+    let user = new ServiceUtil().getSession()
+
+    this.IObjectPrateleira.user = user;
+    this.IObjectClass.user = user;
+
+  }
 
 
   findAll() {

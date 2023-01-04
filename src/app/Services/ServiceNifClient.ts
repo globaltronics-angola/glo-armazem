@@ -14,7 +14,7 @@ export default class ServiceNifClient {
 
   private window: any = (<any>window)
 
-  IObjectClass = {
+  IObjectClass:any = {
     id: "NULL",
     nif: "",
     client: undefined,
@@ -27,7 +27,10 @@ export default class ServiceNifClient {
     email_auth: "NULL"
   }
 
-  constructor(private store: StorageService) { }
+  constructor(private store: StorageService) {
+    let user = new ServiceUtil().getSession()
+    this.IObjectClass.user = user;
+  }
 
 
   findAll() {
