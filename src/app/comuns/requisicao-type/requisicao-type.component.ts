@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {StorageService} from "../../shared/storage.service";
-import * as moment from "moment";
+import { Component, OnInit } from '@angular/core';
+import { StorageService } from "../../shared/storage.service";
+import moment from "moment";
 import ServiceUtil from "../../Services/ServiceUtil";
+import ServiceRequestType from 'src/app/Services/ServiceRequestType';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -15,71 +17,32 @@ export class RequisicaoTypeComponent implements OnInit {
 
   protected list_modelos: any = [];
 
+
+  sType: ServiceRequestType;
+  listRequestType: Observable<any>;
+  private window = (<any>window);
+
   constructor(private store: StorageService) {
+
+    this.sType = new ServiceRequestType(this.store)
+    this.listRequestType = this.sType.findAll();
   }
 
   save(): void {
 
-    if (!this.type.editing)  // Permite que não actualiza a data de criação do documeto
-      this.type.created_at = moment().format('DD MM,YYYY HH:mm:ss')
-
-    this.type.editing = false
-
-    this.type.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
-    this.type.deleted_at = this.DELETED_AT_NULL;
-    this.type.email_auth = 'user activities';
-
-    this.store.createdForceGenerateId(this.type, ServiceUtil.STORAGE_TYPE_REQUISITION).then(
-      () => {
-
-        (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
-        this.type.id = this.store.getId();
-
-        this.type.name = "";
-        this.type.notes = "";
-
-      },
-      err => {
-        alert('ocorencia de erro no sistema')
-      }
-    );
+    this.sType.save();
   }
 
-  findAll() {
-    this.store.findAll(ServiceUtil.STORAGE_TYPE_REQUISITION).subscribe(
-      resp => {
-        this.list_modelos = resp.map((e: any) => {
-          const data = e.payload.doc.data();
-          data.id = e.payload.doc.id;
-          return data;
-        })
-      },
-      err => {
-      }
-    )
-  }
-
-  private initJQuerysFunctions() {
-
-  }
-
-  ngOnInit(): void {
-    this.findAll()
-    this.type.id = this.store.getId();
-    this.initJQuerysFunctions()
-  }
+  ngOnInit(): void {}
 
   deleteObj(attr: any) {
-    this.store.deleted(ServiceUtil.STORAGE_TYPE_REQUISITION, attr.id).then(() => {
-      (<any>window).sentMessageSuccess.init('foi eliminado com sucesso')
-    }, error => {
-
-    })
+    this.sType.IObjectClass = attr;
+    this.sType.delete()
   }
 
   editObjs(attr: any) {
-    this.type = attr
-    this.type.editing = true
+    this.sType.IObjectClass = attr
+    this.sType.IObjectClass.updated_mode = true
   }
 
 }

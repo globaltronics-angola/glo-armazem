@@ -1,6 +1,6 @@
 import { StorageService } from "../shared/storage.service";
 import { map } from "rxjs/operators";
-import * as moment from "moment";
+import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
 import { Injectable } from '@angular/core';
 
@@ -16,8 +16,8 @@ export default class ServiceClients {
   IObjectClass = {
     id: "NULL",
     name: undefined,
-    department: undefined,
-    others: undefined,
+    department: "NULL",
+    others: "NULL",
     details: undefined,
     created_at: "NULL",
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
@@ -40,8 +40,12 @@ export default class ServiceClients {
   save(): void {
 
     if (!this.IObjectClass.updated_mode) {
-      this.IObjectClass.id = this.store.getId().toUpperCase();
+
       this.IObjectClass.created_at = moment().format('DD MM,YYYY HH:mm:ss')
+    }
+
+    if (!this.IObjectClass.id) {
+      this.IObjectClass.id = this.store.getId().toUpperCase();
     }
 
     this.IObjectClass.updated_mode = false;
@@ -52,7 +56,7 @@ export default class ServiceClients {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
           this.IObjectClass.name = undefined
           this.IObjectClass.details = undefined
-          this.IObjectClass.department = undefined
+          this.IObjectClass.department = "NULL"
         },
         err => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)

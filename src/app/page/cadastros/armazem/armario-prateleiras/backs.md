@@ -4,7 +4,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from "../../../../shared/storage.service";
 import * as Tagify from "@yaireo/tagify";
-import * as moment from "moment";
+import moment from "moment";
 import ServiceStorage from 'src/app/Services/ServiceStorage';
 import { Observable } from 'rxjs';
 

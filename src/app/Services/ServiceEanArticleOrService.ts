@@ -1,7 +1,7 @@
 import { StorageService } from "../shared/storage.service";
 import { map, tap, switchMap } from "rxjs/operators";
 import { firstValueFrom, Observable, Subscription } from "rxjs";
-import * as moment from "moment";
+import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
 import { Injectable, OnDestroy } from "@angular/core";
 

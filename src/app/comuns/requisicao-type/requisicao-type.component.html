@@ -1,8 +1,6 @@
-<div
-  id="new_type_requisition_basic"
-  class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true"
-  data-kt-drawer-toggle="#new_type_requisition_basic_button"
-  data-kt-drawer-close="#new_type_requisition_basic_close" data-kt-drawer-width="500px">
+<div id="new_type_requisition_basic" class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true"
+  data-kt-drawer-toggle="#new_type_requisition_basic_button" data-kt-drawer-close="#new_type_requisition_basic_close"
+  data-kt-drawer-width="500px">
 
   <div class="p-5 w-100">
     <div class="text-right mb-11">
@@ -14,7 +12,8 @@
       <!--end::Subtitle=-->
     </div>
     <div class="separator separator-content my-4 text-center mb-15">
-      <span class="w-125px text-center fw-semibold justify-content-center fs-7 badge badge-sm badge-primary ">Gerir requisição</span>
+      <span class="w-125px text-center fw-semibold justify-content-center fs-7 badge badge-sm badge-primary ">Gerir
+        requisição</span>
     </div>
     <form id="kt_modal_new_target_form mt-5" class="form fv-plugins-bootstrap5 fv-plugins-framework">
       <div class="row">
@@ -27,8 +26,8 @@
                 <span class="required">Designação</span>
               </label>
               <!--end::Label-->
-              <input type="text" name="description" [(ngModel)]="type.name"
-                     class="form-control form-control-sm" placeholder="introduza qui o nome">
+              <input type="text" name="description" [(ngModel)]="sType.IObjectClass.name"
+                class="form-control form-control-sm" placeholder="introduza qui o nome">
               <div class="fv-plugins-message-container invalid-feedback"></div>
             </div>
           </div>
@@ -42,8 +41,9 @@
               <span class="">Notas</span>
             </label>
             <!--end::Label-->
-            <textarea type="text" class="form-control form-control-sm h-100px" rows="10" [(ngModel)]="type.notes"
-                      placeholder="Introduza qui alguma noto do modelo" name="datasheet"></textarea>
+            <textarea type="text" class="form-control form-control-sm h-100px" rows="10"
+              [(ngModel)]="sType.IObjectClass.details" placeholder="Introduza qui alguma noto do modelo"
+              name="datasheet"></textarea>
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
 
@@ -62,33 +62,33 @@
     <div class="overflow-auto w-100">
       <table id="kt_datatable_both_scrolls" class="table table-striped table-row-bordered gy-5 gs-7">
         <thead>
-        <tr class="fw-semibold fs-6 text-gray-800">
-          <th class="min-w-200px">Designação</th>
-          <th class="min-w-100px">Estado</th>
-          <th class="">Acção</th>
+          <tr class="fw-semibold fs-6 text-gray-800">
+            <th class="min-w-200px">Designação</th>
+            <th class="min-w-100px">Estado</th>
+            <th class="">Acção</th>
 
 
-        </tr>
+          </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let modelo of list_modelos">
-          <td>{{ modelo.name}}</td>
-          <td>
-            <span class="badge {{ (modelo.deleted_at === 'NULL' ? 'badge-light-primary' : 'badge-light-danger')}}">
-              {{ (modelo.deleted_at === 'NULL' ? 'active' : 'delected')}}
-            </span>
-          </td>
-          <td class="gap-2">
-            <button type="button" (click)="editObjs(modelo)"
-                    class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
-              <span class="svg-icon"> <i class="fa fa-edit"></i></span>
-            </button>
-            <button type="button" (click)="deleteObj(modelo)"
-                    class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
-              <span class="svg-icon"> <i class="bi-trash"></i></span>
-            </button>
-          </td>
-        </tr>
+          <tr *ngFor="let type of listRequestType| async">
+            <td>{{ type.name}}</td>
+            <td>
+              <span class="badge {{ (type.deleted_at === 'NULL' ? 'badge-light-primary' : 'badge-light-danger')}}">
+                {{ (type.deleted_at === 'NULL' ? 'active' : 'delected')}}
+              </span>
+            </td>
+            <td class="gap-2">
+              <button type="button" (click)="editObjs(type)"
+                class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
+                <span class="svg-icon"> <i class="fa fa-edit"></i></span>
+              </button>
+              <button type="button" (click)="deleteObj(type)"
+                class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
+                <span class="svg-icon"> <i class="bi-trash"></i></span>
+              </button>
+            </td>
+          </tr>
 
         </tbody>
       </table>

@@ -7,18 +7,21 @@
     "activityBarBadge.background": "#bf0060",
     "activityBarBadge.foreground": "#e7e7e7",
     "sash.hoverBorder": "#3399ff",
-    "panel.border": "#3399ff",
     "statusBar.background": "#007fff",
     "statusBar.foreground": "#e7e7e7",
     "statusBarItem.hoverBackground": "#3399ff",
     "statusBarItem.remoteBackground": "#007fff",
-    "statusBarItem.remoteForeground": "#e7e7e7"
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "statusBar.border": "#007fff"
   },
   "peacock.color": "#007fff",
   "cSpell.words": [
     "Armario",
+    "Armarios",
     "Armazem",
     "geral",
+    "Movimento",
+    "pdfmake",
     "Prateleira",
     "Querys",
     "Servicos",

@@ -24,5 +24,13 @@ export default class ServiceUtil{
   static MESSAGE_ERROR = "Não foi inserido a informação com sucesso, possivel ocorrência de erro!"
 
 
+  convertJson(data: any) {
+    if (data)
+      return JSON.parse(data.toString());
+
+    return {};
+  }
+
+
 
 }

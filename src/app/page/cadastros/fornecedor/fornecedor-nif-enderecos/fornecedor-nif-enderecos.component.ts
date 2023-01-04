@@ -55,7 +55,7 @@ export class FornecedorNifEnderecosComponent implements OnInit {
 
     // @ts-ignore
     new Tagify(address, {
-      originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
+      originalInputValueFormat: (valuesArr:any) => valuesArr.map((item:any) => item.value).join(',')
     });
 
     // @ts-ignore

@@ -1,0 +1,211 @@
+{
+  "id": "NULL",
+  "article": {
+    "deleted_at": "NULL",
+    "quantity": 1,
+    "type_id": {
+      "updated_at": "27 12,2022 18:52:26",
+      "deleted_at": "NULL",
+      "details": "Info",
+      "created_at": "27 12,2022 18:52:48",
+      "name": "Caixa",
+      "id": "FJ0UQMUEFCERVA2E5MC7",
+      "updated_mode": false,
+      "email_auth": "NULL"
+    },
+    "updated_at": "27 12,2022 18:52:26",
+    "created_at": "27 12,2022 18:53:27",
+    "email_auth": "NULL",
+    "unity_id": {
+      "name": "kilograma",
+      "updated_at": "27 12,2022 18:52:26",
+      "updated_mode": false,
+      "created_at": "27 12,2022 18:53:22",
+      "deleted_at": "NULL",
+      "details": "Angola",
+      "acronym": "Kg",
+      "id": "AWC5I78XIHFBBHXIA8OC",
+      "email_auth": "NULL"
+    },
+    "ean": "18522927122022",
+    "updated_mode": false,
+    "id": "18522927122022",
+    "conversion": 12,
+    "country_id": {
+      "externalResquestyCountyTo": {
+        "country": "Angola",
+        "iso": "AO",
+        "code": "244"
+      },
+      "iso": "AO",
+      "genero": "angolana",
+      "name": "Angola",
+      "id": "AO",
+      "externalResquestyCounty": {
+        "sigla": "AO",
+        "gentilico": "angolana",
+        "nome_pais_int": "Angola",
+        "nome_pais": "Angola"
+      }
+    },
+    "article_id": {
+      "id": "NZ5OO9OEYZNRT2V7M0GN",
+      "model_id": {
+        "deleted_at": "NULL",
+        "details": "As",
+        "email_auth": "NULL",
+        "created_at": "27 12,2022 18:52:14",
+        "id": "FL0XZG5C8EFXOSEB4JMS",
+        "updated_at": "27 12,2022 18:52:04",
+        "name": "Produto 1 Testando",
+        "updated_mode": false
+      },
+      "updated_at": "27 12,2022 18:52:04",
+      "deleted_at": "NULL",
+      "updated_mode": false,
+      "details": "Asfsd",
+      "created_at": "27 12,2022 18:52:23",
+      "name": "Camara - A0K00KHN-871 2022 TYUD",
+      "email_auth": "NULL",
+      "category_id": [
+        {
+          "updated_mode": false,
+          "deleted_at": "NULL",
+          "name": "CATE 1",
+          "category_id": "NULL",
+          "created_at": "26 12,2022 17:30:23",
+          "updated_at": "26 12,2022 17:30:07",
+          "email_auth": "NULL",
+          "id": "AU459WK6O4WCRAWAGI6X",
+          "details": "Luanda"
+        },
+        {
+          "category_id": "NULL",
+          "id": "NLLZBENB9F4OMG54SYHF",
+          "name": "CATE 2",
+          "details": "Luanda",
+          "updated_mode": false,
+          "created_at": "26 12,2022 17:30:37",
+          "deleted_at": "NULL",
+          "email_auth": "NULL",
+          "updated_at": "26 12,2022 17:30:07"
+        }
+      ]
+    }
+  },
+  "localStorage": {
+    "updated_at": "30 12,2022 13:28:53",
+    "ambry": {
+      "updated_mode": false,
+      "email_auth": "NULL",
+      "created_at": "30 12,2022 13:29:09",
+      "shelf": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "storage": {
+        "address": [
+          "Luanda",
+          "Belas",
+          "Benfica"
+        ],
+        "name": "Armazem Central",
+        "deleted_at": "NULL",
+        "email_auth": "NULL",
+        "created_at": "26 12,2022 11:06:57",
+        "details": "Armazém central da Global Tronic ",
+        "country": {
+          "iso": "AO",
+          "externalResquestyCounty": {
+            "gentilico": "angolana",
+            "sigla": "AO",
+            "nome_pais": "Angola",
+            "nome_pais_int": "Angola"
+          },
+          "externalResquestyCountyTo": {
+            "country": "Angola",
+            "code": "244",
+            "iso": "AO"
+          },
+          "name": "Angola",
+          "genero": "angolana",
+          "id": "AO"
+        },
+        "updated_at": "26 12,2022 11:06:14",
+        "updated_mode": false,
+        "id": "5WKWTPC6DV3IC221EVLE"
+      },
+      "id": "ARMAZEM-CENTRAL-A1",
+      "updated_at": "30 12,2022 13:28:53",
+      "deleted_at": "NULL",
+      "name": "A1",
+      "storage_id": "5WKWTPC6DV3IC221EVLE"
+    },
+    "email_auth": "NULL",
+    "updated_mode": false,
+    "id": "1-ARMAZEM-CENTRAL-A1",
+    "created_at": "NULL",
+    "deleted_at": "NULL",
+    "name": "1",
+    "ambry_id": "ARMAZEM-CENTRAL-A1"
+  },
+  "financialCost": 1,
+  "localCurrency": {
+    "genero": "árabe",
+    "name": "Emirados Árabes Unidos",
+    "externalResquestyCounty": {
+      "sigla": "AE",
+      "nome_pais_int": "United Arab Emirates",
+      "gentilico": "árabe",
+      "nome_pais": "Emirados Árabes Unidos"
+    },
+    "externalResquestyCountyTo": {
+      "country": "United Arab Emirates",
+      "code": "971",
+      "iso": "AE"
+    },
+    "id": "AE",
+    "iso": "AE"
+  },
+  "move": "NULL",
+  "move_id": "NULL",
+  "quantity": 1,
+  "conversion": 2,
+  "dateOfPurchase": "",
+  "provider": {
+    "deleted_at": "NULL",
+    "created_at": "26 12,2022 10:12:45",
+    "email_auth": "NULL",
+    "others": [
+      "angolano",
+      "com nacionalidade portuguesa"
+    ],
+    "updated_mode": false,
+    "department": {
+      "deleted_at": "NULL",
+      "updated_at": "25 12,2022 00:55:01",
+      "created_at": "25 12,2022 00:55:20",
+      "email_auth": "NULL",
+      "id": "BV8VOPVJUJSB4XPNOIUP",
+      "updated_mode": false,
+      "details": "Nota importante da nota",
+      "name": "Centro de Informatica"
+    },
+    "details": "é muito importante ter as informações da nossa agenda politica porque as pessoas ",
+    "name": "Munzambi Ntemo Miguel",
+    "updated_at": "26 12,2022 10:11:35",
+    "id": "DCDENFQ8Q3DZPRUTRTTN"
+  },
+  "others": [
+    "23"
+  ],
+  "created_at": "30 12,2022 14:22:48",
+  "updated_at": "30 12,2022 14:21:55",
+  "updated_mode": false,
+  "deleted_at": "NULL",
+  "email_auth": "NULL",
+  "status": false,
+  "moveType": "INPUT"
+}

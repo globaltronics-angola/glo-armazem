@@ -37,7 +37,7 @@ export class FormsGeralFornecedoresComponent implements OnInit {
 
     // @ts-ignore
     new Tagify(otherInfo, {
-      originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
+      originalInputValueFormat: (valuesArr: any[]) => valuesArr.map((item: any) => item.value).join(',')
     });
 
     // @ts-ignore

@@ -1,35 +1,39 @@
 <div class="overflow-auto w-100">
   <table id="kt_datatable_both_scrolls" class="table table-striped table-row-bordered gy-5 gs-7">
     <thead>
-    <tr class="fw-semibold fs-6 text-gray-800">
-      <th class="min-w-200px">Produto / Referencia</th>
-      <th class="min-w-100px">Tipo Referencia</th>
-      <th class="min-w-100px">QT</th>
-      <th class="min-w-100px">Custo</th>
-      <th class="min-w-100px">Fornecedor</th>
-      <th class="min-w-100px">Data Compra</th>
-      <th class="">Acção</th>
-    </tr>
+      <tr class="fw-semibold fs-6 text-gray-800">
+        <th class="min-w-200px">Produto </th>
+        <th class="min-w-100px">Referencia</th>
+        <th class="min-w-100px">Localização</th>
+        <th class="min-w-100px">QT</th>
+        <th class="min-w-100px">Custo</th>
+        <th class="min-w-100px">Fornecedor</th>
+        <th class="min-w-100px">Compra</th>
+        <th class="">Acção</th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let produt of listItems">
-      <td>{{ produt.ean + ', ' + produt.productData?.name}}</td>
-      <td>{{ produt.typeData?.name}}</td>
-      <td><span class="badge badge-light-dark">{{ produt.qt_item  }}</span></td>
-      <td>{{kFormatter(produt.valor) + ' ' + produt.moeda?.iso}}</td>
-      <td>{{  produt.fornecedor?.name}}</td>
-      <td>{{ produt.dataCompra}}</td>
-      <td class="gap-2">
-        <button type="button" (click)="emitFunctionalityUp(produt)"
-                class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
-          <span class="svg-icon"> <i class="fa fa-edit"></i></span>
-        </button>
-        <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1"
-                (click)="deleteInfo(produt.id)">
-          <span class="svg-icon"> <i class="bi-trash"></i></span>
-        </button>
-      </td>
-    </tr>
+      <tr *ngFor="let article of listItems">
+        <td>{{ convertJson(article.article).ean }}, <span class="badge badge-light-primary">
+            {{ convertJson(article.article).article_id.name}}
+          </span> </td>
+        <td>{{ convertJson(article.article).type_id.name }}</td>
+        <td><span class="badge badge-light-success">{{ convertJson(article.localStorage).name }}</span></td>
+        <td><span class="badge badge-light-dark">{{ article.quantity }}</span> x {{  article.conversion }}</td>
+        <td>{{kFormatter(article.financialCost) + ' ' + convertJson(article.localCurrency).iso }}</td>
+        <td>{{ convertJson(article.provider).name}}</td>
+        <td>{{ article.dateOfPurchase}}</td>
+        <td class="gap-2">
+          <button type="button" (click)="emitFunctionalityUp(article)"
+            class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
+            <span class="svg-icon"> <i class="fa fa-edit"></i></span>
+          </button>
+          <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1"
+            (click)="deleteInfo(article)">
+            <span class="svg-icon"> <i class="bi-trash"></i></span>
+          </button>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

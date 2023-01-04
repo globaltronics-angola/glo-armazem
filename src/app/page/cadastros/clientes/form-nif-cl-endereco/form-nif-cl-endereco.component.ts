@@ -21,6 +21,7 @@ export class FormNifClEnderecoComponent implements OnInit {
   nif: ServiceNifClient;
 
   private window = (<any>window);
+  country: ServiceCountry;
 
 
   async ngOnInit() {
@@ -33,6 +34,8 @@ export class FormNifClEnderecoComponent implements OnInit {
     this.nif = new ServiceNifClient(this.store);
     this.listClient = new ServiceClients(this.store).findAll();
     this.listCountry = new ServiceCountry(this.store).findAll();
+
+    this.country = new ServiceCountry(this.store);
   }
 
   save() {
@@ -68,7 +71,7 @@ export class FormNifClEnderecoComponent implements OnInit {
 
     // @ts-ignore
     new Tagify(address, {
-      originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
+      originalInputValueFormat: (valuesArr: any[]) => valuesArr.map((item:any) => item.value).join(',')
     });
 
     // @ts-ignore

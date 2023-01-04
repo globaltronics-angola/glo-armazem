@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from "../../../../shared/storage.service";
 import * as Tagify from "@yaireo/tagify";
-import * as moment from "moment";
+import moment from "moment";
 import ServiceStorage from 'src/app/Services/ServiceStorage';
 import { Observable } from 'rxjs';
 import ServiceArmario from 'src/app/Services/ServiceArmario';
+import { ServiceEmitter } from 'src/app/Services/ServiceEmitter';
 
 @Component({
   selector: 'app-armario-prateleiras',
@@ -49,11 +50,20 @@ export class ArmarioPrateleirasComponent implements OnInit {
     this.serviceArmario.IObjectClass.storage = JSON.parse(this.window.instanceSelectedIdStorage.toString());
     this.serviceArmario.IObjectClass.storage_id = JSON.parse(this.window.instanceSelectedIdStorage.toString())?.id;
 
+
+
+
     this.serviceArmario.IObjectClass.id = (
       JSON.parse(this.window.instanceSelectedIdStorage.toString()).name.replace(' ', '-') + '-'
-      + JSON.parse(this.window.instanceSelectedIdStorage)?.id).toUpperCase();
+      + this.serviceArmario.IObjectClass.name.replace(' ', '-')
+
+      ).toUpperCase();
 
     this.serviceArmario.IObjectClass.shelf = this.window.instanceSelectedIdShelf.split(",")
+
+
+    ServiceEmitter.get("sendArmarioZone").emit(this.serviceArmario.IObjectClass)
+
     this.serviceArmario.save();
   }
 
@@ -64,11 +74,12 @@ export class ArmarioPrateleirasComponent implements OnInit {
 
     storageSelect.select2().on('change', (event: any) => {
       this.window.instanceSelectedIdStorage = event.target.value
+
     })
 
     // @ts-ignore
     new Tagify(prateleirasItemsTagify, {
-      originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
+      originalInputValueFormat: (valuesArr: any[]) => valuesArr.map(item => item.value).join(',')
     });
 
     // @ts-ignore

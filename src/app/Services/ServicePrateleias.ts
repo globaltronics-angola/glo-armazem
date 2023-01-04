@@ -1,6 +1,6 @@
 import { StorageService } from "../shared/storage.service";
 import { map, tap } from "rxjs/operators";
-import * as moment from "moment";
+import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from "rxjs";
@@ -92,12 +92,16 @@ export default class ServicePrateleias {
     return []
   }
 
-  public async findByIdAndName(id: any) {
+  public async findByIdAndName(ambry_id: any) {
 
-    if (id) {
+    if (ambry_id) {
 
-      const storage = JSON.parse(id.toString())
-      const list = await this.store.findByOther(ServicePrateleias.STORAGE_NAME, 'ambry', storage);
+      console.log(ambry_id)
+
+      const ambry = JSON.parse(ambry_id.toString())
+      const list = await this.store.findByOther(ServicePrateleias.STORAGE_NAME, 'ambry', ambry);
+
+      console.log(list)
       return list
     }
 

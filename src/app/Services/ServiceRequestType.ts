@@ -8,18 +8,17 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export default class ServiceStorage {
+export default class ServiceRequestType {
 
-  static STORAGE_NAME: string = "global-storage";
+  static STORAGE_NAME: string = "global-type-requisition"
+
+
 
   private window: any = (<any>window)
 
   IObjectClass = {
     id: "NULL",
     name: undefined,
-    country: undefined,
-    address: undefined,
-    ambry: [],
     details: undefined,
     created_at: "NULL",
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
@@ -28,11 +27,13 @@ export default class ServiceStorage {
     email_auth: "NULL"
   }
 
-  constructor(private store: StorageService) { }
+  constructor(private store: StorageService) {
+
+  }
 
 
   findAll() {
-    return this.store.findAll(ServiceStorage.STORAGE_NAME).pipe(
+    return this.store.findAll(ServiceRequestType.STORAGE_NAME).pipe(
       map(this.convertToArticle)
     )
   }
@@ -46,7 +47,7 @@ export default class ServiceStorage {
 
     this.IObjectClass.updated_mode = false;
 
-    this.store.createdForceGenerateId(this.IObjectClass, ServiceStorage.STORAGE_NAME)
+    this.store.createdForceGenerateId(this.IObjectClass, ServiceRequestType.STORAGE_NAME)
       .then(
         () => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
@@ -57,10 +58,6 @@ export default class ServiceStorage {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)
         }
       )
-
-  }
-
-  saveCabinetsAndShelves() {
 
   }
 
@@ -76,7 +73,7 @@ export default class ServiceStorage {
 
 
   public delete() {
-    this.store.deleted(ServiceStorage.STORAGE_NAME, this.IObjectClass.id).then(() => {
+    this.store.deleted(ServiceRequestType.STORAGE_NAME, this.IObjectClass.id).then(() => {
       this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS_DELETE)
     });
   }

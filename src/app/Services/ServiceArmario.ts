@@ -1,6 +1,6 @@
 import { StorageService } from "../shared/storage.service";
 import { map, tap } from "rxjs/operators";
-import * as moment from "moment";
+import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from "rxjs";
@@ -19,7 +19,7 @@ export default class ServiceArmario {
 
   IObjectClass = {
     id: "NULL",
-    name: undefined,
+    name: "",
     storage: {},
     storage_id: "NULL",
     shelf: [],
@@ -55,6 +55,10 @@ export default class ServiceArmario {
 
     if (!this.IObjectClass.updated_mode) {
       this.IObjectClass.created_at = moment().format('DD MM,YYYY HH:mm:ss')
+    }
+
+    if (!this.IObjectClass.id) {
+      this.IObjectClass.id = this.store.getId().toUpperCase();
     }
 
     this.IObjectClass.updated_mode = false;

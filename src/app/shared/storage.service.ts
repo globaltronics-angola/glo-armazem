@@ -116,7 +116,7 @@ export class StorageService {
     await dataStore.collection('/' + collect)
       .orderBy(nameField, 'asc')
       .startAt(context)
-      .endAt([context+"\uf8ff"])
+      .endAt([context + "\uf8ff"])
       .get()
       .then(snap => {
         snap.forEach(doc => {
@@ -135,16 +135,14 @@ export class StorageService {
 
 
     dataStore.collection('/' + collect)
-    .where(nameField, "!=", context)
-    .get()
-    .then(snap => {
-      snap.forEach(doc => {
-        list.push(doc.data())
-        return doc.data();
+      .where(nameField, "!=", context)
+      .get()
+      .then(snap => {
+        snap.forEach(doc => {
+          list.push(doc.data())
+          return doc.data();
+        });
       });
-    });
-
-   
 
     return list;
 
@@ -160,4 +158,30 @@ export class StorageService {
   deleted(nameCollection: string, id: string) {
     return this.afs.collection('/' + nameCollection).doc('/' + id).delete()
   }
+
+
+  findByDifferenceNameTo(
+    collect: string, nameField: string = "",
+    context: string = "", nameFieldTo: string = "", contextTo: string = ""
+  ) {
+    const dataStore = this.afs.firestore;
+    let list: any[] = []
+
+
+    dataStore.collection('/' + collect)
+      .where(nameField, "==", context)
+      .where(nameFieldTo, "==", contextTo)
+      .get()
+      .then(snap => {
+        snap.forEach(doc => {
+          list.push(doc.data())
+          return doc.data();
+        });
+      });
+
+    return list;
+
+  }
+
+
 }

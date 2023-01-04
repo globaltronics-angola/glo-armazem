@@ -6,7 +6,7 @@ import ServiceArticles from 'src/app/Services/ServiceArticles';
 import ServiceCountry from 'src/app/Services/ServiceCountry';
 import ServiceTypeEanArticle from 'src/app/Services/ServiceTypeEanArticle';
 import ServiceUnityEanArticle from 'src/app/Services/ServiceUnityEanArticle';
-import * as moment from 'moment';
+import moment from 'moment';
 import { ServiceEmitter } from 'src/app/Services/ServiceEmitter';
 
 @Component({

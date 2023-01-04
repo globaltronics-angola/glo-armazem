@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StorageService } from "../../../../../shared/storage.service";
 import ServiceModelArticle from 'src/app/Services/ServiceModelArticle';
 import { Observable, Subscription } from "rxjs";
+import { ServerProvider } from 'src/provider/ServerProvider';
 
 @Component({
   selector: 'app-modelos',
@@ -17,6 +18,8 @@ export class ModelosComponent implements OnInit {
   constructor(private store: StorageService) {
     this.modelArticle = new ServiceModelArticle(this.store);
     this.listModelArticles = this.modelArticle.findAll();
+
+    new ServerProvider();
   }
 
   ngOnInit() {

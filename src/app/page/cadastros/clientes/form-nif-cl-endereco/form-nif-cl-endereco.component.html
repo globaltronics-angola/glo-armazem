@@ -5,7 +5,7 @@
         <div class="col-sm-4">
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
             <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="clientsSelects">
               <span class="required">Nome do Cliente</span>
             </label>
             <!--end::Label-->
@@ -36,7 +36,7 @@
         <div class="col-12 col-sm-4">
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
             <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="countryClients">
               <span class="">Região / País</span>
             </label>
             <!--end::Label-->
@@ -50,6 +50,24 @@
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
+
+        <div *ngIf="listCountry| async as countries" class="col-12 col-sm-auto {{ countries.length< 1?'':'d-none'}}">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="">&nbsp;</span>
+            </label>
+            <!--end::Label-->
+            <button type="button" class="btn btn-sm btn-warning mr-2 " (click)="country.send()">
+              Gerar novos paises
+            </button>
+
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+
+        </div>
+
+
         <div class="col-12 col-sm-8">
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
             <!--begin::Label-->
