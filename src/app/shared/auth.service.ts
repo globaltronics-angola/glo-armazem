@@ -20,6 +20,8 @@ export class AuthService {
     console.log(this.user);
   }
 
+
+
   // Sign In method
   signIn(email: string, password: string) {
     this.fireAuth.signInWithEmailAndPassword(email, password).then(

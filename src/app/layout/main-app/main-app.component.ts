@@ -11,22 +11,24 @@ export class MainAppComponent implements OnInit {
 
   displayName: any = ""
   user: any = {}
-
+  photoUrl: any = "";
   window = (<any>window);
 
   constructor(private auth: AuthService,  private router: Router) {
 
 
-    if (!auth.user)
+    if (!this.auth.user)
       this.router.navigate(['/auth/sign-in']).then();
 
 
-    this.user = auth.user;
+      this.user = this.auth.user;
 
-    console.log(auth.user)
+
   }
-  ngOnInit(): void {
+  async ngOnInit() {
+
     this.window.InstanceAplication.init()
+    this.photoUrl = await this.user.photoURL
   }
 
 

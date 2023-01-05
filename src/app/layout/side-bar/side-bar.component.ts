@@ -1,4 +1,7 @@
-import { Component , OnInit  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import ServiceUtil from 'src/app/Services/ServiceUtil';
+import { AuthService } from 'src/app/shared/auth.service';
 
 
 
@@ -8,8 +11,23 @@ import { Component , OnInit  } from '@angular/core';
   styleUrls: ['./side-bar.component.css'],
 
 })
-export class SideBarComponent implements OnInit{
+export class SideBarComponent implements OnInit {
+  user: any;
+  photoUrl: string = "";
+  constructor(private auth: AuthService, private router: Router) {
+    if (!this.auth.user)
+      this.router.navigate(['/auth/sign-in']).then();
+
+
+    this.photoUrl = this.auth.user.photoUrl;
+
+  }
+
+
+
   ngOnInit(): void {
+
+    this.photoUrl = this.auth.user.photoURL
 
   }
 
