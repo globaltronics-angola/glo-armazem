@@ -7,6 +7,7 @@
         <th class="min-w-200px">Modelo</th>
         <th class="min-w-200px">Categorias</th>
         <th style="max-width: 140px!important; min-width: 140px!important;">Actualizado</th>
+        <th style="max-width: 140px!important; min-width: 140px!important;">existência</th>
         <th class="min-w-200px">Ficha tecnica</th>
         <th class="">Acção</th>
 
@@ -27,6 +28,9 @@
         </td>
         <td style="max-width: 110px!important;">
           {{ article.updated_at }}
+        </td>
+        <td style="max-width: 110px!important;">
+          {{ article.quantity }}
         </td>
         <td style="max-width: 260px!important; min-width: 260px!important;">
           <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; ">{{ article.details }}</div>

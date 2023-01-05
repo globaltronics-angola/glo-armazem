@@ -17,7 +17,7 @@ export default class ServiceUnityEanArticle {
     id: "NULL",
     name: undefined,
     acronym: undefined,
-    details: undefined,
+    details: "",
     created_at: "NULL",
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
     updated_mode: false,
@@ -52,7 +52,7 @@ export default class ServiceUnityEanArticle {
         () => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
           this.IObjectClass.name = undefined
-          this.IObjectClass.details = undefined
+          this.IObjectClass.details = ""
         },
         err => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)

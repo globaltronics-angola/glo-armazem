@@ -23,7 +23,8 @@ export default class ServiceArticles {
 
     category_id: "NULL",
 
-    details: undefined,
+    details: "",
+    quantity: 0,
     created_at: "NULL",
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
     updated_mode: false,
@@ -61,7 +62,7 @@ export default class ServiceArticles {
           this.Article.name = undefined
           this.Article.model_id = "NULL";
           this.Article.category_id = "NULL";
-          this.Article.details = undefined
+          this.Article.details = ""
         },
         err => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)

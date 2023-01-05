@@ -15,7 +15,7 @@ export default class ServiceModelArticle {
   Model:any = {
     id: "NULL",
     name: undefined,
-    details: undefined,
+    details: "",
     created_at: "NULL",
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
     updated_mode: false,

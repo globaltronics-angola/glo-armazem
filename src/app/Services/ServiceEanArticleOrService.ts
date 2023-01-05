@@ -51,8 +51,10 @@ export default class ServiceEanArticleOrService implements OnDestroy {
   }
 
   public findArticles() {
+    const res= this.store.findByDifferenceName(ServiceEanArticleOrService.STORAGE_NAME, 'type_id', 'NULL');
+    console.log({res});
+    return res
 
-    return this.store.findByDifferenceName(ServiceEanArticleOrService.STORAGE_NAME, 'type_id', 'NULL');
   }
 
   public save(): void {
@@ -76,10 +78,10 @@ export default class ServiceEanArticleOrService implements OnDestroy {
       .then(() => { this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS_DELETE) })
   }
 
-  async findByArticleId(id: string) {
+  async findByArticleId(id: any) {
 
     if (id) {
-      const article = JSON.parse(id.toString())
+      const article = JSON.parse(id.toString()).id
       const list = await this.store.findByOther(ServiceEanArticleOrService.STORAGE_NAME, 'article_id', article);
       return list
     }

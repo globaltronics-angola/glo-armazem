@@ -17,10 +17,10 @@ export default class ServiceStorage {
   IObjectClass:any = {
     id: "NULL",
     name: undefined,
-    country: undefined,
-    address: undefined,
+    country: "",
+    address: "",
     ambry: [],
-    details: undefined,
+    details: "",
     created_at: "NULL",
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
     updated_mode: false,
@@ -54,7 +54,7 @@ export default class ServiceStorage {
         () => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
           this.IObjectClass.name = undefined
-          this.IObjectClass.details = undefined
+          this.IObjectClass.details = ""
         },
         err => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)

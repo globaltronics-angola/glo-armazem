@@ -16,13 +16,13 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 col-sm-4">
+        <!-- <div class="col-12 col-sm-4">
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
+
             <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="selectCountry">
               <span class="">Região / País</span>
             </label>
-            <!--end::Label-->
+
             <select class="form-select form-select-sm" id="selectCountry" data-control="select2"
               data-placeholder="Select an option">
               <option></option>
@@ -36,11 +36,11 @@
         </div>
         <div *ngIf="listCountry| async as countries" class="col-12 col-sm-auto {{ countries.length< 1?'':'d-none'}}">
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
+
             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
               <span class="">&nbsp;</span>
             </label>
-            <!--end::Label-->
+
             <button type="button" class="btn btn-sm btn-warning mr-2 " (click)="testing()">
               Gerar novos paises
             </button>
@@ -48,8 +48,9 @@
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
 
-        </div>
-        <div class="col-12 col-sm-8">
+        </div> -->
+
+        <div class="col-12 col-sm-12">
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
             <!--begin::Label-->
             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -70,7 +71,7 @@
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
             <!--begin::Label-->
             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="required">Ficha técnica</span>
+              <span class="">Ficha técnica</span>
             </label>
             <!--end::Label-->
             <textarea type="text" class="form-control form-control-sm h-100px" rows="10"

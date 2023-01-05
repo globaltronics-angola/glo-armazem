@@ -19,7 +19,7 @@
           </span> </td>
         <td>{{ convertJson(article.article).type_id.name }}</td>
         <td><span class="badge badge-light-success">{{ convertJson(article.localStorage).name }}</span></td>
-        <td><span class="badge badge-light-dark">{{ article.quantity }}</span> x {{  article.conversion }}</td>
+        <td><span class="badge badge-light-dark">{{ article.quantity }}</span> </td>
         <td>{{kFormatter(article.financialCost) + ' ' + convertJson(article.localCurrency).iso }}</td>
         <td>{{ convertJson(article.provider).name}}</td>
         <td>{{ article.dateOfPurchase}}</td>

@@ -40,12 +40,7 @@ export class ArmazemFormGeralComponent implements OnInit {
 
   save() {
 
-
-    this.serviceStorage.IObjectClass.country = JSON.parse(this.window.instanceSelectedId);
-    this.serviceStorage.IObjectClass.address = this.window.instanceSelectedValueEnder.split(',');
-
     this.serviceStorage.save()
-
   }
 
 
@@ -55,7 +50,7 @@ export class ArmazemFormGeralComponent implements OnInit {
     const enddessTagify = document.querySelector("#tagifyAddress");
 
     countrySelect.select2().on('change', (event: any) => {
-      this.window.instanceSelectedId = event.target.value
+      this.serviceStorage.IObjectClass.country = event.target.value
     })
 
 
@@ -67,7 +62,7 @@ export class ArmazemFormGeralComponent implements OnInit {
 
     // @ts-ignore
     enddessTagify.addEventListener('change', (e: any) => {
-      this.window.instanceSelectedValueEnder = e.target.value
+      this.serviceStorage.IObjectClass.address = e.target.value.split(',');
     })
 
   }

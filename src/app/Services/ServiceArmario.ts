@@ -18,10 +18,10 @@ export default class ServiceArmario {
 
   private window: any = (<any>window)
 
-  IObjectClass = {
+  IObjectClass: any = {
     id: "NULL",
     name: "",
-    storage: {},
+    storage: "",
     storage_id: "NULL",
     user: "NULL",
     shelf: [],
@@ -32,7 +32,7 @@ export default class ServiceArmario {
     email_auth: "NULL"
   };
 
-  IObjectPrateleira = {
+  IObjectPrateleira: any = {
     id: "NULL",
     name: undefined,
     ambry: this.IObjectClass,
@@ -79,7 +79,7 @@ export default class ServiceArmario {
         () => {
 
 
-          this.IObjectClass.shelf.forEach((e) => {
+          this.IObjectClass.shelf.forEach((e:any) => {
             this.shelf(e)
           })
 

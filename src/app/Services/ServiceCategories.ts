@@ -14,7 +14,7 @@ export default class ServiceCategories {
   Categories: any = {
     id: "NULL",
     name: undefined,
-    details: undefined,
+    details: "",
     category_id: "NULL",
     created_at: "NULL",
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
@@ -51,7 +51,9 @@ export default class ServiceCategories {
       .then(() => {
         this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
         this.Categories.name = undefined;
-        this.Categories.details = undefined;
+        this.Categories.details = "";
+
+        this.Categories.id = this.store.getId().toUpperCase()
 
       }, err => {
         this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)

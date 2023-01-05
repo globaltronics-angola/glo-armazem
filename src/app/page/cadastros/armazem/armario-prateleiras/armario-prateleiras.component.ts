@@ -47,14 +47,10 @@ export class ArmarioPrateleirasComponent implements OnInit {
 
   async save() {
 
-    this.serviceArmario.IObjectClass.storage = JSON.parse(this.window.instanceSelectedIdStorage.toString());
-    this.serviceArmario.IObjectClass.storage_id = JSON.parse(this.window.instanceSelectedIdStorage.toString())?.id;
-
-
 
 
     this.serviceArmario.IObjectClass.id = (
-      JSON.parse(this.window.instanceSelectedIdStorage.toString()).name.replace(' ', '-') + '-'
+      JSON.parse(this.serviceArmario.IObjectClass.storage).name.replace(' ', '-') + '-'
       + this.serviceArmario.IObjectClass.name.replace(' ', '-')
 
       ).toUpperCase();
@@ -73,7 +69,9 @@ export class ArmarioPrateleirasComponent implements OnInit {
     const prateleirasItemsTagify = document.querySelector("#prateleirasItens");
 
     storageSelect.select2().on('change', (event: any) => {
-      this.window.instanceSelectedIdStorage = event.target.value
+      this.serviceArmario.IObjectClass.storage = event.target.value
+      this.serviceArmario.IObjectClass.storage_id = JSON.parse(event.target.value).id
+
 
     })
 

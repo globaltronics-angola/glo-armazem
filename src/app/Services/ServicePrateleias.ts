@@ -88,7 +88,7 @@ export default class ServicePrateleias {
     if (id) {
 
       const article = JSON.parse(id.toString())
-      const list = await this.store.findByOther(ServicePrateleias.STORAGE_NAME, 'storage_id', article.id);
+      const list = await this.store.findByOther(ServicePrateleias.STORAGE_NAME, 'ambry_id', article.id);
       return list
     }
 

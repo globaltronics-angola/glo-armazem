@@ -194,8 +194,7 @@
                       <option></option>
                       <option [value]="ean|json" *ngFor="let ean of listArticle">
                         {{
-                        ean.ean + ' - ' + (ean.type_id ? ean.type_id.name : 'ñ definido') + ' - ' +
-                        (ean.article_id ? ean.article_id.name : 'undefined')
+                        ean.ean 
                         }}
                       </option>
                     </select>
@@ -246,9 +245,6 @@
                 <div class="input-group">
                   <input type="number" class="form-control form-control-sm " placeholder="Caixa" name="qt_item"
                     [(ngModel)]="item.oItem.quantity">
-
-                  <input type="number" class="form-control form-control-sm " placeholder="Conversão"
-                    name="qt_item_conversao" [(ngModel)]="item.oItem.conversion">
                 </div>
 
                 <div class="fv-plugins-message-container invalid-feedback"></div>

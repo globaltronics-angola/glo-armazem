@@ -86,7 +86,6 @@ export default class ServiceMovimento {
 
     this.oItem.items.forEach((item: any) => {
 
-      this.oItem.itemsConversion += item.conversion
       this.oItem.itemsQuantity += item.quantity
 
       let itemMove = item;

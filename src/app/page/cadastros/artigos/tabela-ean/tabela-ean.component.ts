@@ -4,6 +4,7 @@ import ServiceEanArticleOrService from 'src/app/Services/ServiceEanArticleOrServ
 import { Subscription } from 'rxjs';
 
 import { ServiceEmitter } from 'src/app/Services/ServiceEmitter';
+import ServiceUtil from 'src/app/Services/ServiceUtil';
 
 @Component({
   selector: 'app-tabela-ean',
@@ -22,6 +23,8 @@ export class TabelaEanComponent implements OnInit, OnDestroy {
   private window = (<any>window);
   snKnow: Subscription | undefined;
 
+  serviceUt: ServiceUtil
+
   ngOnInit(): void {
     this.initJQuerysFunciotions()
   }
@@ -33,6 +36,8 @@ export class TabelaEanComponent implements OnInit, OnDestroy {
 
     this.snKnow = ServiceEmitter.get("sendNewLine").subscribe(e => this.listArticleEan.push(e));
     // data.unity_data = ;
+
+    this.serviceUt = new ServiceUtil()
   }
 
   ngOnDestroy(): void {
@@ -60,10 +65,12 @@ export class TabelaEanComponent implements OnInit, OnDestroy {
     })
   }
 
-  deleteSelectedEan(id: string) {
-    /* this.store.deleted(ServiceEan.STORAGE_NAME_EAN, id).then(() => {
-      this.window.sentMessageSuccess.init('foi inserido com sucesso')
-    }, err => { }) */
+  deleteSelectedEan(attr: any) {
+    let articleEan = new ServiceEanArticleOrService(this.store);
+    articleEan.IObjectClass = attr
+
+    articleEan.delete()
+
   }
 
 

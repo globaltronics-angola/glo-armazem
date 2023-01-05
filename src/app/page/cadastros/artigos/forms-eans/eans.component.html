@@ -11,7 +11,7 @@
     </div>
 
     <div class="row">
-      <div class="col-8 col-lg-8 col-sm-12">
+      <div class="col-12 col-lg-8 col-sm-12">
         <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
           <!--begin::Label-->
           <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -22,7 +22,7 @@
             data-placeholder="Selecciona o produto">
             <option></option>
             <option [value]="prod|json" *ngFor="let prod of listArticles |  async">
-              {{ (prod.modelo ? prod.modelo.name : 'Não Identificado') + ' - ' + prod.name }}
+              {{ (prod.model_id ? prod.model_id.name : 'Não Identificado') + ' - ' + prod.name }}
             </option>
           </select>
           <!-- <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -55,73 +55,7 @@
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
-      </div>
 
-      <div class="row w-100 overflow-auto">
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xxl-auto min-w-350px">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="">Origem </span>
-            </label>
-
-            <!--end::Label-->
-
-            <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
-              data-placeholder="Selecciona o modelo" id="origemEan">
-              <option></option>
-              <option [value]="country|json" *ngFor="let country of listCountry | async">
-                {{ country.name }}
-              </option>
-            </select>
-
-
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xxl-auto min-w-350px">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="required">Tipo de item</span>
-            </label>
-            <!--end::Label-->
-            <div class="input-group input-group-sm input-group-solid flex-nowrap">
-              <select class="form-select form-select-sm selector" data-control="select2" id="loteSelectType"
-                data-allow-clear="true" data-placeholder="Selecciona o tipo de lote">
-                <option></option>
-                <option [value]="items|json" *ngFor="let items of listTypeItems | async">
-                  {{ items.name }}
-                </option>
-              </select>
-              <button class="input-group-text" style="max-width: 80px; min-width: 80px"
-                id="new_tipos_itens_basic_button">
-                <i class="fa fa-plus"></i> &nbsp; Novo
-              </button>
-            </div>
-            <div class="fv-plugins-message-container invalid-feedback"></div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xxl-auto min-w-350px">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="required">Quantidade</span>
-            </label>
-            <!--end::Label-->
-            <div class="input-group">
-              <input type="number" class="form-control form-control-sm " placeholder="Caixa" name="target_title"
-                [(ngModel)]="eanMode.IObjectClass.quantity">
-
-              <input type="number" class="form-control form-control-sm " placeholder="Conversão" name="target_title"
-                [(ngModel)]="eanMode.IObjectClass.conversion">
-            </div>
-
-            <div class="fv-plugins-message-container invalid-feedback"></div>
-          </div>
-        </div>
 
         <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xxl-auto min-w-350px">
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
@@ -162,7 +96,7 @@
 
   <app-tabela-ean></app-tabela-ean>
 
-  <app-tipo-items></app-tipo-items>
+  <!-- <app-tipo-items></app-tipo-items> -->
   <app-unidade-medida></app-unidade-medida>
 
 </div>

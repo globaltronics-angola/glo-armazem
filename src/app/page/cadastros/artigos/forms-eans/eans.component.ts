@@ -52,10 +52,7 @@ export class EansComponent implements OnInit {
 
   initJQuerys() {
 
-    this.window.instanceSelectedIdProduct = "";
-    this.window.instanceSelectedIdCountry = "";
-    this.window.instanceSelectedIdType = "";
-    this.window.instanceSelectedIdMedida = "";
+
 
     const selectArticle = this.window.$('#selectProdutos')
     const selectCountry = this.window.$('#origemEan')
@@ -64,23 +61,24 @@ export class EansComponent implements OnInit {
 
 
     selectArticle.select2().on('change', (e: any) => {
-      this.window.instanceSelectedIdProduct = e.target.value
+      this.eanMode.IObjectClass.article = e.target.value
+      this.eanMode.IObjectClass.article_id = JSON.parse(e.target.value).id
     })
     selectCountry.select2().on('change', (e: any) => {
-      this.window.instanceSelectedIdCountry = e.target.value
+      this.eanMode.IObjectClass.country_id = e.target.value
     })
 
 
     selectTypeLotEan.select2({
       minimumResultsForSearch: -1
     }).on('change', (e: any) => {
-      this.window.instanceSelectedIdType = e.target.value
+      this.eanMode.IObjectClass.type_id = e.target.value
     })
 
     selectUnity.select2({
       minimumResultsForSearch: -1
     }).on('change', (e: any) => {
-      this.window.instanceSelectedIdMedida = e.target.value
+     this.eanMode.IObjectClass.unity_id = e.target.value
     })
 
   }
@@ -88,13 +86,7 @@ export class EansComponent implements OnInit {
 
   save() {
 
-    this.eanMode.IObjectClass.type_id = JSON.parse(this.window.instanceSelectedIdType);
-    this.eanMode.IObjectClass.article_id = JSON.parse(this.window.instanceSelectedIdProduct);
-    this.eanMode.IObjectClass.unity_id = JSON.parse(this.window.instanceSelectedIdMedida);
-    this.eanMode.IObjectClass.country_id = JSON.parse(this.window.instanceSelectedIdCountry);
-
     this.eanMode.IObjectClass.id = this.eanMode.IObjectClass.ean.toUpperCase();
-
 
     this.eanMode.save()
 

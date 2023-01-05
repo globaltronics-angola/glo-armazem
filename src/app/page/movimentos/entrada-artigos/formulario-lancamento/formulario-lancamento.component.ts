@@ -202,13 +202,13 @@ export class FormularioLancamentoComponent implements OnInit {
     this.window.$('#selectedArmazem').select2().on('change', async (e: any) => {
 
       this.window.instanceSelectedArmazemId = e.target.value;
-      this.listArmarios = await new ServiceArmario(this.store).findByIdAndName(e.target.value);
+      this.listArmarios = await new ServiceArmario(this.store).findByName(e.target.value);
     });
 
     this.window.$('#selectedArmario').select2().on('change', async (e: any) => {
 
       this.window.instanceSelectedArmarioId = e.target.value;
-      this.listShelf = await new ServicePrateleias(this.store).findByIdAndName(e.target.value)
+      this.listShelf = await new ServicePrateleias(this.store).findByName(e.target.value)
     })
 
     this.window.$('#selectedPrateleira').select2().on('change', (e: any) => {

@@ -135,7 +135,7 @@ export class StorageService {
 
 
     dataStore.collection('/' + collect)
-      .where(nameField, "!=", context)
+     .where(nameField, "!=", context)
       .get()
       .then(snap => {
         snap.forEach(doc => {
