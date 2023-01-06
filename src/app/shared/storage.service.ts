@@ -135,7 +135,7 @@ export class StorageService {
 
 
     dataStore.collection('/' + collect)
-     .where(nameField, "!=", context)
+      .where(nameField, "!=", context)
       .get()
       .then(snap => {
         snap.forEach(doc => {
@@ -147,6 +147,47 @@ export class StorageService {
     return list;
 
   }
+
+  findByDifferenceNameOperator(collect: string, nameField: string = "",
+    context: string = "", myOpertor: any = "!=") {
+    const dataStore = this.afs.firestore;
+    let list: any[] = []
+
+
+    dataStore.collection('/' + collect)
+      .where(nameField, myOpertor, context)
+      .get()
+      .then(snap => {
+        snap.forEach(doc => {
+          list.push(doc.data())
+          return doc.data();
+        });
+      });
+
+    return list;
+
+  }
+
+
+
+  findAllAlternative(collect: string) {
+    const dataStore = this.afs.firestore;
+    let list: any[] = []
+
+    dataStore.collection('/' + collect)
+
+      .get()
+      .then(snap => {
+        snap.forEach(doc => {
+          list.push(doc.data())
+          return doc.data();
+        });
+      });
+
+    return list;
+
+  }
+
 
 
 

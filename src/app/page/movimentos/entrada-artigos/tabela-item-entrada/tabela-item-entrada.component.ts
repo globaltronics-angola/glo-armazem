@@ -32,7 +32,7 @@ export class TabelaItemEntradaComponent implements OnInit, OnDestroy {
   findAllItemTemporal() {
 
     this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull()
-
+    console.log(this.listItems)
   }
 
   kFormatter(num: number) {

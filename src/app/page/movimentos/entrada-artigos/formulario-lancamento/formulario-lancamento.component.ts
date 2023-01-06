@@ -14,6 +14,7 @@ import ServiceEanArticleOrService from 'src/app/Services/ServiceEanArticleOrServ
 import { Observable, firstValueFrom, Subscription } from 'rxjs';
 import ServiceStorage from '../../../../Services/ServiceStorage';
 import ServiceMovimento from 'src/app/Services/ServiceMovimento';
+import ServiceFornecedor from 'src/app/Services/ServiceFornecedor';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class FormularioLancamentoComponent implements OnInit {
   listArticle: any[] = [];
   listProvide: Observable<any>;
   listStorage: Observable<any>;
-  listCountries: Observable<any>;
+  listCountries: any[];
   listArmarios: any[] = [];
   listShelf: any[] = [];
 
@@ -40,6 +41,7 @@ export class FormularioLancamentoComponent implements OnInit {
 
   know: Subscription | undefined
   listItems: any[] = [];
+  utilService: ServiceUtil;
 
 
 
@@ -50,12 +52,15 @@ export class FormularioLancamentoComponent implements OnInit {
   constructor(private store: StorageService) {
 
     this.listArticle = new ServiceEanArticleOrService(this.store).findArticles();
-    this.listProvide = new ServiceFornecedores(this.store).findAll();
+    this.listProvide = new ServiceFornecedor(this.store).findAll();
     this.listStorage = new ServiceStorage(this.store).findAll();
-    this.listCountries = new ServiceCountry(this.store).findAll();
+    this.listCountries = new ServiceCountry(this.store).listCountry();
 
     this.item = new ServiceMovimentoItems(this.store);
     this.move = new ServiceMovimento(this.store);
+
+    this.utilService = new ServiceUtil();
+
 
 
     this.init();
@@ -77,7 +82,7 @@ export class FormularioLancamentoComponent implements OnInit {
 
   save() {
 
-    this.move.oItem.dateOfMove = this.window.instanceSelectedDateItensCompra;
+
     this.move.oItem.items = this.listItems;
     this.move.oItem.storage = this.window.instanceSelectedArmazemId;
     this.move.oItem.moveType = this.TYPE_MOVEMENT;
@@ -90,27 +95,10 @@ export class FormularioLancamentoComponent implements OnInit {
 
   addListItems() {
 
-    // ja faz o split da virgula
-    this.item.oItem.others = this.window.instanceSelectedValueOthers
 
-    this.item.oItem.localCurrency = this.window.instanceSelectedIdCountry
-
-    this.item.oItem.article = this.window.instanceSelectedIdProducts
     this.item.oItem.moveType = this.TYPE_MOVEMENT
     this.item.oItem.move = ServiceUtil.VALUE_AT_NULLABLE
     this.item.oItem.move_id = ServiceUtil.VALUE_AT_NULLABLE
-
-
-    this.item.oItem.provider = this.window.instanceSelectedFornecedorId
-
-
-    this.item.oItem.localStorage = this.window.instanceSelectedArmazemId
-    this.item.oItem.localAmbry = this.window.instanceSelectedArmarioId
-    this.item.oItem.localShelf = this.window.instanceSelectedPrateleiraId
-
-
-    this.item.oItem.dateOfPurchase = this.window.instanceSelectedDateItensCompra
-
 
     this.item.save();
     ServiceEmitter.get("actionSendMovimento").emit("");
@@ -150,17 +138,6 @@ export class FormularioLancamentoComponent implements OnInit {
 
     this.know = ServiceEmitter.get('sendItemsMovimento').subscribe((attr: any) => {
 
-      this.window.instanceSelectedValueOthers = attr.others;
-      this.window.instanceSelectedIdCountry = attr.localCurrency
-      this.window.instanceSelectedDateItensCompra = attr.dateOfPurchase;
-
-      this.window.instanceSelectedArmazemId = attr.localStorage;
-      this.window.instanceSelectedArmarioId = attr.localAmbry;
-      this.window.instanceSelectedPrateleiraId = attr.localShelf;
-
-      this.window.instanceSelectedFornecedorId = attr.provider
-      this.window.instanceSelectedIdProducts = attr.article
-
       this.window.$('#kt_accordion_2_item_1').addClass('show');
 
 
@@ -168,12 +145,14 @@ export class FormularioLancamentoComponent implements OnInit {
 
 
       this.window.$('#tagify_others').val(attr.others);
+      this.window.$('#select_compra').val(attr.dateOfPurchase);
       this.window.$('#selectedProduct').val(attr.article.toString()).select2();
       this.window.$('#selectFornecedor').val(attr.provider).select2();
 
       this.window.$('#selectedArmazem').val(attr.localStorage).select2();
       this.window.$('#selectedArmario').val(attr.localAmbry).select2();
       this.window.$('#selectedPrateleira').val(attr.localShelf).select2();
+      this.window.$('#selectedCountry').val(attr.localCurrency).select2();
 
       this.item.oItem = attr;
 
@@ -201,46 +180,55 @@ export class FormularioLancamentoComponent implements OnInit {
 
     this.window.$('#selectedArmazem').select2().on('change', async (e: any) => {
 
-      this.window.instanceSelectedArmazemId = e.target.value;
+      this.move.oItem.storage = e.target.value;
+      this.item.oItem.localStorage = e.target.value;
       this.listArmarios = await new ServiceArmario(this.store).findByName(e.target.value);
     });
 
     this.window.$('#selectedArmario').select2().on('change', async (e: any) => {
 
-      this.window.instanceSelectedArmarioId = e.target.value;
-      this.listShelf = await new ServicePrateleias(this.store).findByName(e.target.value)
+      if (e.target.value) {
+        this.item.oItem.localAmbry = e.target.value;
+        this.listShelf = await new ServicePrateleias(this.store).findByName(e.target.value)
+      }
     })
 
     this.window.$('#selectedPrateleira').select2().on('change', (e: any) => {
-      this.window.instanceSelectedPrateleiraId = e.target.value
+      if (e.target.value) this.item.oItem.localShelf = e.target.value
     })
 
 
     this.window.$("#select_compra").flatpickr({
       dateFormat: "d, m Y",
       onChange: (selectedDates: any, dateStr: any, instance: any) => {
-        this.window.instanceSelectedDateItensCompra = dateStr
+        this.item.oItem.dateOfPurchase = dateStr
       },
     });
 
 
     this.window.$('#selectFornecedor').select2().on('change', (e: any) => {
-      this.window.instanceSelectedFornecedorId = e.target.value
+      if (e.target.value) { this.item.oItem.provider = e.target.value }
     })
 
     this.window.$('#selectedCountry').select2().on('change', (e: any) => {
-      this.window.instanceSelectedIdCountry = e.target.value
+      this.item.oItem.localCurrency = e.target.value
     })
 
     this.window.$('#selectedProduct').select2().on('change', (e: any) => {
-      this.window.instanceSelectedIdProducts = e.target.value
+      const valT = e.target.value
+      if (valT) {
+        this.item.oItem.article = valT
+        this.item.oItem.articleName = JSON.parse(JSON.parse(valT.toString()).article).name
+        this.item.oItem.articleId = JSON.parse(JSON.parse(valT.toString()).article).id
+
+      }
     })
 
 
     this.window.$("#select_data_movimento").flatpickr({
       dateFormat: "d, m Y",
       onChange: (selectedDates: any, dateStr: any, instance: any) => {
-        this.window.instanceSelectedDateItensCompraMovimento = dateStr
+        this.move.oItem.dateOfMove = dateStr
       }
     });
 
@@ -252,7 +240,7 @@ export class FormularioLancamentoComponent implements OnInit {
 
     // @ts-ignore
     othersTagify.addEventListener('change', (e: any) => {
-      this.window.instanceSelectedValueOthers = e.target.value.split(',')
+      this.item.oItem.others = e.target.value.split(',')
     })
 
   }

@@ -10,7 +10,7 @@
             </label>
             <!--end::Label-->
             <select class="form-select form-select-sm" id="clientsSelects" data-control="select2"
-              data-placeholder="Select an option">
+              data-allow-clear="true" data-clear="true"  data-placeholder="Selecciona um opção">
               <option></option>
               <option [value]="cl|json" *ngFor="let cl of listFornecedor|async">
                 {{ cl.name }}
@@ -41,10 +41,10 @@
               <span class="">Região / País</span>
             </label>
             <!--end::Label-->
-            <select class="form-select form-select-sm" id="paisesClients" data-control="select2"
+            <select class="form-select form-select-sm" id="paisesClients" data-control="select2" data-allow-clear="true"
               data-placeholder="Select an option">
               <option></option>
-              <option [value]="country|json" *ngFor="let country of listCountry|async">
+              <option [value]="country|json" *ngFor="let country of listCountry">
                 {{ '(' + country.iso + ')' + ' - ' + country.name }}
               </option>
             </select>

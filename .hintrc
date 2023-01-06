@@ -9,6 +9,9 @@
       {
         "select-name": "off"
       }
-    ]
+    ],
+    "disown-opener": "off",
+    "button-type": "off",
+    "no-inline-styles": "off"
   }
 }

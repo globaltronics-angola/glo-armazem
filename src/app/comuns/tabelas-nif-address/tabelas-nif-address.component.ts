@@ -3,6 +3,7 @@ import { StorageService } from "../../shared/storage.service";
 import ServiceNifClient from 'src/app/Services/ServiceNifClient';
 import { ServiceEmitter } from 'src/app/Services/ServiceEmitter';
 import { firstValueFrom, Subscription } from 'rxjs';
+import ServiceUtil from 'src/app/Services/ServiceUtil';
 
 @Component({
   selector: 'app-tabelas-nif-address',
@@ -17,6 +18,7 @@ export class TabelasNifAddressComponent implements OnInit, OnDestroy {
   clientNif: ServiceNifClient;
   snKnow: Subscription | undefined;
   instanceRequest: any;
+  util: ServiceUtil;
 
 
   constructor(private store: StorageService) {
@@ -26,6 +28,8 @@ export class TabelasNifAddressComponent implements OnInit, OnDestroy {
         = await this.clientNif.findByArticleId(this.instanceRequest));
 
     this.findAll();
+
+    this.util = new ServiceUtil();
 
   }
 

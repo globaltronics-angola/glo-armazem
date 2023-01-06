@@ -78,7 +78,7 @@ export class EansComponent implements OnInit {
     selectUnity.select2({
       minimumResultsForSearch: -1
     }).on('change', (e: any) => {
-     this.eanMode.IObjectClass.unity_id = e.target.value
+      this.eanMode.IObjectClass.unity_id = e.target.value
     })
 
   }
@@ -87,7 +87,7 @@ export class EansComponent implements OnInit {
   save() {
 
     this.eanMode.IObjectClass.id = this.eanMode.IObjectClass.ean.toUpperCase();
-
+    this.eanMode.IObjectClass.type_id = "PRODUCT"
     this.eanMode.save()
 
     ServiceEmitter.get('sendNewLine').emit(this.eanMode.IObjectClass)

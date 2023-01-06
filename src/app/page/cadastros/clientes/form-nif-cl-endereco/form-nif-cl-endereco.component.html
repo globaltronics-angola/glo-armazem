@@ -43,7 +43,7 @@
             <select class="form-select form-select-sm" id="countryClients" data-control="select2"
               data-placeholder="Select an option">
               <option></option>
-              <option [value]="country|json" *ngFor="let country of listCountry | async ">
+              <option [value]="country|json" *ngFor="let country of listCountry ">
                 {{ '(' + country.iso + ')' + ' - ' + country.name }}
               </option>
             </select>
@@ -51,21 +51,7 @@
           </div>
         </div>
 
-        <div *ngIf="listCountry| async as countries" class="col-12 col-sm-auto {{ countries.length< 1?'':'d-none'}}">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="">&nbsp;</span>
-            </label>
-            <!--end::Label-->
-            <button type="button" class="btn btn-sm btn-warning mr-2 " (click)="country.send()">
-              Gerar novos paises
-            </button>
-
-            <div class="fv-plugins-message-container invalid-feedback"></div>
-          </div>
-
-        </div>
+   
 
 
         <div class="col-12 col-sm-8">

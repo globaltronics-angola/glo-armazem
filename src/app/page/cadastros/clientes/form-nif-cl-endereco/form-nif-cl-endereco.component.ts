@@ -17,7 +17,7 @@ export class FormNifClEnderecoComponent implements OnInit {
 
 
   listClient: Observable<any>;
-  listCountry: Observable<any>;
+  listCountry: any[] = [];
   nif: ServiceNifClient;
 
   private window = (<any>window);
@@ -33,7 +33,7 @@ export class FormNifClEnderecoComponent implements OnInit {
   constructor(private store: StorageService) {
     this.nif = new ServiceNifClient(this.store);
     this.listClient = new ServiceClients(this.store).findAll();
-    this.listCountry = new ServiceCountry(this.store).findAll();
+    this.listCountry = new ServiceCountry(this.store).listCountry();
 
     this.country = new ServiceCountry(this.store);
   }

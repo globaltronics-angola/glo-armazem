@@ -1,10 +1,12 @@
 import { StorageService } from "../shared/storage.service";
 import { map } from "rxjs/operators";
+import { firstValueFrom } from "rxjs";
 import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
 import { Injectable } from '@angular/core';
 import ServiceMovimentoItems from "./ServiceMovimentoItems";
 import { ServiceEmitter } from "./ServiceEmitter";
+import ServiceArticles from "./ServiceArticles";
 
 
 @Injectable({
@@ -84,7 +86,7 @@ export default class ServiceMovimento {
 
   updateItems() {
 
-    this.oItem.items.forEach((item: any) => {
+    this.oItem.items.forEach(async (item: any) => {
 
       this.oItem.itemsQuantity += item.quantity
 
@@ -96,10 +98,20 @@ export default class ServiceMovimento {
         details: this.oItem.details,
         dateOfMove: this.oItem.dateOfMove,
       };
+
       itemMove.move_id = this.oItem.id;
       itemMove.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
 
-      this.store.createForceMyId(itemMove, ServiceMovimento.STORAGE_MOVE_ITEM).then(() => { })
+      let article = new ServiceArticles(this.store);
+      await firstValueFrom(this.store.findById(ServiceArticles.STORAGE_ARTICLES, itemMove.articleId)).then((e) => {
+        article.Article = e;
+        article.Article.updated_mode = true;
+       article.Article.quantity += item.quantity;
+
+       article.save()
+      })
+
+     this.store.createForceMyId(itemMove, ServiceMovimento.STORAGE_MOVE_ITEM).then(() => { })
 
     })
 

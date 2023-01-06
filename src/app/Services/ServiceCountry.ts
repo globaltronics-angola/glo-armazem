@@ -17,7 +17,7 @@ export default class ServiceCountry {
   static STORAGE_COUNTRIES: string = "global-countries";
 
   constructor(private store: StorageService) {
- 
+
   }
 
   findAll() {
@@ -84,7 +84,10 @@ export default class ServiceCountry {
   }
 
 
-   send() {
+  send() {
+
+    let listPaisers: any[] = [];
+
     Paises.forEach((paises: any) => {
 
       let myPaise: any = {}
@@ -105,17 +108,13 @@ export default class ServiceCountry {
         "iso": paises.sigla
       })
 
-
-      this.store.createdForceGenerateId(myPaise, ServiceCountry.STORAGE_COUNTRIES).then(
-        resp => {
-          //  (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
-          console.log('any success full info')
-        },
-        err => {
-          alert('Ocorreu um determido erro ')
-        }
-      );
-
+      listPaisers.push(myPaise)
     })
+
+    return listPaisers;
+  }
+
+  public listCountry(){
+    return this.send()
   }
 }

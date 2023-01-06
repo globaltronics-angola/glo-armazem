@@ -14,7 +14,7 @@
     <tbody>
     <tr *ngFor="let nifO of listNifAddress">
       <td>{{ nifO.nif?.toUpperCase()}}</td>
-      <td>{{ '(' + nifO.country?.iso + ') - ' + nifO.country?.name}}</td>
+      <td>{{ '(' + util.convertJson(nifO.country)?.iso + ') - ' + util.convertJson(nifO.country)?.name}}</td>
       <td><span class="badge badge-light-dark mx-2" *ngFor="let ob of  nifO.address">{{ ob}}</span></td>
       <td>{{  nifO.updated_at }}</td>
 

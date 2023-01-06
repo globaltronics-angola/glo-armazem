@@ -51,7 +51,7 @@ export default class ServiceEanArticleOrService implements OnDestroy {
   }
 
   public findArticles() {
-    const res= this.store.findByDifferenceName(ServiceEanArticleOrService.STORAGE_NAME, 'type_id', 'NULL');
+    const res= this.store.findByDifferenceNameOperator(ServiceEanArticleOrService.STORAGE_NAME, 'type_id', 'PRODUCT', '==');
     console.log({res});
     return res
 

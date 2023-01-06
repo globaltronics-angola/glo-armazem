@@ -30,7 +30,7 @@ export class FormsGeralFornecedoresComponent implements OnInit {
     const selectDepartment = this.window.$('#departamentosSelectForne');
 
     selectDepartment.select2().on('change', (e: any) => {
-      this.window.instanceSelectedIdDepartments = e.target.value
+      this.serviceFornecedor.IObjectClass.department = e.target.value
     })
 
     const otherInfo = document.querySelector("#otherInfoMultipleItems");
@@ -42,7 +42,7 @@ export class FormsGeralFornecedoresComponent implements OnInit {
 
     // @ts-ignore
     otherInfo.addEventListener('change', (e: any) => {
-      this.window.instanceSelectedValueOtherInfo = e.target.value
+      this.serviceFornecedor.IObjectClass.others = e.target.value?.split(',')
     })
 
   }
@@ -55,9 +55,6 @@ export class FormsGeralFornecedoresComponent implements OnInit {
 
 
   save() {
-
-    this.serviceFornecedor.IObjectClass.department = JSON.parse(this.window.instanceSelectedIdDepartments.toString());
-    this.serviceFornecedor.IObjectClass.others = this.window.instanceSelectedValueOtherInfo?.split(',');
 
     this.serviceFornecedor.save();
   }

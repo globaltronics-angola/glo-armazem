@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from "@angular/router";
 import { GoogleAuthProvider } from "@angular/fire/auth"
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { firstValueFrom} from "rxjs"
 
 
 @Injectable({
@@ -11,7 +13,7 @@ export class AuthService {
 
 
   user: any;
-  constructor(private fireAuth: AngularFireAuth, private router: Router) {
+  constructor(private fireAuth: AngularFireAuth, private router: Router, private fs: AngularFirestore) {
 
     let userInfo = sessionStorage.getItem('_user') as string
     if (userInfo != '')
@@ -72,13 +74,28 @@ export class AuthService {
 
   // Sign In with Google provider service
   signInGoogleProvider() {
+
+
+
+
     return this.fireAuth.signInWithPopup(new GoogleAuthProvider).then(
       resp => {
-        this.router.navigate(['/']).then()
-        localStorage.setItem('token', JSON.stringify(resp.user?.uid))
+
+        console.log(resp);
         this.user = resp.user;
 
-        sessionStorage.setItem('_user', JSON.stringify(this.user));
+
+
+        firstValueFrom(this.fs.collection('/users').doc('/' + this.user.email).valueChanges())
+        .then(()=>{
+          this.router.navigate(['/']).then()
+          localStorage.setItem('token', JSON.stringify(resp.user?.uid))
+
+
+          sessionStorage.setItem('_user', JSON.stringify(this.user));
+        })
+
+
       },
       err => {
         console.log(err.message)

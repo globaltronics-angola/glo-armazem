@@ -18,7 +18,7 @@ export class FornecedorNifEnderecosComponent implements OnInit {
 
   serviceNifClient: ServiceNifClient;
   listFornecedor: Observable<any>;
-  listCountry: Observable<any>;
+  listCountry: any[] = [];
 
   async ngOnInit() {
     this.initJQueryScriptsFunctions()
@@ -27,17 +27,13 @@ export class FornecedorNifEnderecosComponent implements OnInit {
   constructor(private store: StorageService) {
     this.serviceNifClient = new ServiceNifClient(this.store);
     this.listFornecedor = new ServiceFornecedor(this.store).findAll();
-    this.listCountry = new ServiceCountry(this.store).findAll();
+    this.listCountry = new ServiceCountry(this.store).listCountry();
   }
 
   save() {
 
-    this.serviceNifClient.IObjectClass.client = JSON.parse(this.window.instanceSelectedIdClient);
-    this.serviceNifClient.IObjectClass.country = JSON.parse(this.window.instanceSelectedIdCountry);
-
     this.serviceNifClient.IObjectClass.id = this.serviceNifClient.IObjectClass.nif.toUpperCase();
 
-    this.serviceNifClient.IObjectClass.address = this.window.instanceSelectedValueAddress.split(',');
     ServiceEmitter.get('sendNewNif').emit(this.serviceNifClient.IObjectClass)
     this.serviceNifClient.save()
 
@@ -49,18 +45,21 @@ export class FornecedorNifEnderecosComponent implements OnInit {
     const selectClient = this.window.$('#clientsSelects');
     const address = document.querySelector("#addressPuts");
 
-    selectCountry.select2().on('change', (e: any) => { this.window.instanceSelectedIdCountry = e.target.value })
-    selectClient.select2().on('change', (e: any) => { this.window.instanceSelectedIdClient = e.target.value })
+    selectCountry.select2().on('change', (e: any) => { this.serviceNifClient.IObjectClass.country = e.target.value })
+    selectClient.select2().on('change', (e: any) => {
+      this.serviceNifClient.IObjectClass.client = e.target.value
+      this.serviceNifClient.IObjectClass.client_id = JSON.parse(this.serviceNifClient.IObjectClass.client).id
+    })
 
 
     // @ts-ignore
     new Tagify(address, {
-      originalInputValueFormat: (valuesArr:any) => valuesArr.map((item:any) => item.value).join(',')
+      originalInputValueFormat: (valuesArr: any) => valuesArr.map((item: any) => item.value).join(',')
     });
 
     // @ts-ignore
     address.addEventListener('change', (e: any) => {
-      this.window.instanceSelectedValueAddress = e.target.value
+      this.serviceNifClient.IObjectClass.address = e.target.value?.split(",");
     })
   }
 

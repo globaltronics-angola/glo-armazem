@@ -14,10 +14,10 @@ export default class ServiceNifClient {
 
   private window: any = (<any>window)
 
-  IObjectClass:any = {
+  IObjectClass: any = {
     id: "NULL",
     nif: "",
-    client: undefined,
+    client: "",
     country: undefined,
     address: undefined,
     created_at: "NULL",
@@ -79,11 +79,15 @@ export default class ServiceNifClient {
 
   async findByArticleId(id: string) {
 
-    const client = JSON.parse(id.toString())
+    if (id) {
+      const client = JSON.parse(id)?.id
 
-    const list = await this.store.findByOther(ServiceNifClient.STORAGE_NAME, 'client', client);
+      const list = await this.store.findByOther(ServiceNifClient.STORAGE_NAME, 'client_id', client);
+      return list;
 
-    return list
+    }
+
+    return []
   }
 
 

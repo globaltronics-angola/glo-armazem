@@ -3,7 +3,7 @@
     <thead>
       <tr class="fw-semibold fs-6 text-gray-800">
         <th class="min-w-200px">Produto </th>
-        <th class="min-w-100px">Referencia</th>
+
         <th class="min-w-100px">Localização</th>
         <th class="min-w-100px">QT</th>
         <th class="min-w-100px">Custo</th>
@@ -14,10 +14,12 @@
     </thead>
     <tbody>
       <tr *ngFor="let article of listItems">
-        <td>{{ convertJson(article.article).ean }}, <span class="badge badge-light-primary">
-            {{ convertJson(article.article).article_id.name}}
-          </span> </td>
-        <td>{{ convertJson(article.article).type_id.name }}</td>
+        <td>{{ convertJson(article.article).ean }},
+          <span class="badge badge-light-primary">
+            {{ article.articleName }}
+          </span>
+        </td>
+
         <td><span class="badge badge-light-success">{{ convertJson(article.localStorage).name }}</span></td>
         <td><span class="badge badge-light-dark">{{ article.quantity }}</span> </td>
         <td>{{kFormatter(article.financialCost) + ' ' + convertJson(article.localCurrency).iso }}</td>
