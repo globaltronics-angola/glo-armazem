@@ -24,6 +24,8 @@ export default class ServiceUtil{
   static MESSAGE_SUCCESS_DELETE = "Foi removido a informação com sucesso!"
   static MESSAGE_ERROR = "Não foi inserido a informação com sucesso, possivel ocorrência de erro!"
 
+  static SAVE_TEXT = "Gravar"
+
 
   convertJson(data: any) {
     if (data)
@@ -39,6 +41,7 @@ export default class ServiceUtil{
 
       return this.user;
   }
+
 
 
 

@@ -23,8 +23,6 @@ export class ArmazemFormGeralComponent implements OnInit {
   serviceStorage: ServiceStorage;
   listCountry: Observable<any>;
 
-  private STORAGE_PAISES = "global-countries";
-
 
   private window = (<any>window);
 
@@ -46,18 +44,15 @@ export class ArmazemFormGeralComponent implements OnInit {
 
   initJQueryFunctions() {
 
-    const countrySelect = this.window.$('#selectCountry');
+
+
+
+
     const enddessTagify = document.querySelector("#tagifyAddress");
-
-    countrySelect.select2().on('change', (event: any) => {
-      this.serviceStorage.IObjectClass.country = event.target.value
-    })
-
-
 
     // @ts-ignore
     new Tagify(enddessTagify, {
-      originalInputValueFormat: (valuesArr: any[]) => valuesArr.map((item:any) => item.value).join(',')
+      originalInputValueFormat: (valuesArr: any[]) => valuesArr.map((item: any) => item.value).join(',')
     });
 
     // @ts-ignore
@@ -65,54 +60,15 @@ export class ArmazemFormGeralComponent implements OnInit {
       this.serviceStorage.IObjectClass.address = e.target.value.split(',');
     })
 
+
+
   }
 
   ngOnInit(): void {
 
     (<any>window).InstanceAplication.init()
-
-
-
     this.initJQueryFunctions()
 
-
-  }
-
-
-
-  testing() {
-    Paises.forEach((paises: any) => {
-
-      let myPaise: any = {}
-      let county: any = PaisesPhone.find((ps: any) => ps.iso == paises.sigla)
-
-      myPaise.id = paises.sigla.toUpperCase()
-
-      myPaise.name = paises.nome_pais
-      myPaise.genero = paises.gentilico
-      myPaise.iso = paises.sigla
-      //myPaise.phone = "";
-      //myPaise.phone = county?.code;
-
-      myPaise.externalResquestyCounty = paises
-      myPaise.externalResquestyCountyTo = (county ? county : {
-        "country": paises.nome_pais,
-        "code": "Not found",
-        "iso": paises.sigla
-      })
-
-
-      this.store.createdForceGenerateId(myPaise, this.STORAGE_PAISES).then(
-        resp => {
-          //  (<any>window).sentMessageSuccess.init('foi inserido com sucesso')
-          console.log('any success full info')
-        },
-        err => {
-          alert('Ocorreu um determido erro ')
-        }
-      );
-
-    })
   }
 
 }

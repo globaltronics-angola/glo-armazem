@@ -17,7 +17,16 @@
   <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
 
   <link href="assets/plugins/custom/jstree/jstree.bundle.css" rel="stylesheet" type="text/css" />
-
+  <style>
+    body::-webkit-scrollbar-thumb {
+      background-color: #0b1e2c41;
+      /* color of the scroll thumb */
+      border-radius: 20px;
+      /* roundness of the scroll thumb */
+      border: 3px solid rgba(255, 166, 0, 0.144);
+      /* creates padding around scroll thumb */
+    }
+  </style>
 
 </head>
 <!--  class="app-default" -->
@@ -27,6 +36,7 @@
   data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true"
   data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true"
   data-kt-app-toolbar-enabled="true">
+
 
   <app-root></app-root>
 
@@ -59,9 +69,32 @@
   <script src="/assets/js/custom/utilities/modals/new-target.js"></script>
   <script src="/assets/js/custom/utilities/modals/users-search.js"></script>
   <script src="/assets/plugins/custom/jstree/jstree.bundle.js"></script>
+  <script src="/assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js"></script>
+  <script src="/assets/plugins/custom/ckeditor/ckeditor-inline.bundle.js"></script>
+
+
 
 
   <script>
+
+
+
+
+    window.Editor = {
+      init: function (elementIdName) {
+
+        InlineEditor
+          .create(document.querySelector(elementIdName))
+          .then(editor => {
+            console.log(editor);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      }
+    }
+
+
 
     window.InstanceAplication = {
       init: function () {

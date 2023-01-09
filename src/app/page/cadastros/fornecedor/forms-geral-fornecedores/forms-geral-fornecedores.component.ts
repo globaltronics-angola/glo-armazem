@@ -4,6 +4,7 @@ import { StorageService } from "../../../../shared/storage.service";
 import ServiceDepartment from 'src/app/Services/ServiceDepartment';
 import { Observable } from 'rxjs';
 import ServiceFornecedor from 'src/app/Services/ServiceFornecedor';
+import ServiceUtil from 'src/app/Services/ServiceUtil';
 
 @Component({
   selector: 'app-forms-geral-fornecedores',
@@ -14,7 +15,7 @@ export class FormsGeralFornecedoresComponent implements OnInit {
 
 
   private window = (<any>window);
-
+  ServiceUtil: any = ServiceUtil;
   listDepartment: Observable<any>;
   serviceFornecedor: ServiceFornecedor;
 

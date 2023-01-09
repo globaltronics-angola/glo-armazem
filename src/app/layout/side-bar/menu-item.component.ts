@@ -6,7 +6,9 @@ import {Component, Input} from '@angular/core';
   template: `
     <div class="menu-item">
       <!--begin:Menu link-->
-      <a class="menu-link " routerLink="{{ routerLink}}"  routerLinkActive="active">
+      <a class="menu-link " routerLink="{{ routerLink}}"
+        routerLink="{{ routerLinkTo}}"
+       routerLinkActive="active">
         <span class="menu-bullet">
           <span class="bullet bullet-dot"></span>
         </span>
@@ -25,4 +27,5 @@ export class MenuItemComponent {
     </span>
   `;
   @Input() routerLink = '#'
+  @Input() routerLinkTo = '#'
 }

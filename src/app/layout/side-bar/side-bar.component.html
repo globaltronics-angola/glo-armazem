@@ -46,9 +46,10 @@
             <span class="menu-heading fw-bold text-uppercase fs-7">&nbsp;</span>
           </div>
         </div>
-        <div data-kt-menu-trigger="click" class="menu-item {{ this.routerNav.url.toString().indexOf('cadastros')>0?'show':'' }}    menu-accordion" >
+        <div data-kt-menu-trigger="click"
+          class="menu-item {{ this.routerNav.url.toString().indexOf('cadastros')>0?'show':'' }}    menu-accordion">
 
-          <span class="menu-link" >
+          <span class="menu-link">
             <span class="menu-icon">
               <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
               <span class="svg-icon svg-icon-2">
@@ -69,15 +70,19 @@
 
           <div class="menu-sub menu-sub-accordion">
 
-            <app-menu-item name="Artigo" routerLink="/cadastros/artigos/geral"></app-menu-item>
+            <app-menu-item name="Artigo" routerLink="/cadastros/artigos/geral"
+              routerLinkTo="/cadastros/artigos/todos"></app-menu-item>
 
-            <app-menu-item name="Fornecedor" routerLink="/cadastros/fornecedor/geral"></app-menu-item>
+            <app-menu-item name="Fornecedor" routerLink="/cadastros/fornecedor/geral"
+              routerLinkTo="/cadastros/fornecedor/todos"></app-menu-item>
 
             <div class="menu-inner flex-column collapse" id="kt_aside_menu_collapse">
 
-              <app-menu-item name="Cliente" routerLink="/cadastros/clientes/geral"></app-menu-item>
+              <app-menu-item name="Cliente" routerLink="/cadastros/clientes/geral"
+                routerLinkTo="/cadastros/clientes/todos"></app-menu-item>
 
-              <app-menu-item name="Armazem" routerLink="/cadastros/armazem/geral"></app-menu-item>
+              <app-menu-item name="Armazem" routerLink="/cadastros/armazem/geral"
+                routerLinkTo="/cadastros/armazem/todos"></app-menu-item>
 
             </div>
 
@@ -111,7 +116,8 @@
 
 
 
-        <div data-kt-menu-trigger="click" class="menu-item  {{ this.routerNav.url.toString().indexOf('movimentos')>0?'show':'' }} menu-accordion">
+        <div data-kt-menu-trigger="click"
+          class="menu-item  {{ this.routerNav.url.toString().indexOf('movimentos')>0?'show':'' }} menu-accordion">
           <!--begin:Menu link-->
           <span class="menu-link">
             <span class="menu-icon">
@@ -136,11 +142,14 @@
           <!--begin:Menu sub-->
           <div class="menu-sub menu-sub-accordion">
 
-            <app-menu-item name="Entrada de Artigos" routerLink="/movimentos/entradas/entradas"></app-menu-item>
+            <app-menu-item name="Entrada de Artigos" routerLink="/movimentos/entradas/entradas"
+              routerLinkTo="/movimentos/entradas/tabela"></app-menu-item>
 
-            <app-menu-item name="Requisição de Artigos" routerLink="/movimentos/requisicao/formulario"></app-menu-item>
+            <app-menu-item name="Requisição de Artigos" routerLink="/movimentos/requisicao/formulario"
+              routerLinkTo="/movimentos/requisicao/tabela"></app-menu-item>
 
-            <app-menu-item name="Transferncia de Artigos" routerLink="/movimentos/requisicao/transferências"></app-menu-item>
+            <app-menu-item name="Transferncia de Artigos" routerLink="/movimentos/requisicao/transferências"
+              routerLink="/movimentos/requisicao/tabela"></app-menu-item>
 
             <app-menu-item name="Devoluções de Artigos"></app-menu-item>
 
@@ -237,7 +246,8 @@
           <!--end:Menu content-->
         </div>
 
-        <div data-kt-menu-trigger="click" class="menu-item {{ this.routerNav.url.toString().indexOf('configuracao')>0?'show':'' }}   menu-accordion">
+        <div data-kt-menu-trigger="click"
+          class="menu-item {{ this.routerNav.url.toString().indexOf('configuracao')>0?'show':'' }}   menu-accordion">
           <!--begin:Menu link-->
 
 

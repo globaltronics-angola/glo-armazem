@@ -5,6 +5,7 @@ import ServiceArticles from 'src/app/Services/ServiceArticles';
 import ServiceModelArticle from 'src/app/Services/ServiceModelArticle';
 import { Observable, Subscription } from "rxjs";
 import ServiceCategories from 'src/app/Services/ServiceCategories';
+import ServiceUtil from 'src/app/Services/ServiceUtil';
 
 @Component({
   selector: 'app-form-geral',
@@ -27,6 +28,8 @@ export class FormGeralComponent implements OnInit {
   private window = (<any>window);
 
   sinKnow: Subscription | undefined
+
+  ServiceUtil: any = ServiceUtil
 
   constructor(private auth: AuthService, private store: StorageService) {
 
