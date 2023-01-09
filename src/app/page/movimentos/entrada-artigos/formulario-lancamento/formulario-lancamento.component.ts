@@ -42,11 +42,12 @@ export class FormularioLancamentoComponent implements OnInit {
   know: Subscription | undefined
   listItems: any[] = [];
   utilService: ServiceUtil;
+  util: any = ServiceUtil;
 
-  dateRef:string  = ""
+  dateRef: string = ""
 
 
-  printerPdf(){
+  printerPdf() {
     this.window.print();
   }
 
@@ -65,7 +66,7 @@ export class FormularioLancamentoComponent implements OnInit {
 
     this.utilService = new ServiceUtil();
 
-    this.dateRef = "ENT-" +  moment().format("DDMMYYYY") + "-0001";
+    this.dateRef = "ENT-" + moment().format("DDMMYYYY") + "-0001";
 
     this.init();
 

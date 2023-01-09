@@ -80,7 +80,7 @@
       <div class="col-12 col-sm-12 col-lg-12">
         <div class="row">
 
-          <div class="col-sm-5">
+          <div class="col-sm-6">
             <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
               <!--begin::Label-->
               <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="selectedProduct">
@@ -90,7 +90,7 @@
               <div class="input-group input-group-sm input-group-solid flex-nowrap">
                 <!--end::Label-->
                 <div class="overflow-hidden flex-grow-1">
-                  <select class="form-select form-select-sm selector rounded-end-0" data-control="select2"
+                  <select class="form-select form-select-sm selector " data-control="select2"
                     data-allow-clear="true" data-placeholder="Selecciona o modelo" id="selectedProduct">
                     <option></option>
                     <option [value]="ean|json" *ngFor="let ean of listArticle">
@@ -100,9 +100,6 @@
                   </select>
                 </div>
 
-                <button class="input-group-text" id="new_produtos_basic_button">
-                  <i class="fa fa-plus"></i> &nbsp; New
-                </button>
               </div>
               <div class="fv-plugins-message-container invalid-feedback"></div>
             </div>
@@ -149,15 +146,9 @@
               <div class="fv-plugins-message-container invalid-feedback"></div>
             </div>
           </div>
-
-
-
-
-
-
         </div>
 
-        <div class="row ">
+        <div class="row">
 
           <div class="col-sm-3">
             <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
@@ -254,10 +245,6 @@
                     </option>
                   </select>
                 </div>
-                <button class="input-group-text" style="max-width: 80px; min-width: 80px"
-                  id="new_fornecedorProd_basic_button">
-                  <i class="fa fa-plus"></i> &nbsp; Nova
-                </button>
               </div>
 
               <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -278,9 +265,9 @@
             </div>
           </div>
 
-          <div class="col-12 col-sm-auto mb-4 pt-9">
+          <div class="col-12 col-sm-auto col-lg-1 mb-4 pt-9">
             <button type="button" class="btn btn-sm btn-success mr-2 btn-sm" (click)="addListItems()">
-              Guardar
+              {{ util.SAVE_TEXT}}
             </button>
           </div>
 

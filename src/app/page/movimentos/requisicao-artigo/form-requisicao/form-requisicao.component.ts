@@ -45,6 +45,7 @@ export class FormRequisicaoComponent implements OnInit {
   productSelector: any = ""
   listItems: any[] = [];
 
+  util: any = ServiceUtil
   // temporarios
 
   idMovement: any = "1232423"
@@ -71,7 +72,7 @@ export class FormRequisicaoComponent implements OnInit {
     this.move.oItem.items = this.listItems;
     this.move.oItem.moveType = this.TYPE_MOVEMENT;
 
- 
+
 
 
     this.move.save();

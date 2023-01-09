@@ -9,7 +9,7 @@
             <span class="required">Nome</span>
           </label>
           <!--end::Label-->
-          <input type="text" [(ngModel)]="article.Article.name" name="description" class="form-control form-control-sm"
+          <input type="text" [(ngModel)]="article.Article.name" name="name" class="form-control form-control-sm"
             placeholder="insira a descrição longa">
           <div class="fv-plugins-message-container invalid-feedback"></div>
         </div>
@@ -24,7 +24,7 @@
               <span class="">Modelo</span>
             </label>
             <!--end::Label-->
-            <input type="text" [(ngModel)]="article.Article.name" name="description"
+            <input type="text" [(ngModel)]="article.Article.model" name="model"
               class="form-control form-control-sm" placeholder="insira a descrição longa">
 
             <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -38,7 +38,7 @@
               <span class="">Marca</span>
             </label>
             <!--end::Label-->
-            <input type="text" [(ngModel)]="article.Article.name" name="description"
+            <input type="text" [(ngModel)]="article.Article.marquee" name="marquee"
               class="form-control form-control-sm" placeholder="insira a descrição longa">
 
             <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -53,19 +53,9 @@
             </label>
             <!--end::Label-->
 
-            <div class="input-group input-group-sm flex-nowrap">
-              <select class="form-select form-select-sm rounded-end-0" id="categories" data-control="select2" multiple
-                data-placeholder="Select an option">
-                <option></option>
-                <option [value]="cate|json" *ngFor="let cate of listCategories | async">
-                  {{ cate.name }}
-                </option>
-              </select>
-
-              <button class="input-group-text btn-primary" id="new_categorias_basic_button">
-                <i class="bi bi-plus fs-4"></i> Nova
-              </button>
-            </div>
+            <input class="form-control form-control-sm" placeholder="insira aqui a categoria"
+                   [(ngModel)]="article.Article.category_id"
+                   id="categories" name="category_id" />
 
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
@@ -84,7 +74,7 @@
             <!--end::Label-->
             <div class="input-group">
               <input type="text" class="form-control form-control-sm" style="letter-spacing: 8px" maxlength="13"
-                placeholder="Enter Target Title" [(ngModel)]="article.Article.ean" name="codeeans">
+                placeholder="Enter Target Title" [(ngModel)]="article.Article.ean" name="ean" >
               <span class="input-group-text cursor-pointer" (click)="generateRef()" id="generate_key">
                 <i class="fa fa-sync-alt"></i>
               </span>
@@ -121,14 +111,6 @@
       </div>
     </div>
 
-
-
-
-
   </form>
-
-  <app-modelos></app-modelos>
-  <app-categorias></app-categorias>
-
 
 </div>

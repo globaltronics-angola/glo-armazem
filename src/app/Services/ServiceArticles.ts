@@ -1,8 +1,10 @@
-import { StorageService } from "../shared/storage.service";
-import { map } from "rxjs/operators";
+import {StorageService} from "../shared/storage.service";
+import {map} from "rxjs/operators";
 import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {firstValueFrom} from "rxjs";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Injectable({
@@ -11,7 +13,7 @@ import { Injectable } from '@angular/core';
 export default class ServiceArticles {
 
   static STORAGE_ARTICLES: string = "global-articles"
-
+  static STORAGE_RECYCLER: string = "global-recycling"
 
 
   private window: any = (<any>window)
@@ -19,10 +21,10 @@ export default class ServiceArticles {
   Article: any = {
     id: "NULL",
     name: undefined,
-    model_id: "NULL",
-
-    category_id: "NULL",
-
+    model: "",
+    marquee: "",
+    ean: "",
+    category_id: "",
     details: "",
     quantity: 0,
     created_at: "NULL",
@@ -36,6 +38,7 @@ export default class ServiceArticles {
     let user = new ServiceUtil().getSession()
 
     this.Article.user = user;
+
 
   }
 
@@ -60,8 +63,8 @@ export default class ServiceArticles {
         () => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
           this.Article.name = undefined
-          this.Article.model_id = "NULL";
-          this.Article.category_id = "NULL";
+
+          this.Article.category_id = "";
           this.Article.details = ""
         },
         err => {
@@ -81,7 +84,30 @@ export default class ServiceArticles {
     })
   }
 
+  delete() {
 
 
+    this.store.deleted(ServiceArticles.STORAGE_ARTICLES, this.Article.id).then(() => {
+      this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS_DELETE)
+    });
 
+
+  }
+
+
+  async set(articleID: any) {
+    await firstValueFrom(this.store.findById(ServiceArticles.STORAGE_ARTICLES, articleID)).then(async (article:any) => {
+      this.Article.id =  article.id
+      this.Article.name =  article.name
+      this.Article.category_id =  article.category_id
+      this.Article.model =  article.model
+      this.Article.marquee =  article.marquee
+      this.Article.ean =  article.ean
+      this.Article.details =  article.details
+    })
+    this.window.category_id = await this.Article.category_id
+    await this.window.$('#categories').val(this.Article.category_id)
+
+    this.Article.updated_mode = true;
+  }
 }

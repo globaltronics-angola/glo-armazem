@@ -1,11 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from "../../../../shared/auth.service";
-import { StorageService } from "../../../../shared/storage.service";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AuthService} from "../../../../shared/auth.service";
+import {StorageService} from "../../../../shared/storage.service";
 import ServiceArticles from 'src/app/Services/ServiceArticles';
 import ServiceModelArticle from 'src/app/Services/ServiceModelArticle';
-import { Observable, Subscription } from "rxjs";
+import {Observable, Subscription, switchMap} from "rxjs";
 import ServiceCategories from 'src/app/Services/ServiceCategories';
 import ServiceUtil from 'src/app/Services/ServiceUtil';
+
+//@ts-ignore
+import {writeFile} from "../../../../../ServerLocal";
+import {ServiceEmitter} from "../../../../Services/ServiceEmitter";
+import {ActivatedRoute} from "@angular/router";
+import * as Tagify from "@yaireo/tagify";
 
 @Component({
   selector: 'app-form-geral',
@@ -13,12 +19,8 @@ import ServiceUtil from 'src/app/Services/ServiceUtil';
   styleUrls: ['./form-geral.component.css']
 })
 
-export class FormGeralComponent implements OnInit {
+export class FormGeralComponent implements OnInit, OnDestroy {
 
-
-
-  listUnity: Observable<any>;
-  listModel: Observable<any> | null = null;
 
   listCategories: Observable<any> | null = null;
 
@@ -31,41 +33,55 @@ export class FormGeralComponent implements OnInit {
 
   ServiceUtil: any = ServiceUtil
 
-  constructor(private auth: AuthService, private store: StorageService) {
+
+
+  constructor(private auth: AuthService, private store: StorageService, private route: ActivatedRoute) {
 
     this.article = new ServiceArticles(this.store);
 
-    this.listUnity = new ServiceCategories(this.store).findAll();
-    this.listModel = new ServiceModelArticle(this.store).findAll();
     this.listCategories = new ServiceCategories(this.store).findAll();
+    try {
+      if (route.snapshot.paramMap.get('article')) {
+        this.article.set(route.snapshot.paramMap.get('article'))
+        this.window.$('#categories').val(this.window.category_id)
+      }
+    } catch (err) {
+      console.table(err)
+    }
+
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.window.InstanceAplication.init()
     this.eventChang();
   }
 
-  generateRef() { }
+  ngOnDestroy() {
+
+  }
+
+  generateRef() {
+  }
+
   save() {
-
-    this.article.Article.model_id = JSON.parse(this.window.instanceSelectedId.toString());
-    this.article.Article.category_id = JSON.parse('[' + this.window.instanceSelectedIdCategories.toString().replace('\n', '') + ']');
-
     this.article.save();
   }
 
   eventChang(): void {
 
-    const modelArticles = this.window.$('#modelArticles');
-    const modelCategories = this.window.$("#categories");
+    const categories = document.querySelector("#categories");
 
-    modelArticles.select2().on('change', (event: any) => {
-      this.window.instanceSelectedId = event.target.value
+
+    // @ts-ignore
+    new Tagify(categories, {
+      originalInputValueFormat: (valuesArr: any[]) => valuesArr.map((item: any) => item.value).join(',')
+    });
+
+    // @ts-ignore
+    categories.addEventListener('change', (e: any) => {
+      this.article.Article.category_id = e.target.value
     })
 
 
-    modelCategories.select2().on('change', (event: any) => {
-      this.window.instanceSelectedIdCategories = modelCategories.select2("val");
-    })
   }
 }

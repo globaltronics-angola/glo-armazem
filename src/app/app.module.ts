@@ -77,6 +77,15 @@ import { NewProductComponent } from './page/movimentos/entrada-artigos/formulari
 import { NewLocalizacaoComponent } from './page/movimentos/entrada-artigos/formulario-lancamento/new-localizacao/new-localizacao.component';
 import { NewFornecedorComponent } from './page/movimentos/entrada-artigos/formulario-lancamento/new-fornecedor/new-fornecedor.component';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { FormularioArtigosComponent } from './page/movimentos/transferncia-artigos/formulario-artigos/formulario-artigos.component';
+import { TabelaTransferenciasComponent } from './page/movimentos/transferncia-artigos/tabela-transferencias/tabela-transferencias.component';
+import { ItensTransferenciaComponent } from './page/movimentos/transferncia-artigos/itens-transferencia/itens-transferencia.component';
+import { DevolucaoArtigoComponent } from './page/movimentos/devolucao-artigo/devolucao-artigo.component';
+import { FormularioDevolucaoComponent } from './page/movimentos/devolucao-artigo/formulario-devolucao/formulario-devolucao.component';
+import { ItemsDevolucaoComponent } from './page/movimentos/devolucao-artigo/items-devolucao/items-devolucao.component';
+import { TabelaDevolucaoComponent } from './page/movimentos/devolucao-artigo/tabela-devolucao/tabela-devolucao.component';
+import { InventarioComponent } from './page/movimentos/inventario/inventario.component';
+import { TabelaInventarioComponent } from './page/movimentos/inventario/tabela-inventario/tabela-inventario.component';
 
 const test = <T>(val: T) => {
   console.log('init')
@@ -142,6 +151,15 @@ const test = <T>(val: T) => {
     NewProductComponent,
     NewLocalizacaoComponent,
     NewFornecedorComponent,
+    FormularioArtigosComponent,
+    TabelaTransferenciasComponent,
+    ItensTransferenciaComponent,
+    DevolucaoArtigoComponent,
+    FormularioDevolucaoComponent,
+    ItemsDevolucaoComponent,
+    TabelaDevolucaoComponent,
+    InventarioComponent,
+    TabelaInventarioComponent,
   ],
   imports: [
     BrowserModule,

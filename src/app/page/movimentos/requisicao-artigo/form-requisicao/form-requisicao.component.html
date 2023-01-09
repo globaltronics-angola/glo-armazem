@@ -3,256 +3,241 @@
 
     <div class="row">
 
-      <div class="col-12 col-lg-8 col-sm-8 mb-2">
+      <div class="col-12 col-lg-8 col-sm-8 mb-4">
         <div class="d-flex flex-column fv-row fv-plugins-icon-container">
           <!--begin::Label-->
           <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="selectTypeRequisition">
             <span class="required">De uma</span>
           </label>
-          <div class="input-group input-group-sm input-group-solid flex-nowrap">
-            <!--end::Label-->
-            <div class="overflow-hidden flex-grow-1">
-              <select class="form-select form-select-sm selector rounded-end-0" data-control="select2"
-                data-allow-clear="true" data-placeholder="Selecciona o modelo" id="selectTypeRequisition">
-                <option></option>
-                <option [value]="tr|json" *ngFor="let tr of listTypeRequest|async">
-                  {{ tr.name }}
-                </option>
-              </select>
-            </div>
-
-            <button type="button" class="input-group-text" id="new_type_requisition_basic_button" (focus)="false"><i
-                class="fa fa-plus"></i> &nbsp;
-              Novo
-            </button>
-          </div>
-          <!--end::Label-->
+          <input type="text" class="form-control form-control-sm" placeholder="Informação da requisição">
 
           <div class="fv-plugins-message-container invalid-feedback"></div>
-          <div class="fv-plugins-message-container text-muted small">
-            É importante que nomes, ou de referencia a entrada dos produtos
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12 col-lg-3 col-sm-3 mb-2">
-        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-          <!--begin::Label-->
-          <label class="d-flex align-items-center fs-6 mb-2">
-            <span class="">&nbsp;</span>
-          </label>
-
-          <!--begin::Menu wrapper-->
-          <div>
-            <!--begin::Toggle-->
-            <button type="button" class="btn btn-primary rotate btn-sm" data-kt-menu-trigger="click"
-              data-kt-menu-placement="bottom-start" data-kt-menu-offset="30px, 30px">
-              Outros itens
-              <span class="svg-icon svg-icon-3 rotate-180 ms-3 me-0">&bigtriangledown;</span>
-            </button>
-            <!--end::Toggle-->
-
-            <!--begin::Menu-->
-            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded
-            menu-gray-800 menu-state-bg-light-primary fw-semibold w-300px p-4" data-kt-menu="true">
-
-
-              <!--begin::Menu item-->
-              <div *ngFor="let item of listOption">
-                <div class="menu-item px-3 mb-3">
-                  <div class="form-check form-check-sm form-check-custom form-check-solid">
-                    <input class="form-check-input form-check-sm" type="checkbox" [(ngModel)]="item.isselected"
-                      name="isselected" id="form_checkbox{{ item.id}}" />
-                    <label class="form-check-label" for="form_checkbox{{ item.id}}">
-                      {{ item.name }}
-                    </label>
-                  </div>
-                </div>
-                <div class="separator mb-3 opacity-75"></div>
-              </div>
-              <!--end::Menu item-->
-
-
-            </div>
-            <!--end::Menu-->
-          </div>
-          <!--end::Dropdown wrapper-->
 
         </div>
       </div>
 
-
-      <div class="col-12 mb-2 row {{ listOption[0]?.isselected?'': 'd-none'}}">
-        <div class="col-sm-6">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="required">Nif</span>
-            </label>
-            <!--end::Label-->
-            <input type="text" name="nifCliente" (input)="seachingClient()" [(ngModel)]="move.oItem.client_nif"
-              class="form-control form-control-sm" placeholder="insira a descrição longa">
-            <div class="fv-plugins-message-container invalid-feedback"></div>
-          </div>
-        </div>
-
-        <div class="col-sm-6">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="required">Nome do Cliente</span>
-            </label>
-            <!--end::Label-->
-            <input type="text" name="nameClient" [(ngModel)]="move.oItem.client" class="form-control form-control-sm"
-              placeholder="insira a descrição longa">
-            <div class="fv-plugins-message-container invalid-feedback"></div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="col-12 col-lg-10 col-sm-8 ">
-        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-          <!--begin::Label-->
-          <label class="d-flex align-items-center fs-6  mb-2">
-            <span class="">Observação</span>
-          </label>
-          <!--end::Label-->
-          <textarea type="text" class="form-control form-control-sm" rows="5" [(ngModel)]="move.oItem.details"
-            placeholder="de uma descrição de relatorio do movimento de entrada" name="datasheet"></textarea>
-          <div class="fv-plugins-message-container invalid-feedback"></div>
-          <!--  <span class="mt-3 text-muted font-italic ml-5">Selecciona o produto para configurar o codigo de barra</span> -->
-        </div>
-      </div>
-
-      <div class="col-12 col-lg-2 col-sm-4 justify-content-center text-center">
-        <qrcode [qrdata]="idMovement" [width]="150" [errorCorrectionLevel]="'M'"></qrcode>
-      </div>
 
 
       <div class="accordion accordion-icon-toggle" id="kt_accordion_2">
         <!--begin::Item-->
-        <div class="">
+        <div class="mb-10">
           <!--begin::Header-->
           <div class="separator separator-dashed my-4"></div>
 
           <div class="accordion-header d-flex" data-bs-toggle="collapse" data-bs-target="#kt_accordion_2_item_1">
             <div class="fv-plugins-message-container text-primary text-right mb-4"><i class="bi bi-bookmarks-fill"></i>
-              Formulário de item da requisição
+              Outras informações do documento
             </div>
           </div>
-          <!--end::Header-->
 
-          <!--begin::Body-->
-          <div id="kt_accordion_2_item_1" class="fs-6 collapse show p-3" data-bs-parent="#kt_accordion_2">
+          <div id="kt_accordion_2_item_1" class="fs-6 collapse p-3" data-bs-parent="#kt_accordion_2">
 
-            <div class="row w-100">
-
-              <div class=" col-12 col-sm-8 col-md-8 col-lg-7 col-xxl-4 ">
-                <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
-                  <!--begin::Label-->
-                  <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                    <span class="required">Referência / Ean</span>
-                  </label>
-                  <!--end::Label-->
-                  <div class="input-group input-group-sm input-group-solid flex-nowrap">
+            <div class="row">
+              <div class="col-12 mb-2 row">
+                <div class="col-sm-6">
+                  <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                    <!--begin::Label-->
+                    <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                      <span class="required">Nif</span>
+                    </label>
                     <!--end::Label-->
-                    <div class="overflow-hidden flex-grow-1">
-                      <select class="form-select form-select-sm selector rounded-end-0" data-control="select2"
-                        data-allow-clear="true" data-placeholder="Selecciona o modelo" id="selectedProduct"
-                        #selectedProduct>
-                        <option></option>
-                        <option [value]="article|json" *ngFor="let article of listArticles ">
-                          {{
-                          article.ean + ' - ' + (article.type_id ? article.type_id.name : 'ñ definido') + ' - ' +
-                          (article.article_id ? article.article_id.name : 'ñ definido')
-                          }}
-                        </option>
-                      </select>
-                    </div>
-
-                    <span class="input-group-text"> <i class="fa fa-search"></i></span>
-                  </div>
-                  <div class="fv-plugins-message-container invalid-feedback"></div>
-                  <div class="fv-plugins-message-container text-muted">referencia do produto a processar na entrada
+                    <input type="text" name="nifCliente" (input)="seachingClient()" [(ngModel)]="move.oItem.client_nif"
+                      class="form-control form-control-sm" placeholder="insira a descrição longa">
+                    <div class="fv-plugins-message-container invalid-feedback"></div>
                   </div>
                 </div>
-              </div>
 
-              <div class="col-12 col-lg-5 col-xxl-2">
-                <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
-                  <!--begin::Label-->
-                  <label class="d-flex align-items-center fs-6 mb-2">
-                    <span class="">S/N</span>
-                  </label>
-                  <!--end::Label-->
-
-                  <input type="text" class="form-control form-control-sm " id="quantidadeItem"
-                    placeholder="Númerio Serial " (keyup.enter)="enteredNewItem()" name="qt_item"
-                    [(ngModel)]="item.oItem.SN">
-
-                  <div class="fv-plugins-message-container invalid-feedback"></div>
+                <div class="col-sm-6">
+                  <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                    <!--begin::Label-->
+                    <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                      <span class="required">Nome do Cliente</span>
+                    </label>
+                    <!--end::Label-->
+                    <input type="text" name="nameClient" [(ngModel)]="move.oItem.client"
+                      class="form-control form-control-sm" placeholder="insira a descrição longa">
+                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                  </div>
                 </div>
+
               </div>
 
-              <div class="col-12 col-lg-6 col-xxl-2">
-                <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+              <div class="col-12 col-lg-10 col-sm-8 ">
+                <div class="d-flex flex-column fv-row fv-plugins-icon-container">
                   <!--begin::Label-->
                   <label class="d-flex align-items-center fs-6  mb-2">
-                    <span class="">P/N</span>
+                    <span class="">Obs</span>
                   </label>
                   <!--end::Label-->
-
-                  <input type="text" class="form-control form-control-sm " id="quantidadeItem" placeholder="Número P"
-                    (keyup.enter)="enteredNewItem()" name="qt_item" [(ngModel)]="item.oItem.PN">
-
+                  <textarea type="text" class="form-control form-control-sm" rows="5" [(ngModel)]="move.oItem.details"
+                    placeholder="de uma descrição de relatorio do movimento de entrada" name="datasheet"></textarea>
                   <div class="fv-plugins-message-container invalid-feedback"></div>
+                  <!--  <span class="mt-3 text-muted font-italic ml-5">Selecciona o produto para configurar o codigo de barra</span> -->
                 </div>
               </div>
 
-
-              <div class="col-12 col-lg-6 col-xxl-2">
-                <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
-                  <!--begin::Label-->
-                  <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                    <span class="required">Qt itens</span>
-                  </label>
-                  <!--end::Label-->
-
-                  <input type="number" class="form-control form-control-sm " id="quantidadeItem"
-                    placeholder="Quantidade do item" (keyup.enter)="enteredNewItem()" name="qt_item"
-                    [(ngModel)]="item.oItem.quantity">
-
-                  <div class="fv-plugins-message-container invalid-feedback"></div>
-                </div>
+              <div class="col-12 col-lg-2 col-sm-4 justify-content-center text-center">
+                <qrcode [qrdata]="idMovement" [width]="150" [errorCorrectionLevel]="'M'"></qrcode>
               </div>
-
-              <div class="col-12 col-lg-6 col-xxl-auto d-flex flex-right">
-                <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
-                  <!--begin::Label-->
-                  <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                    <span class="">&nbsp;</span>
-                  </label>
-                  <!--end::Label-->
-
-                  <button type="button" class="btn btn-sm btn-primary mb-2 btn-sm" (click)="addListItems()">
-                    Adicionar no Carrim
-                  </button>
-
-                </div>
-              </div>
-
-
             </div>
 
           </div>
-          <!--end::Body-->
+          <div class="separator separator-dashed my-1"></div>
         </div>
 
-        <!-- Seleção de um armazem do estoque
-          Foi ocultada a funcionalidade de indicar o armazem porque no momento não é necessario
 
-        -->
+        <div class="row">
+          <div class="col-12 col-lg-3 col-sm-8 mb-4">
+            <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+              <!--begin::Label-->
+              <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="selectedArmazem">
+                <span class="required">Armazem</span>
+              </label>
+              <!--end::Label-->
+              <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
+                data-placeholder="Selecciona o modelo" id="selectedArmazem">
+                <option></option>
+                <option value="pro|json">
+                  {{ 'pro.name'}}
+                </option>
+
+              </select>
+
+              <div class="fv-plugins-message-container invalid-feedback"></div>
+
+            </div>
+          </div>
+
+
+          <div class="col-sm-3">
+            <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+              <!--begin::Label-->
+              <label class="d-flex align-items-center fs-6 mb-2" for="selectedArmario">
+                <span class="">Armário</span>
+              </label>
+              <!--end::Label-->
+              <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
+                data-placeholder="Selecciona o modelo" id="selectedArmario">
+                <option></option>
+                <option value="">
+                  {{ 'armario.name' }}
+                </option>
+              </select>
+
+              <div class="fv-plugins-message-container invalid-feedback"></div>
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+            <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+              <!--begin::Label-->
+              <label class="d-flex align-items-center fs-6  mb-2" for="selectedPrateleira">
+                <span class="">Prateleira</span>
+              </label>
+              <!--end::Label-->
+              <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
+                data-placeholder="Selecciona o modelo" id="selectedPrateleira">
+                <option></option>
+                <option value="">
+                  {{ 'pro.name' }}
+                </option>
+              </select>
+
+              <div class="fv-plugins-message-container invalid-feedback"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row w-100 mt-4">
+
+          <div class=" col-12 col-sm-8 col-md-8 col-lg-7 col-xxl-5 ">
+            <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+              <!--begin::Label-->
+              <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                <span class="required">Artigo</span>
+              </label>
+              <!--end::Label-->
+              <div class="input-group input-group-sm input-group-solid flex-nowrap">
+                <!--end::Label-->
+                <div class="overflow-hidden flex-grow-1">
+                  <select class="form-select form-select-sm selector rounded-end-0" data-control="select2"
+                    data-allow-clear="true" data-placeholder="Selecciona o modelo" id="selectedProduct"
+                    #selectedProduct>
+                    <option></option>
+                    <option [value]="article|json" *ngFor="let article of listArticles ">
+                      {{
+                      article.ean + ' - ' + (article.type_id ? article.type_id.name : 'ñ definido') + ' - ' +
+                      (article.article_id ? article.article_id.name : 'ñ definido')
+                      }}
+                    </option>
+                  </select>
+                </div>
+
+                <span class="input-group-text"> <i class="fa fa-search"></i></span>
+              </div>
+              <div class="fv-plugins-message-container invalid-feedback"></div>
+
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-5 col-xxl-2">
+            <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+              <!--begin::Label-->
+              <label class="d-flex align-items-center fs-6 mb-2">
+                <span class="">S/N</span>
+              </label>
+              <!--end::Label-->
+
+              <input type="text" class="form-control form-control-sm " id="quantidadeItem" placeholder="Númerio Serial "
+                (keyup.enter)="enteredNewItem()" name="qt_item" [(ngModel)]="item.oItem.SN">
+
+              <div class="fv-plugins-message-container invalid-feedback"></div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6 col-xxl-2">
+            <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+              <!--begin::Label-->
+              <label class="d-flex align-items-center fs-6  mb-2">
+                <span class="">P/N</span>
+              </label>
+              <!--end::Label-->
+
+              <input type="text" class="form-control form-control-sm " id="quantidadeItem" placeholder="Número P"
+                (keyup.enter)="enteredNewItem()" name="qt_item" [(ngModel)]="item.oItem.PN">
+
+              <div class="fv-plugins-message-container invalid-feedback"></div>
+            </div>
+          </div>
+
+
+          <div class="col-12 col-lg-6 col-xxl-2">
+            <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+              <!--begin::Label-->
+              <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                <span class="required">Qt itens</span>
+              </label>
+              <!--end::Label-->
+
+              <input type="number" class="form-control form-control-sm " id="quantidadeItem"
+                placeholder="Quantidade do item" (keyup.enter)="enteredNewItem()" name="qt_item"
+                [(ngModel)]="item.oItem.quantity">
+
+              <div class="fv-plugins-message-container invalid-feedback"></div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6 col-xxl-auto d-flex flex-right">
+            <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container pt-8">
+              <button type="button" class="btn btn-sm btn-success mb-2 btn-sm" (click)="addListItems()">
+                {{ util.SAVE_TEXT}}
+              </button>
+
+            </div>
+          </div>
+
+
+        </div>
+
       </div>
 
 
@@ -281,8 +266,5 @@
 
   </form>
 
-
-  <app-requisicao-type></app-requisicao-type>
 </div>
-<app-tipo-items></app-tipo-items>
-<app-unidade-medida></app-unidade-medida>
+

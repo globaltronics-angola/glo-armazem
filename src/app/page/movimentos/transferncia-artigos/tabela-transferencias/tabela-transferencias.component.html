@@ -1,0 +1,120 @@
+<div class="card-title d-flex flex-end justify-content-end">
+  <!--begin::Search-->
+  <div class="d-flex align-items-center position-relative my-1">
+    <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
+    <span class="svg-icon svg-icon-1 position-absolute ms-6">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1"
+              transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+        <path
+          d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
+          fill="currentColor" />
+      </svg>
+    </span>
+    <!--end::Svg Icon-->
+    <input type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-350px ps-15"
+           placeholder="Pesquisar pelo titulo" />
+  </div>
+  <!--end::Search-->
+</div>
+
+
+
+<div class="overflow-auto w-100">
+
+  <table class="table align-middle table-row-dashed fs-6 gy-4 " id="kt_customers_tableOut">
+    <!--begin::Table head-->
+    <thead>
+    <!--begin::Table row-->
+    <tr class="fw-semibold fs-6 text-gray-800">
+      <th style="max-width: 140px!important; min-width: 140px!important;">Data do Movimento</th>
+      <th>&nbsp;</th>
+      <th class="min-w-200px">&nbsp;</th>
+
+      <th class="min-w-200px">&nbsp;</th>
+      <th class="">&nbsp;</th>
+    </tr>
+    <!--end::Table row-->
+    </thead>
+    <!--end::Table head-->
+
+
+    <!--begin::Table body-->
+    <tbody class="fw-bold text-gray-600" *ngFor="let mov of listMove">
+
+
+    <tr class="bg-light-primary">
+      <!--begin::Order ID-->
+      <td class="min-w-100px px-5" style="max-width: 140px!important; min-width: 140px!important;">
+        <span class="text-dark text-hover-primary">{{ mov.created_at }}</span>
+      </td>
+
+      <td style="max-width: 80px!important; min-width: 80px!important; width:80px ; font-weight: lighter;">
+        Qt
+      </td>
+
+      <td> <span class="badge badge-light-info"> Referência e Artigos</span> </td>
+
+      <td class="">
+        <span class="text-dark fw-bold">S/N</span>
+      </td>
+      <!--end::Profit-->
+      <td>P/N</td>
+    </tr>
+
+    <tr *ngFor="let item of mov.items" class="border-bottom px-2 py-2 font-weight-normal "
+        style="font-weight: lighter;">
+      <td class="min-w-100px px-10">&nbsp; &nbsp; &nbsp; &nbsp;
+        <div class="cursor-pointer symbol symbol-35px symbol-md-40px"
+             data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
+             data-kt-menu-placement="bottom-end">
+          <img [src]="user?.photoURL"  />
+        </div>
+
+      </td>
+      <td>{{ item.quantity }}</td>
+
+
+      <td class="min-w-450px"> <span class="px-2"></span> {{ utilFunctions.convertJson(item.article).ean + ', ' }}
+        <span class="badge badge-light-warning">{{ utilFunctions.convertJson(item.article).type_id.name }}</span>
+        -
+        {{ utilFunctions.convertJson(item.article).article_id.name }}
+      </td>
+      <td class="min-w-125px">{{ item.SN }}</td>
+      <td class="min-w-125px">{{ item.PN }}</td>
+    </tr>
+    <tr class="text-dark">
+
+      <td class="min-w-300px px-10 text-end">&nbsp; Total:</td>
+      <td>
+          <span>
+            {{ mov.itemsQuantity }}
+          </span>
+      </td>
+
+      <td> </td>
+      <td> </td>
+      <td class="text-end min-w-100px">
+        <button type="button" (click)="deleteMovementAndItems(mov)"
+                class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
+          <span class="svg-icon"> <i class="bi-trash"></i></span>
+        </button>
+        <button type="button" (click)="makeJSPdf(mov)"
+                class="btn btn-icon btn-sm btn-light-info btn-active-danger w-25px h-25px mx-1">
+          <span class="svg-icon"> <i class="bi-file-pdf"></i></span>
+        </button>
+        <button type="button" class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
+                data-kt-docs-datatable-subtable="expand_row">
+          <span class="svg-icon svg-icon-3 m-0 toggle-off"><i class="fa fa-plus"></i></span>
+          <span class="svg-icon svg-icon-3 m-0 toggle-on"><i class="fa fa-line"></i></span>
+        </button>
+      </td>
+
+    </tr>
+
+
+    </tbody>
+    <!--end::Table body-->
+  </table>
+
+</div>

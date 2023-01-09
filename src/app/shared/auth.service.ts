@@ -78,19 +78,19 @@ export class AuthService {
 
     this.user = AuthLocal.user;
 
-    /* const login = await this.fireAuth.signInWithPopup(new GoogleAuthProvider).then(
+     const login = await this.fireAuth.signInWithPopup(new GoogleAuthProvider).then(
       async resp => { this.user = resp.user; },
       err => { console.log(err.message) }
-    ); */
+    );
 
 
-    await this.router.navigate(['/']).then();
+   /* await this.router.navigate(['/']).then();
     await localStorage.setItem('token', JSON.stringify(this.user?.uid))
     await sessionStorage.setItem('_user', JSON.stringify(this.user));
 
-    (<any>window).sentMessageSuccess.init("Bem vindo ao sistema")
+    (<any>window).sentMessageSuccess.init("Bem vindo ao sistema")*/
 
-    /* await firstValueFrom(this.fs.collection('/users').doc('/' + this.user.email).valueChanges())
+     await firstValueFrom(this.fs.collection('/users').doc('/' + this.user.email).valueChanges())
       .then(async (as: any) => {
         try {
           if (as.email) {
@@ -108,7 +108,7 @@ export class AuthService {
           (<any>window).sentMessageError.init("não foi autorizado a conectar se no sistema")
         }
 
-      }) */
+      })
 
   }
 

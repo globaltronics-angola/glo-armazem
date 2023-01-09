@@ -21,16 +21,17 @@
 
 <div class="overflow-auto w-100" id="htmlData">
 
-  <table class="table align-middle table-row-dashed fs-6 gy-4 " id="kt_customers_table">
+  <table class="table align-middle table-row-dashed fs-6 gy-2 gs-7" id="kt_customers_table">
     <!--begin::Table head-->
-    <thead>
+    <thead class="fw-bold text-uppercase bg-light-primary">
       <!--begin::Table row-->
-      <tr class="fw-semibold fs-6 text-gray-800">
+      <tr class="text-gray-800">
         <th style="max-width: 140px!important; min-width: 140px!important;">Data do Movimento</th>
         <th class="min-w-200px">Referencia</th>
         <th class="">Valor total</th>
 
         <th class="min-w-200px text-muted ">Possiveis detalhes do documento</th>
+        <th class="">&nbsp;</th>
         <th class="">&nbsp;</th>
       </tr>
       <!--end::Table row-->
@@ -44,7 +45,7 @@
 
       <tr class="" *ngFor="let mov of listMove">
         <!--begin::Order ID-->
-        <td class="min-w-100px px-5" style="max-width: 140px!important; min-width: 140px!important;">
+        <td class="min-w-100px " style="max-width: 140px!important; min-width: 140px!important;">
           <span class="text-hover-primary">{{ mov.created_at }}</span>
         </td>
 
