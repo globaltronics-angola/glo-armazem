@@ -1,47 +1,54 @@
 <div class="card-body p-0">
   <form id="kt_modal_new_target_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
     <div class="row">
+
+      <div class="col-sm-9">
+        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <span class="required">Nome</span>
+          </label>
+          <!--end::Label-->
+          <input type="text" [(ngModel)]="article.Article.name" name="description" class="form-control form-control-sm"
+            placeholder="insira a descrição longa">
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+      </div>
+
       <div class="row">
-        <div class="col-sm-9">
+
+        <div class="col-12 col-sm-3">
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
             <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="required">Designação</span>
+            <label class="d-flex align-items-center fs-6 mb-2">
+              <span class="">Modelo</span>
             </label>
             <!--end::Label-->
             <input type="text" [(ngModel)]="article.Article.name" name="description"
               class="form-control form-control-sm" placeholder="insira a descrição longa">
+
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-12 col-sm-4">
+
+        <div class="col-12 col-sm-3">
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
             <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="">Modelo</span>
+            <label class="d-flex align-items-center fs-6 mb-2">
+              <span class="">Marca</span>
             </label>
             <!--end::Label-->
-            <div class="input-group input-group-sm flex-nowrap">
-              <select class="form-select form-select-sm rounded-end-0" id="modelArticles" data-control="select2"
-                data-placeholder="Select an option">
-                <option></option>
-                <option *ngFor="let model of listModel| async" [value]="model|json">
-                  {{ model.name }}
-                </option>
-              </select>
-              <button class="input-group-text btn-primary" id="new_modelos_basic_button">
-                <i class="bi bi-plus fs-4"></i> Nova
-              </button>
-            </div>
+            <input type="text" [(ngModel)]="article.Article.name" name="description"
+              class="form-control form-control-sm" placeholder="insira a descrição longa">
+
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
-        <div class="col-12 col-sm-8">
+
+        <div class="col-12 col-sm-6">
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
             <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <label class="d-flex align-items-center fs-6 mb-2">
               <span class="">Categorias</span>
             </label>
             <!--end::Label-->
@@ -65,14 +72,34 @@
         </div>
 
       </div>
+
       <div class="row">
+
+        <div class="col-sm-12 col-12 mb-8 ">
+          <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="required">Referência / Ean</span>
+            </label>
+            <!--end::Label-->
+            <div class="input-group">
+              <input type="text" class="form-control form-control-sm" style="letter-spacing: 8px" maxlength="13"
+                placeholder="Enter Target Title" [(ngModel)]="article.Article.ean" name="codeeans">
+              <span class="input-group-text cursor-pointer" (click)="generateRef()" id="generate_key">
+                <i class="fa fa-sync-alt"></i>
+              </span>
+            </div>
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+        </div>
+
 
 
         <div class="col-sm-12">
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
             <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="">Ficha técnica</span>
+            <label class="d-flex align-items-center fs-6 mb-2">
+              <span class="">Obs</span>
             </label>
             <!--end::Label-->
             <textarea type="text" class="form-control form-control-sm h-100px" rows="10"
@@ -82,27 +109,22 @@
 
         </div>
 
-        <div class="col-sm-12 d-flex flex-end">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="required">Quantidade</span>
-            </label>
-            <!--end::Label-->
-            <input type="number" [(ngModel)]="article.Article.quantity" name="quantity"
-              class="form-control form-control-sm" placeholder="insira a quantidade inicial">
-            <div class="fv-plugins-message-container invalid-feedback"></div>
+        <div class="col-12 mt-2 mb-4">
+          <div class="input-group text-right justify-content-end">
+            <button type="button" class="btn btn-sm btn-success" (click)="save()">
+              <i></i>
+              Gravar
+            </button>
           </div>
         </div>
+
       </div>
     </div>
-    <div class="col-12 mt-2 mb-4">
-      <div class="input-group text-right justify-content-end">
-        <button type="button" class="btn btn-sm btn-primary mr-2" (click)="save()">
-          Guardar a informação
-        </button>
-      </div>
-    </div>
+
+
+
+
+
   </form>
 
   <app-modelos></app-modelos>

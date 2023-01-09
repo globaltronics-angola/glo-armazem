@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from "@angular/router";
 import { GoogleAuthProvider } from "@angular/fire/auth"
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { firstValueFrom} from "rxjs"
+import { firstValueFrom } from "rxjs"
 
 
 @Injectable({
@@ -73,27 +73,15 @@ export class AuthService {
 
 
   // Sign In with Google provider service
-  signInGoogleProvider() {
+  async signInGoogleProvider() {
+
+    const login = await this.fireAuth.signInWithPopup(new GoogleAuthProvider).then(
+      async resp => {
 
 
-
-
-    return this.fireAuth.signInWithPopup(new GoogleAuthProvider).then(
-      resp => {
-
-        console.log(resp);
         this.user = resp.user;
 
 
-
-        firstValueFrom(this.fs.collection('/users').doc('/' + this.user.email).valueChanges())
-        .then(()=>{
-          this.router.navigate(['/']).then()
-          localStorage.setItem('token', JSON.stringify(resp.user?.uid))
-
-
-          sessionStorage.setItem('_user', JSON.stringify(this.user));
-        })
 
 
       },
@@ -101,6 +89,26 @@ export class AuthService {
         console.log(err.message)
       }
     );
+
+    await firstValueFrom(this.fs.collection('/users').doc('/' + this.user.email).valueChanges())
+      .then(async (as: any) => {
+        try {
+          if (as.email) {
+            await this.router.navigate(['/']).then()
+            await localStorage.setItem('token', JSON.stringify(this.user?.uid))
+            await sessionStorage.setItem('_user', JSON.stringify(this.user));
+
+            (<any>window).sentMessageSuccess.init("Bem vindo ao sistema")
+
+          } else {
+            this.router.navigate(['/auth/sign-in']).then();
+            (<any>window).sentMessageError.init("não foi autorizado a conectar se no sistema")
+          }
+        } catch (error) {
+          (<any>window).sentMessageError.init("não foi autorizado a conectar se no sistema")
+        }
+
+      })
   }
 
 

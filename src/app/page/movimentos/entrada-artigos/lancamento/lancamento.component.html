@@ -13,8 +13,9 @@
     </span>
     <!--end::Svg Icon-->
     <input type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-350px ps-15"
-      placeholder="Pesquisar pelo titulo" />
+      placeholder="Pesquisar" />
   </div>
+
   <!--end::Search-->
 </div>
 
@@ -26,10 +27,10 @@
       <!--begin::Table row-->
       <tr class="fw-semibold fs-6 text-gray-800">
         <th style="max-width: 140px!important; min-width: 140px!important;">Data do Movimento</th>
-        <th>&nbsp;</th>
-        <th class="min-w-200px">&nbsp;</th>
+        <th class="min-w-200px">Referencia</th>
+        <th class="">Valor total</th>
 
-        <th class="min-w-200px">&nbsp;</th>
+        <th class="min-w-200px text-muted ">Possiveis detalhes do documento</th>
         <th class="">&nbsp;</th>
       </tr>
       <!--end::Table row-->
@@ -38,13 +39,13 @@
 
 
     <!--begin::Table body-->
-    <tbody class="fw-bold text-gray-600" *ngFor="let mov of listMove">
+    <tbody class="fw-light text-gray-600" >
 
 
-      <tr class="bg-light-primary">
+      <tr class="" *ngFor="let mov of listMove">
         <!--begin::Order ID-->
         <td class="min-w-100px px-5" style="max-width: 140px!important; min-width: 140px!important;">
-          <span class="text-dark text-hover-primary">{{ mov.created_at }}</span>
+          <span class="text-hover-primary">{{ mov.created_at }}</span>
         </td>
 
         <td style="max-width: 80px!important; min-width: 80px!important; width:80px ; font-weight: lighter;">
@@ -52,15 +53,10 @@
         </td>
 
         <td>
-          <span class="text-dark text-hover-primary">
-            <span class="badge badge-light-info"> Localização</span>
-          </span>
+
         </td>
 
-        <td> <span class="badge badge-light-info"> Referência e Artigos</span>
-          <!--  <span *ngFor="let item of mov.items.slice(0, 3)">
-            <span class="badge badge-light-primary"> {{ convertJson(item.article).article_id.name }}</span>,
-          </span> -->
+        <td>
         </td>
 
         <td class="">
@@ -70,55 +66,6 @@
         <td></td>
       </tr>
 
-      <tr *ngFor="let item of mov.items" class="border-bottom px-2 py-2 font-weight-normal "
-        style="font-weight: lighter;">
-        <td class="min-w-100px px-10"><span class="text-muted">&nbsp; -- -- --</span></td>
-        <td>{{ item.quantity  }}</td>
-
-        <td>
-          <span class="badge badge-light-primary">{{ convertJson(item.localStorage).name }}</span> ,
-          {{ convertJson(item.localAmbry).name }} ,
-          {{ convertJson(item.localShelf ).name }}
-        </td>
-        <td class="min-w-450px"> <span class="px-2"></span> {{ convertJson(item.article).ean + ', ' }},
-          <span class="badge badge-light-warning">{{ convertJson(item.article).type_id.name }}</span>
-          -
-          {{ convertJson(item.article).article_id.name }}
-        </td>
-
-        <td></td>
-        <td class="min-w-125px">{{ item.dateOfPurchase }}</td>
-
-      </tr>
-      <tr class="text-dark">
-
-        <td class="min-w-300px px-10 text-end">&nbsp; Total:</td>
-        <td>
-          <span>
-            {{ mov.itemsQuantity  }}
-          </span>
-        </td>
-
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td class="text-end min-w-100px">
-          <button type="button" (click)="deleteMovementAndItems(mov)"
-            class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
-            <span class="svg-icon"> <i class="bi-trash"></i></span>
-          </button>
-          <button type="button" (click)="makeJSPdf(mov)"
-            class="btn btn-icon btn-sm btn-light-info btn-active-danger w-25px h-25px mx-1">
-            <span class="svg-icon"> <i class="bi-file-pdf"></i></span>
-          </button>
-          <button type="button" class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
-            data-kt-docs-datatable-subtable="expand_row">
-            <span class="svg-icon svg-icon-3 m-0 toggle-off"><i class="fa fa-plus"></i></span>
-            <span class="svg-icon svg-icon-3 m-0 toggle-on"><i class="fa fa-line"></i></span>
-          </button>
-        </td>
-
-      </tr>
 
 
     </tbody>

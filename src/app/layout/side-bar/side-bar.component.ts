@@ -14,11 +14,12 @@ import { AuthService } from 'src/app/shared/auth.service';
 export class SideBarComponent implements OnInit {
   user: any;
   photoUrl: string = "";
+  routerNav: Router;
   constructor(private auth: AuthService, private router: Router) {
     if (!this.auth.user)
       this.router.navigate(['/auth/sign-in']).then();
 
-
+    this.routerNav = this.router;
     this.photoUrl = this.auth.user.photoUrl;
 
   }

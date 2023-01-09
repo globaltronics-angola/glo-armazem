@@ -6,7 +6,7 @@
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
             <!--begin::Label-->
             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="required">Designação</span>
+              <span class="required">Nome</span>
             </label>
             <!--end::Label-->
             <input type="text" [(ngModel)]="serviceStorage.IObjectClass.name" name="description"
@@ -15,81 +15,102 @@
           </div>
         </div>
       </div>
+
       <div class="row">
-        <!-- <div class="col-12 col-sm-4">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+        <div class="col-12 col-sm-12 col-lg-8">
+          <div class="row">
 
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="selectCountry">
-              <span class="">Região / País</span>
-            </label>
 
-            <select class="form-select form-select-sm" id="selectCountry" data-control="select2"
-              data-placeholder="Select an option">
-              <option></option>
-              <option [value]="country|json" *ngFor="let country of listCountry | async">
-                {{ '(' + country.iso + ')' + ' - ' + country.name }}
-              </option>
-            </select>
+            <div class="col-12 col-sm-3">
+              <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                <!--begin::Label-->
+                <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                  <span class="required">Armário</span>
+                </label>
+                <!--end::Label-->
+                <input type="text" class="form-control form-control-sm " placeholder="Introduza o armario"
+                  name="target_title" [(ngModel)]="serviceStorage.IObjectClass.name">
+                <div class="fv-plugins-message-container invalid-feedback"></div>
+              </div>
+            </div>
 
-            <div class="fv-plugins-message-container invalid-feedback"></div>
+            <div class="col-12 col-sm-7">
+              <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                <!--begin::Label-->
+                <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                  <span class="required">Prateleiras</span>
+                </label>
+                <!--end::Label-->
+                <input type="text" class="form-control form-control-sm " placeholder="Introduza as prateleiras"
+                  id="prateleirasItens">
+
+                <div class="fv-plugins-message-container invalid-feedback"></div>
+              </div>
+            </div>
+
+
+            <div class="col-12 col-sm-auto">
+              <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                <!--begin::Label-->
+                <label class="d-flex align-items-center fs-6 mb-2">
+                  <span class="">&nbsp;</span>
+                </label>
+                <!--end::Label-->
+                <button class="btn btn-sm btn-primary" value="">Adicionar</button>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-sm-12">
+            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+              <!--begin::Label-->
+              <label class="d-flex align-items-center fs-6 mb-2">
+                <span class="">Obs</span>
+              </label>
+              <!--end::Label-->
+              <textarea type="text" class="form-control form-control-sm h-100px" rows="10"
+                placeholder="Enter Target Title" [(ngModel)]="serviceStorage.IObjectClass.details"
+                name="details"></textarea>
+              <div class="fv-plugins-message-container invalid-feedback"></div>
+            </div>
+
           </div>
         </div>
-        <div *ngIf="listCountry| async as countries" class="col-12 col-sm-auto {{ countries.length< 1?'':'d-none'}}">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
 
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="">&nbsp;</span>
-            </label>
+        <div class="col-12 col-sm-12 col-lg-4  h-400px
+        border border-top-0 border-right-0 border-bottom-0">
 
-            <button type="button" class="btn btn-sm btn-warning mr-2 " (click)="testing()">
-              Gerar novos paises
-            </button>
+          <div class="overflow-auto w-100">
+            <table id="kt_datatable_both_scrolls" class="table table-striped table-row-bordered gy-5 gs-7">
+              <thead>
+                <tr class="fw-semibold fs-6 text-gray-800">
+                  <th class="min-w-200px">Armario</th>
+                  <th class="min-w-100px">Nº Pratelairas</th>
+                  <th class="">Acção</th>
+                </tr>
+              </thead>
+              <tbody>
 
-            <div class="fv-plugins-message-container invalid-feedback"></div>
+
+
+              </tbody>
+            </table>
           </div>
 
-        </div> -->
 
-        <div class="col-12 col-sm-12">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="">Endereço</span>
-            </label>
-            <!--end::Label-->
-            <input class="form-control form-control-sm" placeholder="introduza as informações principais do endereço"
-              value="" id="tagifyAddress" />
-            <div class="fv-plugins-message-container invalid-feedback"></div>
-          </div>
+
         </div>
 
       </div>
-      <div class="row">
-
-
-        <div class="col-sm-12">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="">Ficha técnica</span>
-            </label>
-            <!--end::Label-->
-            <textarea type="text" class="form-control form-control-sm h-100px" rows="10"
-              placeholder="Enter Target Title" [(ngModel)]="serviceStorage.IObjectClass.details"
-              name="details"></textarea>
-            <div class="fv-plugins-message-container invalid-feedback"></div>
-          </div>
-
-        </div>
-      </div>
+      <div class="separator separator-dashed my-4"></div>
     </div>
     <div class="col-12 mt-2 mb-4">
       <div class="input-group text-right justify-content-end">
-        <button type="button" class="btn btn-sm btn-primary mr-2" (click)="save()">
+        <button type="button" class="btn btn-sm btn-success mr-2" (click)="save()">
           Guardar a informação
         </button>
-
-
       </div>
     </div>
   </form>

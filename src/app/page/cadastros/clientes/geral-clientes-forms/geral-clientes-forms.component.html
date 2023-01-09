@@ -6,7 +6,7 @@
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
             <!--begin::Label-->
             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="required">Entidade</span>
+              <span class="required">Nome</span>
             </label>
             <!--end::Label-->
             <input type="text" name="description" [(ngModel)]="this.client.IObjectClass.name"
@@ -16,33 +16,69 @@
         </div>
       </div>
       <div class="row">
-        <!-- <div class="col-12 col-sm-4">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
 
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="">Departamento</span>
-            </label>
 
-            <div class="input-group input-group-sm flex-nowrap">
-              <select class="form-select form-select-sm rounded-end-0" id="departmentsSelect" data-control="select2"
-                data-placeholder="Select an option">
-                <option></option>
-                <option [value]="department|json" *ngFor="let department of listDepartments | async  ">
-                  {{ department.name }}
-                </option>
-              </select>
-              <button class="input-group-text btn-primary" id="new_depatments_basic_button">
-                <i class="bi bi-plus fs-4"></i> Nova
-              </button>
-            </div>
-            <div class="fv-plugins-message-container invalid-feedback"></div>
-          </div>
-        </div> -->
-        <div class="col-12 col-sm-12">
+        <div class="col-12 col-sm-3">
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
             <!--begin::Label-->
             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="">Outros Informações</span>
+              <span class="required">Tipo</span>
+            </label>
+            <!--end::Label-->
+            <select class="form-select form-select-sm" id="clientsSelects" data-control="select2"
+              data-placeholder="Select an option">
+              <option></option>
+              <option value="1">Actividade comercial individual </option>
+              <option value="2">Actividade comercial colectiva </option>
+            </select>
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-3">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+              <span class="required">NIF / BI</span>
+            </label>
+            <!--end::Label-->
+            <input class="form-control form-control-sm" placeholder="Introduza o nif ou numero de identificação (BI)" />
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 mb-2" for="otherInfoMultipleItems">
+              <span class="">Endereço <span class="text-danger">ex:</span>( país, província, bairro, morada) ...</span>
+            </label>
+            <!--end::Label-->
+            <input class="form-control form-control-sm" type="text" placeholder="introduza as informações principais do endereço"
+              id="otherInfoMultipleItems" >
+
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 mb-2">
+              <span class="">Telefone</span>
+            </label>
+            <!--end::Label-->
+            <input class="form-control form-control-sm" placeholder="introduza as informações principais do endereço"
+              value="" id="otherInfoMultipleItems" />
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+            <!--begin::Label-->
+            <label class="d-flex align-items-center fs-6 mb-2">
+              <span class="">Email</span>
             </label>
             <!--end::Label-->
             <input class="form-control form-control-sm" placeholder="introduza as informações principais do endereço"
@@ -58,8 +94,8 @@
         <div class="col-sm-12">
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
             <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="required">Notas</span>
+            <label class="d-flex align-items-center fs-6 mb-2">
+              <span class="">Obs</span>
             </label>
             <!--end::Label-->
             <textarea type="text" class="form-control form-control-sm h-100px" rows="10"
@@ -72,13 +108,12 @@
     </div>
     <div class="col-12 mt-2 mb-4">
       <div class="input-group text-right justify-content-end">
-        <button type="button" class="btn btn-sm btn-primary mr-2" (click)="save()">
+        <button type="button" class="btn btn-sm btn-success mr-2" (click)="save()">
           Guardar a informação
         </button>
       </div>
     </div>
   </form>
 
-  <app-departments></app-departments>
 
 </div>

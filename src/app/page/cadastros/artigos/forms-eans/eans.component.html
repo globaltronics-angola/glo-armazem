@@ -1,40 +1,7 @@
 <div class="card-body p-0">
   <form id="kt_modal_new_target_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#">
 
-    <div class="row justify-content-end d-none">
-      <div class="col-sm-3">
-        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-          <input type="text" class="form-control form-control-sm " style="letter-spacing: 8px"
-            placeholder="Chave do Ean" name="id" [(ngModel)]="eanMode.IObjectClass.ean">
-        </div>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-12 col-lg-8 col-sm-12">
-        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-          <!--begin::Label-->
-          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-            <span class="required">Seleção de Artigo</span>
-          </label>
-          <!--end::Label-->
-          <select class="form-select form-select-sm selector" id="selectProdutos" data-allow-clear="true"
-            data-placeholder="Selecciona o produto">
-            <option></option>
-            <option [value]="prod|json" *ngFor="let prod of listArticles |  async">
-              {{ (prod.model_id ? prod.model_id.name : 'Não Identificado') + ' - ' + prod.name }}
-            </option>
-          </select>
-          <!-- <div class="fv-plugins-message-container invalid-feedback"></div>
-           <span class="mt-3 text-muted font-italic ml-5">Selecciona o produto para configurar o codigo de barra</span> -->
-        </div>
-      </div>
-      <div class="col-4 col-lg-4 col-sm-12">
-        <canvas id="ean" width="280" height="120" style="float: right">
-        </canvas>
-      </div>
-      <div class="separator separator-dashed my-4"></div>
-    </div>
     <div class="row">
 
       <div class="row col-12">
@@ -84,14 +51,16 @@
 
       </div>
 
-    </div>
-    <div class="col-12 mt-2 mb-4">
-      <div class="input-group text-right justify-content-end">
-        <button type="button" class="btn btn-sm btn-primary mr-2 btn-sm" (click)="save()">
-          Guardar a informação
-        </button>
+      <div class="col-12 col-sm-6 col-lg-2 mt-2 mb-4">
+        <div class="input-group text-right justify-content-end">
+          <button type="button" class="btn btn-sm btn-primary mr-2 btn-sm" (click)="save()">
+            Adicionar
+          </button>
+        </div>
       </div>
+
     </div>
+
   </form>
 
   <app-tabela-ean></app-tabela-ean>

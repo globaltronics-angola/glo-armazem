@@ -15,6 +15,8 @@ import ServiceCategories from 'src/app/Services/ServiceCategories';
 export class FormGeralComponent implements OnInit {
 
 
+
+  listUnity: Observable<any>;
   listModel: Observable<any> | null = null;
 
   listCategories: Observable<any> | null = null;
@@ -29,6 +31,8 @@ export class FormGeralComponent implements OnInit {
   constructor(private auth: AuthService, private store: StorageService) {
 
     this.article = new ServiceArticles(this.store);
+
+    this.listUnity = new ServiceCategories(this.store).findAll();
     this.listModel = new ServiceModelArticle(this.store).findAll();
     this.listCategories = new ServiceCategories(this.store).findAll();
   }
@@ -38,6 +42,7 @@ export class FormGeralComponent implements OnInit {
     this.eventChang();
   }
 
+  generateRef() { }
   save() {
 
     this.article.Article.model_id = JSON.parse(this.window.instanceSelectedId.toString());

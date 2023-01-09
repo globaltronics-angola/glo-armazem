@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import ServiceCountry from "../../../../Services/ServiceCountry";
 import { StorageService } from "../../../../shared/storage.service";
 import * as Tagify from "@yaireo/tagify";
-import moment from "moment/moment";
+import moment from "moment";
 import ServiceUtil from "../../../../Services/ServiceUtil";
 import ServiceMovimentoItems from "../../../../Services/ServiceMovimentoItems";
 import ServiceArmazem from "../../../../Services/ServiceStorage";
@@ -43,8 +43,12 @@ export class FormularioLancamentoComponent implements OnInit {
   listItems: any[] = [];
   utilService: ServiceUtil;
 
+  dateRef:string  = ""
 
 
+  printerPdf(){
+    this.window.print();
+  }
 
   async onUpdated() { }
 
@@ -61,7 +65,7 @@ export class FormularioLancamentoComponent implements OnInit {
 
     this.utilService = new ServiceUtil();
 
-
+    this.dateRef = "ENT-" +  moment().format("DDMMYYYY") + "-0001";
 
     this.init();
 

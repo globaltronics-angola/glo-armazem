@@ -2,14 +2,14 @@
   <table id="kt_datatable_both_scrolls" class="table table-striped table-row-bordered gy-5 gs-7">
     <thead>
       <tr class="fw-semibold fs-6 text-gray-800">
-        <th style="max-width: 160px!important; min-width: 160px!important;">Data</th>
-        <th class="min-w-300px">Designação</th>
-        <th class="min-w-200px">Modelo</th>
+
+        <th class="">Codigo</th>
+        <th class="min-w-300px">Nome</th>
+        <th class="min-w-100px">Referência</th>
+        <th class="">Marca</th>
+        <th class="">Modelo</th>
         <th class="min-w-200px">Categorias</th>
-        <th style="max-width: 140px!important; min-width: 140px!important;">Actualizado</th>
-        <th style="max-width: 140px!important; min-width: 140px!important;">existência</th>
-        <th class="min-w-200px">Ficha tecnica</th>
-        <th class="">Acção</th>
+        <th class=""></th>
 
 
       </tr>
@@ -26,15 +26,14 @@
             </span>
           </div>
         </td>
-        <td style="max-width: 110px!important;">
-          {{ article.updated_at }}
-        </td>
-        <td style="max-width: 110px!important;">
-          {{ article.quantity }}
-        </td>
+
         <td style="max-width: 260px!important; min-width: 260px!important;">
           <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; ">{{ article.details }}</div>
         </td>
+        <td style="max-width: 260px!important; min-width: 260px!important;">
+
+        </td>
+
         <td class="gap-2">
           <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
             <span class="svg-icon"> <i class="fa fa-edit"></i></span>
