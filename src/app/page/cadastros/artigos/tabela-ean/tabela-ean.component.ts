@@ -49,7 +49,6 @@ export class TabelaEanComponent implements OnInit, OnDestroy {
     this.listArticleEan = await new ServiceEanArticleOrService(this.store)
       .findByArticleId(id);
 
-
   }
 
 

@@ -106,7 +106,7 @@ export default class ServiceArticles {
       this.Article.details =  article.details
     })
     this.window.category_id = await this.Article.category_id
-    await this.window.$('#categories').val(this.Article.category_id)
+    //await this.window.$('#categories').val(this.Article.category_id)
 
     this.Article.updated_mode = true;
   }
