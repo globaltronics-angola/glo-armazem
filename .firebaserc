@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "glo-stock-v001"
-  }
+    "global-tronic": "global-tronic-storage-18502",
+    "default": "global-tronic-storage-18502"
+  },
+  "targets": {},
+  "etags": {}
 }

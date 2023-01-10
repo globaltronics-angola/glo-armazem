@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthService} from 'src/app/shared/auth.service';
+import {firstValueFrom} from "rxjs";
+import {StorageService} from "../../shared/storage.service";
 
 @Component({
   selector: 'app-main-app',
@@ -14,27 +16,30 @@ export class MainAppComponent implements OnInit {
   photoUrl: any = "";
   window = (<any>window);
 
-  constructor(private auth: AuthService,  private router: Router) {
+  constructor(private auth: AuthService, private router: Router, private store: StorageService) {
+
 
 
     if (!this.auth.user)
       this.router.navigate(['/auth/sign-in']).then();
 
 
-      this.user = this.auth.user;
+    this.user = this.auth.user;
 
 
   }
+
   async ngOnInit() {
 
     this.window.InstanceAplication.init()
     this.photoUrl = await this.user.photoURL
+
   }
 
 
-  signOutFunction(){
+  signOutFunction() {
     this.auth.signOut()
-    sessionStorage.setItem('_user','')
+    sessionStorage.setItem('_user', '')
   }
 
 }

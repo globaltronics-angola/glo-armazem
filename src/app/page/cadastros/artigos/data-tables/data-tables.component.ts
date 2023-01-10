@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from "@angular/router";
+import {Component, OnInit, NgZone} from '@angular/core';
+import {DomSanitizer} from '@angular/platform-browser';
+import {Router} from "@angular/router";
 
-import { Observable } from 'rxjs';
-import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
-import { ServiceEncryptDecriptSimples } from 'src/app/Services/service-encrypt-decript-simples';
+import {Observable} from 'rxjs';
+import {firstValueFrom} from 'rxjs/internal/firstValueFrom';
+import {ServiceEncryptDecriptSimples} from 'src/app/Services/service-encrypt-decript-simples';
 import ServiceArticles from 'src/app/Services/ServiceArticles';
-import { AuthService } from "../../../../shared/auth.service";
-import { StorageService } from "../../../../shared/storage.service";
+import {AuthService} from "../../../../shared/auth.service";
+import {StorageService} from "../../../../shared/storage.service";
 
 //@ts-ignore
 import * as pdfMake from 'pdfmake';
 import moment from 'moment';
-import { HttpHeaders } from '@angular/common/http';
+import {HttpHeaders} from '@angular/common/http';
 
 //@ts-ignore
 import * as FileSaver from 'file-saver';
@@ -31,8 +31,8 @@ export class DataTablesComponent implements OnInit {
   downloadJsonHref: any = "";
 
 
-  constructor(private auth: AuthService, private store: StorageService,
-    private router: Router, private sanitizer: DomSanitizer) {
+  constructor(private auth: AuthService, private store: StorageService, private ngZone: NgZone, private router: Router,
+              private sanitizer: DomSanitizer) {
     this.Article = new ServiceArticles(this.store);
 
     this.list_articles = this.Article.findAll();
@@ -46,7 +46,7 @@ export class DataTablesComponent implements OnInit {
   edit(attr: any) {
     this.window.$('#categories').val(attr.category_id)
     let data = ServiceEncryptDecriptSimples.encript(JSON.stringify(attr))
-    this.router.navigate(['/cadastros/artigos/geral', { article_instance_select: data }]);
+    this.router.navigate(['/cadastros/artigos/geral', {article_instance_select: data}]);
   }
 
   deleteArticle(attr: any) {
@@ -109,20 +109,35 @@ export class DataTablesComponent implements OnInit {
 
       let content = [
         [
-          { margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'NOME DO ARTIGO', style: 'tableHeader' },
-          { margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'REFERÊNCIA', style: 'tableHeader' },
-          { margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'MODELO', style: 'tableHeader' },
-          { margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'MARCA', style: 'tableHeader' },
+          {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'NOME DO ARTIGO', style: 'tableHeader'},
+          {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'REFERÊNCIA', style: 'tableHeader'},
+          {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'MODELO', style: 'tableHeader'},
+          {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'MARCA', style: 'tableHeader'},
 
         ]
       ]
 
       a.forEach((g) => {
         content.push([
-          { margin: [2, 1, 1, 1], fillColor: '#fff', text: g.name, style: 'all' },
-          { margin: [2, 1, 1, 1], fillColor: '#fff', text: g.ean ? g.ean : { text: '-- -- -- --', style: 'span' }, style: 'all' },
-          { margin: [2, 1, 1, 1], fillColor: '#fff', text: g.model ? g.model : { text: '-- -- -- --', style: 'span' }, style: 'all' },
-          { margin: [2, 1, 1, 1], fillColor: '#fff', text: g.marquee ? g.marquee : { text: '-- -- --', style: 'span' }, style: 'all' }
+          {margin: [2, 1, 1, 1], fillColor: '#fff', text: g.name, style: 'all'},
+          {
+            margin: [2, 1, 1, 1],
+            fillColor: '#fff',
+            text: g.ean ? g.ean : {text: '-- -- -- --', style: 'span'},
+            style: 'all'
+          },
+          {
+            margin: [2, 1, 1, 1],
+            fillColor: '#fff',
+            text: g.model ? g.model : {text: '-- -- -- --', style: 'span'},
+            style: 'all'
+          },
+          {
+            margin: [2, 1, 1, 1],
+            fillColor: '#fff',
+            text: g.marquee ? g.marquee : {text: '-- -- --', style: 'span'},
+            style: 'all'
+          }
         ])
       })
 
@@ -134,7 +149,7 @@ export class DataTablesComponent implements OnInit {
             height: 30,
             margin: [-28, 2, 2, 2]
           },
-          { text: 'Lista de Artigos Cadastrados', fontSize: 14, bold: true, margin: [0, 20, 0, 10] },
+          {text: 'Lista de Artigos Cadastrados', fontSize: 14, bold: true, margin: [0, 20, 0, 10]},
           {
             style: 'tableExample',
             table: {
@@ -144,9 +159,26 @@ export class DataTablesComponent implements OnInit {
             },
             layout: 'lightHorizontalLines'
           },
-          { qr: moment().format('DD / MM / YYYY') + 'user=' + this.auth.user.displayName, fit: 80, alignment: 'right', foreground: '#D7D5D5' },
-          { text: 'Data:' + moment().format('DD / MM / YYYY'), fontSize: 11, color: '#D7DBDD', bold: false, margin: [0, 20, 0, 0] },
-          { text: 'Autor : ' + this.auth.user.displayName + '', fontSize: 11, color: '#D7DBDD', bold: false, margin: [0, 0, 0, 1] },
+          {
+            qr: moment().format('DD / MM / YYYY') + 'user=' + this.auth.user.displayName,
+            fit: 80,
+            alignment: 'right',
+            foreground: '#D7D5D5'
+          },
+          {
+            text: 'Data:' + moment().format('DD / MM / YYYY'),
+            fontSize: 11,
+            color: '#D7DBDD',
+            bold: false,
+            margin: [0, 20, 0, 0]
+          },
+          {
+            text: 'Autor : ' + this.auth.user.displayName + '',
+            fontSize: 11,
+            color: '#D7DBDD',
+            bold: false,
+            margin: [0, 0, 0, 1]
+          },
         ],
         styles: {
           tableHeader: {
@@ -184,7 +216,6 @@ export class DataTablesComponent implements OnInit {
         },
 
 
-
       }
       var pdf = pdfMake.createPdf(dd);
       pdf.download('article' + moment().format('DD_MM_YYYY_HH_mm_ss') + "");
@@ -193,15 +224,13 @@ export class DataTablesComponent implements OnInit {
     })
 
 
-
-
   }
 
 
   xlsFile() {
 
     firstValueFrom(this.list_articles).then((a: any) => {
-      const blob = new Blob([JSON.stringify(a)], { type: 'application/vnd.ms-excel;charset=utf-8' });
+      const blob = new Blob([JSON.stringify(a)], {type: 'application/vnd.ms-excel;charset=utf-8'});
       FileSaver.saveAs(blob, "Artigos.xls");
     })
 

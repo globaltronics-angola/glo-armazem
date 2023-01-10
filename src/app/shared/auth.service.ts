@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Router } from "@angular/router";
-import { GoogleAuthProvider } from "@angular/fire/auth"
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { firstValueFrom } from "rxjs"
+import {Injectable, NgZone} from '@angular/core';
+import {AngularFireAuth} from '@angular/fire/compat/auth';
+import {Router} from "@angular/router";
+import {GoogleAuthProvider} from "@angular/fire/auth"
+import {AngularFirestore} from '@angular/fire/compat/firestore';
+import {firstValueFrom} from "rxjs"
 import AuthLocal from "./auth.json"
 
 
@@ -14,7 +14,9 @@ export class AuthService {
 
 
   user: any;
-  constructor(private fireAuth: AngularFireAuth, private router: Router, private fs: AngularFirestore) {
+
+  constructor(private ngZone: NgZone, private fireAuth: AngularFireAuth,
+              private router: Router, private fs: AngularFirestore) {
 
     let userInfo = sessionStorage.getItem('_user') as string
     if (userInfo != '')
@@ -22,7 +24,6 @@ export class AuthService {
 
     console.log(this.user);
   }
-
 
 
   // Sign In method
@@ -78,19 +79,24 @@ export class AuthService {
 
     this.user = AuthLocal.user;
 
-     const login = await this.fireAuth.signInWithPopup(new GoogleAuthProvider).then(
-      async resp => { this.user = resp.user; },
-      err => { console.log(err.message) }
+    const login = await this.fireAuth.signInWithPopup(new GoogleAuthProvider).then(
+      async resp => {
+        this.user = resp.user;
+        await this.router.navigate(['/']).then();
+        await localStorage.setItem('token', JSON.stringify(this.user?.uid))
+        await sessionStorage.setItem('_user', JSON.stringify(this.user));
+
+        (<any>window).sentMessageSuccess.init("Bem vindo ao sistema")
+      },
+      err => {
+        console.log(err.message)
+      }
     );
 
 
-   /* await this.router.navigate(['/']).then();
-    await localStorage.setItem('token', JSON.stringify(this.user?.uid))
-    await sessionStorage.setItem('_user', JSON.stringify(this.user));
+    /* */
 
-    (<any>window).sentMessageSuccess.init("Bem vindo ao sistema")*/
-
-     await firstValueFrom(this.fs.collection('/users').doc('/' + this.user.email).valueChanges())
+    /*await firstValueFrom(this.fs.collection('/users').doc('/' + this.user.email).valueChanges())
       .then(async (as: any) => {
         try {
           if (as.email) {
@@ -108,7 +114,7 @@ export class AuthService {
           (<any>window).sentMessageError.init("não foi autorizado a conectar se no sistema")
         }
 
-      })
+      })*/
 
   }
 
