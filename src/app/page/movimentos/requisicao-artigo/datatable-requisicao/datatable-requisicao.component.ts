@@ -5,6 +5,7 @@ import { StorageService } from 'src/app/shared/storage.service';
 //@ts-ignore
 import pdfMake from "pdfmake/build/pdfmake";
 import { AuthService } from 'src/app/shared/auth.service';
+import ServicePrintMove from "../../../../Services/ServicePrintMove";
 
 @Component({
   selector: 'app-datatable-requisicao',
@@ -17,7 +18,8 @@ export class DatatableRequisicaoComponent implements OnInit {
   utilFunctions: ServiceUtil;
 
   user: any = {}
-  constructor(private store: StorageService, private auth: AuthService) {
+  momentFormat: any;
+  constructor(private store: StorageService, private auth: AuthService, private printer:ServicePrintMove) {
     this.utilFunctions = new ServiceUtil()
     this.user =  auth.user;
   }
@@ -37,77 +39,9 @@ export class DatatableRequisicaoComponent implements OnInit {
 
   }
 
-  deleteMovementAndItems(attr: any) { }
-
-
-  makeJSPdf(attr: any) {
-
-
-
-    const docDefinition = {
-
-      content: [
-        { text: "Tables", style: "header" },
-
-        {
-          text: attr.details,
-          style: "context"
-        },
-        "",
-        {
-          style: "tableExample",
-          table: {
-            // headers are automatically repeated if the table spans over multiple pages
-            // you can declare how many rows should be treated as headers
-            headerRows: 1,
-            widths: ['*', 'auto', 100, '*'],
-
-            body: () => {
-              return [
-                [{ text: "Table 1", style: "tableHeader" }],
-              ]
-            }
-          }
-        },
-        { qr: attr.id, style: "qrStyle" }
-
-      ],
-
-      styles: {
-        header: {
-          fontSize: 14,
-          bold: false,
-          margin: [0, 0, 0, 10],
-          color: "red",
-          pdfFonts: ["", "", "",]
-        },
-        qrStyle: {
-          bold: false,
-          fontSize: 11
-        },
-        context: {
-          fontSize: 11,
-          bold: false,
-          margin: [0, 10, 0, 5]
-        },
-        tableExample: {
-          margin: [0, 5, 0, 15]
-        }
-      }
-    };
-
-    pdfMake.createPdf(docDefinition).open();
-
-
-
-
-
-  }
-
-
   initDataTable() {
 
-    try {
+   /* try {
       let table = document.querySelector('#kt_customers_tableOut');
       //@ts-ignore
       datatable = $(table).DataTable({
@@ -120,10 +54,22 @@ export class DatatableRequisicaoComponent implements OnInit {
       });
     } catch (e: any) {
 
-    }
+    }*/
 
   }
 
 
+  deleteMove(mov: any) {
 
+  }
+
+  printMov(attr: any) {
+    let move: ServiceMovimento = new ServiceMovimento(this.store)
+    move.oItem = attr
+    this.printer.printFunctionsRequisition(move.oItem.items, move);
+  }
+
+  pdfGenerator() {
+
+  }
 }

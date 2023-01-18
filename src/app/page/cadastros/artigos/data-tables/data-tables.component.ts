@@ -1,8 +1,8 @@
-import {Component, OnInit, NgZone} from '@angular/core';
+import {Component, OnInit, NgZone, OnDestroy} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {firstValueFrom} from 'rxjs/internal/firstValueFrom';
 import {ServiceEncryptDecriptSimples} from 'src/app/Services/service-encrypt-decript-simples';
 import ServiceArticles from 'src/app/Services/ServiceArticles';
@@ -12,41 +12,189 @@ import {StorageService} from "../../../../shared/storage.service";
 //@ts-ignore
 import * as pdfMake from 'pdfmake';
 import moment from 'moment';
-import {HttpHeaders} from '@angular/common/http';
 
 //@ts-ignore
 import * as FileSaver from 'file-saver';
-
+import * as _ from "lodash"
+import ServiceUtil from "../../../../Services/ServiceUtil";
 
 @Component({
   selector: 'app-data-tables',
   templateUrl: './data-tables.component.html',
   styleUrls: ['./data-tables.component.css']
 })
-export class DataTablesComponent implements OnInit {
+export class DataTablesComponent implements OnInit, OnDestroy {
 
-  list_articles: Observable<any[]>;
+  list_articles: any[] = [];
+  list_articles2: Observable<any>;
   Article: ServiceArticles;
   private window = (<any>window);
   downloadJsonHref: any = "";
 
+  util: ServiceUtil;
 
-  constructor(private auth: AuthService, private store: StorageService, private ngZone: NgZone, private router: Router,
+  staticUtil: any = ServiceUtil;
+
+  subscription: any = Subscription;
+  mappingPaginate: any[] = []
+  private firstInResponse: any;
+  private lastInResponse: any = [];
+  nestPage: boolean = true;
+  staticPage: any = {}
+
+  active: number = -1;
+  typingName: string = ""
+  offset = 10;
+  nextKey: any
+  prevKeys: any[] = []
+  totalArticle: number = 0;
+  countAt: number = 0;
+  totalPage: number = 0;
+
+  isSerach: string = "Nome"
+
+  constructor(private auth: AuthService, private store: StorageService, private routeC: ActivatedRoute,
+              private ngZone: NgZone, private router: Router,
               private sanitizer: DomSanitizer) {
     this.Article = new ServiceArticles(this.store);
-
-    this.list_articles = this.Article.findAll();
+    this.util = new ServiceUtil();
+    this.list_articles2 = this.Article.findAll();
 
   }
 
-  ngOnInit(): void {
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
+  }
+
+  setSearch(attr: string) {
+    this.isSerach = attr;
+  }
+
+  async ngOnInit() {
     (<any>window).InstanceAplication.init()
+
+
+    await firstValueFrom(this.list_articles2).then(rest => {
+      this.totalArticle = rest.length
+      this.totalPage = Math.ceil(this.totalArticle / this.offset);
+    })
+
+    this.subscription = await this.store.findAllNotLimet(ServiceArticles.STORAGE_ARTICLES).subscribe(
+      (resp) => {
+        this.list_articles = _.slice(resp, 0, this.offset)
+        this.nextKey = resp[this.offset - 1].payload.doc
+      }
+    )
+
+
+  }
+
+
+  async prevPage() {
+
+    const prevKey = _.last(this.prevKeys)
+    this.prevKeys = _.dropRight(this.prevKeys)
+    this.countAt -= 1
+
+    this.subscription = await this.store.findAllPrev(ServiceArticles.STORAGE_ARTICLES, prevKey, this.nextKey)
+      .subscribe(resp => {
+
+        this.list_articles = _.slice(resp, 0, this.offset)
+        try {
+          this.nextKey = resp[resp.length - 1].payload.doc
+        } catch (e) {
+          this.ngOnInit()
+        }
+
+      })
+
+
+  }
+
+  nextPage() {
+    this.prevKeys.push(this.list_articles[0].payload.doc)
+    this.getArticles(this.nextKey)
+  }
+
+
+
+  async find() {
+
+    if (this.isSerach == 'Nome') {
+
+
+
+      this.subscription = await this.store.findAllTest(ServiceArticles.STORAGE_ARTICLES, this.nextKey, this.typingName, '>=', 'name')
+        .subscribe(resp => {
+
+          this.list_articles = _.slice(resp, 0, resp.length)
+          this.nextKey = resp[resp.length - 1].payload.doc
+
+
+        })
+    }
+
+
+    if (this.isSerach == 'Ref...')
+      this.subscription = this.store.findAllTest(ServiceArticles.STORAGE_ARTICLES, this.nextKey, this.typingName, '>=', 'ean')
+        .subscribe(resp => {
+
+          this.list_articles = _.slice(resp, 0, resp.length)
+          this.nextKey = resp[resp.length - 1].payload.doc
+
+        })
+
+    if (this.isSerach == 'Cate...') {
+
+      this.subscription = this.store.findAllTest(ServiceArticles.STORAGE_ARTICLES, this.nextKey, this.typingName, 'array-contains', 'category_id')
+        ?.subscribe(resp => {
+          this.list_articles = _.slice(resp, 0, resp.length)
+          this.nextKey = resp[resp.length - 1].payload.doc
+        })
+
+
+    }
+
+  }
+
+
+  // @ts-ignore
+  getArticles(key?) {
+    this.countAt += 1
+    this.subscription = this.store.findAllNext(ServiceArticles.STORAGE_ARTICLES, key)
+      .subscribe(async resp => {
+
+        console.log(this.totalPage, this.countAt)
+        if (this.countAt > (this.totalPage - 2)) {
+          this.nextKey = false;
+          this.list_articles = _.slice(resp, 0, this.offset)
+          return;
+        }
+
+        this.list_articles = _.slice(resp, 0, this.offset)
+        try {
+          this.nextKey = resp[resp.length - 1].payload.doc
+        } catch (e) {
+          this.ngOnInit()
+        }
+
+
+      })
   }
 
   edit(attr: any) {
     this.window.$('#categories').val(attr.category_id)
     let data = ServiceEncryptDecriptSimples.encript(JSON.stringify(attr))
     this.router.navigate(['/cadastros/artigos/geral', {article_instance_select: data}]);
+  }
+
+  verifyCate(attr: any) {
+    try {
+      return attr.split(',').slice(0, 4)
+    } catch (e) {
+      return attr.slice(0, 4);
+    }
+
   }
 
   deleteArticle(attr: any) {
@@ -63,62 +211,32 @@ export class DataTablesComponent implements OnInit {
 
   donwladBackData() {
 
-    firstValueFrom(this.list_articles).then((a: any) => {
+    firstValueFrom(this.list_articles2).then((a: any) => {
       var theJSON = JSON.stringify(a, null, 2);
       var uri = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(theJSON));
       this.downloadJsonHref = uri;
-
     })
 
   }
 
 
   pdfGenerator() {
-
-    firstValueFrom(this.list_articles).then((a: any[]) => {
-      let highchartSvg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-      viewBox="0 0 260.93 157.51">
-      <defs>
-        <style>
-          .cls-1{fill:none;}.cls-2,.cls-5{font-size:72.94px;font-family:Montepetrum-Bold,
-          Montepetrum;font-weight:700;}.cls-2{fill:#060063;}.cls-3{clip-path:url(#clip-path);}.cls-4{fill:url(#linear-gradient);}.cls-5{fill:#16aaf7;}</style>
-        <clipPath id="clip-path" transform="translate(4.93)">
-          <path class="cls-1"
-            d="M37.49,112.48A16.62,16.62,0,1,1,22.05,94.76,16.62,16.62,0,0,1,37.49,112.48ZM60.1,84.79a12,12,0,1,0-12.75,11.1A12,12,0,0,0,60.1,84.79ZM29.43,57.23A8.93,8.93,0,1,0,39,48.94,8.92,8.92,0,0,0,29.43,57.23ZM82.5,97.39A8.93,8.93,0,1,0,73,105.68,8.92,8.92,0,0,0,82.5,97.39ZM57.09,65.61a8.93,8.93,0,1,0,9.52-8.29A8.92,8.92,0,0,0,57.09,65.61Zm2.2,41a13.32,13.32,0,1,0,12.37,14.21A13.32,13.32,0,0,0,59.29,106.61ZM88,115.9a8.22,8.22,0,1,0,7.64,8.77A8.23,8.23,0,0,0,88,115.9Zm24.25-5.78a4.43,4.43,0,1,0-4.11-4.72A4.42,4.42,0,0,0,112.26,110.12ZM99.89,79.55A4.43,4.43,0,1,0,104,84.27,4.41,4.41,0,0,0,99.89,79.55ZM92,67.19a4.43,4.43,0,1,0-4.11-4.72A4.41,4.41,0,0,0,92,67.19ZM56.76,33.87a4.43,4.43,0,1,0-4.11-4.72A4.42,4.42,0,0,0,56.76,33.87Zm17.86,9.94a4.43,4.43,0,1,0-4.11-4.72A4.42,4.42,0,0,0,74.62,43.81Zm39.07,45.74a2.8,2.8,0,1,0-2.6-3A2.78,2.78,0,0,0,113.69,89.55Zm0-14.85a2,2,0,1,0-1.83-2.11A2,2,0,0,0,113.74,74.7ZM102.58,68a2.8,2.8,0,1,0,2.6,3A2.79,2.79,0,0,0,102.58,68Zm9.22,50.57a6.4,6.4,0,1,0,5.94,6.82A6.4,6.4,0,0,0,111.8,118.57ZM94.28,96.79a6.4,6.4,0,1,0,5.94,6.82A6.4,6.4,0,0,0,94.28,96.79ZM53.13,46.31A6.4,6.4,0,1,0,60,40.37,6.39,6.39,0,0,0,53.13,46.31Zm23.41,4.15a6.4,6.4,0,1,0,6.82-5.94A6.39,6.39,0,0,0,76.54,50.46ZM78.1,77.13a6.4,6.4,0,1,0,6.82-5.94A6.39,6.39,0,0,0,78.1,77.13Zm-51.49-4.2A13.32,13.32,0,1,0,12.4,85.3,13.32,13.32,0,0,0,26.61,72.93ZM9.78,52.17a9.16,9.16,0,1,0-8.5-9.77A9.16,9.16,0,0,0,9.78,52.17ZM8,25.88A6.4,6.4,0,1,0,2,19.06,6.41,6.41,0,0,0,8,25.88ZM29.42,36.2a6.4,6.4,0,1,0,6.82-5.94A6.4,6.4,0,0,0,29.42,36.2Zm4.11-13.7a4.43,4.43,0,1,0-4.11-4.72A4.43,4.43,0,0,0,33.53,22.5ZM57.6,19.25a2.8,2.8,0,1,0-2.6-3A2.8,2.8,0,0,0,57.6,19.25Zm14.1,8.38a2.8,2.8,0,1,0,3-2.59A2.81,2.81,0,0,0,71.7,27.63Zm1.12-10.58A2,2,0,1,0,71,14.94,2,2,0,0,0,72.82,17.05Z" />
-        </clipPath>
-        <linearGradient id="linear-gradient" x1="37.19" y1="141.14" x2="89.04" y2="19.78"
-          gradientUnits="userSpaceOnUse">
-          <stop offset="0.01" stop-color="#04005e" />
-          <stop offset="0.09" stop-color="#040b66" />
-          <stop offset="0.22" stop-color="#03297d" />
-          <stop offset="0.4" stop-color="#0158a1" />
-          <stop offset="0.54" stop-color="#0087c5" />
-          <stop offset="1" stop-color="#5ee1ed" />
-        </linearGradient>
-      </defs>
-      <g id="Layer_2" data-name="Layer 2">
-        <g id="Layer_1-2" data-name="Layer 1">
-          <text class="cls-2" transform="translate(140.32 62.36)">GLOBAL</text>
-          <g class="cls-3">
-            <rect class="cls-4" y="7.76" width="131.98" height="131.98" />
-          </g>
-          <text class="cls-5" transform="translate(139.14 131.16)">TRONICS</text>
-        </g>
-      </g>
-    </svg>`;
+    firstValueFrom(this.list_articles2).then((a: any[]) => {
+      let highchartSvg = ServiceUtil.IconGlo;
 
       let content = [
         [
+          {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: '#', style: 'tableHeader'},
           {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'NOME DO ARTIGO', style: 'tableHeader'},
           {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'REFERÊNCIA', style: 'tableHeader'},
           {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'MODELO', style: 'tableHeader'},
           {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'MARCA', style: 'tableHeader'},
-
         ]
       ]
 
-      a.forEach((g) => {
+      a.forEach((g, index: number) => {
         content.push([
+          {margin: [2, 1, 1, 1], fillColor: '#fff', text: (index + 1), style: 'all'},
           {margin: [2, 1, 1, 1], fillColor: '#fff', text: g.name, style: 'all'},
           {
             margin: [2, 1, 1, 1],
@@ -147,13 +265,13 @@ export class DataTablesComponent implements OnInit {
             svg: highchartSvg,
             width: 100,
             height: 30,
-            margin: [-28, 2, 2, 2]
+            margin: [0, 2, 2, 2]
           },
           {text: 'Lista de Artigos Cadastrados', fontSize: 14, bold: true, margin: [0, 20, 0, 10]},
           {
             style: 'tableExample',
             table: {
-              widths: [150, 100, 100, 100, 100],
+              widths: [20, 150, 100, 100, 80],
               headerRows: 1,
               body: content
             },
@@ -183,11 +301,11 @@ export class DataTablesComponent implements OnInit {
         styles: {
           tableHeader: {
             bold: true,
-            fontSize: 11,
+            fontSize: 9,
             color: '#515A5A',
           },
           span: {
-            fontSize: 11,
+            fontSize: 9,
             alignment: 'justify',
             color: '#E6B0AA'
           },
@@ -195,7 +313,7 @@ export class DataTablesComponent implements OnInit {
             width: '1000px'
           },
           all: {
-            fontSize: 11,
+            fontSize: 9,
             alignment: 'justify',
             color: '#515A5A'
           },
@@ -222,18 +340,22 @@ export class DataTablesComponent implements OnInit {
 
 
     })
+  }
 
+  initDataTabe() {
 
+    this.window.$("#kt_datatable_vertical_scroll").DataTable({
+      "scrollY": "500px",
+      "scrollCollapse": true,
+      "paging": false,
+      "dom": "<'table-responsive'tr>",
+      "language": {
+        "lengthMenu": "Display -- records per page",
+        "zeroRecords": "Lista de Artigos",
+        "infoEmpty": "Lista de Artigos"
+      }
+    });
   }
 
 
-  xlsFile() {
-
-    firstValueFrom(this.list_articles).then((a: any) => {
-      const blob = new Blob([JSON.stringify(a)], {type: 'application/vnd.ms-excel;charset=utf-8'});
-      FileSaver.saveAs(blob, "Artigos.xls");
-    })
-
-
-  }
 }

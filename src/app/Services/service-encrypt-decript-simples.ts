@@ -7,7 +7,7 @@ import * as CryptoJS from 'crypto-js';
   providedIn: 'root'
 })
 export class ServiceEncryptDecriptSimples {
-  static key: string = 'abcdefghijklmnopqrstuvwxyz';
+  static key: string = '13421';
 
   static encript(content: string) {
 

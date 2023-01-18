@@ -1,0 +1,1557 @@
+[
+  {
+    "updated_mode": false,
+    "email_auth": "NULL",
+    "model": "",
+    "user": {
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "isAnonymous": false,
+      "appName": "[DEFAULT]",
+      "lastLoginAt": "1672918267079",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "displayName": "Glory Ntemo",
+      "stsTokenManager": {
+        "refreshToken": "AOkPPWRknHv_WGhirDKyjB_PnhrkSN8m91UjTp0Uamqqnmdt1-oaDJjTWD6TtFWDIQhaPF4KaK-pzivSMGVK0o-SVx25wA-PtQMwAaXPGsQr6PCuQ3nxZRh3Lp8OMgXt7ul2DxRzdPAC7Lrkqej9GerpQzuiayhJRNW0Tkb5ZyeWRa2RAGlSTb4PdrtrmnVvcgq04zpLis16kHTFGSZX6hJLyHYeRM3BwOGRfy95IHucDIw2jFPuynf0K2k5ZDm3zgJPTY2AceMs2yqB0L5e4Knpn7mdLMs40HozHMvYxRFbwvq2J5lxqOmGMZi02Y1g2TxM62E9uHGRVmjzchnhgGsZhmSyL5X47DnVQntXxui8fP6CeY9Yz6-u-v2DI5Taj0kHsjfqRZGr9W3WK7BBVI_IZZ4dnmAu9diqMu3Yv5vDx9BOTVHgOBTr8bnDeoXwDM9Ea9d2Yvfc",
+        "expirationTime": 1672921865571,
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjcyOTE4MjY3LCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzI5MTgyNjcsImV4cCI6MTY3MjkyMTg2NywiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.KeYp47Boz0LnvAoYwkJym-aJoJvb1HTffweghG8am3NsXQnZaPet9QyhWSjMUtoHYJ_CfU8_N_0QwbUgXEt8lUFbXpooiInQPtRjkCeDprV5G2-5kDx0CJ-C6T4jMOWTWR6slfQX-5VgYrh248YNU5cMvC7miMedBtRWYMQ1KRjolD8uCW8EReknNPvjSrKrP6cmqiyToLTUbpAk5bFNLPSCv9mMT9idMiZQhzRItcw2NgL4KKYSfvA9g8PPxfstbDJT72bQVZUb8Q7Nwb9OOAYvR47uSY44HL9SVD5DekrEY8q9jFTenrGxE6LY9OLA2dGEFRQpCrrRdIKjTmXZ_A"
+      },
+      "providerData": [
+        {
+          "email": "glory.ntemo@gmail.com",
+          "displayName": "Glory Ntemo",
+          "providerId": "google.com",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "uid": "114974962331869278836",
+          "phoneNumber": null
+        }
+      ],
+      "email": "glory.ntemo@gmail.com",
+      "createdAt": "1672826201659"
+    },
+    "created_at": "NULL",
+    "updated_at": "09 01,2023 20:31:39",
+    "name": "Câmara",
+    "category_id": "Câmara",
+    "ean": "",
+    "id": "1RKJOCYJEKUBAC4IMDMN",
+    "details": "",
+    "deleted_at": "NULL",
+    "quantity": 0,
+    "marquee": ""
+  },
+  {
+    "deleted_at": "NULL",
+    "details": "",
+    "id": "8KQMCMS5KMJZTW15FHXI",
+    "name": "Placa PC 320",
+    "category_id": "interface de pc",
+    "updated_at": "09 01,2023 17:19:01",
+    "marquee": "",
+    "email_auth": "NULL",
+    "user": {
+      "email": "glory.ntemo@gmail.com",
+      "displayName": "Glory Ntemo",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "stsTokenManager": {
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA",
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "expirationTime": 1673268460059
+      },
+      "providerData": [
+        {
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "email": "glory.ntemo@gmail.com",
+          "uid": "114974962331869278836",
+          "phoneNumber": null,
+          "displayName": "Glory Ntemo",
+          "providerId": "google.com"
+        }
+      ],
+      "appName": "[DEFAULT]",
+      "createdAt": "1672826201659",
+      "lastLoginAt": "1673264860941",
+      "isAnonymous": false,
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c"
+    },
+    "ean": "3202dc",
+    "quantity": 0,
+    "created_at": "09 01,2023 17:24:54",
+    "updated_mode": false,
+    "model": ""
+  },
+  {
+    "updated_mode": false,
+    "deleted_at": "NULL",
+    "category_id": "HTML",
+    "marquee": "",
+    "model": "",
+    "id": "9LHGZRTAQTHXDPQZTTDG",
+    "quantity": 0,
+    "user": {
+      "emailVerified": true,
+      "lastLoginAt": "1673264860941",
+      "isAnonymous": false,
+      "stsTokenManager": {
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "expirationTime": 1673268460059,
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA"
+      },
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "email": "glory.ntemo@gmail.com",
+      "appName": "[DEFAULT]",
+      "createdAt": "1672826201659",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "displayName": "Glory Ntemo",
+      "providerData": [
+        {
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "displayName": "Glory Ntemo",
+          "uid": "114974962331869278836",
+          "providerId": "google.com",
+          "phoneNumber": null,
+          "email": "glory.ntemo@gmail.com"
+        }
+      ]
+    },
+    "ean": "",
+    "details": "",
+    "updated_at": "09 01,2023 16:45:37",
+    "created_at": "09 01,2023 16:46:07",
+    "name": "Suporte de Camara",
+    "email_auth": "NULL"
+  },
+  {
+    "quantity": 0,
+    "marquee": "",
+    "category_id": "",
+    "user": {
+      "appName": "[DEFAULT]",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "createdAt": "1672826201659",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "emailVerified": true,
+      "email": "glory.ntemo@gmail.com",
+      "stsTokenManager": {
+        "expirationTime": 1673268460059,
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA",
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ"
+      },
+      "isAnonymous": false,
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "providerData": [
+        {
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "uid": "114974962331869278836",
+          "phoneNumber": null,
+          "email": "glory.ntemo@gmail.com",
+          "providerId": "google.com",
+          "displayName": "Glory Ntemo"
+        }
+      ],
+      "lastLoginAt": "1673264860941",
+      "displayName": "Glory Ntemo"
+    },
+    "updated_at": "09 01,2023 16:25:03",
+    "id": "AHXKMM9ZMVMG9V00JSTG",
+    "name": "Camara IP TEC UK",
+    "updated_mode": false,
+    "ean": "",
+    "deleted_at": "NULL",
+    "created_at": "NULL",
+    "details": "",
+    "email_auth": "NULL",
+    "model": "IP 331"
+  },
+  {
+    "category_id": "Camara",
+    "id": "ARR0WOVWZ6R13BBLIKMM",
+    "created_at": "09 01,2023 16:58:57",
+    "quantity": 0,
+    "name": "Camara Kocom",
+    "updated_at": "09 01,2023 16:56:55",
+    "details": "",
+    "marquee": "Kocom",
+    "ean": "",
+    "deleted_at": "NULL",
+    "user": {
+      "emailVerified": true,
+      "providerData": [
+        {
+          "displayName": "Glory Ntemo",
+          "email": "glory.ntemo@gmail.com",
+          "providerId": "google.com",
+          "phoneNumber": null,
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "uid": "114974962331869278836"
+        }
+      ],
+      "lastLoginAt": "1673264860941",
+      "displayName": "Glory Ntemo",
+      "stsTokenManager": {
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA",
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "expirationTime": 1673268460059
+      },
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "createdAt": "1672826201659",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "email": "glory.ntemo@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "isAnonymous": false,
+      "appName": "[DEFAULT]"
+    },
+    "updated_mode": false,
+    "email_auth": "NULL",
+    "model": "KCC-IP230"
+  },
+  {
+    "id": "CHZOWHB83BZ158P8TWIN",
+    "updated_mode": false,
+    "marquee": "",
+    "category_id": "",
+    "ean": "",
+    "updated_at": "09 01,2023 16:31:14",
+    "deleted_at": "NULL",
+    "quantity": 0,
+    "name": "Camara IP TEC UK",
+    "details": "Camara IP TEC Modelo UK  IPD-106Z da Korea",
+    "model": "IPD-106Z",
+    "created_at": "09 01,2023 16:32:49",
+    "email_auth": "NULL",
+    "user": {
+      "isAnonymous": false,
+      "createdAt": "1672826201659",
+      "lastLoginAt": "1673264860941",
+      "providerData": [
+        {
+          "displayName": "Glory Ntemo",
+          "providerId": "google.com",
+          "phoneNumber": null,
+          "email": "glory.ntemo@gmail.com",
+          "uid": "114974962331869278836",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c"
+        }
+      ],
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "displayName": "Glory Ntemo",
+      "email": "glory.ntemo@gmail.com",
+      "emailVerified": true,
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "stsTokenManager": {
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "expirationTime": 1673268460059,
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA"
+      },
+      "appName": "[DEFAULT]",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1"
+    }
+  },
+  {
+    "name": "Roter D-Link",
+    "email_auth": "NULL",
+    "details": "",
+    "deleted_at": "NULL",
+    "model": "DAP-2360A1",
+    "updated_mode": false,
+    "created_at": "09 01,2023 17:08:22",
+    "marquee": "D-Link",
+    "category_id": "Roter",
+    "user": {
+      "isAnonymous": false,
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "email": "glory.ntemo@gmail.com",
+      "appName": "[DEFAULT]",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "lastLoginAt": "1673264860941",
+      "stsTokenManager": {
+        "expirationTime": 1673268460059,
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA"
+      },
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "providerData": [
+        {
+          "providerId": "google.com",
+          "displayName": "Glory Ntemo",
+          "uid": "114974962331869278836",
+          "phoneNumber": null,
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "email": "glory.ntemo@gmail.com"
+        }
+      ],
+      "displayName": "Glory Ntemo",
+      "createdAt": "1672826201659",
+      "emailVerified": true
+    },
+    "id": "CVLNMH79MDSHBKAUZMUT",
+    "ean": "",
+    "updated_at": "09 01,2023 17:06:49",
+    "quantity": 0
+  },
+  {
+    "name": "Camara Kocom",
+    "model": "KCC-340 24L",
+    "created_at": "09 01,2023 16:58:08",
+    "ean": "",
+    "email_auth": "NULL",
+    "user": {
+      "providerData": [
+        {
+          "uid": "114974962331869278836",
+          "displayName": "Glory Ntemo",
+          "email": "glory.ntemo@gmail.com",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "providerId": "google.com",
+          "phoneNumber": null
+        }
+      ],
+      "displayName": "Glory Ntemo",
+      "isAnonymous": false,
+      "email": "glory.ntemo@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "emailVerified": true,
+      "appName": "[DEFAULT]",
+      "lastLoginAt": "1673264860941",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "stsTokenManager": {
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA",
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "expirationTime": 1673268460059
+      },
+      "createdAt": "1672826201659"
+    },
+    "quantity": 0,
+    "updated_at": "09 01,2023 16:56:55",
+    "details": "",
+    "category_id": "Camara",
+    "updated_mode": false,
+    "id": "D3YLNABXXZWVR0OBIIO7",
+    "deleted_at": "NULL",
+    "marquee": "Kocom"
+  },
+  {
+    "ean": "",
+    "id": "D6IMLLJKWS68XVMDQNLF",
+    "details": "",
+    "quantity": 0,
+    "name": "Camara Kocom",
+    "updated_mode": false,
+    "marquee": "Kocom",
+    "user": {
+      "emailVerified": true,
+      "displayName": "Glory Ntemo",
+      "createdAt": "1672826201659",
+      "providerData": [
+        {
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "displayName": "Glory Ntemo",
+          "email": "glory.ntemo@gmail.com",
+          "uid": "114974962331869278836",
+          "phoneNumber": null,
+          "providerId": "google.com"
+        }
+      ],
+      "lastLoginAt": "1673264860941",
+      "email": "glory.ntemo@gmail.com",
+      "stsTokenManager": {
+        "expirationTime": 1673268460059,
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA"
+      },
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "appName": "[DEFAULT]",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "isAnonymous": false,
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c"
+    },
+    "email_auth": "NULL",
+    "category_id": "Camara",
+    "deleted_at": "NULL",
+    "model": "KCV-F850",
+    "created_at": "09 01,2023 17:09:54",
+    "updated_at": "09 01,2023 17:08:50"
+  },
+  {
+    "user": {
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "email": "glory.ntemo@gmail.com",
+      "createdAt": "1672826201659",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "lastLoginAt": "1673801351962",
+      "emailVerified": true,
+      "appName": "[DEFAULT]",
+      "isAnonymous": false,
+      "stsTokenManager": {
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1NWU0ZDkxOGE0ODY0YWQxMzUxMDViYmRjMDEwYWY5Njc5YzM0MTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczODAxMzUxLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzM4MDEzNTEsImV4cCI6MTY3MzgwNDk1MSwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.n8Y_v4PaWe21sypcl0z5k8jqTb7HXgxlVi-fKtX9Q7PRcj1mq9939kmka4982sR0GnAewk4s_KoLSZiFbnrXezGXq6mpBB6g3tLqBSI1gCVHWvc-HBzUUAkTDH8e-Ok_ujs5EtYNsnB6YvnJhibX55rZc8oZWzWyyfqUmD_cfE_uXqwQMPAv9NIHfTtjGesoKqBzTPkgo2lsxWoTxrelwVVUfvIiNNSd7JsX_iTUFYv8zsx5CQg0Cbp77wMg0CpTgO1PrsVi6IxH75nFuwYbsIbE6PN9LioVb4Wcj1eIhDiEdpDpNGJadxsnHApgXOFmlTsU_FNcq91CRASk6YYnSw",
+        "refreshToken": "AOkPPWRf6rliGChtU16CV0TmSVKYAxSmyMMyowAvXeCX0xG50UVHkuJcydVGcIyKYXR-dFTmXKuZv3WhD-SZdBr92Lf7q1mXIQTKNT_0B-os_LD2izV426YQxpBVyAXaeVeFdg6AwT3YBrHQ83w5njRYDRPgXy5gGCbzEyShiugF1oAN3w8T8hVJvMSV76t9020Gdzxam6LUHqNkwUDDZkuqs1CZEyyq7D2C-aG8sfPW8aV3g4ZJsyX3ib1ayLCzfSor-PKozqRpt95leZJOvQ3eon5vO1qF8OQm8ZqVJvUj98SB3xegr7INXdtsnf8oOBpXRud5QRBCPEdE1T2BpOzDAyWgsQg0Nz8j-VcDtPZHEac9c1laaN_Rb5pPjX0jPzFzYMhrBtDGrj2Fvm6qSN2l0fdLTmzOXHmR9fOn7titTotqddlK6HOcwaSUPivcKLMd9PhAj9BY",
+        "expirationTime": 1673804950896
+      },
+      "displayName": "Glory Ntemo",
+      "providerData": [
+        {
+          "providerId": "google.com",
+          "phoneNumber": null,
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "uid": "114974962331869278836",
+          "email": "glory.ntemo@gmail.com",
+          "displayName": "Glory Ntemo"
+        }
+      ],
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1"
+    },
+    "updated_mode": false,
+    "quantity": 0,
+    "details": "",
+    "updated_at": "15 01,2023 23:05:46",
+    "category_id": "",
+    "created_at": "15 01,2023 23:05:57",
+    "name": "Placa PC 32",
+    "ean": "",
+    "id": "DS8VHDJFC87R06VYEP0S",
+    "deleted_at": "NULL",
+    "marquee": "",
+    "model": "",
+    "email_auth": "NULL"
+  },
+  {
+    "updated_mode": false,
+    "quantity": 0,
+    "details": "Teste",
+    "created_at": "16 01,2023 11:18:51",
+    "user": {
+      "providerData": [
+        {
+          "providerId": "google.com",
+          "displayName": "Jamba Pedro",
+          "email": "jambapedro@gmail.com",
+          "phoneNumber": null,
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6yeqMihH_dOOYQLaitSh4jZTpnhUwPhKucU7uO=s96-c",
+          "uid": "100975477251747451776"
+        }
+      ],
+      "displayName": "Jamba Pedro",
+      "emailVerified": true,
+      "lastLoginAt": "1673864124887",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "appName": "[DEFAULT]",
+      "uid": "lzRbxnK10ARVGqws1EQyQ9lOsGH3",
+      "createdAt": "1673469483295",
+      "isAnonymous": false,
+      "email": "jambapedro@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6yeqMihH_dOOYQLaitSh4jZTpnhUwPhKucU7uO=s96-c",
+      "stsTokenManager": {
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1NWU0ZDkxOGE0ODY0YWQxMzUxMDViYmRjMDEwYWY5Njc5YzM0MTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSmFtYmEgUGVkcm8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNnllcU1paEhfZE9PWVFMYWl0U2g0alpUcG5oVXdQaEt1Y1U3dU89czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczODY0MTI0LCJ1c2VyX2lkIjoibHpSYnhuSzEwQVJWR3F3czFFUXlROWxPc0dIMyIsInN1YiI6Imx6UmJ4bksxMEFSVkdxd3MxRVF5UTlsT3NHSDMiLCJpYXQiOjE2NzM4NjQxMjQsImV4cCI6MTY3Mzg2NzcyNCwiZW1haWwiOiJqYW1iYXBlZHJvQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTAwOTc1NDc3MjUxNzQ3NDUxNzc2Il0sImVtYWlsIjpbImphbWJhcGVkcm9AZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.g7mO7p-ryerI7ZXgs3_sLK7P0bEXlLBj1X7FRhFxXoCRdmVg3ijk6f07avK5MGC-9FzfrDZ8dYXNdNSSJ3kAe7uFllCA1TqnH3ucMlt3us49W-6NUFs99V2iRUgllfLHrnC4MO913KX7GdTimDr4swRY6M-YkN2deTpUMu38M2MiBmXEiX97i_-x00V-F0fuKHoxFcD_37KMBbafWJ7FD9TDQ7NBqVpzR1ACOFKWaDkpNzXWQfv6KCu7QCPPpxSetzfEg0vP2Ovk3bSEbn9hHTjM51OvKQm5hC91MQVpxwRnd9ERWIdCL4U2HSNtJerMf3Q51ZKhpuIy2LeNYw64Cg",
+        "refreshToken": "AOkPPWRA9lx6ea3mHOI-J8m7IsjP_b8cJZoaFEc64qkWO3fN84J6fi8Z10Q9NJ_JncD76HMEtGPRBWiJ1hNgR3y1u4hQTgR3fvTgEAICTUukP8S21k4YS10jTAZJ1-QR4B52QP7tvR7RiWXlI151_UmEe5b4U5-opGNqDlk-QaCcuxa7rzoF4B7LqNqb041D-XmMpvb4F7ISmYYlJ-F3wC4JdDB39KZQxyrpCuoLBWJ6LV7ATx9JfbsH1YI_qWiKTLbu-Ll-n6rFFuWYE1PmFVN9NV6epuCQKqjDO1yM_e-l8ZiGWaFsfbrtkme2POxNJHnjNHcipS_GVj8kgtpULH8on3ARSrSXdAU3zw2vnwwzRv9Qf1DBn2PzIyVmjKaj5xJoHo8ucN0Xsaw5Ik70xlcrJkzeTwbntfTDTRAGUfjIj8cezgsKhE6drJwlzPBtJMBnaUDfOtRU",
+        "expirationTime": 1673867724724
+      }
+    },
+    "id": "GAY9P8UN8R8USZIQNKD2",
+    "updated_at": "16 01,2023 11:18:14",
+    "deleted_at": "NULL",
+    "model": "Any",
+    "category_id": "Any",
+    "marquee": "Any",
+    "ean": "Asdrty",
+    "name": "Artigo 16.71.2022",
+    "email_auth": "NULL"
+  },
+  {
+    "ean": "",
+    "category_id": "Mini Camara",
+    "email_auth": "NULL",
+    "updated_mode": false,
+    "created_at": "NULL",
+    "user": {
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "createdAt": "1672826201659",
+      "emailVerified": true,
+      "isAnonymous": false,
+      "appName": "[DEFAULT]",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "lastLoginAt": "1673264860941",
+      "stsTokenManager": {
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA",
+        "expirationTime": 1673268460059
+      },
+      "email": "glory.ntemo@gmail.com",
+      "providerData": [
+        {
+          "providerId": "google.com",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "uid": "114974962331869278836",
+          "phoneNumber": null,
+          "email": "glory.ntemo@gmail.com",
+          "displayName": "Glory Ntemo"
+        }
+      ],
+      "displayName": "Glory Ntemo"
+    },
+    "marquee": "",
+    "name": "Mini speed dome camara",
+    "model": "KZC-SPT10",
+    "id": "GDCLKYJNC1VHLFEJQQHA",
+    "updated_at": "09 01,2023 17:18:47",
+    "deleted_at": "NULL",
+    "quantity": 0,
+    "details": ""
+  },
+  {
+    "quantity": 0,
+    "details": "",
+    "updated_at": "09 01,2023 17:19:01",
+    "marquee": "kocom",
+    "ean": "",
+    "created_at": "09 01,2023 17:20:56",
+    "name": "Camara kocom",
+    "deleted_at": "NULL",
+    "category_id": "Camara",
+    "updated_mode": false,
+    "id": "GDU22OUNVFXISFUHSDNA",
+    "email_auth": "NULL",
+    "user": {
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "isAnonymous": false,
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "lastLoginAt": "1673264860941",
+      "appName": "[DEFAULT]",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "email": "glory.ntemo@gmail.com",
+      "displayName": "Glory Ntemo",
+      "stsTokenManager": {
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA",
+        "expirationTime": 1673268460059,
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ"
+      },
+      "providerData": [
+        {
+          "displayName": "Glory Ntemo",
+          "phoneNumber": null,
+          "providerId": "google.com",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "uid": "114974962331869278836",
+          "email": "glory.ntemo@gmail.com"
+        }
+      ],
+      "createdAt": "1672826201659"
+    },
+    "model": "KCC-IP250"
+  },
+  {
+    "user": {
+      "stsTokenManager": {
+        "expirationTime": 1673268460059,
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA"
+      },
+      "isAnonymous": false,
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "emailVerified": true,
+      "providerData": [
+        {
+          "phoneNumber": null,
+          "displayName": "Glory Ntemo",
+          "email": "glory.ntemo@gmail.com",
+          "uid": "114974962331869278836",
+          "providerId": "google.com",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c"
+        }
+      ],
+      "createdAt": "1672826201659",
+      "email": "glory.ntemo@gmail.com",
+      "appName": "[DEFAULT]",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "displayName": "Glory Ntemo",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "lastLoginAt": "1673264860941"
+    },
+    "deleted_at": "NULL",
+    "marquee": "Kocom",
+    "name": "Camara Kocom",
+    "ean": "",
+    "created_at": "09 01,2023 16:59:57",
+    "email_auth": "NULL",
+    "model": "V05K19458",
+    "updated_mode": false,
+    "category_id": "Camara",
+    "id": "HESERLNHEAJ00LMZOCJN",
+    "quantity": 0,
+    "updated_at": "09 01,2023 16:56:55",
+    "details": ""
+  },
+  {
+    "updated_at": "09 01,2023 16:49:20",
+    "user": {
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "isAnonymous": false,
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "providerData": [
+        {
+          "providerId": "google.com",
+          "uid": "114974962331869278836",
+          "phoneNumber": null,
+          "email": "glory.ntemo@gmail.com",
+          "displayName": "Glory Ntemo",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c"
+        }
+      ],
+      "createdAt": "1672826201659",
+      "emailVerified": true,
+      "appName": "[DEFAULT]",
+      "lastLoginAt": "1673264860941",
+      "stsTokenManager": {
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA",
+        "expirationTime": 1673268460059
+      },
+      "displayName": "Glory Ntemo",
+      "email": "glory.ntemo@gmail.com"
+    },
+    "updated_mode": false,
+    "email_auth": "NULL",
+    "details": "",
+    "name": "Kingston-240GB",
+    "category_id": "Memoria",
+    "id": "HNXHLF5LKBL0IVS7KQEF",
+    "deleted_at": "NULL",
+    "quantity": 0,
+    "marquee": "",
+    "ean": "",
+    "model": "8838415",
+    "created_at": "09 01,2023 16:50:54"
+  },
+  {
+    "updated_at": "16 01,2023 11:22:30",
+    "user": {
+      "createdAt": "1673469483295",
+      "isAnonymous": false,
+      "stsTokenManager": {
+        "refreshToken": "AOkPPWRA9lx6ea3mHOI-J8m7IsjP_b8cJZoaFEc64qkWO3fN84J6fi8Z10Q9NJ_JncD76HMEtGPRBWiJ1hNgR3y1u4hQTgR3fvTgEAICTUukP8S21k4YS10jTAZJ1-QR4B52QP7tvR7RiWXlI151_UmEe5b4U5-opGNqDlk-QaCcuxa7rzoF4B7LqNqb041D-XmMpvb4F7ISmYYlJ-F3wC4JdDB39KZQxyrpCuoLBWJ6LV7ATx9JfbsH1YI_qWiKTLbu-Ll-n6rFFuWYE1PmFVN9NV6epuCQKqjDO1yM_e-l8ZiGWaFsfbrtkme2POxNJHnjNHcipS_GVj8kgtpULH8on3ARSrSXdAU3zw2vnwwzRv9Qf1DBn2PzIyVmjKaj5xJoHo8ucN0Xsaw5Ik70xlcrJkzeTwbntfTDTRAGUfjIj8cezgsKhE6drJwlzPBtJMBnaUDfOtRU",
+        "expirationTime": 1673867724724,
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1NWU0ZDkxOGE0ODY0YWQxMzUxMDViYmRjMDEwYWY5Njc5YzM0MTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSmFtYmEgUGVkcm8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNnllcU1paEhfZE9PWVFMYWl0U2g0alpUcG5oVXdQaEt1Y1U3dU89czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczODY0MTI0LCJ1c2VyX2lkIjoibHpSYnhuSzEwQVJWR3F3czFFUXlROWxPc0dIMyIsInN1YiI6Imx6UmJ4bksxMEFSVkdxd3MxRVF5UTlsT3NHSDMiLCJpYXQiOjE2NzM4NjQxMjQsImV4cCI6MTY3Mzg2NzcyNCwiZW1haWwiOiJqYW1iYXBlZHJvQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTAwOTc1NDc3MjUxNzQ3NDUxNzc2Il0sImVtYWlsIjpbImphbWJhcGVkcm9AZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.g7mO7p-ryerI7ZXgs3_sLK7P0bEXlLBj1X7FRhFxXoCRdmVg3ijk6f07avK5MGC-9FzfrDZ8dYXNdNSSJ3kAe7uFllCA1TqnH3ucMlt3us49W-6NUFs99V2iRUgllfLHrnC4MO913KX7GdTimDr4swRY6M-YkN2deTpUMu38M2MiBmXEiX97i_-x00V-F0fuKHoxFcD_37KMBbafWJ7FD9TDQ7NBqVpzR1ACOFKWaDkpNzXWQfv6KCu7QCPPpxSetzfEg0vP2Ovk3bSEbn9hHTjM51OvKQm5hC91MQVpxwRnd9ERWIdCL4U2HSNtJerMf3Q51ZKhpuIy2LeNYw64Cg"
+      },
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6yeqMihH_dOOYQLaitSh4jZTpnhUwPhKucU7uO=s96-c",
+      "emailVerified": true,
+      "uid": "lzRbxnK10ARVGqws1EQyQ9lOsGH3",
+      "appName": "[DEFAULT]",
+      "providerData": [
+        {
+          "phoneNumber": null,
+          "displayName": "Jamba Pedro",
+          "providerId": "google.com",
+          "email": "jambapedro@gmail.com",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6yeqMihH_dOOYQLaitSh4jZTpnhUwPhKucU7uO=s96-c",
+          "uid": "100975477251747451776"
+        }
+      ],
+      "lastLoginAt": "1673864124887",
+      "displayName": "Jamba Pedro",
+      "email": "jambapedro@gmail.com",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q"
+    },
+    "id": "IC8RDE4MWAWKGMDSNMZW",
+    "updated_mode": false,
+    "marquee": "Addf",
+    "email_auth": "NULL",
+    "created_at": "16 01,2023 11:23:21",
+    "ean": "Sdf5443",
+    "deleted_at": "NULL",
+    "details": "Teste",
+    "category_id": "Afdd",
+    "name": "Artigo test 16.01.2023",
+    "model": "Asd",
+    "quantity": -1
+  },
+  {
+    "model": "MAH240250TF",
+    "updated_at": "09 01,2023 17:14:28",
+    "deleted_at": "NULL",
+    "marquee": "AC",
+    "created_at": "09 01,2023 17:16:46",
+    "quantity": 0,
+    "ean": "",
+    "user": {
+      "displayName": "Glory Ntemo",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "createdAt": "1672826201659",
+      "emailVerified": true,
+      "lastLoginAt": "1673264860941",
+      "stsTokenManager": {
+        "expirationTime": 1673268460059,
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA",
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ"
+      },
+      "email": "glory.ntemo@gmail.com",
+      "providerData": [
+        {
+          "uid": "114974962331869278836",
+          "providerId": "google.com",
+          "displayName": "Glory Ntemo",
+          "phoneNumber": null,
+          "email": "glory.ntemo@gmail.com",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c"
+        }
+      ],
+      "isAnonymous": false,
+      "appName": "[DEFAULT]",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1"
+    },
+    "name": "AC Adaptor",
+    "details": "",
+    "email_auth": "NULL",
+    "id": "ITBBBZ9DBHRPTHONH9WM",
+    "category_id": "Transformador",
+    "updated_mode": false
+  },
+  {
+    "quantity": 0,
+    "email_auth": "NULL",
+    "id": "JC0L5DKIZKBS9RFKXPOW",
+    "deleted_at": "NULL",
+    "marquee": "",
+    "category_id": "Lampada",
+    "details": "",
+    "created_at": "09 01,2023 16:54:35",
+    "ean": "",
+    "updated_mode": false,
+    "model": "",
+    "name": "Star Electric",
+    "updated_at": "09 01,2023 16:53:58",
+    "user": {
+      "providerData": [
+        {
+          "email": "glory.ntemo@gmail.com",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "uid": "114974962331869278836",
+          "displayName": "Glory Ntemo",
+          "providerId": "google.com",
+          "phoneNumber": null
+        }
+      ],
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "isAnonymous": false,
+      "displayName": "Glory Ntemo",
+      "emailVerified": true,
+      "appName": "[DEFAULT]",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "email": "glory.ntemo@gmail.com",
+      "createdAt": "1672826201659",
+      "lastLoginAt": "1673264860941",
+      "stsTokenManager": {
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA",
+        "expirationTime": 1673268460059
+      }
+    }
+  },
+  {
+    "marquee": "kocom",
+    "user": {
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "lastLoginAt": "1673264860941",
+      "emailVerified": true,
+      "providerData": [
+        {
+          "email": "glory.ntemo@gmail.com",
+          "uid": "114974962331869278836",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "displayName": "Glory Ntemo",
+          "phoneNumber": null,
+          "providerId": "google.com"
+        }
+      ],
+      "email": "glory.ntemo@gmail.com",
+      "createdAt": "1672826201659",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "displayName": "Glory Ntemo",
+      "isAnonymous": false,
+      "appName": "[DEFAULT]",
+      "stsTokenManager": {
+        "expirationTime": 1673268460059,
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA"
+      }
+    },
+    "updated_mode": false,
+    "ean": "",
+    "deleted_at": "NULL",
+    "updated_at": "09 01,2023 17:19:01",
+    "name": "Camara Kocom",
+    "quantity": 0,
+    "created_at": "09 01,2023 17:22:45",
+    "details": "",
+    "email_auth": "NULL",
+    "model": "KCC-MIP20",
+    "id": "KQAFVUGVZPYPXEXCP1MI",
+    "category_id": "Camara"
+  },
+  {
+    "updated_mode": false,
+    "details": "",
+    "user": {
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "email": "glory.ntemo@gmail.com",
+      "lastLoginAt": "1673264860941",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "appName": "[DEFAULT]",
+      "displayName": "Glory Ntemo",
+      "isAnonymous": false,
+      "providerData": [
+        {
+          "email": "glory.ntemo@gmail.com",
+          "phoneNumber": null,
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "providerId": "google.com",
+          "uid": "114974962331869278836",
+          "displayName": "Glory Ntemo"
+        }
+      ],
+      "stsTokenManager": {
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "expirationTime": 1673268460059,
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA"
+      },
+      "createdAt": "1672826201659"
+    },
+    "created_at": "NULL",
+    "marquee": "",
+    "model": "PRT-555N",
+    "ean": "",
+    "id": "LGW8VZXBU9YAN7UUFYIR",
+    "quantity": 0,
+    "email_auth": "NULL",
+    "name": "Camara Proline UK",
+    "updated_at": "09 01,2023 16:44:59",
+    "category_id": "PRT-555N",
+    "deleted_at": "NULL"
+  },
+  {
+    "model": "123",
+    "deleted_at": "NULL",
+    "updated_at": "15 01,2023 12:33:45",
+    "name": "artigo para venda",
+    "user": {
+      "createdAt": "1673469483295",
+      "email": "jambapedro@gmail.com",
+      "emailVerified": true,
+      "lastLoginAt": "1673782410442",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6yeqMihH_dOOYQLaitSh4jZTpnhUwPhKucU7uO=s96-c",
+      "appName": "[DEFAULT]",
+      "providerData": [
+        {
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6yeqMihH_dOOYQLaitSh4jZTpnhUwPhKucU7uO=s96-c",
+          "email": "jambapedro@gmail.com",
+          "providerId": "google.com",
+          "phoneNumber": null,
+          "displayName": "Jamba Pedro",
+          "uid": "100975477251747451776"
+        }
+      ],
+      "uid": "lzRbxnK10ARVGqws1EQyQ9lOsGH3",
+      "isAnonymous": false,
+      "stsTokenManager": {
+        "refreshToken": "AOkPPWQTXV7RwvnfVJg4TtgM9Iz3tin6THguDLOTcIUUKLvbtTmWqhbtCT7WMhJaLx1pRaLtCPP_57rpwTIgNspKxqzwcQkg-wJiWkPJmSA76Xq5djcgzGb84M24Zc4Mou3LhxF2Qr58ooAF1ApWxiQl3Xo9x-Y5gaA3VQp-lAYR61NhFn42jvM8G1FGwQy9-gqwaj72728Fwg4Qz1sy1_WeiWiOau0Gej7aILO6cRb64Zv6y35sdiO1q4qd4Gs4aVTjJJnPszMLCRSW04i-QqgHfa-THPl9xE5K7ukKX_FZELQgVwVfBGg0l0dueWp351Wpc27zaGeNaQSSHdaMRNwH3ATmY16xiA3JhEc2rvuaRl3xuTYfDJZ08wxeeE3CUZvIlP5HMasdV4U0tlSUcPfpzBAeCg57ylrH4i_iqsiCGcQThljRpP_c4oWSjdKZ5r_6BtqdN5hy",
+        "expirationTime": 1673786010715,
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1NWU0ZDkxOGE0ODY0YWQxMzUxMDViYmRjMDEwYWY5Njc5YzM0MTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSmFtYmEgUGVkcm8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNnllcU1paEhfZE9PWVFMYWl0U2g0alpUcG5oVXdQaEt1Y1U3dU89czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczNzgyNDEwLCJ1c2VyX2lkIjoibHpSYnhuSzEwQVJWR3F3czFFUXlROWxPc0dIMyIsInN1YiI6Imx6UmJ4bksxMEFSVkdxd3MxRVF5UTlsT3NHSDMiLCJpYXQiOjE2NzM3ODI0MTAsImV4cCI6MTY3Mzc4NjAxMCwiZW1haWwiOiJqYW1iYXBlZHJvQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTAwOTc1NDc3MjUxNzQ3NDUxNzc2Il0sImVtYWlsIjpbImphbWJhcGVkcm9AZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.cC6JPO-0OH6lH6iZpBB2ryvk5_O-mDKsEGsfyMH2f4f51I2atQiSvSzJMptl8Gy0MNRGv5Cp62-dO72LRMf2NzRGEWaHGow64K96Ylc1YrZ_XXvucMNlS87_PHRBeVhnMTXdiJTaM1BExTUeby3H5lJCO1gkKdLlrQsVtovcs06lz2VoisZ_lNTTJA4lqjZBTgZMmtacT4BOqyIxMdLmi73Ac9oSrB-t_DFCBjuXPjNnDqzOpKNhRXebK_kglWR-QlWeipIwPuKLMqEZSCDBYloG1VNapo3ePCcWIJiTbTB4OoQKHAep22lbo9cUGuSBuq0YZn2Ae94Qdkbrjese7w"
+      },
+      "displayName": "Jamba Pedro"
+    },
+    "details": "",
+    "id": "LYP7E7WNYPUTM9F3QURA",
+    "ean": "123",
+    "created_at": "15 01,2023 12:34:40",
+    "email_auth": "NULL",
+    "category_id": "123",
+    "marquee": "123",
+    "updated_mode": false,
+    "quantity": -4
+  },
+  {
+    "created_at": "09 01,2023 17:21:54",
+    "marquee": "kocom",
+    "name": "Camara Kocom",
+    "updated_at": "09 01,2023 17:19:01",
+    "ean": "",
+    "quantity": 0,
+    "deleted_at": "NULL",
+    "email_auth": "NULL",
+    "updated_mode": false,
+    "details": "",
+    "model": "KZC-SP271DP",
+    "user": {
+      "appName": "[DEFAULT]",
+      "lastLoginAt": "1673264860941",
+      "email": "glory.ntemo@gmail.com",
+      "stsTokenManager": {
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA",
+        "expirationTime": 1673268460059,
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ"
+      },
+      "createdAt": "1672826201659",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "emailVerified": true,
+      "providerData": [
+        {
+          "email": "glory.ntemo@gmail.com",
+          "phoneNumber": null,
+          "displayName": "Glory Ntemo",
+          "providerId": "google.com",
+          "uid": "114974962331869278836",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c"
+        }
+      ],
+      "isAnonymous": false,
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "displayName": "Glory Ntemo"
+    },
+    "category_id": "Camara",
+    "id": "MBEHZWT3AAV5Q9IPFGST"
+  },
+  {
+    "ean": "",
+    "category_id": "Cabo",
+    "user": {
+      "lastLoginAt": "1673264860941",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "appName": "[DEFAULT]",
+      "providerData": [
+        {
+          "providerId": "google.com",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "phoneNumber": null,
+          "displayName": "Glory Ntemo",
+          "email": "glory.ntemo@gmail.com",
+          "uid": "114974962331869278836"
+        }
+      ],
+      "displayName": "Glory Ntemo",
+      "emailVerified": true,
+      "email": "glory.ntemo@gmail.com",
+      "createdAt": "1672826201659",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "stsTokenManager": {
+        "expirationTime": 1673268460059,
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA"
+      },
+      "isAnonymous": false
+    },
+    "id": "MQTDBS5UXTNOI0SVV0QB",
+    "deleted_at": "NULL",
+    "quantity": 0,
+    "created_at": "NULL",
+    "name": "Cabo da Boss de Fibra",
+    "updated_at": "09 01,2023 17:12:41",
+    "model": "",
+    "marquee": "Boss",
+    "updated_mode": false,
+    "email_auth": "NULL",
+    "details": ""
+  },
+  {
+    "created_at": "16 01,2023 16:43:45",
+    "updated_mode": false,
+    "user": {
+      "providerData": [
+        {
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "uid": "114974962331869278836",
+          "phoneNumber": null,
+          "displayName": "Glory Ntemo",
+          "providerId": "google.com",
+          "email": "glory.ntemo@gmail.com"
+        }
+      ],
+      "lastLoginAt": "1673882118189",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "displayName": "Glory Ntemo",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "createdAt": "1672826201659",
+      "isAnonymous": false,
+      "emailVerified": true,
+      "appName": "[DEFAULT]",
+      "stsTokenManager": {
+        "expirationTime": 1673885717836,
+        "refreshToken": "AOkPPWTB6SnJY34LF7O2doH4S4zdk0xC-RENp7wdpGVszHdHPl-JtbbAcVjtYEN3wIH-Of9RI61Za2vYduBovsJNXrFp5NMvNufckG80Hysu379AVD-jydfsa9YyjbmT10nyqcBAEUXfBFLNLNsdDm1g4WCsYTg9RyFY8UA1FUp6YdRHfqCh1FuGTMv7KHh7hPLx-RoX9hotV0vGXLh9O0t1QrI2m1HnC5bA43K465LVXtx7nx5vYrnZ_fjzSDwgGAeNebpRkZC29Zi4BkTB6UhK0p5NgY_usObh2wToxcyPxYYKoq6-9dUR_6Co9qV_XQvvuXAzmLKjHYwoISnKd9eQ8hlLTo-3v5rehr075pGMMrFoVtM3QClVhfUgDndmFFox36KEpDyhVvQftqO442tviPrQ-6XK1QNcNHpaWl2cOaqfhDWfnC02MDOKAqwl87hZ9SHeNNPp",
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1NWU0ZDkxOGE0ODY0YWQxMzUxMDViYmRjMDEwYWY5Njc5YzM0MTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczODgyMTE4LCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzM4ODIxMTgsImV4cCI6MTY3Mzg4NTcxOCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.HnvilG2wCS-hFSpvMyrD4QyCqZNgZ3RGTEDFBIy21qnw5Xg4DZCceEY22NqFvqPTnNFdY8myd5bqudjL2T1XVgB5gRYHl8ivQiDjx027tE8UT-_IzgekIPNNGzhCsmNHHJBwA-L2Q8iCgS9Bh6KOTVVm6zkB4NWZQ032ORFiXKKL7MZ7TivdhnPEGyzQ5hLClXR9nXz3fTTscpPcBDpUMlsxNhI4U4FBjTE5Ln2DunXSo0QLR6MZobKAY4HDE1NqRR3yrycOSWl2U5CivixrcHJbL0UtjLJ3Ghm26PMfPL6F5M_yfkAnHEuZ4WqKbS_Jz2aH5gEubCIAGPEAgpCcpw"
+      },
+      "email": "glory.ntemo@gmail.com"
+    },
+    "quantity": 0,
+    "deleted_at": "NULL",
+    "updated_at": "16 01,2023 16:43:33",
+    "id": "MU6JZ1Z9FAOS57IY3T5C",
+    "model": "",
+    "ean": "",
+    "name": "Mj 45 Bet w 43",
+    "details": "",
+    "email_auth": "NULL",
+    "marquee": "",
+    "category_id": ""
+  },
+  {
+    "id": "N7VLSCFGMGC7MU6GBUCC",
+    "email_auth": "NULL",
+    "name": "Lente do projetor Panasonic",
+    "details": "",
+    "updated_at": "09 01,2023 16:55:28",
+    "user": {
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "appName": "[DEFAULT]",
+      "lastLoginAt": "1673264860941",
+      "createdAt": "1672826201659",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "stsTokenManager": {
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA",
+        "expirationTime": 1673268460059
+      },
+      "isAnonymous": false,
+      "email": "glory.ntemo@gmail.com",
+      "providerData": [
+        {
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "displayName": "Glory Ntemo",
+          "uid": "114974962331869278836",
+          "email": "glory.ntemo@gmail.com",
+          "providerId": "google.com",
+          "phoneNumber": null
+        }
+      ],
+      "displayName": "Glory Ntemo"
+    },
+    "created_at": "09 01,2023 16:56:34",
+    "ean": "",
+    "updated_mode": false,
+    "quantity": 0,
+    "category_id": "Lente",
+    "deleted_at": "NULL",
+    "model": "ET-DLAE100",
+    "marquee": ""
+  },
+  {
+    "updated_at": "09 01,2023 17:04:30",
+    "id": "N9GJUHTPPHHELUSXNNJX",
+    "model": "kzc-33",
+    "user": {
+      "lastLoginAt": "1673264860941",
+      "isAnonymous": false,
+      "emailVerified": true,
+      "createdAt": "1672826201659",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "email": "glory.ntemo@gmail.com",
+      "displayName": "Glory Ntemo",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "stsTokenManager": {
+        "expirationTime": 1673268460059,
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA"
+      },
+      "appName": "[DEFAULT]",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "providerData": [
+        {
+          "uid": "114974962331869278836",
+          "providerId": "google.com",
+          "phoneNumber": null,
+          "email": "glory.ntemo@gmail.com",
+          "displayName": "Glory Ntemo",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c"
+        }
+      ]
+    },
+    "quantity": 0,
+    "details": "",
+    "marquee": "",
+    "email_auth": "NULL",
+    "category_id": "Camara de Focus",
+    "updated_mode": false,
+    "ean": "",
+    "created_at": "09 01,2023 17:06:05",
+    "deleted_at": "NULL",
+    "name": "Auto focus zoom camera"
+  },
+  {
+    "name": "Conversor LINDY ANALOG",
+    "email_auth": "NULL",
+    "updated_at": "09 01,2023 17:13:15",
+    "quantity": 0,
+    "details": "",
+    "category_id": "Conversor",
+    "user": {
+      "providerData": [
+        {
+          "uid": "114974962331869278836",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "displayName": "Glory Ntemo",
+          "providerId": "google.com",
+          "email": "glory.ntemo@gmail.com",
+          "phoneNumber": null
+        }
+      ],
+      "isAnonymous": false,
+      "appName": "[DEFAULT]",
+      "displayName": "Glory Ntemo",
+      "email": "glory.ntemo@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "lastLoginAt": "1673264860941",
+      "createdAt": "1672826201659",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "stsTokenManager": {
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "expirationTime": 1673268460059,
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA"
+      },
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "emailVerified": true
+    },
+    "ean": "",
+    "deleted_at": "NULL",
+    "marquee": "LINDY ANALOG",
+    "updated_mode": false,
+    "model": "",
+    "id": "NCVTBWUJIOGUOFK2I8PN",
+    "created_at": "09 01,2023 17:13:57"
+  },
+  {
+    "details": "",
+    "updated_mode": false,
+    "created_at": "15 01,2023 23:06:18",
+    "id": "PSDSEIOR47R1WUGSZMHQ",
+    "category_id": "",
+    "updated_at": "15 01,2023 23:05:46",
+    "marquee": "",
+    "email_auth": "NULL",
+    "user": {
+      "createdAt": "1672826201659",
+      "appName": "[DEFAULT]",
+      "emailVerified": true,
+      "displayName": "Glory Ntemo",
+      "isAnonymous": false,
+      "email": "glory.ntemo@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "providerData": [
+        {
+          "uid": "114974962331869278836",
+          "phoneNumber": null,
+          "email": "glory.ntemo@gmail.com",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "displayName": "Glory Ntemo",
+          "providerId": "google.com"
+        }
+      ],
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "lastLoginAt": "1673801351962",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "stsTokenManager": {
+        "expirationTime": 1673804950896,
+        "refreshToken": "AOkPPWRf6rliGChtU16CV0TmSVKYAxSmyMMyowAvXeCX0xG50UVHkuJcydVGcIyKYXR-dFTmXKuZv3WhD-SZdBr92Lf7q1mXIQTKNT_0B-os_LD2izV426YQxpBVyAXaeVeFdg6AwT3YBrHQ83w5njRYDRPgXy5gGCbzEyShiugF1oAN3w8T8hVJvMSV76t9020Gdzxam6LUHqNkwUDDZkuqs1CZEyyq7D2C-aG8sfPW8aV3g4ZJsyX3ib1ayLCzfSor-PKozqRpt95leZJOvQ3eon5vO1qF8OQm8ZqVJvUj98SB3xegr7INXdtsnf8oOBpXRud5QRBCPEdE1T2BpOzDAyWgsQg0Nz8j-VcDtPZHEac9c1laaN_Rb5pPjX0jPzFzYMhrBtDGrj2Fvm6qSN2l0fdLTmzOXHmR9fOn7titTotqddlK6HOcwaSUPivcKLMd9PhAj9BY",
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1NWU0ZDkxOGE0ODY0YWQxMzUxMDViYmRjMDEwYWY5Njc5YzM0MTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczODAxMzUxLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzM4MDEzNTEsImV4cCI6MTY3MzgwNDk1MSwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.n8Y_v4PaWe21sypcl0z5k8jqTb7HXgxlVi-fKtX9Q7PRcj1mq9939kmka4982sR0GnAewk4s_KoLSZiFbnrXezGXq6mpBB6g3tLqBSI1gCVHWvc-HBzUUAkTDH8e-Ok_ujs5EtYNsnB6YvnJhibX55rZc8oZWzWyyfqUmD_cfE_uXqwQMPAv9NIHfTtjGesoKqBzTPkgo2lsxWoTxrelwVVUfvIiNNSd7JsX_iTUFYv8zsx5CQg0Cbp77wMg0CpTgO1PrsVi6IxH75nFuwYbsIbE6PN9LioVb4Wcj1eIhDiEdpDpNGJadxsnHApgXOFmlTsU_FNcq91CRASk6YYnSw"
+      }
+    },
+    "deleted_at": "NULL",
+    "model": "",
+    "quantity": 0,
+    "name": "Placa PC 320Y",
+    "ean": ""
+  },
+  {
+    "model": "IP-ADP0.A5",
+    "user": {
+      "displayName": "Glory Ntemo",
+      "isAnonymous": false,
+      "createdAt": "1672826201659",
+      "stsTokenManager": {
+        "expirationTime": 1673268460059,
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA"
+      },
+      "lastLoginAt": "1673264860941",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "appName": "[DEFAULT]",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "emailVerified": true,
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "providerData": [
+        {
+          "phoneNumber": null,
+          "uid": "114974962331869278836",
+          "displayName": "Glory Ntemo",
+          "providerId": "google.com",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "email": "glory.ntemo@gmail.com"
+        }
+      ],
+      "email": "glory.ntemo@gmail.com"
+    },
+    "id": "QJEQEZ4EOXEJNVCLNXZ1",
+    "quantity": 0,
+    "category_id": "Transformador",
+    "updated_mode": false,
+    "email_auth": "NULL",
+    "deleted_at": "NULL",
+    "name": "IP TEC Transformador",
+    "ean": "",
+    "details": "",
+    "created_at": "NULL",
+    "updated_at": "09 01,2023 16:52:23",
+    "marquee": ""
+  },
+  {
+    "details": "",
+    "marquee": "",
+    "ean": "123",
+    "quantity": 0,
+    "updated_mode": false,
+    "category_id": "",
+    "created_at": "15 01,2023 14:22:51",
+    "email_auth": "NULL",
+    "model": "",
+    "id": "SVV0UPJEGUWG0P04KGL6",
+    "deleted_at": "NULL",
+    "updated_at": "15 01,2023 14:22:41",
+    "name": "Placa PC 123",
+    "user": {
+      "isAnonymous": false,
+      "providerData": [
+        {
+          "providerId": "google.com",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6yeqMihH_dOOYQLaitSh4jZTpnhUwPhKucU7uO=s96-c",
+          "phoneNumber": null,
+          "email": "jambapedro@gmail.com",
+          "displayName": "Jamba Pedro",
+          "uid": "100975477251747451776"
+        }
+      ],
+      "createdAt": "1673469483295",
+      "lastLoginAt": "1673785576015",
+      "stsTokenManager": {
+        "expirationTime": 1673789176274,
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1NWU0ZDkxOGE0ODY0YWQxMzUxMDViYmRjMDEwYWY5Njc5YzM0MTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSmFtYmEgUGVkcm8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNnllcU1paEhfZE9PWVFMYWl0U2g0alpUcG5oVXdQaEt1Y1U3dU89czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczNzg1NTc2LCJ1c2VyX2lkIjoibHpSYnhuSzEwQVJWR3F3czFFUXlROWxPc0dIMyIsInN1YiI6Imx6UmJ4bksxMEFSVkdxd3MxRVF5UTlsT3NHSDMiLCJpYXQiOjE2NzM3ODU1NzYsImV4cCI6MTY3Mzc4OTE3NiwiZW1haWwiOiJqYW1iYXBlZHJvQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTAwOTc1NDc3MjUxNzQ3NDUxNzc2Il0sImVtYWlsIjpbImphbWJhcGVkcm9AZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.WwqzM784n0UMnyMkhPy8zOUXx7uv6_iujhzJqqNoIRohnYcaLzDE8xAlomP-J34b6gHh5DT4QdrO9LKQI9I0Hhvj1qvHGpyN8_rkG4LcUFAoZGUff6QFimsenziN2DnXT9-jlagtuFL9MiO88c5J1ybNHrM07dUTONrwnkmQBIt3ldPB_7K5ES2BbmtaxL6ENqLBDeG7fyzw5B-RoQlcTxFI4t5eVLY760ls7f-0g00fzOAFRH_cMun9ZPJoyH65qiN5E0pJlULYBHKV9IOLpFglO3FeBsaSbr6J_SKX0Uv8BHwgAje-fb6nsJDUoIVuyAvo5Qs9S9NkRiOQSK9zfA",
+        "refreshToken": "AOkPPWQxcAvmEXkgSIKgCVTZNhIj62RYGF_gAfHPMdDDoMXu04baZItIjolE2UawPRAVjne45Ogp5rM4MQBBVAVZGGDoQegy-HPNFw8NeM59xBSpDxNhAdIR_toTlJ_Y_XNFn7UsF-MT6RqU_kd7VKJ5QBvsal5GbfgL_hdL4VIL5wwP_PSdZ7oo7uhRg0qsMXVS6flUain9Y-jEnnia8h6LtAAW76AyQhrHRgGRH27FPm4bgPccchjf6BVNCN85zjn3tVWa9K7appOo_Jt49FMASMN8m9KWtSLR4yWDEp55BNjXQRyKznyi84IjnJxW3P-ESoD84yrFQVZAOUtmMLibjnTrxwN2qJpVogdaOtNNFVwD6UCIz_zTCrspdsMWbfSEaogmwap0cAFw8dgHItf7THBDVZVuY49n4IYVGyo2R_qA-hu3TMvoBykRlQ8cLXuhrCaapY4-"
+      },
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6yeqMihH_dOOYQLaitSh4jZTpnhUwPhKucU7uO=s96-c",
+      "emailVerified": true,
+      "appName": "[DEFAULT]",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "email": "jambapedro@gmail.com",
+      "uid": "lzRbxnK10ARVGqws1EQyQ9lOsGH3",
+      "displayName": "Jamba Pedro"
+    }
+  },
+  {
+    "marquee": "",
+    "id": "WTUKASLREFWA9BYDEGBU",
+    "details": "",
+    "name": "Mj 45 Bet w HSD",
+    "updated_at": "16 01,2023 16:46:35",
+    "ean": "",
+    "updated_mode": false,
+    "created_at": "16 01,2023 16:46:46",
+    "model": "",
+    "deleted_at": "NULL",
+    "quantity": 0,
+    "email_auth": "NULL",
+    "timestamp": 1673883995096,
+    "category_id": "",
+    "user": {
+      "createdAt": "1672826201659",
+      "providerData": [
+        {
+          "phoneNumber": null,
+          "displayName": "Glory Ntemo",
+          "providerId": "google.com",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "email": "glory.ntemo@gmail.com",
+          "uid": "114974962331869278836"
+        }
+      ],
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "appName": "[DEFAULT]",
+      "isAnonymous": false,
+      "displayName": "Glory Ntemo",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "stsTokenManager": {
+        "expirationTime": 1673885717836,
+        "refreshToken": "AOkPPWTB6SnJY34LF7O2doH4S4zdk0xC-RENp7wdpGVszHdHPl-JtbbAcVjtYEN3wIH-Of9RI61Za2vYduBovsJNXrFp5NMvNufckG80Hysu379AVD-jydfsa9YyjbmT10nyqcBAEUXfBFLNLNsdDm1g4WCsYTg9RyFY8UA1FUp6YdRHfqCh1FuGTMv7KHh7hPLx-RoX9hotV0vGXLh9O0t1QrI2m1HnC5bA43K465LVXtx7nx5vYrnZ_fjzSDwgGAeNebpRkZC29Zi4BkTB6UhK0p5NgY_usObh2wToxcyPxYYKoq6-9dUR_6Co9qV_XQvvuXAzmLKjHYwoISnKd9eQ8hlLTo-3v5rehr075pGMMrFoVtM3QClVhfUgDndmFFox36KEpDyhVvQftqO442tviPrQ-6XK1QNcNHpaWl2cOaqfhDWfnC02MDOKAqwl87hZ9SHeNNPp",
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1NWU0ZDkxOGE0ODY0YWQxMzUxMDViYmRjMDEwYWY5Njc5YzM0MTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczODgyMTE4LCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzM4ODIxMTgsImV4cCI6MTY3Mzg4NTcxOCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.HnvilG2wCS-hFSpvMyrD4QyCqZNgZ3RGTEDFBIy21qnw5Xg4DZCceEY22NqFvqPTnNFdY8myd5bqudjL2T1XVgB5gRYHl8ivQiDjx027tE8UT-_IzgekIPNNGzhCsmNHHJBwA-L2Q8iCgS9Bh6KOTVVm6zkB4NWZQ032ORFiXKKL7MZ7TivdhnPEGyzQ5hLClXR9nXz3fTTscpPcBDpUMlsxNhI4U4FBjTE5Ln2DunXSo0QLR6MZobKAY4HDE1NqRR3yrycOSWl2U5CivixrcHJbL0UtjLJ3Ghm26PMfPL6F5M_yfkAnHEuZ4WqKbS_Jz2aH5gEubCIAGPEAgpCcpw"
+      },
+      "email": "glory.ntemo@gmail.com",
+      "lastLoginAt": "1673882118189",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c"
+    }
+  },
+  {
+    "id": "XPFMLQ0CVXLCA2JCMRSS",
+    "email_auth": "NULL",
+    "ean": "",
+    "details": "",
+    "category_id": "Conversor",
+    "updated_mode": false,
+    "updated_at": "09 01,2023 17:08:50",
+    "name": "Conversor da Lndy Analog",
+    "model": "2690-0B",
+    "quantity": 0,
+    "user": {
+      "emailVerified": true,
+      "providerData": [
+        {
+          "uid": "114974962331869278836",
+          "displayName": "Glory Ntemo",
+          "email": "glory.ntemo@gmail.com",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "providerId": "google.com",
+          "phoneNumber": null
+        }
+      ],
+      "isAnonymous": false,
+      "appName": "[DEFAULT]",
+      "lastLoginAt": "1673264860941",
+      "stsTokenManager": {
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA",
+        "expirationTime": 1673268460059
+      },
+      "email": "glory.ntemo@gmail.com",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "displayName": "Glory Ntemo",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "createdAt": "1672826201659"
+    },
+    "created_at": "09 01,2023 17:12:32",
+    "marquee": "Lndy Analog",
+    "deleted_at": "NULL"
+  },
+  {
+    "category_id": "Transformador",
+    "marquee": "",
+    "quantity": 0,
+    "deleted_at": "NULL",
+    "user": {
+      "appName": "[DEFAULT]",
+      "stsTokenManager": {
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "expirationTime": 1673268460059,
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA"
+      },
+      "isAnonymous": false,
+      "displayName": "Glory Ntemo",
+      "providerData": [
+        {
+          "phoneNumber": null,
+          "displayName": "Glory Ntemo",
+          "providerId": "google.com",
+          "email": "glory.ntemo@gmail.com",
+          "uid": "114974962331869278836",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c"
+        }
+      ],
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "emailVerified": true,
+      "lastLoginAt": "1673264860941",
+      "createdAt": "1672826201659",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "email": "glory.ntemo@gmail.com"
+    },
+    "model": "IP-ADP0.A5",
+    "details": "",
+    "updated_at": "09 01,2023 16:52:23",
+    "name": "IP TEC Transformador",
+    "ean": "",
+    "email_auth": "NULL",
+    "id": "Y0FLO25XIIMINBRVRRBB",
+    "created_at": "16 01,2023 16:46:22",
+    "updated_mode": false
+  },
+  {
+    "deleted_at": "NULL",
+    "id": "YEBOLYDKKPLFPWEPM4NM",
+    "model": "",
+    "updated_at": "09 01,2023 20:28:14",
+    "updated_mode": false,
+    "name": "Câmara",
+    "email_auth": "NULL",
+    "category_id": "Câmara,Camara 2,mais que tudo,luanda soas",
+    "marquee": "",
+    "quantity": 0,
+    "user": {
+      "providerData": [
+        {
+          "uid": "114974962331869278836",
+          "email": "glory.ntemo@gmail.com",
+          "phoneNumber": null,
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "displayName": "Glory Ntemo",
+          "providerId": "google.com"
+        }
+      ],
+      "emailVerified": true,
+      "appName": "[DEFAULT]",
+      "lastLoginAt": "1672918267079",
+      "createdAt": "1672826201659",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "email": "glory.ntemo@gmail.com",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "displayName": "Glory Ntemo",
+      "isAnonymous": false,
+      "stsTokenManager": {
+        "refreshToken": "AOkPPWRknHv_WGhirDKyjB_PnhrkSN8m91UjTp0Uamqqnmdt1-oaDJjTWD6TtFWDIQhaPF4KaK-pzivSMGVK0o-SVx25wA-PtQMwAaXPGsQr6PCuQ3nxZRh3Lp8OMgXt7ul2DxRzdPAC7Lrkqej9GerpQzuiayhJRNW0Tkb5ZyeWRa2RAGlSTb4PdrtrmnVvcgq04zpLis16kHTFGSZX6hJLyHYeRM3BwOGRfy95IHucDIw2jFPuynf0K2k5ZDm3zgJPTY2AceMs2yqB0L5e4Knpn7mdLMs40HozHMvYxRFbwvq2J5lxqOmGMZi02Y1g2TxM62E9uHGRVmjzchnhgGsZhmSyL5X47DnVQntXxui8fP6CeY9Yz6-u-v2DI5Taj0kHsjfqRZGr9W3WK7BBVI_IZZ4dnmAu9diqMu3Yv5vDx9BOTVHgOBTr8bnDeoXwDM9Ea9d2Yvfc",
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjcyOTE4MjY3LCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzI5MTgyNjcsImV4cCI6MTY3MjkyMTg2NywiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.KeYp47Boz0LnvAoYwkJym-aJoJvb1HTffweghG8am3NsXQnZaPet9QyhWSjMUtoHYJ_CfU8_N_0QwbUgXEt8lUFbXpooiInQPtRjkCeDprV5G2-5kDx0CJ-C6T4jMOWTWR6slfQX-5VgYrh248YNU5cMvC7miMedBtRWYMQ1KRjolD8uCW8EReknNPvjSrKrP6cmqiyToLTUbpAk5bFNLPSCv9mMT9idMiZQhzRItcw2NgL4KKYSfvA9g8PPxfstbDJT72bQVZUb8Q7Nwb9OOAYvR47uSY44HL9SVD5DekrEY8q9jFTenrGxE6LY9OLA2dGEFRQpCrrRdIKjTmXZ_A",
+        "expirationTime": 1672921865571
+      },
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c"
+    },
+    "ean": "",
+    "created_at": "09 01,2023 20:28:30",
+    "details": ""
+  },
+  {
+    "model": "035-2886",
+    "quantity": 0,
+    "name": "Fonte de alimentação",
+    "details": "",
+    "category_id": "transformador",
+    "deleted_at": "NULL",
+    "updated_mode": false,
+    "id": "YMKKXKWHQBXG3PGET0FF",
+    "email_auth": "NULL",
+    "marquee": "",
+    "user": {
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "createdAt": "1672826201659",
+      "displayName": "Glory Ntemo",
+      "stsTokenManager": {
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA",
+        "expirationTime": 1673268460059,
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ"
+      },
+      "providerData": [
+        {
+          "displayName": "Glory Ntemo",
+          "uid": "114974962331869278836",
+          "phoneNumber": null,
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "providerId": "google.com",
+          "email": "glory.ntemo@gmail.com"
+        }
+      ],
+      "emailVerified": true,
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "email": "glory.ntemo@gmail.com",
+      "lastLoginAt": "1673264860941",
+      "isAnonymous": false,
+      "appName": "[DEFAULT]",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c"
+    },
+    "updated_at": "09 01,2023 16:52:50",
+    "ean": "",
+    "created_at": "09 01,2023 16:53:43"
+  },
+  {
+    "model": "TS-P01D",
+    "ean": "",
+    "created_at": "09 01,2023 16:39:08",
+    "deleted_at": "NULL",
+    "user": {
+      "stsTokenManager": {
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ",
+        "expirationTime": 1673268460059,
+        "refreshToken": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA"
+      },
+      "email": "glory.ntemo@gmail.com",
+      "lastLoginAt": "1673264860941",
+      "createdAt": "1672826201659",
+      "providerData": [
+        {
+          "displayName": "Glory Ntemo",
+          "uid": "114974962331869278836",
+          "providerId": "google.com",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+          "phoneNumber": null,
+          "email": "glory.ntemo@gmail.com"
+        }
+      ],
+      "appName": "[DEFAULT]",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "isAnonymous": false,
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "emailVerified": true,
+      "displayName": "Glory Ntemo"
+    },
+    "id": "YMQWPDUZUFUKT1MKSC8G",
+    "marquee": "",
+    "name": "Camara Proline UK",
+    "details": "",
+    "email_auth": "NULL",
+    "updated_at": "09 01,2023 16:38:01",
+    "quantity": 0,
+    "updated_mode": false,
+    "category_id": ""
+  },
+  {
+    "details": "",
+    "ean": "",
+    "user": {
+      "email": "glory.ntemo@gmail.com",
+      "uid": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1",
+      "isAnonymous": false,
+      "stsTokenManager": {
+        "expirationTime": 1673804950896,
+        "refreshToken": "AOkPPWRf6rliGChtU16CV0TmSVKYAxSmyMMyowAvXeCX0xG50UVHkuJcydVGcIyKYXR-dFTmXKuZv3WhD-SZdBr92Lf7q1mXIQTKNT_0B-os_LD2izV426YQxpBVyAXaeVeFdg6AwT3YBrHQ83w5njRYDRPgXy5gGCbzEyShiugF1oAN3w8T8hVJvMSV76t9020Gdzxam6LUHqNkwUDDZkuqs1CZEyyq7D2C-aG8sfPW8aV3g4ZJsyX3ib1ayLCzfSor-PKozqRpt95leZJOvQ3eon5vO1qF8OQm8ZqVJvUj98SB3xegr7INXdtsnf8oOBpXRud5QRBCPEdE1T2BpOzDAyWgsQg0Nz8j-VcDtPZHEac9c1laaN_Rb5pPjX0jPzFzYMhrBtDGrj2Fvm6qSN2l0fdLTmzOXHmR9fOn7titTotqddlK6HOcwaSUPivcKLMd9PhAj9BY",
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImY1NWU0ZDkxOGE0ODY0YWQxMzUxMDViYmRjMDEwYWY5Njc5YzM0MTMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczODAxMzUxLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzM4MDEzNTEsImV4cCI6MTY3MzgwNDk1MSwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.n8Y_v4PaWe21sypcl0z5k8jqTb7HXgxlVi-fKtX9Q7PRcj1mq9939kmka4982sR0GnAewk4s_KoLSZiFbnrXezGXq6mpBB6g3tLqBSI1gCVHWvc-HBzUUAkTDH8e-Ok_ujs5EtYNsnB6YvnJhibX55rZc8oZWzWyyfqUmD_cfE_uXqwQMPAv9NIHfTtjGesoKqBzTPkgo2lsxWoTxrelwVVUfvIiNNSd7JsX_iTUFYv8zsx5CQg0Cbp77wMg0CpTgO1PrsVi6IxH75nFuwYbsIbE6PN9LioVb4Wcj1eIhDiEdpDpNGJadxsnHApgXOFmlTsU_FNcq91CRASk6YYnSw"
+      },
+      "appName": "[DEFAULT]",
+      "emailVerified": true,
+      "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+      "displayName": "Glory Ntemo",
+      "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+      "providerData": [
+        {
+          "phoneNumber": null,
+          "providerId": "google.com",
+          "email": "glory.ntemo@gmail.com",
+          "uid": "114974962331869278836",
+          "displayName": "Glory Ntemo",
+          "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c"
+        }
+      ],
+      "lastLoginAt": "1673801351962",
+      "createdAt": "1672826201659"
+    },
+    "deleted_at": "NULL",
+    "email_auth": "NULL",
+    "marquee": "",
+    "updated_at": "15 01,2023 23:33:30",
+    "quantity": 0,
+    "id": "YQUDEON9MGXFR2AP97S0",
+    "category_id": "Luanda cate",
+    "created_at": "15 01,2023 23:34:53",
+    "updated_mode": false,
+    "name": "Placa PC 320FD",
+    "model": ""
+  }
+]

@@ -5,6 +5,7 @@ import ServiceUtil from "./ServiceUtil";
 import {Injectable} from '@angular/core';
 import {firstValueFrom} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
+import ServiceMovimento from "./ServiceMovimento";
 
 
 @Injectable({
@@ -31,7 +32,8 @@ export default class ServiceArticles {
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
     updated_mode: false,
     deleted_at: "NULL",
-    email_auth: "NULL"
+    email_auth: "NULL",
+    timestamp: new Date().getTime()
   }
 
   constructor(private store: StorageService) {
@@ -53,19 +55,17 @@ export default class ServiceArticles {
 
     if (!this.Article.updated_mode) {
       this.Article.id = this.store.getId().toUpperCase();
+
       this.Article.created_at = moment().format('DD MM,YYYY HH:mm:ss')
     }
 
+    this.Article.timestamp = new Date().getTime()
     this.Article.updated_mode = false;
 
     this.store.createdForceGenerateId(this.Article, ServiceArticles.STORAGE_ARTICLES)
       .then(
         () => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
-          this.Article.name = undefined
-
-          this.Article.category_id = "";
-          this.Article.details = ""
         },
         err => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)
@@ -96,18 +96,32 @@ export default class ServiceArticles {
 
 
   async set(articleID: any) {
-    await firstValueFrom(this.store.findById(ServiceArticles.STORAGE_ARTICLES, articleID)).then(async (article:any) => {
-      this.Article.id =  article.id
-      this.Article.name =  article.name
-      this.Article.category_id =  article.category_id
-      this.Article.model =  article.model
-      this.Article.marquee =  article.marquee
-      this.Article.ean =  article.ean
-      this.Article.details =  article.details
+    await firstValueFrom(this.store.findById(ServiceArticles.STORAGE_ARTICLES, articleID)).then(async (article: any) => {
+      this.Article.id = article.id
+      this.Article.name = article.name
+      this.Article.category_id = article.category_id
+      this.Article.model = article.model
+      this.Article.marquee = article.marquee
+      this.Article.ean = article.ean
+      this.Article.details = article.details
     })
     this.window.category_id = await this.Article.category_id
     //await this.window.$('#categories').val(this.Article.category_id)
 
     this.Article.updated_mode = true;
+  }
+
+  static async searchingArticle(attr: any, store: StorageService) {
+    let listArticle: any[] = [];
+    await store.getForeStore().collection(ServiceMovimento.STORAGE_EXIST_ITEM)
+      .where('localStorageId', '==', attr)
+      .get()
+      .then(snap => {
+        snap.forEach(doc => {
+          listArticle.push(doc.data())
+          return doc.data();
+        });
+      });
+    return listArticle;
   }
 }

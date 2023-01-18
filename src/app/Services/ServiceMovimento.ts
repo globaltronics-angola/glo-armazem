@@ -1,12 +1,13 @@
-import { StorageService } from "../shared/storage.service";
-import { map } from "rxjs/operators";
-import { firstValueFrom } from "rxjs";
+import {StorageService} from "../shared/storage.service";
+import {map} from "rxjs/operators";
+import {firstValueFrom} from "rxjs";
 import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import ServiceMovimentoItems from "./ServiceMovimentoItems";
-import { ServiceEmitter } from "./ServiceEmitter";
+import {ServiceEmitter} from "./ServiceEmitter";
 import ServiceArticles from "./ServiceArticles";
+import firebase from "firebase/compat";
 
 
 @Injectable({
@@ -16,7 +17,7 @@ export default class ServiceMovimento {
 
   static STORAGE_NAME: string = "global-move"
   static STORAGE_MOVE_ITEM: string = "global-move-items"
-
+  static STORAGE_EXIST_ITEM: string = "global-existence"
 
 
   private window = (<any>window)
@@ -26,13 +27,15 @@ export default class ServiceMovimento {
     title: "",
     details: "",
     dateOfMove: "",
-    storage: "",
-    financialCostTotal: "NULL",
+    financialCostTotal: 0,
     itemsQuantity: 0,
     itemsConversion: 0,
+    localCurrency: "",
     client: "",
     client_nif: "",
     items: [],
+    docRef: "",
+    dataRef: moment().format("DDMMYYYY"),
     created_at: "NULL",
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
     updated_mode: false,
@@ -51,7 +54,9 @@ export default class ServiceMovimento {
   }
 
 
-  findAll() { return this.store.findAll(ServiceMovimento.STORAGE_NAME).pipe(map(this.convertToArticle)) }
+  findAll() {
+    return this.store.findAll(ServiceMovimento.STORAGE_NAME).pipe(map(this.convertToArticle))
+  }
 
 
   /**
@@ -65,30 +70,54 @@ export default class ServiceMovimento {
    */
   save() {
 
-    if (!this.oItem.updated_mode) { this.oItem.created_at = moment().format('DD MM,YYYY HH:mm:ss') }
-    if ((this.oItem.id == "NULL")) { this.oItem.id = this.store.getId().toUpperCase(); }
+    if (!this.oItem.updated_mode) {
+      this.oItem.created_at = moment().format('DD MM,YYYY HH:mm:ss')
+    }
+    if ((this.oItem.id == "NULL")) {
+      this.oItem.id = this.store.getId().toUpperCase();
+    }
 
     this.oItem.updated_mode = false;
 
     this.updateItems()
 
-    this.store.createdForceGenerateId(this.oItem, ServiceMovimento.STORAGE_NAME)
+    return this.store.createdForceGenerateId(this.oItem, ServiceMovimento.STORAGE_NAME)
       .then(() => {
-        this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
-        ServiceEmitter.get('actionSendMovimento').emit("");
+          this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
+          ServiceEmitter.get('actionSendMovimento').emit("");
 
-        this.oItem.id = this.store.getId()
-      },
-        err => { this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR) })
+          this.oItem.id = this.store.getId()
+        },
+        err => {
+          this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)
+        })
 
   }
 
+  async getRefId(type: string = "") {
+    let db = this.store.getFirestore();
+    let list: any[] = []
+    await db.collection('/' + ServiceMovimento.STORAGE_NAME)
+      .where('dataRef', "==", moment().format("DDMMYYYY"))
+      .get()
+      .then(snap => {
+        snap.forEach(doc => {
+          list.push(doc.data())
+          return doc.data();
+        });
+      });
+
+    return (list.length + 1);
+  }
 
   updateItems() {
 
     this.oItem.items.forEach(async (item: any) => {
 
+
       this.oItem.itemsQuantity += item.quantity
+      this.oItem.localCurrency = item.localCurrency
+      this.oItem.financialCostTotal += item.financialCost
 
       let itemMove = item;
 
@@ -102,23 +131,31 @@ export default class ServiceMovimento {
       itemMove.move_id = this.oItem.id;
       itemMove.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
 
+
       let article = new ServiceArticles(this.store);
       await firstValueFrom(this.store.findById(ServiceArticles.STORAGE_ARTICLES, itemMove.articleId)).then((e) => {
+        return console.log(itemMove.articleId, e)
         article.Article = e;
         article.Article.updated_mode = true;
-       article.Article.quantity += item.quantity;
+        article.Article.quantity += item.quantity;
 
-       article.save()
+        article.save()
+      })
+      this.store.createForceMyId(itemMove, ServiceMovimento.STORAGE_MOVE_ITEM).then(() => {
       })
 
-     this.store.createForceMyId(itemMove, ServiceMovimento.STORAGE_MOVE_ITEM).then(() => { })
+      this.existArticle(item);
 
     })
 
   }
 
 
-  convertToArticle(resp: any) { return resp.map((e: any) => { return e.payload.doc.data(); }) }
+  convertToArticle(resp: any) {
+    return resp.map((e: any) => {
+      return e.payload.doc.data();
+    })
+  }
 
   async findMovType(type: string = 'INPUT') {
 
@@ -130,6 +167,41 @@ export default class ServiceMovimento {
 
 
     return listAll
+  }
+
+  /**
+   *     id: undefined
+   *     localStorage: "",
+   *     localAmbry: "",
+   *     localShelf: "",
+   *     quantity: 0,
+   *
+   * @param attr
+   */
+  async existArticle(attr: any) {
+
+    let articleExist: any = {};
+    articleExist.id = attr.articleId + JSON.parse(attr.localStorage)
+      .name.replace(" ", "_").toUpperCase() + JSON.parse(attr.localAmbry)
+      .ambry.replace(" ", "_").toUpperCase() + JSON.parse(attr.localShelf)
+      .replace(" ", "_").toUpperCase()
+
+    articleExist.localStorageId = JSON.parse(attr.localStorage).id;
+    articleExist.localAmbry = JSON.parse(attr.localAmbry).ambry;
+    articleExist.localShelf = JSON.parse(attr.localShelf);
+    articleExist.quantity = attr.quantity;
+    articleExist.article = attr.article;
+
+    let artExir: any = await firstValueFrom(this.store
+      .findById(ServiceMovimento.STORAGE_EXIST_ITEM, articleExist.id)).then((e) => {
+      return e
+    });
+    if (artExir?.quantity) {
+      articleExist.quantity = articleExist.quantity + artExir.quantity;
+    }
+    this.store.createForceMyId(articleExist, ServiceMovimento.STORAGE_EXIST_ITEM).then(() => {
+    });
+
   }
 
 }

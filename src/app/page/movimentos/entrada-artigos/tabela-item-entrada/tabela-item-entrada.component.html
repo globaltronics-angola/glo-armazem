@@ -1,41 +1,53 @@
 <div class="overflow-auto w-100">
   <table id="kt_datatable_both_scrolls" class="table table-striped table-row-bordered gy-2 gs-7">
     <thead>
-      <tr class="fw-bold fs-6 text-gray-800 bg-light-primary text-uppercase">
-        <th class="min-w-200px">Artigo</th>
+    <tr class="fw-bold fs-6 text-gray-800 bg-light-primary text-uppercase">
+      <th class="min-w-200px">Artigo</th>
 
-        <th class="min-w-100px">Localização</th>
-        <th class="min-w-100px">QT</th>
-        <th class="min-w-100px">Custo</th>
-        <th class="min-w-100px">Fornecedor</th>
-        <th class="min-w-100px">Compra</th>
-        <th class=""></th>
-      </tr>
+      <th class="min-w-100px">Localização</th>
+      <th class="min-w-100px">QT</th>
+      <th class="min-w-100px">Valor</th>
+      <th class="min-w-100px">Fornecedor</th>
+      <th class="min-w-100px">Compra</th>
+      <th class=""></th>
+    </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let article of listItems">
-        <td>{{ convertJson(article.article).ean }},
-          <span class="badge badge-light-primary">
-            {{ article.articleName }}
-          </span>
-        </td>
+    <tr *ngFor="let item of listItems">
+      <td>
+        <span *ngIf="convertJson(item.article) as article">
+          {{
+          (article.ean ? article.ean + ', ' : '')
+          + (article.name ? article.name + ',  ' : ' ')
+          + article.model
+          }}
+        </span>
+      </td>
 
-        <td><span class="badge badge-light-success">{{ convertJson(article.localStorage).name }}</span></td>
-        <td><span class="badge badge-light-dark">{{ article.quantity }}</span> </td>
-        <td>{{kFormatter(article.financialCost) + ' ' + convertJson(article.localCurrency).iso }}</td>
-        <td>{{ convertJson(article.provider).name}}</td>
-        <td>{{ article.dateOfPurchase}}</td>
-        <td class="gap-2">
-          <button type="button" (click)="emitFunctionalityUp(article)"
-            class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
-            <span class="svg-icon"> <i class="fa fa-edit"></i></span>
-          </button>
-          <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1"
-            (click)="deleteInfo(article)">
-            <span class="svg-icon"> <i class="bi-trash"></i></span>
-          </button>
-        </td>
-      </tr>
+      <td>
+        <span class="badge badge-light-dark" *ngIf="convertJson(item.localStorage) as store">
+          {{ store.name }}
+        </span>
+        <span *ngIf="convertJson(item.localAmbry) as ambry">, {{ ambry.ambry }}</span>
+        <span *ngIf="convertJson(item.localShelf) as shelf">, {{ shelf }}</span>
+      </td>
+
+      <td><span class="badge badge-light-dark">{{ item.quantity }}</span></td>
+      <td>{{kFormatter(item.financialCost) + ' KZ'  }}</td>
+      <td>{{ convertJson(item.provider).name}}</td>
+      <td>{{ item.dateOfPurchase}}</td>
+      <td class="gap-2">
+        <button type="button" (click)="emitFunctionalityUp(item)"
+                class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1 float-end">
+          <span class="svg-icon"> <i class="fa fa-edit"></i></span>
+        </button>
+        <button type="button" style=""
+                class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1 float-end"
+                (click)="deleteInfo(item)">
+          <span class="svg-icon"> <i class="bi-trash"></i></span>
+        </button>
+      </td>
+    </tr>
     </tbody>
   </table>
 </div>

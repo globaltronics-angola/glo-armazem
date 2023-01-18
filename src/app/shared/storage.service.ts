@@ -1,14 +1,24 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore } from "@angular/fire/compat/firestore";
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {AngularFirestore} from "@angular/fire/compat/firestore";
+import ServiceUtil from "../Services/ServiceUtil";
+
+import {orderByChild, startAt, ref, list} from "@angular/fire/database";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
 
+  user: any;
+  util: ServiceUtil;
+
   constructor(private afs: AngularFirestore) {
     console.log('nova instancia')
+    this.util = new ServiceUtil();
+
+    this.user = this.util.getSession();
+
   }
 
   /**
@@ -24,44 +34,83 @@ export class StorageService {
     return this.afs.createId();
   }
 
+  getFirestore() {
+    return this.afs.firestore;
+  }
+
   create(object: any, name: string) {
     object.id = this.afs.createId();
     return this.afs.collection('/' + name).add(object)
   }
 
-  /**
-   * ***Munzambi Ntemo Miguel***
-   *
-   * @param attr
-   * @param collectionName
-   *
-   * Esta função tem como objectivo guardar as informações
-   * de um objecto no firebase, sendo assim com os parametros
-   * Objeto a ser inserido em seguida o nome da coleção
-   *
-   * ```ts
-   *
-   * const firebase = require('firebase');
-   * createdForceGenerateId(attr: any, collectionName: string) {
-   *    return this.afs.collection('/' + collectionName).doc(attr.id).set(attr)
-   * }
-   * ```
-   *
-   */
   createdForceGenerateId(attr: any, collectionName: string): Promise<void> {
     return this.afs.collection('/' + collectionName).doc(attr.id).set(attr)
   }
 
 
   createForceMyId(object: any, name: string) {
-
     return this.afs.collection('/' + name).doc(object.id).set(object)
   }
 
+  findAllNotLimet(name: string) {
+    return this.afs.collection('/' + name,
+      ref => ref.limit(10)
+        .orderBy('timestamp', 'desc')
+    ).snapshotChanges();
+  }
+
   findAll(name: string) {
-    console.log('finnd all')
-    return this.afs.collection('/' + name)
-      .snapshotChanges();
+    return this.afs.collection('/' + name
+    ).snapshotChanges();
+  }
+
+  // @ts-ignore
+  findAllNext(name: string, lastStart: any) {
+    let ref: any;
+
+    return this.afs.collection('/' + name,
+      ref => ref.limit(10)
+        .orderBy('timestamp', 'desc')
+        .startAfter(lastStart)
+    ).snapshotChanges();
+  }
+
+  findAllPrev(name: string, lastStart: any, lastEnd: any) {
+
+    return this.afs.collection('/' + name,
+      ref => ref.limit(10)
+        .orderBy('timestamp', 'desc')
+        .startAt(lastStart)
+        .endBefore(lastEnd)
+    ).snapshotChanges();
+  }
+
+  //@ts-ignore .\uf8ff
+  findAllTest(name: string, offset, startKey?, operator, children) {
+
+    const fire = this.afs;
+
+    const col = fire.collection(`/${name}`,
+      ref => ref.where(children, operator, `${startKey.trim()}`)
+        .orderBy(children)
+        .limit(10)
+    );
+    return col.snapshotChanges()
+
+  }
+
+  // @ts-ignore
+  findText(collectName: string, name: string, startKey?, offset) {
+
+    // @ts-ignore
+    return list(`${collectName}`, {
+      query: {
+        orderByKey: true,
+        startAt: startKey,
+        limitToFirst: offset + 1
+      }
+    })
+
   }
 
   findAllOrderName(collectName: string) {
@@ -79,6 +128,7 @@ export class StorageService {
    * @returns
    */
   findById(nameCollection: string, id: string) {
+
     return this.afs.collection('/' + nameCollection).doc('/' + id).valueChanges()
   }
 
@@ -98,6 +148,7 @@ export class StorageService {
     let list: any[] = []
     await dataStore.collection('/' + collect)
       .where(nameField, "==", context)
+      .where('deleted_at', '==', 'NULL')
       .get()
       .then(snap => {
         snap.forEach(doc => {
@@ -149,7 +200,7 @@ export class StorageService {
   }
 
   findByDifferenceNameOperator(collect: string, nameField: string = "",
-    context: string = "", myOpertor: any = "!=") {
+                               context: string = "", myOpertor: any = "!=") {
     const dataStore = this.afs.firestore;
     let list: any[] = []
 
@@ -169,7 +220,6 @@ export class StorageService {
   }
 
 
-
   findAllAlternative(collect: string) {
     const dataStore = this.afs.firestore;
     let list: any[] = []
@@ -187,8 +237,6 @@ export class StorageService {
     return list;
 
   }
-
-
 
 
   /**
@@ -212,6 +260,7 @@ export class StorageService {
     dataStore.collection('/' + collect)
       .where(nameField, "==", context)
       .where(nameFieldTo, "==", contextTo)
+      .where('userEmail', '==', this.user.email)
       .get()
       .then(snap => {
         snap.forEach(doc => {

@@ -7,12 +7,10 @@
         <div class="d-flex flex-column fv-row fv-plugins-icon-container">
           <!--begin::Label-->
           <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="selectTypeRequisition">
-            <span class="">Ref : </span>&nbsp; <span class="text-danger"> TRANS-19220923912-00001 </span>
+            <span class="">Ref : </span>&nbsp; <span class="text-danger text-uppercase">{{ dateRef }}</span>
           </label>
         </div>
       </div>
-
-
       <div class="accordion accordion-icon-toggle" id="kt_accordion_2">
         <!--begin::Item-->
         <div class="mb-10">
@@ -28,6 +26,19 @@
           <div id="kt_accordion_2_item_1" class="fs-6 collapse p-3" data-bs-parent="#kt_accordion_2">
 
             <div class="row">
+              <div class="col-12 col-lg-3 col-sm-8 mb-4">
+                <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                  <!--begin::Label-->
+                  <label class="d-flex align-items-center fs-6  mb-2">
+                    <span class="required">Data</span>
+                  </label>
+                  <!--end::Label-->
+                  <input type="text" class="form-control form-control-sm"
+                         id="selectData" [(ngModel)]="move.oItem.dateOfMove"
+                         placeholder="Data transferência">
+
+                </div>
+              </div>
 
               <div class="col-12 col-lg-10 col-sm-8 ">
                 <div class="d-flex flex-column fv-row fv-plugins-icon-container">
@@ -45,7 +56,7 @@
               </div>
 
               <div class="col-12 col-lg-2 col-sm-4 justify-content-center text-center">
-                <qrcode qrdata="erter34534erter" [width]="150" [errorCorrectionLevel]="'M'"></qrcode>
+                <qrcode qrdata="{{idMovement}}" [width]="150" colorLight="#ffffff00"></qrcode>
               </div>
             </div>
 
@@ -53,181 +64,171 @@
           <div class="separator separator-dashed my-1"></div>
         </div>
 
+      </div>
+    </div>
 
-
-
-        <div class="row w-100 mt-4">
-
-          <div class=" col-12 col-sm-8 col-md-8 col-lg-7 col-xxl-5 ">
-            <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
-              <!--begin::Label-->
-              <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                <span class="required">Artigo</span>
-              </label>
-              <!--end::Label-->
-              <div class="input-group input-group-sm input-group-solid flex-nowrap">
-                <!--end::Label-->
-                <div class="overflow-hidden flex-grow-1">
-                  <select class="form-select form-select-sm selector rounded-end-0" data-control="select2"
-                          data-allow-clear="true" data-placeholder="Selecciona o modelo" id="selectedProduct"
-                          #selectedProduct>
-                    <option></option>
-                    <option [value]="article|json" *ngFor="let article of listArticles ">
-                      {{
-                      article.ean + ' - ' + (article.type_id ? article.type_id.name : 'ñ definido') + ' - ' +
-                      (article.article_id ? article.article_id.name : 'ñ definido')
-                      }}
-                    </option>
-                  </select>
-                </div>
-
-                <span class="input-group-text"> <i class="fa fa-search"></i></span>
-              </div>
-              <div class="fv-plugins-message-container invalid-feedback"></div>
-
-            </div>
-          </div>
-
-          <div class="col-12 col-lg-5 col-xxl-2">
-            <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
-              <!--begin::Label-->
-              <label class="d-flex align-items-center fs-6 mb-2">
-                <span class="">S/N</span>
-              </label>
-              <!--end::Label-->
-
-              <input type="text" class="form-control form-control-sm " id="quantidadeItemS"
-                     placeholder="Númerio Serial "
-              >
-
-              <div class="fv-plugins-message-container invalid-feedback"></div>
-            </div>
-          </div>
-
-          <div class="col-12 col-lg-6 col-xxl-2">
-            <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
-              <!--begin::Label-->
-              <label class="d-flex align-items-center fs-6  mb-2">
-                <span class="">P/N</span>
-              </label>
-              <!--end::Label-->
-
-              <input type="text" class="form-control form-control-sm " id="quantidadeItemD" placeholder="Número P">
-
-              <div class="fv-plugins-message-container invalid-feedback"></div>
-            </div>
-          </div>
-
-
-          <div class="col-12 col-lg-6 col-xxl-2">
-            <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
-              <!--begin::Label-->
-              <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                <span class="required">Qt itens</span>
-              </label>
-              <!--end::Label-->
-
-              <input type="number" class="form-control form-control-sm " id="quantidadeItem"
-                     placeholder="Quantidade do item" >
-
-              <div class="fv-plugins-message-container invalid-feedback"></div>
-            </div>
-          </div>
-
-          <div class="col-12 col-lg-6 col-xxl-auto d-flex flex-right">
-            <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container pt-8">
-              <button type="button" class="btn btn-sm btn-success mb-2 btn-sm" (click)="addListItems()">
-                {{ util.SAVE_TEXT}}
-              </button>
-
-            </div>
-          </div>
-
+    <div class="row mt-4">
+      <div class="col-12 col-lg-9 col-sm-6 mb-4">
+        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="selectStorage">
+            <span class="required">Armazém inicial</span>
+          </label>
+          <!--end::Label-->
+          <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
+                  data-placeholder="Selecciona o armazém" id="selectStorage">
+            <option></option>
+            <option [value]="item|json" *ngFor="let item of listSorage|async">
+              {{ item.name }}
+            </option>
+          </select>
 
         </div>
-
-        <div class="row">
-          <div class="col-12 col-lg-3 col-sm-8 mb-4">
-            <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-              <!--begin::Label-->
-              <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="selectedArmazem">
-                <span class="required">2º Armazem</span>
-              </label>
-              <!--end::Label-->
-              <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
-                      data-placeholder="Selecciona o modelo" id="selectedArmazem2">
-                <option></option>
-                <option value="pro|json">
-                  {{ 'pro.name'}}
-                </option>
-
-              </select>
-
-              <div class="fv-plugins-message-container invalid-feedback"></div>
-
-            </div>
-          </div>
-
-
-          <div class="col-sm-3">
-            <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
-              <!--begin::Label-->
-              <label class="d-flex align-items-center fs-6 mb-2" for="selectedArmario">
-                <span class="">2º Armário</span>
-              </label>
-              <!--end::Label-->
-              <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
-                      data-placeholder="Selecciona o modelo" id="selectedArmario2">
-                <option></option>
-                <option value="">
-                  {{ 'armario.name' }}
-                </option>
-              </select>
-
-              <div class="fv-plugins-message-container invalid-feedback"></div>
-            </div>
-          </div>
-
-          <div class="col-sm-3">
-            <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
-              <!--begin::Label-->
-              <label class="d-flex align-items-center fs-6  mb-2" for="selectedPrateleira">
-                <span class="">2º Prateleira</span>
-              </label>
-              <!--end::Label-->
-              <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
-                      data-placeholder="Selecciona o modelo" id="selectedPrateleira2">
-                <option></option>
-                <option value="">
-                  {{ 'pro.name' }}
-                </option>
-              </select>
-
-              <div class="fv-plugins-message-container invalid-feedback"></div>
-            </div>
-          </div>
-        </div>
-
-
       </div>
 
+      <div class=" col-12 col-sm-8 col-md-8 col-lg-5 col-xxl-7 ">
+        <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="selectedArticle">
+            <span class="required">Artigo</span>
+          </label>
+          <!--end::Label-->
+          <div class="input-group input-group-sm input-group-solid flex-nowrap">
+            <!--end::Label-->
+            <div class="overflow-hidden flex-grow-1">
+              <select class="form-select form-select-sm selector rounded-end-0" data-control="select2"
+                      data-allow-clear="true" data-placeholder="Selecciona o artigo" id="selectedArticle"
+                      #selectedProduct>
+                <option></option>
+                <option [value]="ean|json" *ngFor="let ean of listArticle">
+                  {{ ean?.localAmbry + ' - ' + ean?.localShelf + ' : ' }}
+                  {{
+                  (this.serviceUtil.convertJson(ean.article).ean ? this.serviceUtil.convertJson(ean.article).ean + ' - ' : '')
+                  + this.serviceUtil.convertJson(ean.article).name +
+                  (this.serviceUtil.convertJson(ean.article).model ? ' - ' + this.serviceUtil.convertJson(ean.article).model : '')
 
-      <app-itens-transferencia></app-itens-transferencia>
+                  }}
+                  &nbsp;
+                  ({{'Qt ' + ean?.quantity}})
+                  <!--  {{(ean.ean ? ean.ean + ' - ' : '') + ean.name + (ean.model ? ' - ' + ean.model : '') }} -->
+                </option>
+              </select>
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-5 col-xxl-3">
+        <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 mb-2">
+            <span class="">S/N</span>
+          </label>
+          <!--end::Label-->
+
+          <input type="text" class="form-control form-control-sm " [(ngModel)]="item.oItem.SN"
+                 placeholder="Númerio Serial " name="SN">
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6 col-xxl-2">
+        <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <span class="required">Qt itens</span>
+          </label>
+          <!--end::Label-->
+
+          <input type="number" class="form-control form-control-sm"
+                 (keyup)="controllerQuantity()" name="quantity"
+                 id="quantidadeItem" [(ngModel)]="item.oItem.quantity"
+                 placeholder="Quantidade do artigos">
+
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+      </div>
 
     </div>
 
+    <div class="row">
+      <div class="col-12 col-lg-4 col-sm-6 mb-4">
+        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="selectedArmazem">
+            <span class="required">2º Armazem</span>
+          </label>
+          <!--end::Label-->
+          <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
+                  data-placeholder="Selecciona o armazém" id="selectedStorageTo">
+            <option></option>
+            <option [value]="item|json" *ngFor="let item of listSorage|async">
+              {{ item.name }}
+            </option>
+          </select>
+
+        </div>
+      </div>
+
+
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 mb-2" for="selectedArmario">
+            <span class="">2º Armário</span>
+          </label>
+          <!--end::Label-->
+          <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
+                  data-placeholder="Selecciona o armário" id="selectedArmario">
+            <option></option>
+            <option [value]="armario|json" *ngFor="let armario of this.listArmarios">
+              {{ armario.ambry }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-lg-4">
+        <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6  mb-2" for="selectedPrateleira">
+            <span class="">2º Prateleira</span>
+          </label>
+          <!--end::Label-->
+          <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
+                  data-placeholder="Selecciona a prateleira" id="selectedPrateleira">
+            <option></option>
+            <option [value]="pro|json" *ngFor="let pro of listShelf">
+              {{ pro }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-1 col-xxl-1 d-flex flex-right">
+        <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container pt-8">
+          <button type="button" class="btn btn-sm btn-success mb-2 btn-sm" (click)="addListItems()">
+            {{ util.SAVE_TEXT}}
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+    <app-itens-transferencia></app-itens-transferencia>
 
     <div class="col-12 mt-2 mb-4 position-fixed fixed-bottom " style="bottom: 5px; left: -35px; z-index: 110">
       <div class="input-group text-right justify-content-end">
 
 
         <button type="button" class="btn btn-sm btn-success mr-2 btn-sm btn" (click)="save()">
-          Finalizar o Process
+          {{ util.SAVE_TEXT}}
         </button>
-        &nbsp;
-        &nbsp;
+
         <button type="button" class="btn btn-sm btn-danger mr-2 btn-sm" (click)="cancelerMovement()">
-          Cancelar o Processo
+          {{ util.CANCEL_TEXT}}
         </button>
       </div>
     </div>
@@ -236,3 +237,5 @@
 
 </div>
 
+
+<!---->

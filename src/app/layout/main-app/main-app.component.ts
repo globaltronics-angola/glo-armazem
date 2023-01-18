@@ -26,7 +26,6 @@ export class MainAppComponent implements OnInit {
 
     this.user = this.auth.user;
 
-
   }
 
   async ngOnInit() {

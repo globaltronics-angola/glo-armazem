@@ -1,8 +1,8 @@
-import { StorageService } from "../shared/storage.service";
-import { map } from "rxjs/operators";
+import {StorageService} from "../shared/storage.service";
+import {map} from "rxjs/operators";
 import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 
 @Injectable({
@@ -13,12 +13,12 @@ export default class ServiceClients {
   static STORAGE_NAME: string = "global-clients"
   private window: any = (<any>window)
 
-  IObjectClass:any = {
-    id: "NULL",
+  IObjectClass: any = {
+    id: "",
     name: undefined,
-    department: "NULL",
-    others: "NULL",
-    details: undefined,
+    identityClient: "",
+
+    details: "",
     created_at: "NULL",
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
     updated_mode: false,
@@ -56,9 +56,7 @@ export default class ServiceClients {
       .then(
         () => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
-          this.IObjectClass.name = undefined
-          this.IObjectClass.details = undefined
-          this.IObjectClass.department = "NULL"
+          this.IObjectClass = {}
         },
         err => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)

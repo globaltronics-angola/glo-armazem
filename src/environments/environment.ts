@@ -4,6 +4,7 @@
 
 export const environment = {
   production: true,
+  useEmulators: true,
   firebase: {
     apiKey: "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
     authDomain: "global-tronic-storage-18502.firebaseapp.com",

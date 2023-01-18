@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { StorageService } from "../../../../shared/storage.service";
+import {Component, OnInit} from '@angular/core';
+import {StorageService} from "../../../../shared/storage.service";
 import ServiceUtil from "../../../../Services/ServiceUtil";
 import ServiceCountry from "../../../../Services/ServiceCountry";
-import { ServiceEmitter } from "../../../../Services/ServiceEmitter";
+import {ServiceEmitter} from "../../../../Services/ServiceEmitter";
 import ServiceMovimentoItems from 'src/app/Services/ServiceMovimentoItems';
-import { Subscription } from 'rxjs';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-item-requisicao',
@@ -24,13 +24,11 @@ export class ItemRequisicaoComponent implements OnInit {
 
   }
 
-  ngOnInit(): void { }
-
+  ngOnInit(): void {
+  }
 
   findAllItemTemporal() {
-
     this.list_items = new ServiceMovimentoItems(this.store).findInputMovNull("OUTPUT")
-
   }
 
   kFormatter(num: number) {
@@ -49,5 +47,6 @@ export class ItemRequisicaoComponent implements OnInit {
   clickedBtnEdit(attr: any) {
     ServiceEmitter.get('sendItemsMovimentoSaida').emit(attr)
   }
+
 
 }

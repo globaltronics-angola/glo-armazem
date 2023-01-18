@@ -2,7 +2,6 @@
   <form id="kt_modal_new_target_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#">
 
 
-
     <div class="accordion accordion-icon-toggle" id="kt_accordion_2">
       <!--begin::Item-->
       <div class="">
@@ -29,26 +28,6 @@
         <div id="kt_accordion_2_item_1" class="fs-6 collapse p-3" data-bs-parent="#kt_accordion_2">
 
           <div class="row">
-            <div class="col-12 col-lg-3 col-sm-8 mb-4">
-              <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                <!--begin::Label-->
-                <label class="d-flex align-items-center fs-6  mb-2">
-                  <span class="required">Data</span>
-                </label>
-                <!--end::Label-->
-                <input type="text" class="form-control form-control-sm" id="select_data_movimento"
-                  placeholder="Selecciona a data prevista da entrada dos produtos">
-                <div class="fv-plugins-message-container invalid-feedback"></div>
-                <div class="fv-plugins-message-container text-muted small">Digite aqui a data prevista para entrada dos
-                  itens
-                  compratos
-                </div>
-                <!--  <span class="mt-3 text-muted font-italic ml-5">
-                Selecciona o produto para configurar o codigo de barra
-              </span> -->
-              </div>
-            </div>
-
             <div class="col-12 col-lg-10 col-sm-8 ">
               <div class="d-flex flex-column fv-row fv-plugins-icon-container">
                 <!--begin::Label-->
@@ -57,7 +36,7 @@
                 </label>
                 <!--end::Label-->
                 <textarea type="text" class="form-control form-control-sm" rows="5" [(ngModel)]="move.oItem.details"
-                  placeholder="de uma descrição de relatorio do movimento de entrada" name="details"></textarea>
+                          placeholder="Anatações ou observação do documento" name="details"></textarea>
                 <div class="fv-plugins-message-container invalid-feedback"></div>
                 <!--  <span class="mt-3 text-muted font-italic ml-5">
                 Selecciona o produto para configurar o codigo de barra
@@ -65,7 +44,7 @@
               </div>
             </div>
             <div class="col-12 col-lg-2 col-sm-4 justify-content-center text-center">
-              <qrcode [qrdata]="idMovement" [width]="150" [errorCorrectionLevel]="'M'"></qrcode>
+              <qrcode [qrdata]="idMovement" [width]="150" colorLight="#ffffff00"></qrcode>
             </div>
           </div>
 
@@ -77,215 +56,225 @@
     </div>
 
     <div class="row">
-      <div class="col-12 col-sm-12 col-lg-12">
-        <div class="row">
+      <div class="accordion accordion-icon-toggle " id="kt_accordion_3">
 
-          <div class="col-sm-6">
-            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-              <!--begin::Label-->
-              <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="selectedProduct">
-                <span class="required">Artigo</span>
-              </label>
-              <!--end::Label-->
-              <div class="input-group input-group-sm input-group-solid flex-nowrap">
-                <!--end::Label-->
-                <div class="overflow-hidden flex-grow-1">
-                  <select class="form-select form-select-sm selector " data-control="select2"
-                    data-allow-clear="true" data-placeholder="Selecciona o modelo" id="selectedProduct">
-                    <option></option>
-                    <option [value]="ean|json" *ngFor="let ean of listArticle">
-                      {{ ean.ean + ' | ' + utilService.convertJson(ean.article).name + ' | ' +
-                      utilService.convertJson(ean.article).model_id.name}}
-                    </option>
-                  </select>
-                </div>
-
-              </div>
-              <div class="fv-plugins-message-container invalid-feedback"></div>
-            </div>
-          </div>
-
-          <div class="col-sm-3">
-            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-              <!--begin::Label-->
-              <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="selectedCountry">
-                <span class="required">Valor</span>
-              </label>
-              <div class="input-group input-group-sm flex-nowrap">
-                <!--end::Label-->
-
-                <input type="number" class="form-control form-control-sm" placeholder="Valor estimado"
-                  name="target_title" [(ngModel)]="item.oItem.financialCost">
-                <span class="w-50">
-                  <select class="form-select form-select-sm selector rounded-start-0" data-control="select2"
-                    data-allow-clear="true" data-placeholder="Selecciona a moeda" id="selectedCountry">
-                    <option></option>
-                    <option [value]="county|json" *ngFor="let county of listCountries">
-                      {{ county.iso }}
-                    </option>
-                  </select>
-                </span>
-              </div>
-
-              <div class="fv-plugins-message-container invalid-feedback"></div>
-            </div>
-          </div>
-
-          <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xxl-2 ">
-            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-              <!--begin::Label-->
-              <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                <span class="required">Quantidade</span>
-              </label>
-              <!--end::Label-->
-              <div class="input-group">
-                <input type="number" class="form-control form-control-sm " placeholder="Caixa" name="qt_item"
-                  [(ngModel)]="item.oItem.quantity">
-              </div>
-
-              <div class="fv-plugins-message-container invalid-feedback"></div>
-            </div>
+        <div class="accordion-header d-flex" data-bs-toggle="collapse" data-bs-target="#kt_accordion_3_item_1">
+          <div class="fv-plugins-message-container text-primary text-right mb-4"><i class="bi bi-bookmarks-fill"></i>
+            Artigos do movimento de entrada...
           </div>
         </div>
 
-        <div class="row">
+        <div id="kt_accordion_3_item_1" class="fs-6 collapse py-3 show" data-bs-parent="#kt_accordion_3">
+          <div class="col-12 col-sm-12 col-lg-12">
+            <div class="row">
 
-          <div class="col-sm-3">
-            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-              <!--begin::Label-->
-              <label class="d-flex align-items-center fs-6 mb-2">
-                <span class="">Data</span>
-              </label>
-              <!--end::Label-->
+              <div class="col-sm-6">
+                <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                  <!--begin::Label-->
+                  <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="selectedProduct">
+                    <span class="required">Artigo</span>
+                  </label>
+                  <!--end::Label-->
+                  <div class="input-group input-group-sm input-group-solid flex-nowrap">
+                    <!--end::Label-->
+                    <div class="overflow-hidden flex-grow-1">
+                      <select class="form-select form-select-sm selector " data-control="select2"
+                              data-allow-clear="true" data-placeholder="Selecciona o artigo" id="selectedProduct">
+                        <option></option>
+                        <option [value]="ean|json" *ngFor="let ean of listArticle|async">
+                          {{(ean.ean ? ean.ean + ' - ' : '') + ean.name + (ean.model ? ' - ' + ean.model : '') }}
+                        </option>
+                      </select>
+                    </div>
 
-              <input type="number" id="select_compra" class="form-control form-control-sm "
-                placeholder="Quantidade do item" name="target_title">
+                  </div>
+                  <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+              </div>
 
-              <div class="fv-plugins-message-container invalid-feedback"></div>
+              <div class="col-sm-3">
+                <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                  <!--begin::Label-->
+                  <label class="d-flex align-items-center fs-6  mb-2" for="selectedCountry">
+                    <span class="">Valor</span>
+                  </label>
+                  <div class="input-group input-group-sm flex-nowrap">
+                    <!--end::Label-->
+
+                    <input type="number" class="form-control form-control-sm rounded-end-0" placeholder="Valor estimado"
+                           name="financialCost" [(ngModel)]="item.oItem.financialCost">
+                    <span class="w-40px">
+                      <input type="text" class="form-control form-control-sm rounded-start-0" value="AO" disabled
+                             name="localCurrency" [(ngModel)]="item.oItem.localCurrency">
+                    </span>
+                  </div>
+
+                  <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xxl-3 ">
+                <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                  <!--begin::Label-->
+                  <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                    <span class="required">Quantidade</span>
+                  </label>
+                  <!--end::Label-->
+                  <div class="input-group">
+                    <input type="number" class="form-control form-control-sm " placeholder="Caixa" name="qt_item"
+                           [(ngModel)]="item.oItem.quantity">
+                  </div>
+
+                  <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div class="col-12 col-lg-3 col-sm-8 mb-4">
-            <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-              <!--begin::Label-->
-              <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="selectedArmazem">
-                <span class="required">Armazem</span>
-              </label>
-              <!--end::Label-->
-              <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
-                data-placeholder="Selecciona o modelo" id="selectedArmazem">
-                <option></option>
-                <option [value]="pro|json" *ngFor="let pro of listStorage|async">
-                  {{ pro.name }}
-                </option>
+            <div class="row">
 
-              </select>
+              <div class="col-sm-3">
+                <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                  <!--begin::Label-->
+                  <label class="d-flex align-items-center fs-6 mb-2">
+                    <span class="">Data</span>
+                  </label>
+                  <!--end::Label-->
 
-              <div class="fv-plugins-message-container invalid-feedback"></div>
+                  <input type="number" id="select_compra" class="form-control form-control-sm "
+                         placeholder="Data de entrada" name="target_title">
 
-            </div>
-          </div>
+                  <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+              </div>
 
-
-          <div class="col-sm-3">
-            <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
-              <!--begin::Label-->
-              <label class="d-flex align-items-center fs-6 mb-2" for="selectedArmario">
-                <span class="">Armário</span>
-              </label>
-              <!--end::Label-->
-              <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
-                data-placeholder="Selecciona o modelo" id="selectedArmario">
-                <option></option>
-                <option [value]="armario|json" *ngFor="let armario of listArmarios">
-                  {{ armario.name }}
-                </option>
-              </select>
-
-              <div class="fv-plugins-message-container invalid-feedback"></div>
-            </div>
-          </div>
-
-          <div class="col-sm-3">
-            <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
-              <!--begin::Label-->
-              <label class="d-flex align-items-center fs-6  mb-2" for="selectedPrateleira">
-                <span class="">Prateleira</span>
-              </label>
-              <!--end::Label-->
-              <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
-                data-placeholder="Selecciona o modelo" id="selectedPrateleira">
-                <option></option>
-                <option [value]="pro|json" *ngFor="let pro of listShelf">
-                  {{ pro.name }}
-                </option>
-              </select>
-
-              <div class="fv-plugins-message-container invalid-feedback"></div>
-            </div>
-          </div>
-
-
-
-          <div class="col-sm-5">
-            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-              <!--begin::Label-->
-              <label class="d-flex align-items-center fs-6  mb-2" for="selectFornecedor">
-                <span class="">Fornecedor</span>
-              </label>
-
-              <div class="input-group input-group-sm input-group-solid flex-nowrap">
-                <!--end::Label-->
-                <div class="overflow-hidden flex-grow-1">
+              <div class="col-12 col-lg-3 col-sm-8 mb-4">
+                <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                  <!--begin::Label-->
+                  <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="selectedArmazem">
+                    <span class="required">Armazem</span>
+                  </label>
+                  <!--end::Label-->
                   <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
-                    data-placeholder="Selecciona o modelo" id="selectFornecedor">
+                          data-placeholder="Selecciona o armázem" id="selectedArmazem">
                     <option></option>
-                    <option *ngFor="let forNd of listProvide | async" [value]="forNd|json">
-                      {{ forNd.name }}
+                    <option [value]="pro|json" *ngFor="let pro of listStorage|async">
+                      {{ pro.name }}
                     </option>
+
                   </select>
+
+                  <div class="fv-plugins-message-container invalid-feedback"></div>
+
                 </div>
               </div>
 
-              <div class="fv-plugins-message-container invalid-feedback"></div>
+
+              <div class="col-sm-3">
+                <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+                  <!--begin::Label-->
+                  <label class="d-flex align-items-center fs-6 mb-2" for="selectedArmario">
+                    <span class="">Armário</span>
+                  </label>
+                  <!--end::Label-->
+                  <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
+                          data-placeholder="Selecciona o armário" id="selectedArmario">
+                    <option></option>
+                    <option [value]="armario|json" *ngFor="let armario of listArmarios">
+                      {{ armario.ambry }}
+                    </option>
+                  </select>
+
+                  <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+                  <!--begin::Label-->
+                  <label class="d-flex align-items-center fs-6  mb-2" for="selectedPrateleira">
+                    <span class="">Prateleira</span>
+                  </label>
+                  <!--end::Label-->
+                  <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
+                          data-placeholder="Selecciona a prateleira" id="selectedPrateleira">
+                    <option></option>
+                    <option [value]="pro|json" *ngFor="let pro of listShelf">
+                      {{ pro }}
+                    </option>
+                  </select>
+
+                  <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+              </div>
+
+
+              <div class="col-sm-5">
+                <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                  <!--begin::Label-->
+                  <label class="d-flex align-items-center fs-6  mb-2" for="selectFornecedor">
+                    <span class="">Fornecedor</span>
+                  </label>
+
+                  <div class="input-group input-group-sm input-group-solid flex-nowrap">
+                    <!--end::Label-->
+                    <div class="overflow-hidden flex-grow-1">
+                      <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
+                              data-placeholder="Selecciona o Fornecedor" id="selectFornecedor">
+                        <option></option>
+                        <option *ngFor="let forNd of listProvide | async" [value]="forNd|json">
+                          {{ forNd.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+              </div>
+
+
+              <div class="col-sm-6">
+                <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                  <!--begin::Label-->
+                  <label class="d-flex align-items-center fs-6 mb-2">
+                    <span class="">Outras informações </span>
+                  </label>
+
+                  <input type="text" class="form-control form-control-sm" id="tagify_others"
+                         placeholder="Outras anotações importante na entrada do produto ">
+
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-auto col-lg-1 mb-4 pt-9">
+                <button type="button" class="btn btn-sm btn-success w-100 btn-sm" (click)="addListItemsTo()">
+                  {{ util.SAVE_TEXT}}
+                </button>
+              </div>
+
             </div>
           </div>
 
-
-          <div class="col-sm-6">
-            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-              <!--begin::Label-->
-              <label class="d-flex align-items-center fs-6 mb-2">
-                <span class="">Outras informações </span>
-              </label>
-
-              <input type="text" class="form-control form-control-sm" id="tagify_others"
-                placeholder="Outras anotações importante na entrada do produto ">
-
-            </div>
-          </div>
-
-          <div class="col-12 col-sm-auto col-lg-1 mb-4 pt-9">
-            <button type="button" class="btn btn-sm btn-success mr-2 btn-sm" (click)="addListItems()">
-              {{ util.SAVE_TEXT}}
-            </button>
-          </div>
 
         </div>
-      </div>
-      <div class="col-12 col-sm-12 col-lg-12">
-        <app-tabela-item-entrada></app-tabela-item-entrada>
+        <div class="col-12 col-sm-12 col-lg-12 mt-5">
+          <app-tabela-item-entrada></app-tabela-item-entrada>
+        </div>
       </div>
     </div>
 
-    <div class="col-12 mt-2 mb-4 position-fixed fixed-bottom " style="bottom: 45px; left: -35px; z-index: 110">
+    <div class="col-12 mt-2 mb-4 position-fixed fixed-bottom " style="bottom: 2px; left: -35px; z-index: 130">
       <div class="input-group text-right justify-content-end">
 
-        <button type="button" class="btn btn-sm btn-success btn-sm" disabled (click)="printerPdf()">
-          <i class="bi bi-printer"></i>
-          Emprimir
+        <button type="button" class="btn btn-sm btn-success btn-sm" *ngIf="listItems"
+                (click)="save()">
+          {{ this.util.SAVE_TEXT }}
         </button>
+        <button type="button" class="btn btn-sm btn-success btn-sm" *ngIf="!listItems"
+                (click)="save()" disabled>
 
+          {{ this.util.SAVE_TEXT }}
+        </button>
 
         <!-- foi criado para testar as informações -->
         <button type="button" class="btn btn-sm btn-warning mr-2 btn-sm d-none" (click)="onTesting()">
@@ -293,7 +282,7 @@
         </button>
 
         <button type="button" class="btn btn-sm btn-danger btn-sm" (click)="cancelerMovement()">
-          Cancelar
+          {{ this.util.CANCEL_TEXT }}
         </button>
 
 

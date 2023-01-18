@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import * as Tagify from "@yaireo/tagify";
-import { StorageService } from "../../../../shared/storage.service";
+import {StorageService} from "../../../../shared/storage.service";
 import ServiceDepartment from 'src/app/Services/ServiceDepartment';
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
 import ServiceFornecedor from 'src/app/Services/ServiceFornecedor';
 import ServiceUtil from 'src/app/Services/ServiceUtil';
+import {ActivatedRoute, Router} from "@angular/router";
+  import {ServiceEncryptDecriptSimples} from "../../../../Services/service-encrypt-decript-simples";
+import {AuthService} from "../../../../shared/auth.service";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-forms-geral-fornecedores',
@@ -19,7 +23,7 @@ export class FormsGeralFornecedoresComponent implements OnInit {
   listDepartment: Observable<any>;
   serviceFornecedor: ServiceFornecedor;
 
-  constructor(private store: StorageService) {
+  constructor(private auth: AuthService, private store: StorageService, private route: ActivatedRoute) {
     this.listDepartment = new ServiceDepartment(this.store).findAll()
     this.serviceFornecedor = new ServiceFornecedor(this.store);
   }
@@ -27,29 +31,54 @@ export class FormsGeralFornecedoresComponent implements OnInit {
 
   initJQuerysFuncitions() {
 
+    const address = document.querySelector("#addressClient");
+    const phoneNumber = document.querySelector("#phoneNumbers");
+    const emails = document.querySelector("#emails");
+    //@ts-ignore
+    const type = $('#typeFornecedor');
 
-    const selectDepartment = this.window.$('#departamentosSelectForne');
-
-    selectDepartment.select2().on('change', (e: any) => {
-      this.serviceFornecedor.IObjectClass.department = e.target.value
+    //@ts-ignore
+    type.select2({
+      minimumResultsForSearch: -1
+    }).on('change', (e: any) => {
+      this.serviceFornecedor.IObjectClass.type = e.target.value;
     })
 
-    const otherInfo = document.querySelector("#otherInfoMultipleItems");
+    ServiceUtil.myTagify([address, phoneNumber, emails])
 
     // @ts-ignore
-    new Tagify(otherInfo, {
-      originalInputValueFormat: (valuesArr: any[]) => valuesArr.map((item: any) => item.value).join(',')
-    });
+    address.addEventListener('change', (e: any) => {
+      this.serviceFornecedor.IObjectClass.address = e.target.value
+    })
 
     // @ts-ignore
-    otherInfo.addEventListener('change', (e: any) => {
-      this.serviceFornecedor.IObjectClass.others = e.target.value?.split(',')
+    phoneNumber.addEventListener('change', (e: any) => {
+      this.serviceFornecedor.IObjectClass.phoneNumber = e.target.value
+    })
+
+    // @ts-ignore
+    emails.addEventListener('change', (e: any) => {
+      this.serviceFornecedor.IObjectClass.emails = e.target.value.split(',')
     })
 
   }
 
   ngOnInit(): void {
     this.window.InstanceAplication.init()
+
+
+    if(this.route.snapshot.paramMap.get('information')){
+      this.serviceFornecedor.IObjectClass = this.ServiceUtil.requestDataInfo(this.route)
+      console.log(this.serviceFornecedor.IObjectClass)
+      //@ts-ignore
+      $("#addressClient").val(this.serviceFornecedor.IObjectClass.address);
+      //@ts-ignore
+      $("#phoneNumbers").val(this.serviceFornecedor.IObjectClass.phoneNumber);
+      //@ts-ignore
+      $("#emails").val(this.serviceFornecedor.IObjectClass.emails);
+      //@ts-ignore
+      $('#typeFornecedor').val(this.serviceFornecedor.IObjectClass.type).select2();
+    }
     this.initJQuerysFuncitions()
 
   }

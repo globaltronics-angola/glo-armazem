@@ -1,20 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import ServiceCountry from "../../../../Services/ServiceCountry";
-import { StorageService } from "../../../../shared/storage.service";
+import {StorageService} from "../../../../shared/storage.service";
 import * as Tagify from "@yaireo/tagify";
 import moment from "moment";
 import ServiceUtil from "../../../../Services/ServiceUtil";
 import ServiceMovimentoItems from "../../../../Services/ServiceMovimentoItems";
-import ServiceArmazem from "../../../../Services/ServiceStorage";
 import ServiceArmario from "../../../../Services/ServiceArmario";
 import ServicePrateleias from "../../../../Services/ServicePrateleias";
-import ServiceFornecedores from "../../../../Services/ServiceFornecedores";
-import { ServiceEmitter } from "../../../../Services/ServiceEmitter";
-import ServiceEanArticleOrService from 'src/app/Services/ServiceEanArticleOrService';
-import { Observable, firstValueFrom, Subscription } from 'rxjs';
+import {ServiceEmitter} from "../../../../Services/ServiceEmitter";
+import {Observable, firstValueFrom, Subscription} from 'rxjs';
 import ServiceStorage from '../../../../Services/ServiceStorage';
 import ServiceMovimento from 'src/app/Services/ServiceMovimento';
 import ServiceFornecedor from 'src/app/Services/ServiceFornecedor';
+import ServiceArticles from "../../../../Services/ServiceArticles";
+import {AuthService} from "../../../../shared/auth.service";
+//@ts-ignore
+import * as pdfMake from "pdfmake";
+import ServicePrintMove from "../../../../Services/ServicePrintMove";
 
 
 @Component({
@@ -25,7 +27,7 @@ import ServiceFornecedor from 'src/app/Services/ServiceFornecedor';
 export class FormularioLancamentoComponent implements OnInit {
 
   private window = (<any>window)
-  listArticle: any[] = [];
+  listArticle: Observable<any>;
   listProvide: Observable<any>;
   listStorage: Observable<any>;
   listCountries: any[];
@@ -51,12 +53,15 @@ export class FormularioLancamentoComponent implements OnInit {
     this.window.print();
   }
 
-  async onUpdated() { }
+  async onUpdated() {
+  }
 
 
-  constructor(private store: StorageService) {
+  constructor(private store: StorageService, private auth: AuthService, private printer: ServicePrintMove) {
 
-    this.listArticle = new ServiceEanArticleOrService(this.store).findArticles();
+    this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull()
+
+    this.listArticle = new ServiceArticles(this.store).findAll();
     this.listProvide = new ServiceFornecedor(this.store).findAll();
     this.listStorage = new ServiceStorage(this.store).findAll();
     this.listCountries = new ServiceCountry(this.store).listCountry();
@@ -66,18 +71,20 @@ export class FormularioLancamentoComponent implements OnInit {
 
     this.utilService = new ServiceUtil();
 
-    this.dateRef = "ENT-" + moment().format("DDMMYYYY") + "-0001";
-
+    this.newRef();
     this.init();
 
     this.onSetInfoDataSource();
 
   }
 
-  async init() {
-    this.listArmarios = await firstValueFrom(new ServiceArmario(this.store).findAll());
-    this.listShelf = await firstValueFrom(new ServicePrateleias(this.store).findAll());
+  async newRef() {
+    this.dateRef = "ENT-" + moment().format("DDMMYYYY") + '-' + this.util.numberConvert(await this.move.getRefId('INPUT'));
+    this.move.oItem.docRef = this.dateRef;
+    this.idMovement = this.dateRef;
+  }
 
+  async init() {
     this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull();
   }
 
@@ -87,19 +94,27 @@ export class FormularioLancamentoComponent implements OnInit {
 
   save() {
 
-
+    this.move.oItem.id = this.dateRef;
     this.move.oItem.items = this.listItems;
-    this.move.oItem.storage = this.window.instanceSelectedArmazemId;
     this.move.oItem.moveType = this.TYPE_MOVEMENT;
 
-    this.move.save();
-    ServiceEmitter.get("actionSendMovimento").emit("");
+    if (this.move.oItem.items.length > 0) {
+      this.move.save().then(() => {
 
+        this.printer.printFunctions(this.move.oItem.items, this.move)
+        this.move.oItem = {};
+        this.newRef();
+
+      }, err => {
+        this.window.sentMessageError(this.util.MESSAGE_ERROR)
+      });
+    }else{
+      this.window.sentMessageError("Não foi adicionado os artigos da entrada no armazém")
+    }
   }
 
 
-  addListItems() {
-
+  addListItemsTo() {
 
     this.item.oItem.moveType = this.TYPE_MOVEMENT
     this.item.oItem.move = ServiceUtil.VALUE_AT_NULLABLE
@@ -107,22 +122,20 @@ export class FormularioLancamentoComponent implements OnInit {
 
     this.item.save();
     ServiceEmitter.get("actionSendMovimento").emit("");
+    this.init()
   }
 
   async ngOnInit() {
     this.initJQuerysFunctions()
-    this.idMovement = this.store.getId();
+    this.init();
   }
 
 
   async cancelerMovement(): Promise<any> {
-
-    const listDelete = new ServiceMovimentoItems(this.store).findInputMovNull()
-
-    listDelete.forEach((anyValue: any) => {
-      let itemMove = new ServiceMovimentoItems(this.store);
-      itemMove.oItem = anyValue;
-      itemMove.delete();
+    this.listItems.forEach(e => {
+      let ex: ServiceMovimentoItems = new ServiceMovimentoItems(this.store);
+      ex.oItem = e;
+      ex.delete()
     })
   }
 
@@ -132,35 +145,32 @@ export class FormularioLancamentoComponent implements OnInit {
 
   }
 
-
   ngOnDestroy() {
     this.know?.unsubscribe();
   }
 
-
   onSetInfoDataSource(): void {
 
 
-    this.know = ServiceEmitter.get('sendItemsMovimento').subscribe((attr: any) => {
+    this.know = ServiceEmitter.get('sendItemsMovimento').subscribe(async (attr: any) => {
 
-      this.window.$('#kt_accordion_2_item_1').addClass('show');
+      //this.window.$('#kt_accordion_2_item_1').addClass('show');
+
+      this.listArmarios = await JSON.parse(attr.localStorage).ambry
+      this.listShelf = await JSON.parse(attr.localAmbry).shelf
 
 
-      console.log(attr)
+      this.window.$('#selectedArmazem').val(attr.localStorage).select2().change();
+      setTimeout(() => {
+        this.window.$('#selectedArmario').val(attr.localAmbry).select2().change();
+      }, 1000);
 
-
-      this.window.$('#tagify_others').val(attr.others);
-      this.window.$('#select_compra').val(attr.dateOfPurchase);
-      this.window.$('#selectedProduct').val(attr.article.toString()).select2();
-      this.window.$('#selectFornecedor').val(attr.provider).select2();
-
-      this.window.$('#selectedArmazem').val(attr.localStorage).select2();
-      this.window.$('#selectedArmario').val(attr.localAmbry).select2();
-      this.window.$('#selectedPrateleira').val(attr.localShelf).select2();
-      this.window.$('#selectedCountry').val(attr.localCurrency).select2();
+      setTimeout(() => {
+        this.window.$('#selectedPrateleira').val(attr.localShelf).select2().change();
+      }, 2000);
 
       this.item.oItem = attr;
-
+      this.item.oItem.updated_mode = true
 
     })
 
@@ -168,38 +178,20 @@ export class FormularioLancamentoComponent implements OnInit {
 
   initJQuerysFunctions() {
 
-    this.window.instanceSelectedValueOthers = "";
-    this.window.instanceSelectedIdCountry = "";
-    this.window.instanceSelectedDateItensCompra = "";
-    this.window.instanceSelectedDateItensCompraMovimento = "";
+    this.window.$('#selectedArmazem').select2({ minimumResultsForSearch: -1}).on('change', async (e: any) => {
 
-
-    // components da localizaçao
-    this.window.instanceSelectedArmazemId = "";
-    this.window.instanceSelectedArmarioId = "";
-    this.window.instanceSelectedPrateleiraId = "";
-    this.window.instanceSelectedFornecedorId = "";
-
-    this.window.listArmarios = [];
-
-
-    this.window.$('#selectedArmazem').select2().on('change', async (e: any) => {
-
-      this.move.oItem.storage = e.target.value;
       this.item.oItem.localStorage = e.target.value;
-      this.listArmarios = await new ServiceArmario(this.store).findByName(e.target.value);
+      if (e.target.value) this.listArmarios = JSON.parse(e.target.value).ambry;
+
     });
 
-    this.window.$('#selectedArmario').select2().on('change', async (e: any) => {
-
-      if (e.target.value) {
-        this.item.oItem.localAmbry = e.target.value;
-        this.listShelf = await new ServicePrateleias(this.store).findByName(e.target.value)
-      }
+    this.window.$('#selectedArmario').select2({ minimumResultsForSearch: -1}).on('change', async (e: any) => {
+      this.item.oItem.localAmbry = e.target.value
+      if (e.target.value) this.listShelf = JSON.parse(e.target.value).shelf;
     })
 
-    this.window.$('#selectedPrateleira').select2().on('change', (e: any) => {
-      if (e.target.value) this.item.oItem.localShelf = e.target.value
+    this.window.$('#selectedPrateleira').select2({ minimumResultsForSearch: -1}).on('change', (e: any) => {
+      this.item.oItem.localShelf = e.target.value
     })
 
 
@@ -212,7 +204,9 @@ export class FormularioLancamentoComponent implements OnInit {
 
 
     this.window.$('#selectFornecedor').select2().on('change', (e: any) => {
-      if (e.target.value) { this.item.oItem.provider = e.target.value }
+      if (e.target.value) {
+        this.item.oItem.provider = e.target.value
+      }
     })
 
     this.window.$('#selectedCountry').select2().on('change', (e: any) => {
@@ -220,12 +214,9 @@ export class FormularioLancamentoComponent implements OnInit {
     })
 
     this.window.$('#selectedProduct').select2().on('change', (e: any) => {
-      const valT = e.target.value
-      if (valT) {
-        this.item.oItem.article = valT
-        this.item.oItem.articleName = JSON.parse(JSON.parse(valT.toString()).article).name
-        this.item.oItem.articleId = JSON.parse(JSON.parse(valT.toString()).article).id
-
+      this.item.oItem.article = e.target.value
+      if (this.item.oItem.article) {
+        this.item.oItem.articleId = JSON.parse(this.item.oItem.article).id
       }
     })
 
@@ -238,6 +229,7 @@ export class FormularioLancamentoComponent implements OnInit {
     });
 
     const othersTagify = document.querySelector("#tagify_others");
+
     // @ts-ignore
     new Tagify(othersTagify, {
       originalInputValueFormat: (valuesArr: any) => valuesArr.map((item: any) => item.value).join(',')
@@ -249,4 +241,5 @@ export class FormularioLancamentoComponent implements OnInit {
     })
 
   }
+
 }

@@ -1,69 +1,102 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import ServicePrateleias from "../../../../Services/ServicePrateleias";
-import { StorageService } from "../../../../shared/storage.service";
+import {Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
+import {StorageService} from "../../../../shared/storage.service";
 import moment from "moment/moment";
 import ServiceUtil from "../../../../Services/ServiceUtil";
 import ServiceMovimentoItems from "../../../../Services/ServiceMovimentoItems";
-import * as Tagify from "@yaireo/tagify";
-import ServiceCountry from "../../../../Services/ServiceCountry";
-import ServiceArmazem from "../../../../Services/ServiceStorage";
-import ServiceFornecedores from "../../../../Services/ServiceFornecedores";
-import ServiceArmario from "../../../../Services/ServiceArmario";
-import ServiceNifClient from "../../../../Services/ServiceNifClient";
-import { ServiceEmitter } from "../../../../Services/ServiceEmitter";
+import {ServiceEmitter} from "../../../../Services/ServiceEmitter";
 import ServiceClients from "../../../../Services/ServiceClients";
-import ServiceRequestType from 'src/app/Services/ServiceRequestType';
-import { Observable } from 'rxjs';
-import ServiceEanArticleOrService from 'src/app/Services/ServiceEanArticleOrService';
+import {Observable, Subscription} from 'rxjs';
 import ServiceMovimento from 'src/app/Services/ServiceMovimento';
-import { AuthService } from 'src/app/shared/auth.service';
-import { Router } from '@angular/router';
+import {AuthService} from 'src/app/shared/auth.service';
+import {Router} from '@angular/router';
+import ServiceStorage from "../../../../Services/ServiceStorage";
+import ServiceRequisicao from "../../../../Services/ServiceRequisicao";
+import ServicePrintMove from "../../../../Services/ServicePrintMove";
 
-
-//  import { FormBuilder, FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
 @Component({
   selector: 'app-form-requisicao',
   templateUrl: './form-requisicao.component.html',
   styleUrls: ['./form-requisicao.component.css']
 })
-export class FormRequisicaoComponent implements OnInit {
+export class FormRequisicaoComponent implements OnInit, OnDestroy {
 
-  @ViewChild("selectedProduct", { static: true }) productSelect2!: ElementRef;
+  @ViewChild("selectedProduct", {static: true}) productSelect2!: ElementRef;
 
-  [x: string]: any;
+  dateRef: any;
 
   TYPE_MOVEMENT: string = "OUTPUT";
 
   private window = (<any>window)
   listOption: any[] = [];
-  listTypeRequest: Observable<any>;
+
   listArticles: any[] = [];
 
   item: ServiceMovimentoItems;
-  move: ServiceMovimento;
+  move: ServiceRequisicao;
 
   productSelector: any = ""
   listItems: any[] = [];
 
   util: any = ServiceUtil
-  // temporarios
+  serviceUtil: ServiceUtil;
+  listClient: Observable<any>
 
-  idMovement: any = "1232423"
+  listStorage: Observable<any>
+
+  listAmbry: any[] = [];
+  listShelf: any[] = [];
+  listArticle: any[] = [];
+
+  idMovement: any = "12123"
+  temporalIntegerQuant: number = 0;
+  private know: any = Subscription;
 
 
-
-  constructor(private store: StorageService, private auth: AuthService, private router: Router) {
+  constructor(private store: StorageService, private printer: ServicePrintMove,
+              private auth: AuthService, private router: Router) {
 
     if (!auth.user)
       this.router.navigate(['/auth/sign-in']).then();
 
-    this.setNewOptions()
-    this.listTypeRequest = new ServiceRequestType(this.store).findAll();
-    this.listArticles = new ServiceEanArticleOrService(this.store).findArticles();
+    this.listClient = new ServiceClients(this.store).findAll()
+    this.listStorage = new ServiceStorage(this.store).findAll()
+    this.serviceUtil = new ServiceUtil();
 
     this.item = new ServiceMovimentoItems(this.store);
-    this.move = new ServiceMovimento(this.store);
+    this.move = new ServiceRequisicao(this.store);
     this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull(this.TYPE_MOVEMENT);
+
+    this.documentRef().then();
+
+    this.init()
+    this.onSetInfoDataSource();
+  }
+
+  ngOnDestroy(): void {
+    this.know.unsubscribe();
+  }
+
+  controllerQuantity() {
+
+    console.log(this.temporalIntegerQuant, this.item.oItem.quantity)
+    // this.item.oItem.quantity
+    if (this.temporalIntegerQuant < this.item.oItem.quantity) {
+      this.window.$('#quantidadeItem').removeClass('is-valid')
+      this.window.$('#quantidadeItem').addClass('is-invalid')
+      this.window.sentMessageError.init("Excedeu o limite da quantidade real no armazém...");
+    } else {
+      this.window.$('#quantidadeItem').removeClass('is-invalid')
+      this.window.$('#quantidadeItem').addClass('is-valid')
+    }
+
+
+  }
+
+  async documentRef() {
+    let sequencia: number = await this.move.getRefId()
+    this.dateRef = "REQUI-" + moment().format("DDMMYYYY") + '-' + this.util.numberConvert(sequencia);
+    this.idMovement = this.dateRef;
+    this.move.oItem.docRef = this.dateRef;
   }
 
   async save() {
@@ -72,20 +105,26 @@ export class FormRequisicaoComponent implements OnInit {
     this.move.oItem.items = this.listItems;
     this.move.oItem.moveType = this.TYPE_MOVEMENT;
 
+    if (this.listItems.length > 0) {
+      this.move.save().then(() => {
 
+        this.printer.printFunctionsRequisition(this.move.oItem.items, this.move)
+        this.move.oItem = {};
+        this.documentRef();
 
+      });
+      ServiceEmitter.get("actionSendMovimento").emit("");
 
-    this.move.save();
+      this.idMovement = this.store.getId()
+    } else {
+      this.window.sentMessageSuccess.init("Não foram adicionados os artigos da requisição no armazém")
+    }
 
-    ServiceEmitter.get("actionSendMovimento").emit("");
-
-    this.idMovement = this.store.getId()
 
   }
 
 
   addListItems() {
-
 
     this.item.oItem.moveType = this.TYPE_MOVEMENT
     this.item.oItem.move = ServiceUtil.VALUE_AT_NULLABLE
@@ -94,73 +133,96 @@ export class FormRequisicaoComponent implements OnInit {
     this.item.save();
 
     ServiceEmitter.get('actionSendMovimento').emit("")
-
+    this.init()
   }
 
-
-
   async ngOnInit() {
-
-    this.idMovement = this.store.getId()
     this.window.InstanceAplication.init()
     this.initJQuerysFunctions()
   }
 
-
   initJQuerysFunctions() {
 
-    this.window.$('#selectedProduct').select2().on('change', (e: any) => {
-      this.item.oItem.article = e.target.value
+    const armazem = this.window.$('#selectedArmazem');
+
+    const clientInfo = this.window.$('#clientSelector');
+
+
+    const articleSelect = this.window.$('#selectedArticle')
+    articleSelect.select2().on('change', (e: any) => {
+      try {
+        this.item.oItem.existence = e.target.value
+        if (e.target.value) {
+          this.item.oItem.articleId = JSON.parse(JSON.parse(e.target.value).article).id;
+          this.item.oItem.article = JSON.parse(e.target.value).article;
+          this.temporalIntegerQuant = JSON.parse(e.target.value).quantity
+        }
+      } catch (e) {
+
+      }
+
+    })
+
+    armazem.select2({ minimumResultsForSearch: -1}).on('change', (e: any) => {
+      try {
+        this.item.oItem.localStorage = e.target.value;
+        this.searchingArticle(JSON.parse(e.target.value).id).then()
+      } catch (e) {
+      }
+    })
+
+    clientInfo.select2().on('change', (e: any) => {
+      this.move.oItem.client = e.target.value
     })
 
   }
 
-
+  async init() {
+    this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull(this.TYPE_MOVEMENT);
+  }
 
   async cancelerMovement(): Promise<any> {
 
-
-  }
-
-
-
-  /**
-   * ***Name*** : Munzambi Ntemo Miguel
-   * ***Date*** : 15 de Desembro de 2022
-   *
-   * ***Description*** ....
-   *
-   * ```ts
-   * setNewOptions() {
-   * this.listOption = [
-   *   {id: 1, name: "Campos Cliente (Parceiro)", isselected: false},
-   *   {id: 2, name: "Campos do Cliente normal", isselected: false},
-   *   {id: 3, name: "Com o Campo Nif do Cliente", isselected: false},
-   *   {id: 4, name: "Armazem e Localização", isselected: false},
-   *   {id: 5, name: "Outro requeisitante", isselected: false} // this is other request
-   * ]
-   *}
-   * tanks
-   *
-   */
-
-  setNewOptions() {
-    this.listOption = [
-      { id: 0, name: "Campos do Cliente", isselected: false }
-    ]
+    this.listItems.forEach(e => {
+      let ex: ServiceMovimentoItems = new ServiceMovimentoItems(this.store);
+      ex.oItem = e;
+      ex.delete()
+      ServiceEmitter.get('actionSendMovimento').emit("")
+    })
   }
 
   enteredNewItem() {
     this.addListItems()
   }
 
-  subcriberFunctionality(attr: any) {
-    (<any>window).$(($: any) => {
-      (<any>window).instanceSelectedIdProducts = attr.ean
-      $('#selectedProduct').val(attr.ean).select2();
-    })
+  async searchingArticle(attr: any) {
+    await this.store.getForeStore().collection(ServiceMovimento.STORAGE_EXIST_ITEM)
+      .where('localStorageId', '==', attr)
+      .get()
+      .then(snap => {
+        snap.forEach(doc => {
+          this.listArticle.push(doc.data())
+          return doc.data();
+        });
+      });
+
   }
 
+  private onSetInfoDataSource() {
+    this.know = ServiceEmitter.get('sendItemsMovimentoSaida').subscribe(async (attr: any) => {
 
-  seachingClient() { }
+      setTimeout(() => {
+        this.window.$('#selectedArmazem').val(attr.localStorage).select2().change()
+      }, 10);
+
+      setTimeout(() => {
+        this.window.$('#selectedArticle').val(attr.existence).select2().change();
+      }, 1000);
+
+
+      this.item.oItem = attr;
+
+      this.item.oItem.updated_mode = true;
+    });
+  }
 }

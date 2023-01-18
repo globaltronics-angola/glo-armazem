@@ -20,6 +20,7 @@ import {FormGeralComponent} from './page/cadastros/artigos/form-geral/form-geral
 import {EansComponent} from './page/cadastros/artigos/forms-eans/eans.component';
 import {DataTablesComponent} from './page/cadastros/artigos/data-tables/data-tables.component';
 import {AngularFireModule} from '@angular/fire/compat';
+import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
 import {environment} from "../environments/environment";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ModelosComponent} from './page/cadastros/artigos/components/modelos/modelos.component';
@@ -86,7 +87,7 @@ import {
 import {
   NewFornecedorComponent
 } from './page/movimentos/entrada-artigos/formulario-lancamento/new-fornecedor/new-fornecedor.component';
-import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
+
 import {
   FormularioArtigosComponent
 } from './page/movimentos/transferncia-artigos/formulario-artigos/formulario-artigos.component';
@@ -104,9 +105,13 @@ import {ItemsDevolucaoComponent} from './page/movimentos/devolucao-artigo/items-
 import {TabelaDevolucaoComponent} from './page/movimentos/devolucao-artigo/tabela-devolucao/tabela-devolucao.component';
 import {InventarioComponent} from './page/movimentos/inventario/inventario.component';
 import {TabelaInventarioComponent} from './page/movimentos/inventario/tabela-inventario/tabela-inventario.component';
-import {AuthService} from "./shared/auth.service";
-import {enableIndexedDbPersistence, getFirestore, provideFirestore} from "@angular/fire/firestore";
 
+import {HttpClientModule} from "@angular/common/http";
+
+import { USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/compat/auth';
+import { USE_EMULATOR as USE_DATABASE_EMULATOR } from '@angular/fire/compat/database';
+import { USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/compat/firestore';
+import { USE_EMULATOR as USE_FUNCTIONS_EMULATOR } from '@angular/fire/compat/functions';
 
 @NgModule({
   declarations: [
@@ -176,6 +181,7 @@ import {enableIndexedDbPersistence, getFirestore, provideFirestore} from "@angul
     TabelaDevolucaoComponent,
     InventarioComponent,
     TabelaInventarioComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -185,8 +191,14 @@ import {enableIndexedDbPersistence, getFirestore, provideFirestore} from "@angul
     ReactiveFormsModule,
     QRCodeModule,
     FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+ //   { provide: USE_AUTH_EMULATOR, useValue: environment.useEmulators ? ['localhost', 9099] : undefined },
+    /*{ provide: USE_DATABASE_EMULATOR, useValue: environment.useEmulators ? ['localhost', 9000] : undefined },
+    { provide: USE_FIRESTORE_EMULATOR, useValue: environment.useEmulators ? ['localhost', 8080] : undefined },
+    { provide: USE_FUNCTIONS_EMULATOR, useValue: environment.useEmulators ? ['localhost', 3001] : undefined },*/
+  ],
   bootstrap: [AppComponent]
 })
 // @ts-ignore

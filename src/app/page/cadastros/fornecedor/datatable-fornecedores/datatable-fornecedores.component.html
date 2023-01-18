@@ -1,43 +1,70 @@
 <div class="overflow-auto w-100">
+  <button class="btn btn-sm  btn-secondary btn-active-primary mb-10 " (click)="pdfGenerator()">
+    <i class="bi bi-filetype-pdf"></i> Gerar Pdf
+  </button>
+  <button class="btn btn-sm  btn-secondary btn-active-primary mb-10 mx-2 d-none" (click)="xlsFile()">
+    <i class="bi bi-filetype-xls"></i> Gerar Excel
+  </button>
+  <button class="btn btn-sm btn-secondary btn-active-primary mb-10 mx-2" (click)="donwladBackData()">
+    <i class="bi bi-filetype-json"></i> Gerar Arquivo JSON
+  </button>
+
+  <a *ngIf="downloadJsonHref" class="btn btn-sm btn-light-primary btn-active-primary mb-10 mx-2"
+     [href]="downloadJsonHref" download="fornecedores_generated.json">Baixar o arquivo
+  </a>
+
   <table id="kt_datatable_both_scrolls" class="table table-striped table-row-bordered gy-2 gs-7">
     <thead class="text-uppercase fw-bold bg-light-primary">
-      <tr class="fs-6 text-gray-800">
-        <th style="max-width: 160px!important; min-width: 160px!important;">Nif / BI</th>
-        <th class="min-w-200px">Entidade</th>
-        <th class="min-w-200px">Telefones</th>
-        <th class="min-w-200px">Emails</th>
-        <th style="max-width: 140px!important; min-width: 140px!important;">Endereço</th>
+    <tr class="fs-6 text-gray-800">
+      <th class="min-w-200px">Tipo</th>
+      <th style="max-width: 160px!important; min-width: 160px!important;">Nif / BI</th>
+      <th class="min-w-200px">Nome</th>
+      <th class="min-w-200px">Telefones</th>
+      <th class="min-w-200px">Emails</th>
+      <th style="max-width: 140px!important; min-width: 140px!important;">Endereço</th>
 
-        <th class="min-w-100px">Acção</th>
+      <th class="min-w-100px"></th>
 
 
-      </tr>
+    </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let forn of listForncedores|async">
-        <td style="max-width: 160px!important; min-width: 160px!important;">{{ forn.created_at }}</td>
-        <td>{{ forn.name}}</td>
+    <tr *ngFor="let forn of listForncedores|async">
+      <td
+        style="max-width: 160px!important; min-width: 160px!important;">{{  (forn.type == '1' ? 'Individual' : (forn.type == '2' ? 'Colectivo' : '')) }}</td>
+      <td style="max-width: 160px!important; min-width: 160px!important;">{{ forn.identityClient }}</td>
+      <td>{{ forn.name}}</td>
 
-        <td><span class="badge badge-light-dark">{{ forn.department?.name}}</span></td>
+      <td>
+        <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; ">
+          <span *ngFor="let cate of forn.phoneNumber.split(',').slice(0,2)">
+            <span class="">{{ cate }}</span> &nbsp;
+          </span>
+        </div>
+      </td>
 
-        <td style="max-width: 210px!important;">
-          <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; ">
-            <span class="badge badge-light-info" *ngFor="let cate of forn.others">{{ cate }}</span>
-          </div>
-        </td>
-        <td style="max-width: 110px!important;">
-          {{ forn.updated_at }}
-        </td>
+      <td style="max-width: 210px!important;">
+        <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; ">
+          <span class="" *ngFor="let emailOn of forn.emails.slice(0,1)">{{ emailOn }}</span>
+        </div>
+      </td>
+      <td style="max-width: 230px!important;">
+        <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; ">
+          <span class="badge badge-light-dark" *ngFor="let cate of forn.address.split(',').slice(0,3)">{{ cate }}</span>
+        </div>
+      </td>
 
-        <td class="gap-2">
-          <button type="button" class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
-            <span class="svg-icon"> <i class="fa fa-edit"></i></span>
-          </button>
-          <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
-            <span class="svg-icon"> <i class="bi-trash"></i></span>
-          </button>
-        </td>
-      </tr>
+      <td class="gap-2 min-w-100px">
+        <button type="button" (click)="editFornecedor(forn)"
+                class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
+          <span class="svg-icon"> <i class="fa fa-edit"></i></span>
+        </button>
+        <button type="button" (click)="deleteFornecedor(forn)"
+                class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1">
+          <span class="svg-icon"> <i class="bi-trash"></i></span>
+        </button>
+      </td>
+    </tr>
 
     </tbody>
   </table>

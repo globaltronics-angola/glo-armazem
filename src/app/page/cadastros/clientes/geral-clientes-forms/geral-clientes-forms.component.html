@@ -25,11 +25,11 @@
               <span class="required">Tipo</span>
             </label>
             <!--end::Label-->
-            <select class="form-select form-select-sm" id="clientsSelects" data-control="select2"
-              data-placeholder="Select an option">
+            <select class="form-select form-select-sm" id="typeFornecedor" data-control="select2"
+                    data-placeholder="Select an option">
               <option></option>
-              <option value="1">Actividade comercial individual </option>
-              <option value="2">Actividade comercial colectiva </option>
+              <option value="1">Individual </option>
+              <option value="2">Colectivo</option>
             </select>
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
@@ -42,7 +42,8 @@
               <span class="required">NIF / BI</span>
             </label>
             <!--end::Label-->
-            <input class="form-control form-control-sm" placeholder="Introduza o nif ou numero de identificação (BI)" />
+            <input class="form-control form-control-sm" [(ngModel)]="client.IObjectClass.identityClient"
+                   placeholder="Introduza o nif ou numero de identificação (BI)" />
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
@@ -55,7 +56,7 @@
             </label>
             <!--end::Label-->
             <input class="form-control form-control-sm" type="text" placeholder="introduza as informações principais do endereço"
-              id="otherInfoMultipleItems" >
+              id="addressClient" >
 
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
@@ -69,7 +70,7 @@
             </label>
             <!--end::Label-->
             <input class="form-control form-control-sm" placeholder="introduza as informações principais do endereço"
-              value="" id="otherInfoMultipleItems" />
+              value="" id="phoneNumbers" />
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
@@ -82,7 +83,7 @@
             </label>
             <!--end::Label-->
             <input class="form-control form-control-sm" placeholder="introduza as informações principais do endereço"
-              value="" id="otherInfoMultipleItems" />
+              value="" id="emails" />
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>

@@ -1,5 +1,10 @@
-<div class="card-body p-0">
+<!--begin::Page loading(append to body)-->
+
+<div class="card-body p-0 ">
   <form id="kt_modal_new_target_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
+    <button class="btn btn-sm btn-icon btn-circle btn-info float-end " (click)="corrigir()">
+      <i class="fw-bold bi bi-info" style="font-size: 20px!important;"></i>
+    </button>
     <div class="row">
 
       <div class="col-sm-9">
@@ -9,9 +14,10 @@
             <span class="required">Nome</span>
           </label>
           <!--end::Label-->
-          <input type="text" [(ngModel)]="article.Article.name" name="name" class="form-control form-control-sm"
-            placeholder="insira a descrição longa">
-          <div class="fv-plugins-message-container invalid-feedback"></div>
+          <input type="text" [(ngModel)]="article.Article.name"
+                 name="name" class="form-control form-control-sm"
+                 placeholder="insira a descrição longa do artigo" id="articleName">
+          <div class="fv-plugins-message-container invalid-feedback">{{messageError}}</div>
         </div>
       </div>
 
@@ -25,8 +31,7 @@
             </label>
             <!--end::Label-->
             <input type="text" [(ngModel)]="article.Article.model" name="model"
-              class="form-control form-control-sm" placeholder="insira a descrição longa">
-
+                   class="form-control form-control-sm" placeholder="insira o modelo">
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
         </div>
@@ -39,7 +44,7 @@
             </label>
             <!--end::Label-->
             <input type="text" [(ngModel)]="article.Article.marquee" name="marquee"
-              class="form-control form-control-sm" placeholder="insira a descrição longa">
+                   class="form-control form-control-sm" placeholder="insira a marca">
 
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
@@ -49,13 +54,14 @@
           <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
             <!--begin::Label-->
             <label class="d-flex align-items-center fs-6 mb-2">
-              <span class="">Categorias</span>
+              <span class="">Categorias</span>&nbsp; <span class="small">(&nbsp;<span
+              class="text-danger">Ex:&nbsp; </span>Categoria 1, Categoria 2 ...&nbsp;)</span>
             </label>
             <!--end::Label-->
 
-            <input class="form-control form-control-sm" placeholder="insira aqui a categoria"
+            <input class="form-control form-control-sm" placeholder="insira aqui ..."
                    [(ngModel)]="article.Article.category_id"
-                   id="categories" name="category_id" />
+                   id="categories" name="category_id"/>
 
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
@@ -69,20 +75,20 @@
           <div class="d-flex flex-column fv-row fv-plugins-icon-container">
             <!--begin::Label-->
             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="required">Referência / Ean</span>
+              <span class="required">Referência / EAN</span>
             </label>
             <!--end::Label-->
             <div class="input-group">
-              <input type="text" class="form-control form-control-sm" style="letter-spacing: 8px" maxlength="13"
-                placeholder="Enter Target Title" [(ngModel)]="article.Article.ean" name="ean" >
+              <input type="text" class="form-control form-control-sm"
+                     style="letter-spacing: 8px" maxlength="13" id="eanArticle"
+                     placeholder="código de referencia do produto" [(ngModel)]="article.Article.ean" name="ean">
               <span class="input-group-text cursor-pointer" (click)="generateRef()" id="generate_key">
                 <i class="fa fa-sync-alt"></i>
               </span>
             </div>
-            <div class="fv-plugins-message-container invalid-feedback"></div>
+            <div class="fv-plugins-message-container invalid-feedback">{{messageErrorEan}}</div>
           </div>
         </div>
-
 
 
         <div class="col-sm-12">
@@ -92,8 +98,9 @@
               <span class="">Obs</span>
             </label>
             <!--end::Label-->
-            <textarea type="text" class="form-control form-control-sm h-100px" rows="10"
-              placeholder="Enter Target Title" [(ngModel)]="article.Article.details" name="datasheet"></textarea>
+            <textarea type="text" class="form-control form-control-sm h-100px" rows="10" id=""
+                      placeholder="Possíveis informações do artigo" [(ngModel)]="article.Article.details"
+                      name="datasheet"></textarea>
             <div class="fv-plugins-message-container invalid-feedback"></div>
           </div>
 
@@ -101,8 +108,14 @@
 
         <div class="col-12 mt-2 mb-4">
           <div class="input-group text-right justify-content-end">
-            <button type="button" class="btn btn-sm btn-success" (click)="save()">
+
+            <button type="button" class="btn btn-sm btn-success" *ngIf="this.flag" id="salvarInfo" (click)="save()">
               <i></i>
+              {{ ServiceUtil.SAVE_TEXT }}
+            </button>
+            <button type="button" class="btn btn-sm btn-success " *ngIf="!this.flag" id="salvarInfo" disabled
+                    (click)="save()">
+              <span class="spinner-border spinner-border-sm"></span>
               {{ ServiceUtil.SAVE_TEXT }}
             </button>
           </div>

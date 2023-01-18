@@ -12,9 +12,15 @@
     </thead>
     <tbody>
     <tr *ngFor="let item of list_items">
-      <td>{{ utilFunctions.convertJson(item.article).article_id.name}}</td>
-      <td>{{ utilFunctions.convertJson(item.article).ean}}</td>
-      <td>{{ utilFunctions.convertJson(item.article).article_id.model_id.name }}</td>
+      <td>
+        {{
+        (utilFunctions.convertJson(item.article).ean ? utilFunctions.convertJson(item.article).ean + ', ' : '')
+        + utilFunctions.convertJson(item.article).name
+        + (utilFunctions.convertJson(item.article).model ? ', ' + utilFunctions.convertJson(item.article).model : '')
+        }}
+      </td>
+      <td>{{ item.SN  }}</td>
+      <td>{{ item.PN  }}</td>
 
       <td><span class="badge badge-light-dark">{{ item.quantity  }}</span></td>
 

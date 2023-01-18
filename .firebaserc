@@ -1,7 +1,10 @@
 {
   "projects": {
     "global-tronic": "global-tronic-storage-18502",
-    "default": "global-tronic-storage-18502"
+    "default": "global-tronic-storage-18502",
+    "globaltronics": "global-tronic-storage-18502",
+    "global": "global-tronic-storage-18502",
+    "global-tronic-storage": "global-tronic-storage-18502"
   },
   "targets": {},
   "etags": {}

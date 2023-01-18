@@ -18,18 +18,14 @@ export class ItensTransferenciaComponent {
   constructor(private store: StorageService) {
     this.utilFunctions = new ServiceUtil();
     this.findAllItemTemporal()
-    this.skow = ServiceEmitter.get('actionSendMovimento').subscribe(() => this.list_items = new ServiceMovimentoItems(this.store).findInputMovNull("OUTPUT"))
-
+    this.skow = ServiceEmitter.get('actionSendMovimento').subscribe(() => this.list_items = new ServiceMovimentoItems(this.store).findInputMovNull("TRANSFER"))
   }
 
   ngOnInit(): void {
   }
 
-
   findAllItemTemporal() {
-
-    this.list_items = new ServiceMovimentoItems(this.store).findInputMovNull("OUTPUT")
-
+    this.list_items = new ServiceMovimentoItems(this.store).findInputMovNull("TRANSFER")
   }
 
   kFormatter(num: number) {
@@ -46,6 +42,6 @@ export class ItensTransferenciaComponent {
   }
 
   clickedBtnEdit(attr: any) {
-    ServiceEmitter.get('sendItemsMovimentoSaida').emit(attr)
+    ServiceEmitter.get('sendItemsMovimentoTransfer').emit(attr)
   }
 }
