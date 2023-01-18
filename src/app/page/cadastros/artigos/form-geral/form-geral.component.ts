@@ -105,8 +105,18 @@ export class FormGeralComponent implements OnInit, OnDestroy {
 
   async save() {
 
+    if (!(await this.validateExiste())) {
+      this.flag = true;
+      return;
+    }
+
+    /* if (!(await this.validatedEan())) {
+       this.flag = true;
+       return;
+     }*/
 
     this.window.$("#categories").change()
+
     if (this.flag) {
       this.flag = false;
       setTimeout(() => {
@@ -170,7 +180,7 @@ export class FormGeralComponent implements OnInit, OnDestroy {
       return false;
     }
 
-    await this.store.findByOther(ServiceArticles.STORAGE_ARTICLES, 'name', this.article.Article.name).then((e: any[]) => {
+    return await this.store.findByOther(ServiceArticles.STORAGE_ARTICLES, 'name', this.article.Article.name).then((e: any[]) => {
       console.log(e)
       if (e.length > 0) {
         this.window.$('#articleName').removeClass('is-valid');
@@ -187,7 +197,6 @@ export class FormGeralComponent implements OnInit, OnDestroy {
       }
     })
 
-    return false;
   }
 
   async validatedEan() {
@@ -208,7 +217,7 @@ export class FormGeralComponent implements OnInit, OnDestroy {
       return true;
     }
 
-    await this.store.findByOther(ServiceArticles.STORAGE_ARTICLES, 'ean', this.article.Article.ean).then((j: any[]) => {
+    return await this.store.findByOther(ServiceArticles.STORAGE_ARTICLES, 'ean', this.article.Article.ean).then((j: any[]) => {
 
       if (j.length > 0) {
         this.window.$('#eanArticle').removeClass('is-valid');
@@ -225,10 +234,13 @@ export class FormGeralComponent implements OnInit, OnDestroy {
       }
 
     })
-
-    return false
-
   }
 
+  ngTyping() {
+    this.window.$('#articleName').removeClass('is-valid');
+    this.window.$('#articleName').removeClass('is-invalid');
+    this.window.$('#eanArticle').removeClass('is-invalid');
+    this.window.$('#eanArticle').removeClass('is-valid');
+  }
 
 }
