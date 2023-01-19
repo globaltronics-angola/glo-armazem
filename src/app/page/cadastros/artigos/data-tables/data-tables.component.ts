@@ -48,12 +48,13 @@ export class DataTablesComponent implements OnInit, OnDestroy {
   typingName: string = ""
   offset = 10;
   nextKey: any
+  currentKey: any
   prevKeys: any[] = []
   totalArticle: number = 0;
   countAt: number = 0;
   totalPage: number = 0;
 
-  isSerach: string = "Nome"
+  isSearch: string = "Nome"
 
   constructor(private auth: AuthService, private store: StorageService,
               private routeC: ActivatedRoute,
@@ -71,7 +72,7 @@ export class DataTablesComponent implements OnInit, OnDestroy {
   }
 
   setSearch(attr: string) {
-    this.isSerach = attr;
+    this.isSearch = attr;
   }
 
   async ngOnInit() {
@@ -83,13 +84,22 @@ export class DataTablesComponent implements OnInit, OnDestroy {
 
     this.subscription = await this.store.findAllNotLimet(ServiceArticles.STORAGE_ARTICLES).subscribe(
       (resp) => {
-        this.list_articles = _.slice(resp, 0, this.offset)
+        this.list_articles = _.slice(resp.map(this.mapPayload), 0, this.offset)
         this.nextKey = resp[this.offset - 1].payload.doc
+
+
+       this.currentKey = resp[0].payload.doc
       }
     )
 
 
   }
+
+  private mapPayload(e: any): any[] {
+    return  e.payload.doc.data()
+  }
+
+
 
 
   async prevPage() {
@@ -101,44 +111,37 @@ export class DataTablesComponent implements OnInit, OnDestroy {
     this.subscription = await this.store.findAllPrev(ServiceArticles.STORAGE_ARTICLES, prevKey, this.nextKey)
       .subscribe(resp => {
 
-        this.list_articles = _.slice(resp, 0, this.offset)
         try {
           this.nextKey = resp[resp.length - 1].payload.doc
         } catch (e) {
           this.ngOnInit()
         }
 
+
+        this.list_articles = _.slice(resp.map(this.mapPayload), 0, this.offset)
       })
 
 
   }
 
   nextPage() {
-    this.prevKeys.push(this.list_articles[0].payload.doc)
+    this.prevKeys.push(this.currentKey)
     this.getArticles(this.nextKey)
   }
 
 
   async find() {
 
-    if (this.isSerach == 'Nome') {
+    if (this.isSearch == 'Nome') {
 
-      const list = await this.store.nameSearching(this.typingName).then()
+      const list = await this.store.nameSearching(this.typingName, ServiceArticles.STORAGE_ARTICLES).then(e=>{
+        this.list_articles = _.slice(e.docs.map(v =>v.data()), 0, this.offset)
+          })
 
-      console.log(list)
-
-      this.subscription = await this.store.findAllTest(ServiceArticles.STORAGE_ARTICLES, this.nextKey, this.typingName, '>=', 'name')
-        .subscribe(resp => {
-
-          this.list_articles = _.slice(resp, 0, resp.length)
-          this.nextKey = resp[resp.length - 1].payload.doc
-
-
-        })
     }
 
 
-    if (this.isSerach == 'Ref...')
+    if (this.isSearch == 'Ref...')
       this.subscription = this.store.findAllTest(ServiceArticles.STORAGE_ARTICLES, this.nextKey, this.typingName, '>=', 'ean')
         .subscribe(resp => {
 
@@ -147,7 +150,7 @@ export class DataTablesComponent implements OnInit, OnDestroy {
 
         })
 
-    if (this.isSerach == 'Cate...') {
+    if (this.isSearch == 'Cate...') {
 
       this.subscription = this.store.findAllTest(ServiceArticles.STORAGE_ARTICLES, this.nextKey, this.typingName, 'array-contains', 'category_id')
         ?.subscribe(resp => {
@@ -170,16 +173,19 @@ export class DataTablesComponent implements OnInit, OnDestroy {
         console.log(this.totalPage, this.countAt)
         if (this.countAt > (this.totalPage - 2)) {
           this.nextKey = false;
-          this.list_articles = _.slice(resp, 0, this.offset)
+          this.list_articles = _.slice(resp.map(this.mapPayload), 0, this.offset)
           return;
         }
 
-        this.list_articles = _.slice(resp, 0, this.offset)
         try {
           this.nextKey = resp[resp.length - 1].payload.doc
+
         } catch (e) {
           this.ngOnInit()
         }
+
+       this.currentKey = resp[0].payload.doc
+       this.list_articles = _.slice(resp.map(this.mapPayload), 0, this.offset)
 
 
       })

@@ -53,12 +53,6 @@ export class StorageService {
     return snapsHost.data().count;
   }
 
-  async nameSearching(name: string) {
-    const ref = collection(getFirestore(), "global-articles");
-    const q = query(ref, orderBy('name'), startAt(name), endAt(name + '\uf8ff'));
-    return await getDocs(q)
-
-  }
 
   create(object: any, name: string) {
     object.id = this.afs.createId();
@@ -84,6 +78,16 @@ export class StorageService {
   findAll(name: string) {
     return this.afs.collection('/' + name
     ).snapshotChanges();
+  }
+
+  async nameSearching(name: string, collectionName: string) {
+
+    const order = orderBy('name');
+
+    const ref = collection(getFirestore(), collectionName);
+    const q = query(ref, ...[order, startAt(name), endAt(name + '\uf8ff')]);
+    return await getDocs(q)
+
   }
 
   // @ts-ignore
