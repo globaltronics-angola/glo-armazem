@@ -1,0 +1,309 @@
+{
+  "_firestore": {
+    "app": {
+      "_isDeleted": false,
+      "_options": {
+        "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+        "authDomain": "global-tronic-storage-18502.firebaseapp.com",
+        "projectId": "global-tronic-storage-18502",
+        "storageBucket": "global-tronic-storage-18502.appspot.com",
+        "messagingSenderId": "1034761865085",
+        "appId": "1:1034761865085:web:6ba846af4187ff2c81ae14",
+        "measurementId": "G-YL5X45WBM3"
+      },
+      "_config": {
+        "name": "[DEFAULT]",
+        "automaticDataCollectionEnabled": false
+      },
+      "_name": "[DEFAULT]",
+      "_automaticDataCollectionEnabled": false,
+      "_container": {
+        "name": "[DEFAULT]",
+        "providers": {}
+      }
+    },
+    "databaseId": {
+      "projectId": "global-tronic-storage-18502",
+      "database": "(default)"
+    },
+    "settings": {
+      "host": "firestore.googleapis.com",
+      "ssl": true,
+      "ignoreUndefinedProperties": false,
+      "cacheSizeBytes": 41943040,
+      "experimentalForceLongPolling": false,
+      "experimentalAutoDetectLongPolling": false,
+      "useFetchStreams": true
+    }
+  },
+  "_userDataWriter": {
+    "firestore": {
+      "app": {
+        "_isDeleted": false,
+        "_options": {
+          "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+          "authDomain": "global-tronic-storage-18502.firebaseapp.com",
+          "projectId": "global-tronic-storage-18502",
+          "storageBucket": "global-tronic-storage-18502.appspot.com",
+          "messagingSenderId": "1034761865085",
+          "appId": "1:1034761865085:web:6ba846af4187ff2c81ae14",
+          "measurementId": "G-YL5X45WBM3"
+        },
+        "_config": {
+          "name": "[DEFAULT]",
+          "automaticDataCollectionEnabled": false
+        },
+        "_name": "[DEFAULT]",
+        "_automaticDataCollectionEnabled": false,
+        "_container": {
+          "name": "[DEFAULT]",
+          "providers": {}
+        }
+      },
+      "databaseId": {
+        "projectId": "global-tronic-storage-18502",
+        "database": "(default)"
+      },
+      "settings": {
+        "host": "firestore.googleapis.com",
+        "ssl": true,
+        "ignoreUndefinedProperties": false,
+        "cacheSizeBytes": 41943040,
+        "experimentalForceLongPolling": false,
+        "experimentalAutoDetectLongPolling": false,
+        "useFetchStreams": true
+      }
+    }
+  },
+  "_key": {
+    "path": {
+      "segments": [
+        "projects",
+        "global-tronic-storage-18502",
+        "databases",
+        "(default)",
+        "documents",
+        "global-articles",
+        "AHXKMM9ZMVMG9V00JSTG"
+      ],
+      "offset": 5,
+      "len": 2
+    }
+  },
+  "_document": {
+    "key": {
+      "path": {
+        "segments": [
+          "projects",
+          "global-tronic-storage-18502",
+          "databases",
+          "(default)",
+          "documents",
+          "global-articles",
+          "AHXKMM9ZMVMG9V00JSTG"
+        ],
+        "offset": 5,
+        "len": 2
+      }
+    },
+    "documentType": 1,
+    "version": {
+      "timestamp": {
+        "seconds": 1673958903,
+        "nanoseconds": 446995000
+      }
+    },
+    "readTime": {
+      "timestamp": {
+        "seconds": 1674096012,
+        "nanoseconds": 585632000
+      }
+    },
+    "createTime": {
+      "timestamp": {
+        "seconds": 1673277481,
+        "nanoseconds": 18641000
+      }
+    },
+    "data": {
+      "value": {
+        "mapValue": {
+          "fields": {
+            "created_at": {
+              "stringValue": "NULL"
+            },
+            "marquee": {
+              "stringValue": ""
+            },
+            "timestamp": {
+              "integerValue": "1673958900339"
+            },
+            "name": {
+              "stringValue": "Camara IP TEC UK"
+            },
+            "ean": {
+              "stringValue": ""
+            },
+            "email_auth": {
+              "stringValue": "NULL"
+            },
+            "category_id": {
+              "arrayValue": {
+                "values": [
+                  {
+                    "stringValue": ""
+                  }
+                ]
+              }
+            },
+            "details": {
+              "stringValue": ""
+            },
+            "updated_at": {
+              "stringValue": "09 01,2023 16:25:03"
+            },
+            "id": {
+              "stringValue": "AHXKMM9ZMVMG9V00JSTG"
+            },
+            "updated_mode": {
+              "booleanValue": false
+            },
+            "deleted_at": {
+              "stringValue": "NULL"
+            },
+            "model": {
+              "stringValue": "IP 331"
+            },
+            "quantity": {
+              "integerValue": "0"
+            },
+            "user": {
+              "mapValue": {
+                "fields": {
+                  "appName": {
+                    "stringValue": "[DEFAULT]"
+                  },
+                  "apiKey": {
+                    "stringValue": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q"
+                  },
+                  "displayName": {
+                    "stringValue": "Glory Ntemo"
+                  },
+                  "email": {
+                    "stringValue": "glory.ntemo@gmail.com"
+                  },
+                  "createdAt": {
+                    "stringValue": "1672826201659"
+                  },
+                  "uid": {
+                    "stringValue": "A0wqLVQlRZOB2YcvVwpVPzUfL4p1"
+                  },
+                  "photoURL": {
+                    "stringValue": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c"
+                  },
+                  "isAnonymous": {
+                    "booleanValue": false
+                  },
+                  "emailVerified": {
+                    "booleanValue": true
+                  },
+                  "stsTokenManager": {
+                    "mapValue": {
+                      "fields": {
+                        "accessToken": {
+                          "stringValue": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiR2xvcnkgTnRlbW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNklHb2VwSlZod1BvMC1CSWxwbDhGNm9PaHQyVUxoZF9tOFBVNkw9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXVkIjoiZ2xvYmFsLXRyb25pYy1zdG9yYWdlLTE4NTAyIiwiYXV0aF90aW1lIjoxNjczMjY0ODYwLCJ1c2VyX2lkIjoiQTB3cUxWUWxSWk9CMlljdlZ3cFZQelVmTDRwMSIsInN1YiI6IkEwd3FMVlFsUlpPQjJZY3ZWd3BWUHpVZkw0cDEiLCJpYXQiOjE2NzMyNjQ4NjAsImV4cCI6MTY3MzI2ODQ2MCwiZW1haWwiOiJnbG9yeS5udGVtb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNDk3NDk2MjMzMTg2OTI3ODgzNiJdLCJlbWFpbCI6WyJnbG9yeS5udGVtb0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.Z-SH3ROr_0QUH4j2NLjIIjsBl_9VVdisPZo4SEzH398GDjdxkPngxsIDZ5FR-7x2_c5eil90rLMY1D3PduJUqQDAJatgK7orJmF5GrkdFu771OJdkoxaS-R-BGnke_rInVAVjDQrRk4myyTi7xvSLhm3s_S5zr9wXI0vHb5c9PNx8Vwh5i8RDHAshVZiu_Nz9gMFrCNP4tWcINaGX-KjVI8C8Hz24TFbQnQLged0jDLHbifZNora6WBpIdes73qruSkamFTOgzVcUh7kpp_W6EVAe9PVspO4OQkWlKY_HlwkJzUp7amdMEyhNc6jI_MPanT24Hm0g_P4y_37zDsJsQ"
+                        },
+                        "expirationTime": {
+                          "integerValue": "1673268460059"
+                        },
+                        "refreshToken": {
+                          "stringValue": "AOkPPWQQ8BIL9BJ2bok0b-yP5OSSveL6h9nVEGZqHbgkF8S37d1gD76owfZDkX9227gGKmxv9X1IGy0ooCGfKtvWEp3fEQZbbKAB09rp8aCrwPEBH0hfDrzymZIswJPFGXY7_KegQ8d4Hy0mRnMS7nlutSxnWxUuhTh2kz6k55Mlqqmm6eaXfRSafXcLY94hRoqt0RU3Dy3RVwiNnbR7vX8peBvfOcQUH1fYFAR11etuVcShwyr8JrU5M9B9xmOF1pv0vVobs7u6wjIrSXECGkuhGnz8ZHmULnvTW9NFY3SM9AqTKC8yqmDBKTRbUVico06axQ4Mh6jhOY9sORaai8V8l029zdnoaMqzeD3c_BYevRUxrnMUTx3qfm2j99YFdj1KowhFgUCjVQcfevRHFPzGyaQgN8Q3WYqBfyEIxW1-ePl--mhuv2K36QscAchJUxuiCwlTYNNA"
+                        }
+                      }
+                    }
+                  },
+                  "providerData": {
+                    "arrayValue": {
+                      "values": [
+                        {
+                          "mapValue": {
+                            "fields": {
+                              "photoURL": {
+                                "stringValue": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c"
+                              },
+                              "providerId": {
+                                "stringValue": "google.com"
+                              },
+                              "email": {
+                                "stringValue": "glory.ntemo@gmail.com"
+                              },
+                              "uid": {
+                                "stringValue": "114974962331869278836"
+                              },
+                              "displayName": {
+                                "stringValue": "Glory Ntemo"
+                              },
+                              "phoneNumber": {
+                                "nullValue": null
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "lastLoginAt": {
+                    "stringValue": "1673264860941"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "documentState": 0
+  },
+  "_converter": null,
+  "_firestoreImpl": {
+    "app": {
+      "_isDeleted": false,
+      "_options": {
+        "apiKey": "AIzaSyAkv4G9fiB9SqIiu04T3AhfI4Y0EdTz36Q",
+        "authDomain": "global-tronic-storage-18502.firebaseapp.com",
+        "projectId": "global-tronic-storage-18502",
+        "storageBucket": "global-tronic-storage-18502.appspot.com",
+        "messagingSenderId": "1034761865085",
+        "appId": "1:1034761865085:web:6ba846af4187ff2c81ae14",
+        "measurementId": "G-YL5X45WBM3"
+      },
+      "_config": {
+        "name": "[DEFAULT]",
+        "automaticDataCollectionEnabled": false
+      },
+      "_name": "[DEFAULT]",
+      "_automaticDataCollectionEnabled": false,
+      "_container": {
+        "name": "[DEFAULT]",
+        "providers": {}
+      }
+    },
+    "databaseId": {
+      "projectId": "global-tronic-storage-18502",
+      "database": "(default)"
+    },
+    "settings": {
+      "host": "firestore.googleapis.com",
+      "ssl": true,
+      "ignoreUndefinedProperties": false,
+      "cacheSizeBytes": 41943040,
+      "experimentalForceLongPolling": false,
+      "experimentalAutoDetectLongPolling": false,
+      "useFetchStreams": true
+    }
+  },
+  "metadata": {
+    "hasPendingWrites": false,
+    "fromCache": false
+  }
+}

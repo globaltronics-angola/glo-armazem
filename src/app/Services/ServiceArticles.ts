@@ -51,6 +51,10 @@ export default class ServiceArticles {
     )
   }
 
+  counterMeth(){
+    return this.store.getCounterInfo(ServiceArticles.STORAGE_ARTICLES);
+  }
+
   save(): void {
 
     if (!this.Article.updated_mode) {

@@ -1,8 +1,18 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import ServiceUtil from "../Services/ServiceUtil";
-
-import {orderByChild, startAt, ref, list} from "@angular/fire/database";
+import {
+  getFirestore,
+  collection,
+  getCountFromServer,
+  query,
+  orderBy,
+  startAt,
+  endAt,
+  getDocs, getDocFromServer
+} from "@angular/fire/firestore";
+import {Subscription} from "rxjs";
+import {get} from "@angular/fire/database";
 
 
 @Injectable({
@@ -36,6 +46,18 @@ export class StorageService {
 
   getFirestore() {
     return this.afs.firestore;
+  }
+
+  async getCounterInfo(collections: string) {
+    const snapsHost = await getCountFromServer(collection(getFirestore(), collections));
+    return snapsHost.data().count;
+  }
+
+  async nameSearching(name: string) {
+    const ref = collection(getFirestore(), "global-articles");
+    const q = query(ref, orderBy('name'), startAt(name), endAt(name + '\uf8ff'));
+    return await getDocs(q)
+
   }
 
   create(object: any, name: string) {
