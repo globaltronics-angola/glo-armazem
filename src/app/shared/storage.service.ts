@@ -13,6 +13,7 @@ import {
 } from "@angular/fire/firestore";
 import {Subscription} from "rxjs";
 import {get} from "@angular/fire/database";
+import { limit, where } from 'firebase/firestore';
 
 
 @Injectable({
@@ -85,7 +86,8 @@ export class StorageService {
     const order = orderBy('name');
 
     const ref = collection(getFirestore(), collectionName);
-    const q = query(ref, ...[order, startAt(name), endAt(name + '\uf8ff')]);
+    // const q = query(ref, ...[order, startAt(name), endAt(name + '\uf8ff'), limit(10)]);
+    const q = query(ref, ...[order, where('name', '>=', name), where('name', '<=', name +'\uf8ff'),  limit(10)]);
     return await getDocs(q)
 
   }
