@@ -4,6 +4,7 @@ import { firstValueFrom, Observable, Subscription } from "rxjs";
 import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
 import { Injectable, OnDestroy } from "@angular/core";
+import {serverTimestamp} from "firebase/firestore";
 
 
 
@@ -29,7 +30,8 @@ export default class ServiceEanArticleOrService implements OnDestroy {
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
     updated_mode: false,
     deleted_at: "NULL",
-    email_auth: "NULL"
+    email_auth: "NULL",
+    updatedAt: serverTimestamp()
   }
 
   private window: any = (<any>window)
@@ -62,6 +64,7 @@ export default class ServiceEanArticleOrService implements OnDestroy {
     if (!this.IObjectClass.updated_mode) { this.IObjectClass.created_at = moment().format('DD MM,YYYY HH:mm:ss') }
 
     this.IObjectClass.id = this.IObjectClass.ean
+    this.IObjectClass.timestamp = "" + new Date().getTime() + this.IObjectClass.id
     this.IObjectClass.updated_mode = false;
 
     this.store.createdForceGenerateId(this.IObjectClass, ServiceEanArticleOrService.STORAGE_NAME)

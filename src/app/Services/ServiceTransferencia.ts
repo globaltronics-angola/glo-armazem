@@ -5,7 +5,8 @@ import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
 import {Injectable} from '@angular/core';
 import {ServiceEmitter} from "./ServiceEmitter";
-import ServiceArticles from "./ServiceArticles";
+import {Timestamp} from "@angular/fire/firestore";
+import {Movimento} from "./ServiceMovimento";
 
 
 @Injectable({
@@ -13,41 +14,26 @@ import ServiceArticles from "./ServiceArticles";
 })
 export default class ServiceTransferencia {
 
-  static STORAGE_NAME: string = "global-move"
+  static STORAGE_NAME: string = "global-transferencias-artigos"
+  static STORAGE_MOVE: string = "global-movimentos"
   static STORAGE_MOVE_ITEM: string = "global-move-items"
   static STORAGE_EXIST_ITEM: string = "global-existence"
 
 
   private window = (<any>window)
 
-  oItem: any = {
-    id: "NULL",
-    title: "",
-    details: "",
-    dateOfMove: "",
-    financialCostTotal: 0,
-    itemsQuantity: 0,
-    itemsConversion: 0,
-    localCurrency: "",
-    client: "",
-    client_nif: "",
-    items: [],
-    docRef: "",
-    dataRef: moment().format("DDMMYYYY"),
-    created_at: "NULL",
-    updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
-    updated_mode: false,
-    deleted_at: "NULL",
-    email_auth: "NULL",
-    user: "NULL",
-    status: true,
-    moveType: "NULL",
-  }
+  oItem : Movimento = {id: "NULL", title: "", details: "", dateOfMove: Timestamp.now(),
+  financialCostTotal: 0, itemsQuantity: 0, itemsConversion: 0, localCurrency: "",
+  timestamp: "", client: "", client_nif: "", items: [], docRef: "", dataRef: moment().format("DDMMYYYY"),
+  created_at: "NULL", updated_at: moment().format('DD MM,YYYY HH:mm:ss'), updated_mode: false,
+  deleted_at: "NULL", email_auth: "NULL", user: "NULL", status: true, moveType: "NULL", updatedAt: Timestamp.now(),
+  userDelete: "null"}
 
+  private userInfo: any;
 
   constructor(private store: StorageService) {
     let user = new ServiceUtil().getSession()
-
+    this.userInfo = user;
     this.oItem.user = user;
   }
 
@@ -56,16 +42,6 @@ export default class ServiceTransferencia {
     return this.store.findAll(ServiceTransferencia.STORAGE_NAME).pipe(map(this.convertToArticle))
   }
 
-
-  /**
-   * ********************************
-   *  Munzambi Miguel
-   * ********************************
-   *  foi implementado o metodo updateItem para actualizar informação de cada item do movimento, de modo poder
-   *  associar cada item a este movimento.
-   *
-   *  @method updateItems
-   */
   save() {
 
     console.log(this.oItem)
@@ -75,12 +51,12 @@ export default class ServiceTransferencia {
     if ((this.oItem.id == "NULL")) {
       this.oItem.id = this.store.getId().toUpperCase();
     }
-
+    this.oItem.timestamp = "" + new Date().getTime() + this.oItem.id
     this.oItem.updated_mode = false;
 
     this.updateItems()
 
-    return this.store.createdForceGenerateId(this.oItem, ServiceTransferencia.STORAGE_NAME)
+    this.store.createdForceGenerateId(this.oItem, ServiceTransferencia.STORAGE_NAME)
       .then(() => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
           ServiceEmitter.get('actionSendMovimento').emit("");
@@ -90,7 +66,16 @@ export default class ServiceTransferencia {
         err => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)
         })
+    return this.store.createdForceGenerateId(this.oItem, ServiceTransferencia.STORAGE_MOVE)
+      .then(() => {
+          this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
+          ServiceEmitter.get('actionSendMovimento').emit("");
 
+          this.oItem.id = this.store.getId()
+        },
+        err => {
+          this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)
+        })
   }
 
   async getRefId(type: string = "") {
@@ -164,24 +149,46 @@ export default class ServiceTransferencia {
 
   async existArticleNew(attr: any) {
     try {
+
       let articleExist: any = {};
+
       articleExist.id = attr.articleId + JSON.parse(attr.localStorage)
-        .name.replace(" ", "_").toUpperCase() + JSON.parse(attr.localAmbry)
-        .ambry.replace(" ", "_").toUpperCase() + JSON.parse(attr.localShelf)
-        .replace(" ", "_").toUpperCase()
+          .id
+        + (attr.localAmbry ? JSON.parse(attr.localAmbry).ambry.id + '-' : '')
+        + (attr.localShelf ? JSON.parse(attr.localShelf).id + '-' : '')
 
       articleExist.localStorageId = JSON.parse(attr.localStorage).id;
-      articleExist.localAmbry = JSON.parse(attr.localAmbry).ambry;
-      articleExist.localShelf = JSON.parse(attr.localShelf);
+      articleExist.localStorage = JSON.parse(attr.localStorage).name;
+      articleExist.localAmbry = (attr.localAmbry ? JSON.parse(attr.localAmbry).ambry.name : '');
+      articleExist.localShelf = (attr.localShelf ? JSON.parse(attr.localShelf).name : '');
       articleExist.quantity = attr.quantity;
       articleExist.article = attr.article;
+      articleExist.created_at = Timestamp.now();
+      articleExist.updated_at = Timestamp.now();
+      articleExist.deletad_at = "NULL";
+      articleExist.order = this.store.getId() + '-' + attr.quantity;
+      articleExist.articleName = attr.article ? JSON.parse(attr.article).name : '';
+
+      let usersArry: any = []
+      usersArry[this.userInfo.email] = {
+        'name': this.userInfo.displayName,
+        'photo': this.userInfo.photoURL,
+        'iteration': 1
+      };
+
+      articleExist.users = usersArry;
 
       let artExir: any = await firstValueFrom(this.store
         .findById(ServiceTransferencia.STORAGE_EXIST_ITEM, articleExist.id)).then((e) => {
         return e
       });
-      if (artExir?.quantity)
+
+      if (artExir?.quantity) {
         articleExist.quantity = articleExist.quantity + artExir.quantity;
+        articleExist.users[this.userInfo.email].iteration += 1;
+        articleExist.order = this.store.getId() + '-' + articleExist.quantity;
+      }
+
       this.store.createForceMyId(articleExist, ServiceTransferencia.STORAGE_EXIST_ITEM).then(() => {
       });
     } catch (e) {

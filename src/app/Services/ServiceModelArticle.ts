@@ -4,6 +4,7 @@ import { map } from "rxjs/operators";
 import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
 import { Injectable } from "@angular/core";
+import {serverTimestamp} from "firebase/firestore";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export default class ServiceModelArticle {
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
     updated_mode: false,
     deleted_at: "NULL",
-    email_auth: "NULL"
+    email_auth: "NULL",
+    updatedAt: serverTimestamp()
   }
 
   private window: any = (<any>window)

@@ -1,9 +1,9 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { StorageService } from "../../../../shared/storage.service";
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {StorageService} from "../../../../shared/storage.service";
 import ServiceUtil from "../../../../Services/ServiceUtil";
-import { ServiceEmitter } from "../../../../Services/ServiceEmitter";
+import {ServiceEmitter} from "../../../../Services/ServiceEmitter";
 import ServiceMovimentoItems from 'src/app/Services/ServiceMovimentoItems';
-import { Subscription } from 'rxjs';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -22,11 +22,13 @@ export class TabelaItemEntradaComponent implements OnInit, OnDestroy {
     this.skow = ServiceEmitter.get('actionSendMovimento').subscribe(() => this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull())
 
   }
+
   ngOnDestroy(): void {
     this.skow.unsubscribe()
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   findAllItemTemporal() {
 
@@ -45,6 +47,7 @@ export class TabelaItemEntradaComponent implements OnInit, OnDestroy {
     let itemMo = new ServiceMovimentoItems(this.store);
     itemMo.oItem = attr;
     itemMo.delete();
+    this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull()
   }
 
   emitFunctionalityUp(attr: any) {
@@ -52,8 +55,11 @@ export class TabelaItemEntradaComponent implements OnInit, OnDestroy {
   }
 
   convertJson(attr: any) {
-    try { return JSON.parse(attr.toString()) }
-    catch (e) { return {} }
+    try {
+      return JSON.parse(attr.toString())
+    } catch (e) {
+      return {}
+    }
   }
 
 }

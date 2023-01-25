@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import ServiceUtil from "../../../../Services/ServiceUtil";
 import {Subscription} from "rxjs";
 import {StorageService} from "../../../../shared/storage.service";
@@ -8,27 +8,27 @@ import ServiceMovimentoItems from "../../../../Services/ServiceMovimentoItems";
 @Component({
   selector: 'app-items-devolucao',
   templateUrl: './items-devolucao.component.html',
-  styles: [
-  ]
+  styles: []
 })
 export class ItemsDevolucaoComponent {
-  list_items: any[] = []
+  listItems: any[] = []
   utilFunctions: ServiceUtil
   skow: Subscription;
 
   constructor(private store: StorageService) {
     this.utilFunctions = new ServiceUtil();
     this.findAllItemTemporal()
-    this.skow = ServiceEmitter.get('actionSendMovimento').subscribe(() => this.list_items = new ServiceMovimentoItems(this.store).findInputMovNull("OUTPUT"))
+    this.skow = ServiceEmitter.get('actionSendMovimento').subscribe(() => this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull("DEVOLUTION"))
 
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
 
   findAllItemTemporal() {
 
-    this.list_items = new ServiceMovimentoItems(this.store).findInputMovNull("OUTPUT")
+    this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull("DEVOLUTION")
 
   }
 
@@ -45,7 +45,8 @@ export class ItemsDevolucaoComponent {
     this.findAllItemTemporal()
   }
 
-  clickedBtnEdit(attr: any) {
-    ServiceEmitter.get('sendItemsMovimentoSaida').emit(attr)
+  emitFunctionalityUp(attr: any) {
+    ServiceEmitter.get('sendItemsMovimentoDevolution').emit(attr)
   }
+
 }

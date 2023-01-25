@@ -1,0 +1,76 @@
+Posts a message to the given window. Messages can be structured objects,
+e.g. nested objects and arrays, can contain JavaScript values (strings, numbers, Date objects, etc),
+and can contain certain data objects such as File Blob, FileList, and ArrayBuffer objects.
+
+Objects listed in the transfer member of options are transferred, not just cloned, 
+meaning that they are no longer usable on the sending side.
+
+A target origin can be specified using the targetOrigin member of options. If not provided, it defaults to "/".
+This default restricts the message to same-origin targets only.
+
+If the origin of the target window doesn't match the given target origin, the message is discarded, 
+to avoid information leakage. To send the message to the target regardless of origin, set the target origin to "*".
+
+Throws a "DataCloneError" DOMException if transfer array contains duplicate objects or if message could not be cloned.
+
+
+ this.subscription = this.store.findAllTest(ServiceArticles.STORAGE_ARTICLES, this.nextKey, this.typingName)
+      .subscribe(resp => {
+        this.list_articles = _.slice(resp, 0, this.offset)
+      })
+
+
+Placa PC 320FD
+
+Placa PC 32
+
+Placa PC 320Y
+
+Fonte de alimentação
+
+Conversor LINDY ANALOG
+
+let file = require('fs')
+    file.writeFile('../../../../../general.json', JSON.stringify('Artigo 2'), ()=>{
+      alert('')
+    })
+
+
+ let xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        let o = JSON.parse(this.responseText)
+        console.log(o)
+      }
+    }
+    xmlHttp.open("GET", "../../../../../general.json", true)
+    xmlHttp.send();
+
+
+
+  "storage": {
+    "rules": "storage.rules"
+  },
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "database": {
+      "port": 9000
+    },
+    "storage": {
+      "port": 9199
+    },
+    "ui": {
+      "enabled": true
+    },
+    "singleProjectMode": true,
+    "functions": {
+      "port": 5001
+    },
+    "hosting": {
+      "port": 5004
+    }

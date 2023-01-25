@@ -53,16 +53,20 @@ export default class ServiceUtil {
   }
 
 
-  static myTagify(elements: any[]) {
+  static myTagify(elements: any[], updated_mode: boolean = false) {
     elements.forEach(e => {
-      new Tagify(e, {
-        originalInputValueFormat: (valuesArr: any[]) => valuesArr.map((item: any) => item.value).join(',')
+      new Tagify(e.elementAt, {
+        originalInputValueFormat: (valuesArr: any[]) => valuesArr.map((item: any) => item.value).join(','),
+        enforceWhitelist: false,
+        pattern: updated_mode ? '' : e?.pattern,
       });
 
-      console.log(e)
+
     })
 
+
   }
+
 
   static requestDataInfo(route: any) {
     try {

@@ -10,6 +10,7 @@ import {ServiceEmitter} from "../../../../Services/ServiceEmitter";
 import moment from "moment";
 import ServiceTransferencia from "../../../../Services/ServiceTransferencia";
 import ServicePrintMove from "../../../../Services/ServicePrintMove";
+import {StorageValidateAnyService} from "../../../../shared/storage.validate.any.service";
 
 @Component({
   selector: 'app-formulario-artigos',
@@ -37,6 +38,7 @@ export class FormularioArtigosComponent implements OnInit, OnDestroy {
   dateRef: string = "";
   move: ServiceTransferencia;
   private know: any = Subscription;
+  private validateAny: StorageValidateAnyService;
 
 
   constructor(private auth: AuthService, private store: StorageService, private printer: ServicePrintMove) {
@@ -46,34 +48,38 @@ export class FormularioArtigosComponent implements OnInit, OnDestroy {
     this.move = new ServiceTransferencia(this.store);
     this.serviceUtil = new ServiceUtil();
 
+    this.validateAny = new StorageValidateAnyService(this.store, ServiceTransferencia.STORAGE_NAME)
     this.documentRef();
     this.init();
     this.onSetInfoDataSource();
   }
 
 
-  addListItems() {
+  async addListItems() {
 
-    this.item.oItem.moveType = this.TYPE_MOVEMENT
-    this.item.oItem.move = ServiceUtil.VALUE_AT_NULLABLE
-    this.item.oItem.move_id = ServiceUtil.VALUE_AT_NULLABLE
+    try {
+      await this.validationName();
+      this.item.oItem.moveType = this.TYPE_MOVEMENT
+      this.item.oItem.move = ServiceUtil.VALUE_AT_NULLABLE
+      this.item.oItem.move_id = ServiceUtil.VALUE_AT_NULLABLE
 
-    this.item.save();
-    ServiceEmitter.get("actionSendMovimento").emit("");
-    this.init()
+      await this.item.save();
+      ServiceEmitter.get("actionSendMovimento").emit("");
+      this.init()
+    } catch (e) {
+      this.window.sentMessageError.init(e)
+    }
   }
 
   save() {
 
-    this.move.oItem.id = this.idMovement
     this.move.oItem.items = this.listItems;
     this.move.oItem.moveType = this.TYPE_MOVEMENT;
 
     if (this.listItems.length > 0) {
       this.move.save().then(() => {
 
-       // this.printer.printFunctionsTransfer(this.move.oItem.items, this.move)
-        this.move.oItem = {};
+        // this.printer.printFunctionsTransfer(this.move.oItem.items, this.move)
         this.documentRef();
 
       });
@@ -105,7 +111,7 @@ export class FormularioArtigosComponent implements OnInit, OnDestroy {
 
   initQuery() {
     const selectStorage = this.window.$('#selectStorage');
-    const selectedArticle = this.window.$('#selectedArticle');
+    const selectedArticle = this.window.$('#selectedArticle23');
     const selectedStorageTo = this.window.$('#selectedStorageTo');
     const selectedArmario = this.window.$('#selectedArmario');
     const selectedPrateleira = this.window.$('#selectedPrateleira');
@@ -122,15 +128,17 @@ export class FormularioArtigosComponent implements OnInit, OnDestroy {
       try {
         this.item.oItem.localStorage = e.target.value;
         if (e.target.value) this.listArmarios = JSON.parse(e.target.value).ambry;
-      }catch (e){}
+      } catch (e) {
+      }
 
     })
 
     selectedArmario.select2({minimumResultsForSearch: -1}).on('change', async (e: any) => {
-      try{
+      try {
         this.item.oItem.localAmbry = e.target.value
         if (e.target.value) this.listShelf = JSON.parse(e.target.value).shelf;
-      }catch (e){}
+      } catch (e) {
+      }
     })
 
     selectedPrateleira.select2({minimumResultsForSearch: -1}).on('change', (e: any) => {
@@ -175,7 +183,7 @@ export class FormularioArtigosComponent implements OnInit, OnDestroy {
   }
 
   async documentRef() {
-    this.dateRef = "TRANS-" + moment().format("DDMMYYYY") + '-' + this.util.numberConvert(await this.move.getRefId('INPUT'));
+    this.dateRef = "300-" + moment().format("DDMMYYYY") + '-' + this.util.numberConvert(await this.move.getRefId('INPUT'));
     this.move.oItem.docRef = this.dateRef;
     this.idMovement = this.dateRef;
   }
@@ -188,25 +196,43 @@ export class FormularioArtigosComponent implements OnInit, OnDestroy {
   private onSetInfoDataSource() {
     this.know = ServiceEmitter.get('sendItemsMovimentoTransfer').subscribe(async (attr: any) => {
 
-      this.window.$('#selectStorage').val(attr.localStorageExistance).select2().change();
-
-      setTimeout(() => {
-        this.window.$('#selectedArticle').val(attr.existence).select2().change();
-      }, 1000);
-
-      this.window.$('#selectedStorageTo').val(attr.localStorage).select2().change();
-
-      setTimeout(() => {
-        this.window.$('#selectedArmario').val(attr.localAmbry).select2().change();
-      }, 1000);
-
-      setTimeout(() => {
-        this.window.$('#selectedPrateleira').val(attr.localShelf).select2().change();
-      }, 2000);
-
       this.item.oItem = attr;
       this.item.oItem.updated_mode = true
 
+      await this.window.$('#selectStorage').val(attr.localStorageExistance).select2({minimumResultsForSearch: -1}).change();
+
+      await setTimeout(() => {
+        this.window.$('#selectedArticle23').val(attr.existence).select2().change();
+      }, 1000);
+
+      await this.window.$('#selectedStorageTo').val(attr.localStorage).select2({minimumResultsForSearch: -1}).change();
+
+      await setTimeout(() => {
+        this.window.$('#selectedArmario').val(attr.localAmbry).select2({minimumResultsForSearch: -1}).change();
+      }, 1000);
+
+      await setTimeout(() => {
+        this.window.$('#selectedPrateleira').val(attr.localShelf).select2({minimumResultsForSearch: -1}).change();
+      }, 2000);
+
+
     })
+  }
+
+  async validationName() {
+
+    await this.validateAny.validateExiste(this.item.oItem.localStorageExistance, 'localStorageExistance',
+      false, this.window.$('#selectStorage'), this.item.oItem.updated_mode, "", false, true)
+
+    await this.validateAny.validateExiste(this.item.oItem.articleId, 'articleName',
+      false, this.window.$('#selectedArticle23'), this.item.oItem.updated_mode, "", false, true)
+
+    await this.validateAny.numberValidate(this.item.oItem.quantity, 'quantity',
+      false, this.window.$('#quantidadeItem'), this.item.oItem.updated_mode,
+      "A quantidade é inferior a 1, é permitido dar entrada de pelo menos um item", false, "", 1)
+
+    await this.validateAny.validateExiste(this.item.oItem.localStorage, 'localStorage',
+      false, this.window.$('#selectedStorageTo'), this.item.oItem.updated_mode, "", false, true)
+
   }
 }

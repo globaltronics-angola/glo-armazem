@@ -4,8 +4,8 @@ import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
 import {Injectable} from '@angular/core';
 import {firstValueFrom} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
 import ServiceMovimento from "./ServiceMovimento";
+import {serverTimestamp} from 'firebase/firestore';
 
 
 @Injectable({
@@ -33,7 +33,8 @@ export default class ServiceArticles {
     updated_mode: false,
     deleted_at: "NULL",
     email_auth: "NULL",
-    timestamp: new Date().getTime()
+    timestamp: "" + new Date().getTime(),
+    updatedAt: serverTimestamp()
   }
 
   constructor(private store: StorageService) {
@@ -51,7 +52,7 @@ export default class ServiceArticles {
     )
   }
 
-  counterMeth(){
+  counterMeth() {
     return this.store.getCounterInfo(ServiceArticles.STORAGE_ARTICLES);
   }
 
@@ -59,11 +60,10 @@ export default class ServiceArticles {
 
     if (!this.Article.updated_mode) {
       this.Article.id = this.store.getId().toUpperCase();
-
       this.Article.created_at = moment().format('DD MM,YYYY HH:mm:ss')
     }
 
-    this.Article.timestamp = new Date().getTime()
+    this.Article.timestamp = "" + new Date().getTime() + this.Article.id
     this.Article.updated_mode = false;
 
     this.store.createdForceGenerateId(this.Article, ServiceArticles.STORAGE_ARTICLES)

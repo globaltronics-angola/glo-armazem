@@ -1,109 +1,113 @@
 <div class="card-body p-0">
   <form id="kt_modal_new_target_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
     <div class="row">
-      <div class="row">
-        <div class="col-sm-9">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="required">Nome</span>
-            </label>
-            <!--end::Label-->
-            <input type="text" name="description" [(ngModel)]="this.serviceFornecedor.IObjectClass.name"
-              class="form-control form-control-sm" placeholder="insira a descrição longa">
-            <div class="fv-plugins-message-container invalid-feedback"></div>
+      <div class="col-sm-9">
+        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <span class="required">Nome</span>
+          </label>
+          <!--end::Label-->
+          <input type="text" name="description" id="nameValid" [(ngModel)]="this.serviceFornecedor.IObjectClass.name"
+                 class="form-control form-control-sm" placeholder="insira a descrição longa">
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+
+
+      <div class="col-12 col-sm-3">
+        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <span class="required">Tipo</span>
+          </label>
+          <!--end::Label-->
+          <select class="form-select form-select-sm" id="typeFornecedor" data-control="select2"
+                  data-placeholder="Select an option">
+            <option></option>
+            <option value="1">Individual</option>
+            <option value="2">Colectivo</option>
+          </select>
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-3">
+        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <span class="required">NIF / BI</span>
+          </label>
+          <!--end::Label-->
+          <input class="form-control form-control-sm" id="nifValid"
+                 [(ngModel)]="this.serviceFornecedor.IObjectClass.identityClient"
+                 placeholder="Nif | BI" name="Name" size="20" maxlength="20"
+                 style="text-transform:uppercase" name="identityClient"/>
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 mb-2">
+            <span class="">Endereço</span>
+          </label>
+          <!--end::Label-->
+          <input class="form-control form-control-sm" placeholder="Endereço"
+                 value="" id="addressClient"/>
+          <span class="small text-muted"><span class="text-danger">Ex:</span>( país, província, bairro, morada)
+            ...</span>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 mb-2">
+            <span class="">Telefone</span>
+          </label>
+          <!--end::Label-->
+          <input class="form-control form-control-sm" placeholder="Numeros telefonicos"
+                 value="" id="phoneNumbers"/>
+          <div class="fv-plugins-message-containe text-muted small"><span class="text-danger">EX:</span>+(244) xxx
+            xxx xxx +(55) xxx xxxx...
           </div>
         </div>
       </div>
-      <div class="row">
 
-
-        <div class="col-12 col-sm-3">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="required">Tipo</span>
-            </label>
-            <!--end::Label-->
-            <select class="form-select form-select-sm" id="typeFornecedor" data-control="select2"
-              data-placeholder="Select an option">
-              <option></option>
-              <option value="1">Individual </option>
-              <option value="2">Colectivo</option>
-            </select>
-            <div class="fv-plugins-message-container invalid-feedback"></div>
-          </div>
+      <div class="col-12 col-sm-6">
+        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 mb-2">
+            <span class="">Email</span>
+          </label>
+          <!--end::Label-->
+          <input class="form-control form-control-sm" placeholder="introduza as informações principais do endereço"
+                 value="" id="emails"/>
+          <div class="fv-plugins-message-container invalid-feedback"></div>
         </div>
-
-        <div class="col-12 col-sm-3">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-              <span class="required">NIF / BI</span>
-            </label>
-            <!--end::Label-->
-            <input class="form-control form-control-sm"  [(ngModel)]="this.serviceFornecedor.IObjectClass.identityClient"
-                   placeholder="Introduza o nif ou numero de identificação (BI)"  name="identityClient"/>
-            <div class="fv-plugins-message-container invalid-feedback"></div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 mb-2">
-              <span class="">Endereço <span class="text-danger">ex:</span>( país, província, bairro, morada) ...</span>
-            </label>
-            <!--end::Label-->
-            <input class="form-control form-control-sm" placeholder="introduza as informações principais do endereço"
-              value="" id="addressClient" />
-            <div class="fv-plugins-message-container invalid-feedback"></div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 mb-2">
-              <span class="">Telefone</span>
-            </label>
-            <!--end::Label-->
-            <input class="form-control form-control-sm" placeholder="introduza as informações principais do endereço"
-              value="" id="phoneNumbers" />
-            <div class="fv-plugins-message-container invalid-feedback"></div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 mb-2">
-              <span class="">Email</span>
-            </label>
-            <!--end::Label-->
-            <input class="form-control form-control-sm" placeholder="introduza as informações principais do endereço"
-              value="" id="emails" />
-            <div class="fv-plugins-message-container invalid-feedback"></div>
-          </div>
-        </div>
-
       </div>
-      <div class="row">
+
+    </div>
+    <div class="row">
 
 
-        <div class="col-sm-12">
-          <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-            <!--begin::Label-->
-            <label class="d-flex align-items-center fs-6 mb-2">
-              <span class="">Obs</span>
-            </label>
-            <!--end::Label-->
-            <textarea type="text" class="form-control form-control-sm h-100px" rows="10"
-              placeholder="Enter Target Title" name="details" [(ngModel)]="this.serviceFornecedor.IObjectClass.details"></textarea>
-            <div class="fv-plugins-message-container invalid-feedback"></div>
-          </div>
-
+      <div class="col-sm-12">
+        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 mb-2">
+            <span class="">Obs</span>
+          </label>
+          <!--end::Label-->
+          <textarea type="text" class="form-control form-control-sm h-100px" rows="10"
+                    placeholder="Enter Target Title" name="details"
+                    [(ngModel)]="this.serviceFornecedor.IObjectClass.details"></textarea>
+          <div class="fv-plugins-message-container invalid-feedback"></div>
         </div>
+
       </div>
     </div>
     <div class="col-12 mt-2 mb-4">

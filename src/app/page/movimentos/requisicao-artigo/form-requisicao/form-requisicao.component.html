@@ -19,7 +19,7 @@
             <span class="required">De uma</span>
           </label>
           <input type="text" class="form-control form-control-sm" [(ngModel)]="this.move.oItem.title"
-                 placeholder="Informação da requisição">
+                 placeholder="Informação da requisição" name="title" id="titleMove">
 
           <div class="fv-plugins-message-container invalid-feedback"></div>
 
@@ -37,7 +37,7 @@
                     #selectedProduct>
               <option></option>
               <option [value]="client|json" *ngFor="let client of listClient|async ">
-                {{ client.identityClient + ' ' + client.name}}
+                {{ client.name}}
               </option>
             </select>
 
@@ -89,10 +89,7 @@
         </div>
 
 
-
-
       </div>
-
 
 
     </div>
@@ -205,8 +202,8 @@
 
       <div class="col-12 col-lg-1 col-xxl-1 d-flex flex-right">
         <div class=" pt-8">
-          <button type="button" class="btn btn-sm btn-success mb-2 btn-sm" (click)="addListItems()">
-            {{ util.SAVE_TEXT}}
+          <button type="button" class="btn btn-sm btn-primary mb-2 btn-sm" (click)="addListItems()">
+            <i class="fa fa-plus"></i>
           </button>
 
         </div>

@@ -23,8 +23,8 @@
         <span class="badge badge-light-dark" *ngIf="utilFunctions.convertJson(item.localStorage) as store">
           {{ store.name }}
         </span>
-        <span *ngIf="utilFunctions.convertJson(item.localAmbry) as ambry">, {{ ambry.ambry }}</span>
-        <span *ngIf="utilFunctions.convertJson(item.localShelf) as shelf">, {{ shelf }}</span>
+        <span *ngIf="utilFunctions.convertJson(item.localAmbry) as ambry">, {{ ambry?.ambry?.name }}</span>
+        <span *ngIf="utilFunctions.convertJson(item.localShelf) as shelf">, {{ shelf?.name }}</span>
       </td>
       <td class="text-end">{{ item.quantity}}</td>
 

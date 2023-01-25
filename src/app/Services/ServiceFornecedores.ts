@@ -3,6 +3,7 @@ import { map } from "rxjs/operators";
 import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
 import { Injectable } from '@angular/core';
+import {serverTimestamp} from "firebase/firestore";
 
 
 @Injectable({
@@ -23,7 +24,8 @@ export default class ServiceClients {
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
     updated_mode: false,
     deleted_at: "NULL",
-    email_auth: "NULL"
+    email_auth: "NULL",
+    updatedAt: serverTimestamp()
   }
 
   constructor(private store: StorageService) {
@@ -46,6 +48,7 @@ export default class ServiceClients {
       this.IObjectClass.created_at = moment().format('DD MM,YYYY HH:mm:ss')
     }
 
+    this.IObjectClass.timestamp = "" + new Date().getTime() + this.IObjectClass.id
     this.IObjectClass.updated_mode = false;
 
     this.store.createdForceGenerateId(this.IObjectClass, ServiceClients.STORAGE_NAME)

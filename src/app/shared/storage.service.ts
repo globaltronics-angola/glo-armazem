@@ -13,7 +13,7 @@ import {
 } from "@angular/fire/firestore";
 import {Subscription} from "rxjs";
 import {get} from "@angular/fire/database";
-import { limit, where } from 'firebase/firestore';
+import {limit, where} from 'firebase/firestore';
 
 
 @Injectable({
@@ -43,6 +43,10 @@ export class StorageService {
 
   getId() {
     return this.afs.createId();
+  }
+
+  getFs() {
+    return this.afs;
   }
 
   getFirestore() {
@@ -77,8 +81,7 @@ export class StorageService {
   }
 
   findAll(name: string) {
-    return this.afs.collection('/' + name
-    ).snapshotChanges();
+    return this.afs.collection('/' + name).snapshotChanges();
   }
 
   async nameSearching(name: string, collectionName: string) {
@@ -87,7 +90,7 @@ export class StorageService {
 
     const ref = collection(getFirestore(), collectionName);
     // const q = query(ref, ...[order, startAt(name), endAt(name + '\uf8ff'), limit(10)]);
-    const q = query(ref, ...[order, where('name', '>=', name), where('name', '<=', name +'\uf8ff'),  limit(10)]);
+    const q = query(ref, ...[order, where('name', '>=', name), where('name', '<=', name + '\uf8ff'), limit(10)]);
     return await getDocs(q)
 
   }
@@ -111,34 +114,6 @@ export class StorageService {
         .startAt(lastStart)
         .endBefore(lastEnd)
     ).snapshotChanges();
-  }
-
-  //@ts-ignore .\uf8ff
-  findAllTest(name: string, offset, startKey?, operator, children) {
-
-    const fire = this.afs;
-
-    const col = fire.collection(`/${name}`,
-      ref => ref.where(children, operator, `${startKey.trim()}`)
-        .orderBy(children)
-        .limit(10)
-    );
-    return col.snapshotChanges()
-
-  }
-
-  // @ts-ignore
-  findText(collectName: string, name: string, startKey?, offset) {
-
-    // @ts-ignore
-    return list(`${collectName}`, {
-      query: {
-        orderByKey: true,
-        startAt: startKey,
-        limitToFirst: offset + 1
-      }
-    })
-
   }
 
   findAllOrderName(collectName: string) {
@@ -176,6 +151,22 @@ export class StorageService {
     let list: any[] = []
     await dataStore.collection('/' + collect)
       .where(nameField, "==", context)
+      .where('deleted_at', '==', 'NULL')
+      .get()
+      .then(snap => {
+        snap.forEach(doc => {
+          list.push(doc.data())
+          return doc.data();
+        });
+      });
+
+    return list;
+  }
+
+  async findOther(collect: string) {
+    const dataStore = this.afs.firestore;
+    let list: any[] = []
+    await dataStore.collection('/' + collect)
       .where('deleted_at', '==', 'NULL')
       .get()
       .then(snap => {

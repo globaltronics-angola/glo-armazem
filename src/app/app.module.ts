@@ -112,6 +112,13 @@ import { USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/compat/auth';
 import { USE_EMULATOR as USE_DATABASE_EMULATOR } from '@angular/fire/compat/database';
 import { USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/compat/firestore';
 import { USE_EMULATOR as USE_FUNCTIONS_EMULATOR } from '@angular/fire/compat/functions';
+import { DatatableArnazemComponent } from './page/cadastros/armazem/datatable-arnazem/datatable-arnazem.component';
+import { InfoArmazemComponent } from './page/cadastros/armazem/info-armazem/info-armazem.component';
+import { ExistenciaArtigoComponent } from './page/movimentos/existencia-artigo/existencia-artigo.component';
+import { TabelasExistenciasComponent } from './page/movimentos/existencia-artigo/tabelas-existencias/tabelas-existencias.component';
+import { OcorenciasArtigoComponent } from './page/movimentos/ocorencias-artigo/ocorencias-artigo.component';
+import { TabelaOcorrenciasComponent } from './page/movimentos/ocorencias-artigo/tabela-ocorrencias/tabela-ocorrencias.component';
+import { MovimentosComponent } from './page/movimentos/movimentos/movimentos.component';
 
 @NgModule({
   declarations: [
@@ -181,6 +188,13 @@ import { USE_EMULATOR as USE_FUNCTIONS_EMULATOR } from '@angular/fire/compat/fun
     TabelaDevolucaoComponent,
     InventarioComponent,
     TabelaInventarioComponent,
+    DatatableArnazemComponent,
+    InfoArmazemComponent,
+    ExistenciaArtigoComponent,
+    TabelasExistenciasComponent,
+    OcorenciasArtigoComponent,
+    TabelaOcorrenciasComponent,
+    MovimentosComponent,
 
   ],
   imports: [

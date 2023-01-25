@@ -4,6 +4,7 @@ import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from "rxjs";
+import {serverTimestamp} from "firebase/firestore";
 
 
 
@@ -25,7 +26,8 @@ export default class ServicePrateleias {
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
     updated_mode: false,
     deleted_at: "NULL",
-    email_auth: "NULL"
+    email_auth: "NULL",
+    updatedAt: serverTimestamp()
   };
 
 

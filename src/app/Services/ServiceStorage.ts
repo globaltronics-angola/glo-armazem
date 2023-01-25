@@ -1,8 +1,9 @@
-import { StorageService } from "../shared/storage.service";
-import { map } from "rxjs/operators";
+import {StorageService} from "../shared/storage.service";
+import {map} from "rxjs/operators";
 import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {serverTimestamp} from "firebase/firestore";
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export default class ServiceStorage {
 
   private window: any = (<any>window)
 
-  IObjectClass:any = {
+  IObjectClass: any = {
     id: "NULL",
     name: undefined,
     address: "",
@@ -24,14 +25,15 @@ export default class ServiceStorage {
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
     updated_mode: false,
     deleted_at: "NULL",
-    email_auth: "NULL"
+    email_auth: "NULL",
+    updatedAt: serverTimestamp()
   }
 
   constructor(private store: StorageService) {
     let user = new ServiceUtil().getSession()
     this.IObjectClass.user = user.displayName;
     this.IObjectClass.email_auth = user.email;
-   }
+  }
 
 
   findAll() {
@@ -47,6 +49,8 @@ export default class ServiceStorage {
       this.IObjectClass.created_at = moment().format('DD MM,YYYY HH:mm:ss')
     }
 
+
+    this.IObjectClass.timestamp = "" + new Date().getTime() + this.IObjectClass.id
     this.IObjectClass.updated_mode = false;
 
     this.store.createdForceGenerateId(this.IObjectClass, ServiceStorage.STORAGE_NAME)
@@ -57,7 +61,7 @@ export default class ServiceStorage {
           this.IObjectClass.details = ""
         },
         err => {
-          this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)
+          this.window.sentMessageError.init(ServiceUtil.MESSAGE_ERROR)
         }
       )
 

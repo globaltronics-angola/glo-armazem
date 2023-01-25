@@ -8,4 +8,11 @@ firebase deploy
 firebase use --add
 
 .collection("global-articles")
+.where("category_id", "array-contains-any", ["Camara"])
+
+
+.collection("global-articles")
 .where("name", "array-contains", "")
+
+
+YKVRQSOGLHCVPB6ILFSX

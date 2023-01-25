@@ -60,6 +60,16 @@ import {
 } from "./page/movimentos/devolucao-artigo/formulario-devolucao/formulario-devolucao.component";
 import {InventarioComponent} from "./page/movimentos/inventario/inventario.component";
 import {TabelaInventarioComponent} from "./page/movimentos/inventario/tabela-inventario/tabela-inventario.component";
+import {DatatableArnazemComponent} from "./page/cadastros/armazem/datatable-arnazem/datatable-arnazem.component";
+import {ExistenciaArtigoComponent} from "./page/movimentos/existencia-artigo/existencia-artigo.component";
+import {
+  TabelasExistenciasComponent
+} from "./page/movimentos/existencia-artigo/tabelas-existencias/tabelas-existencias.component";
+import {OcorenciasArtigoComponent} from "./page/movimentos/ocorencias-artigo/ocorencias-artigo.component";
+import {
+  TabelaOcorrenciasComponent
+} from "./page/movimentos/ocorencias-artigo/tabela-ocorrencias/tabela-ocorrencias.component";
+import {MovimentosComponent} from "./page/movimentos/movimentos/movimentos.component";
 
 
 const routes: Routes = [
@@ -104,7 +114,7 @@ const routes: Routes = [
         children: [
           {path: 'geral', component: ArmazemFormGeralComponent},
           {path: 'armarios', component: ArmarioPrateleirasComponent},
-          {path: 'todos', component: ArmazemFormGeralComponent},
+          {path: 'todos', component: DatatableArnazemComponent},
         ]
       },
       {
@@ -123,6 +133,41 @@ const routes: Routes = [
           {path: 'todos', component: DatatableServicesComponent},
         ]
       },
+
+
+    ]
+  },
+  {
+    path: 'stock', component: MainAppComponent,
+    children: [
+      {
+        path: 'existencias', component: ExistenciaArtigoComponent,
+        children: [
+          {path: 'tabela', component: TabelasExistenciasComponent}
+        ]
+      }
+    ]
+  },
+  {
+    path: 'stock', component: MainAppComponent,
+    children: [
+      {
+        path: 'ocorrencias', component: OcorenciasArtigoComponent,
+        children: [
+          {path: 'tabela', component: TabelaOcorrenciasComponent}
+        ]
+      }
+    ]
+  },
+  {
+    path: 'stock', component: MainAppComponent,
+    children: [
+      {
+        path: 'movimento', component: OcorenciasArtigoComponent,
+        children: [
+          {path: 'tabela', component: MovimentosComponent}
+        ]
+      }
     ]
   },
   {
@@ -161,14 +206,10 @@ const routes: Routes = [
         children: [
           {path: 'tabela', component: TabelaInventarioComponent}
         ]
-      }
+      },
     ],
   },
 
-  {
-    path: '**', component: MainAppComponent,
-    children: [{path: '', component: PageNotFoundComponent}]
-  }
 ];
 
 @NgModule({

@@ -1,0 +1,93 @@
+<div
+  id="kt_drawer_example_basic"
+
+  class="bg-white"
+  data-kt-drawer="true"
+  data-kt-drawer-activate="true"
+  data-kt-drawer-toggle="#kt_drawer_example_basic_button"
+  data-kt-drawer-close="#kt_drawer_example_basic_close"
+  data-kt-drawer-width="500px">
+
+  <div class="card w-100 rounded-0">
+    <!--begin::Card header-->
+    <div class="card-header pe-5">
+      <!--begin::Title-->
+      <div class="card-title">
+        <!--begin::User-->
+        <div class="d-flex justify-content-center flex-column me-3">
+          <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 lh-1">Detalhes</a>
+        </div>
+        <!--end::User-->
+      </div>
+      <!--end::Title-->
+      <!--begin::Card toolbar-->
+      <div class="card-toolbar">
+        <!--begin::Close-->
+        <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_example_basic_close">
+          <span class="svg-icon svg-icon-2">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)"
+                    fill="currentColor"></rect>
+              <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)"
+                    fill="currentColor"></rect>
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card-body hover-scroll-overlay-y">
+      <div>
+        <div style="font-size: 14px; font-weight: 500; margin-bottom: 27px; font-family:Arial,Helvetica,sans-serif;">
+          <p style="margin-bottom:9px; color:#181C32; font-size: 22px; font-weight:700">{{ armazem?.name}}</p>
+          <p style="margin-bottom:2px; color:#7E8299">{{ armazem?.details}}</p>
+        </div>
+
+
+      </div>
+
+      <table class="table table-striped table-row-bordered gy-2 gs-7 accordion" id="data_armazem_details">
+        <thead class="text-uppercase fw-bold bg-primary text-white">
+        <tr class="fs-6 text-white">
+          <th class="w-auto">Documento Ref</th>
+          <th class="w-auto">Armario</th>
+          <th class="w-auto">Prateleira</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tbody *ngFor="let asy of armazem?.ambry" data-bs-toggle="collapse" [attr.data-bs-target]="'#'+asy.ambry.id">
+        <tr class="bg-light-info">
+          <td class="w-auto"> {{asy.ambry.id}}</td>
+          <td>{{asy.ambry.name}}</td>
+          <td class="text-end cursor-pointer"><i class="bi bi-chevron-down"></i></td>
+        </tr>
+
+        <tr *ngFor="let auy of asy.shelf" [id]="asy.ambry.id"
+            class="collapse accordion-collapse {{ (armazem.ambry[0].ambry.id ==asy.ambry.id?'show':'') }} "
+            [id]="asy.ambry.id"
+            data-bs-parent="#data_armazem_details">
+          <td class="w-auto"></td>
+          <td></td>
+          <td>{{ auy.name }}</td>
+        </tr>
+        <tr class="bg-light-danger">
+          <td class="w-auto"></td>
+          <td></td>
+          <td class="text-end"><span>Total: {{asy.shelf.length }}</span></td>
+        </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-light-secondary" (click)="printeFunct()" >
+        <i style="font-size: 25px!important;" class="text-dark text-active-danger bi bi-printer"></i>
+      </button>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,130 @@
+<div class="card-title row w-100 justify-content-between">
+
+  <div class="col-auto col-sm-3 col-lg-6">
+    <button class="btn btn-sm  btn-secondary btn-active-primary mb-10 " (click)="pdfGenerator()">
+      <i class="bi bi-filetype-pdf"></i> Gerar Pdf
+    </button>
+  </div>
+
+</div>
+
+<div class="overflow-auto w-100 table-responsive" id="htmlData">
+
+  <table class="table align-middle table-row-dashed fs-6 gy-2 gs-7" id="">
+    <!--begin::Table head-->
+    <thead class="fw-bold text-uppercase bg-light-primary">
+    <!--begin::Table row-->
+    <tr class="text-gray-800">
+      <th class="w-auto">Movi</th>
+      <th class="w-auto">Data</th>
+      <th class="w-auto">Quant</th>
+      <th class="min-w-200px">Artigo</th>
+      <th class="w-auto">Modelo</th>
+      <th class="w-auto">Armazém</th>
+      <th class="w-auto">Armário</th>
+      <th class="w-auto">Prate.</th>
+      <th class="min-w-150px">Resp.</th>
+    </tr>
+    </thead>
+
+    <tbody class="fw-light">
+    <tr class="border-bottom  border-gray-150 fs-6" *ngFor="let mov of this.page.listDataArray"
+        style="vertical-align: top; ">
+      <td>
+        <span class="badge badge-sm badge-light-dark" *ngIf="mov.moveType == 'INPUT'">
+          Entrada no stock
+        </span>
+        <span class="badge badge-sm badge-light-info" *ngIf="mov.moveType == 'OUTPUT'">
+          Saida no stock
+        </span>
+        <span class="badge badge-sm badge-light-danger" *ngIf="mov.moveType == 'DEVOLUTION'">
+          Devolução
+        </span>
+        <span class="badge badge-sm badge-light-info" *ngIf="mov.moveType == 'TRANSFER'">
+          Transferência
+        </span>
+      </td>
+      <td>
+        <span class="badge badge-sm badge-light-dark" *ngIf="mov.updated_at as date">{{  date  }}&nbsp; </span>
+        <span class="badge badge-sm text-muted" *ngIf="!mov.updated_at">DD, MM YYYY HH:mm:ss </span>
+      </td>
+      <td class="text-end">
+        <span class="badge badge-sm badge-light-dark">
+          {{ mov.quantity }}&nbsp;
+        </span>
+      </td>
+
+      <td>
+        <span class="badge badge-sm badge-light-dark"
+              *ngIf="util.convertJson(mov.article.toString()).name as onlyName">{{ onlyName.charAt(0).toUpperCase() + onlyName.slice(1) }}
+        </span>
+
+      </td>
+      <td>
+        <span class="badge badge-sm badge-light-dark"
+              *ngIf="util.convertJson(mov.article.toString()).model as onlyModel">{{ onlyModel.toUpperCase() }}
+        </span>
+        <span class="text-muted" *ngIf="!util.convertJson(mov.article.toString()).model"> -- -- -- </span>
+      </td>
+      <td class="text-gray-700 min-w-200px">
+
+        {{ util.convertJson(mov.localStorage.toString()).name }}
+
+      </td>
+      <td class="text-center text-gray-600">
+        <span class="badge badge-sm badge-light-dark"
+              *ngIf="util.convertJson(mov.localAmbry.toString()).ambry as ambry ">
+          {{ ambry.name }}
+        </span>
+      </td>
+      <td class="text-center text-gray-600">
+        <span class="small">
+          {{ util.convertJson(mov.localShelf.toString()).name }}
+        </span>
+      </td>
+
+
+      <!--end::Profit-->
+      <td class="text-gray-700">
+        <span class="small">
+          {{ mov.user.displayName }}&nbsp;
+        </span>
+      </td>
+
+    </tr>
+    </tbody>
+    <!--end::Table body-->
+  </table>
+
+</div>
+<div class="justify-content-between py-5 row">
+  <span class="col-auto">Total Linhas: {{ pageTotal }}</span>
+  <ul class="pagination pagination-circle d-flex flex-end">
+    <li
+      class="page-item previous {{ !this.page.awaitingProcess?'disabled':''}}{{ !this.page.prevKeys?.length?'disabled':''}} ">
+      <button class="page-link" (click)="this.page.prevPage()" [disabled]="!this.page.prevKeys?.length"><i
+        class="previous"></i></button>
+    </li>
+    <li class="page-item disabled">
+      <button class="page-link" disabled>1</button>
+    </li>
+
+    <li *ngFor="let a of this.page.prevKeys.slice(0,2);  let index = index  " class="page-item disabled">
+      <button class="page-link" disabled>{{ (index + 2) }}</button>
+    </li>
+    <li *ngIf="(this.page.countAt + 1) > 3 " class="page-item ">
+      <button class="page-link">...</button>
+    </li>
+
+    <li *ngIf="(this.page.countAt + 1) > 3 " disabled class="page-item ">
+      <button class="page-link">{{ (this.page.countAt + 1)}}</button>
+    </li>
+
+
+    <li class="page-item next {{!this.page.awaitingProcess?'disabled':''}}{{ !this.page.nextKey?'disabled':''}}">
+      <button class="page-link" (click)="this.page.nextPage()" [disabled]="!this.page.nextKey"><i class="next"></i>
+      </button>
+    </li>
+
+  </ul>
+</div>

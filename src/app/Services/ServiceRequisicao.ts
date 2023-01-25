@@ -6,6 +6,7 @@ import ServiceUtil from "./ServiceUtil";
 import {Injectable} from '@angular/core';
 import {ServiceEmitter} from "./ServiceEmitter";
 import ServiceArticles from "./ServiceArticles";
+import {serverTimestamp} from "firebase/firestore";
 
 
 @Injectable({
@@ -13,8 +14,9 @@ import ServiceArticles from "./ServiceArticles";
 })
 export default class ServiceRequisicao {
 
-  static STORAGE_NAME: string = "global-move"
+  static STORAGE_NAME: string = "global-requisicoes-artigos"
   static STORAGE_MOVE_ITEM: string = "global-move-items"
+  static STORAGE_MOVE: string = "global-movimentos"
   static STORAGE_EXIST_ITEM: string = "global-existence"
 
 
@@ -42,6 +44,7 @@ export default class ServiceRequisicao {
     user: "NULL",
     status: true,
     moveType: "NULL",
+    updatedAt: serverTimestamp()
   }
 
 
@@ -74,12 +77,12 @@ export default class ServiceRequisicao {
     if ((this.oItem.id == "NULL")) {
       this.oItem.id = this.store.getId().toUpperCase();
     }
-
+    this.oItem.timestamp = "" + new Date().getTime() + this.oItem.id
     this.oItem.updated_mode = false;
 
     this.updateItems()
 
-    return this.store.createdForceGenerateId(this.oItem, ServiceRequisicao.STORAGE_NAME)
+    this.store.createdForceGenerateId(this.oItem, ServiceRequisicao.STORAGE_NAME)
       .then(() => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
           ServiceEmitter.get('actionSendMovimento').emit("");
@@ -90,6 +93,16 @@ export default class ServiceRequisicao {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)
         })
 
+    return this.store.createdForceGenerateId(this.oItem, ServiceRequisicao.STORAGE_MOVE)
+      .then(() => {
+          this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
+          ServiceEmitter.get('actionSendMovimento').emit("");
+
+          this.oItem.id = this.store.getId()
+        },
+        err => {
+          this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)
+        })
   }
 
   async getRefId(type: string = "") {

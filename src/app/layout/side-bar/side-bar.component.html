@@ -5,7 +5,7 @@
   <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
     <!--begin::Logo image-->
     <a href="index.html">
-      <span  class="h-60px app-sidebar-logo-default">
+      <span class="h-60px app-sidebar-logo-default">
         <img alt="Logo" src="/assets/global/logo-global.svg"/>
       </span>
 
@@ -166,8 +166,16 @@
         <div class="menu-item pt-5">
           <!--begin:Menu content-->
           <div class="menu-content">
-            <span class="menu-heading fw-bold text-uppercase fs-7">Tabelas</span>
+            <span class="menu-heading fw-bold text-uppercase fs-7">Relatórios</span>
           </div>
+          <app-menu-item name="Existências" routerLink="/stock/existencias/tabela"
+                         routerLinkTo="/stock/existencias/tabela"></app-menu-item>
+
+          <app-menu-item name="Ocorrencias" routerLink="/stock/ocorrencias/tabela"
+                         routerLinkTo="/stock/ocorrencias/tabela"></app-menu-item>
+
+          <app-menu-item name="Movimentos" routerLink="/stock/movimento/tabela"
+                         routerLinkTo="/stock/movimento/tabela"></app-menu-item>
           <!--end:Menu content-->
         </div>
 

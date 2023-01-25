@@ -17,6 +17,7 @@ import {AuthService} from "../../../../shared/auth.service";
 //@ts-ignore
 import * as pdfMake from "pdfmake";
 import ServicePrintMove from "../../../../Services/ServicePrintMove";
+import {StorageValidateAnyService} from "../../../../shared/storage.validate.any.service";
 
 
 @Component({
@@ -47,6 +48,7 @@ export class FormularioLancamentoComponent implements OnInit {
   util: any = ServiceUtil;
 
   dateRef: string = ""
+  private validateAny: StorageValidateAnyService;
 
 
   printerPdf() {
@@ -70,6 +72,8 @@ export class FormularioLancamentoComponent implements OnInit {
     this.move = new ServiceMovimento(this.store);
 
     this.utilService = new ServiceUtil();
+    this.validateAny = new StorageValidateAnyService(this.store, ServiceMovimento.STORAGE_NAME)
+
 
     this.newRef();
     this.init();
@@ -79,7 +83,7 @@ export class FormularioLancamentoComponent implements OnInit {
   }
 
   async newRef() {
-    this.dateRef = "ENT-" + moment().format("DDMMYYYY") + '-' + this.util.numberConvert(await this.move.getRefId('INPUT'));
+    this.dateRef = "200-" + moment().format("DDMMYYYY") + '-' + this.util.numberConvert(await this.move.getRefId('INPUT'));
     this.move.oItem.docRef = this.dateRef;
     this.idMovement = this.dateRef;
   }
@@ -94,7 +98,6 @@ export class FormularioLancamentoComponent implements OnInit {
 
   save() {
 
-    this.move.oItem.id = this.dateRef;
     this.move.oItem.items = this.listItems;
     this.move.oItem.moveType = this.TYPE_MOVEMENT;
 
@@ -102,27 +105,32 @@ export class FormularioLancamentoComponent implements OnInit {
       this.move.save().then(() => {
 
         this.printer.printFunctions(this.move.oItem.items, this.move)
-        this.move.oItem = {};
         this.newRef();
 
       }, err => {
-        this.window.sentMessageError(this.util.MESSAGE_ERROR)
+        this.window.sentMessageError.init(this.util.MESSAGE_ERROR)
       });
-    }else{
-      this.window.sentMessageError("Não foi adicionado os artigos da entrada no armazém")
+    } else {
+      this.window.sentMessageError.init("Não foi adicionado os artigos da entrada no armazém")
     }
   }
 
 
-  addListItemsTo() {
+  async addListItemsTo() {
 
-    this.item.oItem.moveType = this.TYPE_MOVEMENT
-    this.item.oItem.move = ServiceUtil.VALUE_AT_NULLABLE
-    this.item.oItem.move_id = ServiceUtil.VALUE_AT_NULLABLE
+    try {
+      await this.validationName()
 
-    this.item.save();
-    ServiceEmitter.get("actionSendMovimento").emit("");
-    this.init()
+      this.item.oItem.moveType = this.TYPE_MOVEMENT
+      this.item.oItem.move = ServiceUtil.VALUE_AT_NULLABLE
+      this.item.oItem.move_id = ServiceUtil.VALUE_AT_NULLABLE
+
+      this.item.save();
+      ServiceEmitter.get("actionSendMovimento").emit("");
+      await this.init()
+    } catch (e) {
+      this.window.sentMessageError.init(e)
+    }
   }
 
   async ngOnInit() {
@@ -156,17 +164,18 @@ export class FormularioLancamentoComponent implements OnInit {
 
       //this.window.$('#kt_accordion_2_item_1').addClass('show');
 
-      this.listArmarios = await JSON.parse(attr.localStorage).ambry
-      this.listShelf = await JSON.parse(attr.localAmbry).shelf
+      this.listArmarios = attr.localStorage ? await JSON.parse(attr.localStorage)?.ambry : []
+      this.listShelf = attr.localAmbry ? await JSON.parse(attr.localAmbry)?.shelf : []
 
+      this.window.$('#selectedProduct').val(attr.article).select2().change();
 
-      this.window.$('#selectedArmazem').val(attr.localStorage).select2().change();
+      this.window.$('#selectedArmazem').val(attr.localStorage).select2({minimumResultsForSearch: -1}).change();
       setTimeout(() => {
-        this.window.$('#selectedArmario').val(attr.localAmbry).select2().change();
+        this.window.$('#selectedArmario').val(attr.localAmbry).select2({minimumResultsForSearch: -1}).change();
       }, 1000);
 
       setTimeout(() => {
-        this.window.$('#selectedPrateleira').val(attr.localShelf).select2().change();
+        this.window.$('#selectedPrateleira').val(attr.localShelf).select2({minimumResultsForSearch: -1}).change();
       }, 2000);
 
       this.item.oItem = attr;
@@ -178,22 +187,21 @@ export class FormularioLancamentoComponent implements OnInit {
 
   initJQuerysFunctions() {
 
-    this.window.$('#selectedArmazem').select2({ minimumResultsForSearch: -1}).on('change', async (e: any) => {
+    this.window.$('#selectedArmazem').select2({minimumResultsForSearch: -1}).on('change', async (e: any) => {
 
       this.item.oItem.localStorage = e.target.value;
       if (e.target.value) this.listArmarios = JSON.parse(e.target.value).ambry;
 
     });
 
-    this.window.$('#selectedArmario').select2({ minimumResultsForSearch: -1}).on('change', async (e: any) => {
+    this.window.$('#selectedArmario').select2({minimumResultsForSearch: -1}).on('change', async (e: any) => {
       this.item.oItem.localAmbry = e.target.value
       if (e.target.value) this.listShelf = JSON.parse(e.target.value).shelf;
     })
 
-    this.window.$('#selectedPrateleira').select2({ minimumResultsForSearch: -1}).on('change', (e: any) => {
+    this.window.$('#selectedPrateleira').select2({minimumResultsForSearch: -1}).on('change', (e: any) => {
       this.item.oItem.localShelf = e.target.value
     })
-
 
     this.window.$("#select_compra").flatpickr({
       dateFormat: "d, m Y",
@@ -201,7 +209,6 @@ export class FormularioLancamentoComponent implements OnInit {
         this.item.oItem.dateOfPurchase = dateStr
       },
     });
-
 
     this.window.$('#selectFornecedor').select2().on('change', (e: any) => {
       if (e.target.value) {
@@ -219,7 +226,6 @@ export class FormularioLancamentoComponent implements OnInit {
         this.item.oItem.articleId = JSON.parse(this.item.oItem.article).id
       }
     })
-
 
     this.window.$("#select_data_movimento").flatpickr({
       dateFormat: "d, m Y",
@@ -242,4 +248,24 @@ export class FormularioLancamentoComponent implements OnInit {
 
   }
 
+  async validationName() {
+
+
+    await this.validateAny.validateExiste(this.item.oItem.article, 'articleName',
+      false, this.window.$('#selectedProduct'), this.item.oItem.updated_mode, "", false, true)
+
+    await this.validateAny.numberValidate(this.item.oItem.financialCost, 'quantity',
+      false, this.window.$('#inputFinancialCost'), this.item.oItem.updated_mode,
+      "A quantidade é inferior a 0, é permitido ao menos 0 kz indicando ausência de custo do item comprada", false, "", 0)
+
+    await this.validateAny.numberValidate(this.item.oItem.quantity, 'quantity',
+      false, this.window.$('#inputQuantity'), this.item.oItem.updated_mode,
+      "A quantidade é inferior a 1, é permitido dar entrada de pelo menos um item", false, "", 1)
+
+
+    await this.validateAny.validateExiste(this.item.oItem.localStorage, 'localStorage',
+      false, this.window.$('#selectedArmazem'), this.item.oItem.updated_mode, "", false, true)
+
+
+  }
 }

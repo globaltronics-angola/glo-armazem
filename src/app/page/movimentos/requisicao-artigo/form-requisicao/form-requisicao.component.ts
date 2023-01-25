@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
 import ServiceStorage from "../../../../Services/ServiceStorage";
 import ServiceRequisicao from "../../../../Services/ServiceRequisicao";
 import ServicePrintMove from "../../../../Services/ServicePrintMove";
+import {StorageValidateAnyService} from "../../../../shared/storage.validate.any.service";
 
 @Component({
   selector: 'app-form-requisicao',
@@ -50,6 +51,7 @@ export class FormRequisicaoComponent implements OnInit, OnDestroy {
   idMovement: any = "12123"
   temporalIntegerQuant: number = 0;
   private know: any = Subscription;
+  private validateAny: StorageValidateAnyService;
 
 
   constructor(private store: StorageService, private printer: ServicePrintMove,
@@ -65,6 +67,8 @@ export class FormRequisicaoComponent implements OnInit, OnDestroy {
     this.item = new ServiceMovimentoItems(this.store);
     this.move = new ServiceRequisicao(this.store);
     this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull(this.TYPE_MOVEMENT);
+
+    this.validateAny = new StorageValidateAnyService(this.store, ServiceRequisicao.STORAGE_NAME)
 
     this.documentRef().then();
 
@@ -84,9 +88,11 @@ export class FormRequisicaoComponent implements OnInit, OnDestroy {
       this.window.$('#quantidadeItem').removeClass('is-valid')
       this.window.$('#quantidadeItem').addClass('is-invalid')
       this.window.sentMessageError.init("Excedeu o limite da quantidade real no armazém...");
+      return false
     } else {
       this.window.$('#quantidadeItem').removeClass('is-invalid')
       this.window.$('#quantidadeItem').addClass('is-valid')
+      return true
     }
 
 
@@ -94,46 +100,62 @@ export class FormRequisicaoComponent implements OnInit, OnDestroy {
 
   async documentRef() {
     let sequencia: number = await this.move.getRefId()
-    this.dateRef = "REQUI-" + moment().format("DDMMYYYY") + '-' + this.util.numberConvert(sequencia);
+    this.dateRef = "400-" + moment().format("DDMMYYYY") + '-' + this.util.numberConvert(sequencia);
     this.idMovement = this.dateRef;
     this.move.oItem.docRef = this.dateRef;
   }
 
   async save() {
 
-    this.move.oItem.id = this.idMovement
-    this.move.oItem.items = this.listItems;
-    this.move.oItem.moveType = this.TYPE_MOVEMENT;
+    try {
+      await this.validateTitle();
+      await setTimeout(() => {
+        this.move.oItem.items = this.listItems;
+        this.move.oItem.moveType = this.TYPE_MOVEMENT;
 
-    if (this.listItems.length > 0) {
-      this.move.save().then(() => {
+        if (this.listItems.length > 0) {
+          this.move.save().then(() => {
 
-        this.printer.printFunctionsRequisition(this.move.oItem.items, this.move)
-        this.move.oItem = {};
-        this.documentRef();
+            this.printer.printFunctionsRequisition(this.move.oItem.items, this.move)
+            this.documentRef();
 
-      });
-      ServiceEmitter.get("actionSendMovimento").emit("");
+          });
+          ServiceEmitter.get("actionSendMovimento").emit("");
 
-      this.idMovement = this.store.getId()
-    } else {
-      this.window.sentMessageSuccess.init("Não foram adicionados os artigos da requisição no armazém")
+        } else {
+          this.window.sentMessageSuccess.init("Não foram adicionados os artigos da requisição no armazém")
+        }
+      }, 1000)
+    } catch (e) {
+      this.window.sentMessageError.init(e)
     }
-
-
   }
 
 
-  addListItems() {
+  async addListItems() {
 
-    this.item.oItem.moveType = this.TYPE_MOVEMENT
-    this.item.oItem.move = ServiceUtil.VALUE_AT_NULLABLE
-    this.item.oItem.move_id = ServiceUtil.VALUE_AT_NULLABLE
+    await this.validationName();
 
-    this.item.save();
+    await this.window.$('#selectedArmazem').select2({minimumResultsForSearch: -1}).change()
+    await this.window.$('#selectedArticle').select2().change()
+    await setTimeout(async () => {
+      try {
 
-    ServiceEmitter.get('actionSendMovimento').emit("")
-    this.init()
+
+        await this.validationName()
+
+        this.item.oItem.moveType = this.TYPE_MOVEMENT
+        this.item.oItem.move = ServiceUtil.VALUE_AT_NULLABLE
+        this.item.oItem.move_id = ServiceUtil.VALUE_AT_NULLABLE
+
+        this.item.save();
+
+        ServiceEmitter.get('actionSendMovimento').emit("")
+        this.init()
+      } catch (e) {
+        this.window.sentMessageError.init(e)
+      }
+    }, 1000)
   }
 
   async ngOnInit() {
@@ -157,17 +179,18 @@ export class FormRequisicaoComponent implements OnInit, OnDestroy {
           this.item.oItem.article = JSON.parse(e.target.value).article;
           this.temporalIntegerQuant = JSON.parse(e.target.value).quantity
         }
-      } catch (e) {
+      } catch (eY) {
 
       }
 
     })
 
-    armazem.select2({ minimumResultsForSearch: -1}).on('change', (e: any) => {
+    armazem.select2({minimumResultsForSearch: -1}).on('change', (e: any) => {
       try {
         this.item.oItem.localStorage = e.target.value;
         this.searchingArticle(JSON.parse(e.target.value).id).then()
       } catch (e) {
+        this.item.oItem.localStorage = ""
       }
     })
 
@@ -209,10 +232,11 @@ export class FormRequisicaoComponent implements OnInit, OnDestroy {
   }
 
   private onSetInfoDataSource() {
+
     this.know = ServiceEmitter.get('sendItemsMovimentoSaida').subscribe(async (attr: any) => {
 
       setTimeout(() => {
-        this.window.$('#selectedArmazem').val(attr.localStorage).select2().change()
+        this.window.$('#selectedArmazem').val(attr.localStorage).select2({minimumResultsForSearch: -1}).change()
       }, 10);
 
       setTimeout(() => {
@@ -224,5 +248,32 @@ export class FormRequisicaoComponent implements OnInit, OnDestroy {
 
       this.item.oItem.updated_mode = true;
     });
+  }
+
+  async validationName() {
+
+    await this.validateAny.validateExiste(this.item.oItem.localStorage, 'localStorage',
+      false, this.window.$('#selectedArmazem'), this.item.oItem.updated_mode, "", false, true)
+
+    await this.validateAny.validateExiste(this.item.oItem.article, 'articleName',
+      false, this.window.$('#selectedArticle'), this.item.oItem.updated_mode, "", false, true)
+
+    await this.validateAny.numberValidate(this.item.oItem.financialCost, 'quantity',
+      false, this.window.$('#inputFinancialCost'), this.item.oItem.updated_mode,
+      "A quantidade é inferior a 0, é permitido ao menos 0 kz indicando ausência de custo do item comprada", false, "", 0)
+
+    if (!await this.controllerQuantity()){
+      throw "Excedeu o limite da quantidade de item admissível"
+    }
+
+    await this.validateAny.numberValidate(this.item.oItem.quantity, 'quantity',
+      false, this.window.$('#quantidadeItem'), this.item.oItem.updated_mode,
+      "A quantidade é inferior a 1, é permitido dar entrada de pelo menos um item", false, "", 1)
+
+  }
+
+  async validateTitle() {
+    await this.validateAny.validateExiste(this.move.oItem.title, 'title',
+      false, this.window.$('#titleMove'), this.item.oItem.updated_mode, "", false, false)
   }
 }

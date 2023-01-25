@@ -4,10 +4,10 @@ import {firstValueFrom} from "rxjs";
 import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
 import {Injectable} from '@angular/core';
-import ServiceMovimentoItems from "./ServiceMovimentoItems";
 import {ServiceEmitter} from "./ServiceEmitter";
-import ServiceArticles from "./ServiceArticles";
 import firebase from "firebase/compat";
+import FieldValue = firebase.firestore.FieldValue;
+import {Timestamp} from "@angular/fire/firestore";
 
 
 @Injectable({
@@ -15,42 +15,27 @@ import firebase from "firebase/compat";
 })
 export default class ServiceMovimento {
 
-  static STORAGE_NAME: string = "global-move"
+  static STORAGE_NAME: string = "global-entradas-artigos"
+  static STORAGE_MOVE: string = "global-movimentos"
   static STORAGE_MOVE_ITEM: string = "global-move-items"
   static STORAGE_EXIST_ITEM: string = "global-existence"
 
-
+  private userInfo: any
   private window = (<any>window)
 
-  oItem: any = {
-    id: "NULL",
-    title: "",
-    details: "",
-    dateOfMove: "",
-    financialCostTotal: 0,
-    itemsQuantity: 0,
-    itemsConversion: 0,
-    localCurrency: "",
-    client: "",
-    client_nif: "",
-    items: [],
-    docRef: "",
-    dataRef: moment().format("DDMMYYYY"),
-    created_at: "NULL",
-    updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
-    updated_mode: false,
-    deleted_at: "NULL",
-    email_auth: "NULL",
-    user: "NULL",
-    status: true,
-    moveType: "NULL",
+  oItem: Movimento = {
+    id: "NULL", title: "", details: "", dateOfMove: Timestamp.now(),
+    financialCostTotal: 0, itemsQuantity: 0, itemsConversion: 0, localCurrency: "",
+    timestamp: "", client: "", client_nif: "", items: [], docRef: "", dataRef: moment().format("DDMMYYYY"),
+    created_at: "NULL", updated_at: moment().format('DD MM,YYYY HH:mm:ss'), updated_mode: false,
+    deleted_at: "NULL", email_auth: "NULL", user: "NULL", status: true, moveType: "NULL", updatedAt: Timestamp.now(),
+    userDelete: "null"
   }
 
 
   constructor(private store: StorageService) {
-    let user = new ServiceUtil().getSession()
-
-    this.oItem.user = user;
+    this.oItem.user = new ServiceUtil().getSession();
+    this.userInfo = this.oItem.user;
   }
 
 
@@ -58,16 +43,6 @@ export default class ServiceMovimento {
     return this.store.findAll(ServiceMovimento.STORAGE_NAME).pipe(map(this.convertToArticle))
   }
 
-
-  /**
-   * ********************************
-   *  Munzambi Miguel
-   * ********************************
-   *  foi implementado o metodo updateItem para actualizar informação de cada item do movimento, de modo poder
-   *  associar cada item a este movimento.
-   *
-   *  @method updateItems
-   */
   save() {
 
     if (!this.oItem.updated_mode) {
@@ -76,10 +51,21 @@ export default class ServiceMovimento {
     if ((this.oItem.id == "NULL")) {
       this.oItem.id = this.store.getId().toUpperCase();
     }
-
+    this.oItem.timestamp = "" + new Date().getTime() + this.oItem.id
     this.oItem.updated_mode = false;
 
     this.updateItems()
+
+    this.store.createdForceGenerateId(this.oItem, ServiceMovimento.STORAGE_MOVE)
+      .then(() => {
+          this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
+          ServiceEmitter.get('actionSendMovimento').emit("");
+
+          this.oItem.id = this.store.getId()
+        },
+        err => {
+          this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)
+        })
 
     return this.store.createdForceGenerateId(this.oItem, ServiceMovimento.STORAGE_NAME)
       .then(() => {
@@ -119,32 +105,21 @@ export default class ServiceMovimento {
       this.oItem.localCurrency = item.localCurrency
       this.oItem.financialCostTotal += item.financialCost
 
-      let itemMove = item;
+      let itemMove: any = item;
 
       itemMove.move = {
         id: this.oItem.id,
         title: this.oItem.title,
         details: this.oItem.details,
-        dateOfMove: this.oItem.dateOfMove,
+        dateOfMove: this.oItem.dateOfMove
       };
 
       itemMove.move_id = this.oItem.id;
       itemMove.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
 
+      this.store.createForceMyId(itemMove, ServiceMovimento.STORAGE_MOVE_ITEM).then()
 
-      let article = new ServiceArticles(this.store);
-      await firstValueFrom(this.store.findById(ServiceArticles.STORAGE_ARTICLES, itemMove.articleId)).then((e) => {
-        return console.log(itemMove.articleId, e)
-        article.Article = e;
-        article.Article.updated_mode = true;
-        article.Article.quantity += item.quantity;
-
-        article.save()
-      })
-      this.store.createForceMyId(itemMove, ServiceMovimento.STORAGE_MOVE_ITEM).then(() => {
-      })
-
-      this.existArticle(item);
+      await this.existArticle(item);
 
     })
 
@@ -157,12 +132,23 @@ export default class ServiceMovimento {
     })
   }
 
+
+  async findAllMov(){
+    let listAll = [];
+
+    listAll = await this.store.findOther(
+      ServiceMovimento.STORAGE_MOVE
+    )
+
+
+    return listAll
+  }
   async findMovType(type: string = 'INPUT') {
 
     let listAll = [];
 
     listAll = await this.store.findByOther(
-      ServiceMovimento.STORAGE_NAME, 'moveType', type
+      ServiceMovimento.STORAGE_MOVE, 'moveType', type
     )
 
 
@@ -182,15 +168,31 @@ export default class ServiceMovimento {
 
     let articleExist: any = {};
     articleExist.id = attr.articleId + JSON.parse(attr.localStorage)
-      .name.replace(" ", "_").toUpperCase() + JSON.parse(attr.localAmbry)
-      .ambry.replace(" ", "_").toUpperCase() + JSON.parse(attr.localShelf)
-      .replace(" ", "_").toUpperCase()
+        .id
+      + (attr.localAmbry ? JSON.parse(attr.localAmbry).ambry.id + '-' : '')
+      + (attr.localShelf ? JSON.parse(attr.localShelf).id + '-' : '')
 
     articleExist.localStorageId = JSON.parse(attr.localStorage).id;
-    articleExist.localAmbry = JSON.parse(attr.localAmbry).ambry;
-    articleExist.localShelf = JSON.parse(attr.localShelf);
+    articleExist.localStorage = JSON.parse(attr.localStorage).name;
+    articleExist.localAmbry = (attr.localAmbry ? JSON.parse(attr.localAmbry).ambry.name : '');
+    articleExist.localShelf = (attr.localShelf ? JSON.parse(attr.localShelf).name : '');
     articleExist.quantity = attr.quantity;
     articleExist.article = attr.article;
+    articleExist.created_at = Timestamp.now();
+    articleExist.updated_at = Timestamp.now();
+    articleExist.deletad_at = "NULL";
+    articleExist.order = this.store.getId() + '-' + attr.quantity;
+    articleExist.articleName = attr.article ? JSON.parse(attr.article).name : '';
+
+
+    let usersArry: any = []
+    usersArry[this.userInfo.email] = {
+      'name': this.userInfo.displayName,
+      'photo': this.userInfo.photoURL,
+      'iteration': 1
+    };
+    articleExist.users = usersArry;
+
 
     let artExir: any = await firstValueFrom(this.store
       .findById(ServiceMovimento.STORAGE_EXIST_ITEM, articleExist.id)).then((e) => {
@@ -198,10 +200,39 @@ export default class ServiceMovimento {
     });
     if (artExir?.quantity) {
       articleExist.quantity = articleExist.quantity + artExir.quantity;
+      articleExist.users[this.userInfo.email].iteration += 1;
+      articleExist.order = this.store.getId() + '-' + articleExist.quantity;
     }
     this.store.createForceMyId(articleExist, ServiceMovimento.STORAGE_EXIST_ITEM).then(() => {
     });
 
   }
 
+}
+
+export interface Movimento {
+  id: string,
+  title: string,
+  details: string,
+  dateOfMove: FieldValue,
+  financialCostTotal: number,
+  itemsQuantity: number,
+  itemsConversion: number,
+  localCurrency: string,
+  client: string,
+  client_nif: string,
+  items: any[],
+  timestamp: string,
+  docRef: string,
+  dataRef: string,
+  created_at: string,
+  updated_at: string,
+  updated_mode: boolean,
+  deleted_at: string,
+  email_auth: string,
+  user: string,
+  status: boolean,
+  moveType: string,
+  updatedAt: FieldValue,
+  userDelete: any
 }

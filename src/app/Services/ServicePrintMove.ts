@@ -39,7 +39,7 @@ export default class ServicePrintMove {
       let articleInfo = g.article ? JSON.parse(g.article) : {};
       let infoArticle = articleInfo?.name + ', ' + articleInfo?.model;
       let localStore = (g.localStorage ? JSON.parse(g.localStorage) : {});
-      let localAmby = localStore.name + ', ' + (g.localAmbry ? JSON.parse(g.localAmbry).ambry : {}) + ', ' + (g.localShelf ? JSON.parse(g.localShelf) : '');
+      let localAmby: string = localStore.name + ', ' + (g.localAmbry ? JSON.parse(g.localAmbry).ambry.name : "") + ', ' + (g.localShelf ? JSON.parse(g.localShelf).name : '');
 
       let infoFinancial = g.financialCost + ' KZ';
       let providerInfo = g.provider ? JSON.parse(g.provider) : {};
@@ -99,7 +99,7 @@ export default class ServicePrintMove {
         {
           style: 'tableExample',
           table: {
-            widths: [70, 150, 15, 90, 35, 80],
+            widths: [70, 140, 30, 90, 40, 70],
             headerRows: 1,
             body: content
           },
@@ -260,7 +260,7 @@ export default class ServicePrintMove {
           margin: [0, 0, 0, 10]
         },
         {
-          text: move.oItem.title ? ('Requesição De uma : ').toUpperCase() + move.oItem.title.toUpperCase() : '',
+          text: move.oItem.title ? ('Requesição: ').toUpperCase() + move.oItem.title.toUpperCase() : '',
           fontSize: 9,
           bold: true,
           margin: [0, 10, 0, 0]
@@ -368,7 +368,6 @@ export default class ServicePrintMove {
 
     let content = [
       [
-        {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'REFERÊNCIA', style: 'tableHeader'},
         {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'NOME', style: 'tableHeader'},
         {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'ANTERIOR', style: 'tableHeader'},
         {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'ATUAL', style: 'tableHeader'},
@@ -389,11 +388,6 @@ export default class ServicePrintMove {
       let storage = (g.localStorageExistance ? JSON.parse(g.localStorageExistance) : {})
       let anterior = storage?.name + ', ' + existence?.localAmbry + ', ' + existence?.localShelf
       content.push([
-        {
-          margin: [1, 1, 1, 1], fillColor: '#fff',
-          text: article.ean ? article.ean : {text: '-- -- -- --', style: 'span'},
-          style: 'all'
-        },
         {margin: [1, 1, 1, 1], fillColor: '#fff', text: name, style: 'all'},
         {
           margin: [1, 1, 1, 1],
@@ -450,7 +444,7 @@ export default class ServicePrintMove {
         {
           style: 'tableExample',
           table: {
-            widths: [70, 78, 90, 90, 88, 30],
+            widths: [100, 120, 120, 88, 30],
             headerRows: 1,
             body: content
           },
@@ -488,6 +482,162 @@ export default class ServicePrintMove {
         tableExample: {
           width: 1000
         },
+        tableHeader: {
+          bold: true,
+          fontSize: 9,
+          color: '#0a0a0a',
+        },
+        span: {
+          fontSize: 8,
+          alignment: 'justify',
+          color: '#E6B0AA'
+        },
+        table: {
+          width: '1000px'
+        },
+        all: {
+          fontSize: 8,
+          alignment: 'justify',
+          color: '#515A5A'
+        },
+        allEnd: {
+          fontSize: 8,
+          alignment: 'right',
+          color: '#515A5A'
+        },
+        header: {
+          fontSize: 18,
+          bold: true
+        },
+        subheader: {
+          fontSize: 15,
+          bold: true,
+        },
+        quote: {
+          italics: true
+        },
+        small: {
+          fontSize: 8
+        }
+      },
+
+
+    }
+
+    var pdf = pdfMake.createPdf(dd);
+    pdf.print();
+
+
+  }
+
+  printFunctionsDevolution(listItems: any[], move: any) {
+
+
+    let content = [
+      [
+        {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'REFERÊNCIA', style: 'tableHeader'},
+        {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'NOME DO ARTIGO', style: 'tableHeader'},
+        {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'QT', style: 'tableHeader'},
+        {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'LOCALIZAÇÃO', style: 'tableHeader'},
+        {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'Responsável', style: 'tableHeader'},
+
+      ]
+    ]
+
+    listItems.forEach((g) => {
+
+      let articleInfo = g.article ? JSON.parse(g.article) : {};
+      let infoArticle = articleInfo?.name + ', ' + articleInfo?.model;
+      let localStore = (g.localStorage ? JSON.parse(g.localStorage) : {});
+      let localAmby: string = localStore.name + ', ' + (g.localAmbry ? JSON.parse(g.localAmbry).ambry.name : "") + ', ' + (g.localShelf ? JSON.parse(g.localShelf).name : '');
+
+      let infoFinancial = g.financialCost + ' KZ';
+      let providerInfo = g.provider ? JSON.parse(g.provider) : {};
+
+      content.push([
+        {
+          margin: [2, 1, 1, 1], fillColor: '#fff',
+          text: articleInfo.ean ? articleInfo.ean : {text: '-- -- -- --', style: 'span'},
+          style: 'all'
+        },
+        {margin: [2, 1, 1, 1], fillColor: '#fff', text: infoArticle, style: 'all'},
+        {margin: [2, 1, 1, 1], fillColor: '#fff', text: g.quantity, style: 'allEnd'},
+        {
+          margin: [2, 1, 1, 1],
+          fillColor: '#fff',
+          text: localStore.name ? localAmby : {text: '-- -- -- --', style: 'span'},
+          style: 'all'
+        },
+        {
+          margin: [2, 1, 1, 1],
+          fillColor: '#fff',
+          text: g.user ? g.user.displayName : {text: '-- -- --', style: 'span'},
+          style: 'all'
+        }
+      ])
+    })
+
+    var dd = {
+      content: [
+        {
+          svg: ServiceUtil.IconGlo,
+          width: 100,
+          height: 30,
+          margin: [0, 2, 2, 2]
+        },
+        {
+          text: 'Ref : ' + move.oItem.docRef,
+          fontSize: 8,
+          bold: false,
+          margin: [0, 0, 0, 10],
+          alignment: 'justify'
+        },
+        {
+          text: move.oItem.details,
+          fontSize: 8,
+          bold: false,
+          margin: [0, 20, 0, 10],
+          alignment: 'justify'
+        },
+        {text: ('Artigos devolvidos').toUpperCase(), fontSize: 9, bold: true, margin: [0, 20, 0, 10]},
+        {
+          style: 'tableExample',
+          table: {
+            widths: [70, 140, 50, 110, 70],
+            headerRows: 1,
+            body: content
+          },
+          layout: 'lightHorizontalLines'
+        },
+        {
+          text: '',
+          fontSize: 8,
+          bold: false,
+          margin: [20, 20, 20, 20],
+          alignment: 'justify'
+        },
+        {
+          qr: move.oItem.docRef,
+          fit: 80,
+          alignment: 'right',
+          foreground: '#D7D5D5'
+        },
+        {
+          text: 'Data: ' + moment().format('DD / MM / YYYY HH:mm.s'),
+          fontSize: 11,
+          color: '#D7DBDD',
+          bold: false,
+          margin: [0, 20, 0, 0]
+        },
+        {
+          text: 'Autor : ' + this.auth.user.displayName + '',
+          fontSize: 11,
+          color: '#D7DBDD',
+          bold: false,
+          margin: [0, 0, 0, 1]
+        },
+      ],
+      styles: {
         tableHeader: {
           bold: true,
           fontSize: 9,

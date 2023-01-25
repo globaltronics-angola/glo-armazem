@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { firstValueFrom } from "rxjs";
 import ServiceStorage from "./ServiceStorage";
 import { AuthService } from "../shared/auth.service";
+import {serverTimestamp} from "firebase/firestore";
 
 
 @Injectable({
@@ -29,7 +30,8 @@ export default class ServiceArmario {
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
     updated_mode: false,
     deleted_at: "NULL",
-    email_auth: "NULL"
+    email_auth: "NULL",
+    updatedAt: serverTimestamp()
   };
 
   IObjectPrateleira: any = {
@@ -72,6 +74,7 @@ export default class ServiceArmario {
       this.IObjectClass.id = this.store.getId().toUpperCase();
     }
 
+    this.IObjectClass.timestamp = "" + new Date().getTime() + this.IObjectClass.id
     this.IObjectClass.updated_mode = false;
 
     this.store.createdForceGenerateId(this.IObjectClass, ServiceArmario.STORAGE_NAME)

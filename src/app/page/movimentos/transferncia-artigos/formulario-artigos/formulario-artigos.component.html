@@ -26,19 +26,6 @@
           <div id="kt_accordion_2_item_1" class="fs-6 collapse p-3" data-bs-parent="#kt_accordion_2">
 
             <div class="row">
-              <div class="col-12 col-lg-3 col-sm-8 mb-4">
-                <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                  <!--begin::Label-->
-                  <label class="d-flex align-items-center fs-6  mb-2">
-                    <span class="required">Data</span>
-                  </label>
-                  <!--end::Label-->
-                  <input type="text" class="form-control form-control-sm"
-                         id="selectData" [(ngModel)]="move.oItem.dateOfMove"
-                         placeholder="Data transferência">
-
-                </div>
-              </div>
 
               <div class="col-12 col-lg-10 col-sm-8 ">
                 <div class="d-flex flex-column fv-row fv-plugins-icon-container">
@@ -96,8 +83,8 @@
           <div class="input-group input-group-sm input-group-solid flex-nowrap">
             <!--end::Label-->
             <div class="overflow-hidden flex-grow-1">
-              <select class="form-select form-select-sm selector rounded-end-0" data-control="select2"
-                      data-allow-clear="true" data-placeholder="Selecciona o artigo" id="selectedArticle"
+              <select class="form-select form-select-sm selector" data-control="select2"
+                      data-allow-clear="true" data-placeholder="Selecciona o artigo" id="selectedArticle23"
                       #selectedProduct>
                 <option></option>
                 <option [value]="ean|json" *ngFor="let ean of listArticle">
@@ -184,7 +171,7 @@
                   data-placeholder="Selecciona o armário" id="selectedArmario">
             <option></option>
             <option [value]="armario|json" *ngFor="let armario of this.listArmarios">
-              {{ armario.ambry }}
+              {{ armario.ambry.name }}
             </option>
           </select>
         </div>
@@ -201,16 +188,16 @@
                   data-placeholder="Selecciona a prateleira" id="selectedPrateleira">
             <option></option>
             <option [value]="pro|json" *ngFor="let pro of listShelf">
-              {{ pro }}
+              {{ pro.name }}
             </option>
           </select>
         </div>
       </div>
 
       <div class="col-12 col-lg-1 col-xxl-1 d-flex flex-right">
-        <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container pt-8">
-          <button type="button" class="btn btn-sm btn-success mb-2 btn-sm" (click)="addListItems()">
-            {{ util.SAVE_TEXT}}
+        <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container pt-8 w-100">
+          <button type="button" class="btn btn-sm btn-primary mb-2 btn-sm w-100" (click)="addListItems()">
+            <i class="fa fa-plus"></i>
           </button>
 
         </div>

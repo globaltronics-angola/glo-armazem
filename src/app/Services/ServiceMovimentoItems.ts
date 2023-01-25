@@ -3,6 +3,7 @@ import {map} from "rxjs/operators";
 import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
 import {Injectable} from '@angular/core';
+import {serverTimestamp} from "firebase/firestore";
 
 
 @Injectable({
@@ -42,6 +43,7 @@ export default class ServiceMovimentoItems {
     email_auth: "NULL",
     status: false,
     moveType: "NULL",
+    updatedAt: serverTimestamp()
   }
 
   constructor(private store: StorageService) {
@@ -65,7 +67,7 @@ export default class ServiceMovimentoItems {
     if ((this.oItem.id == "NULL")) {
       this.oItem.id = this.store.getId().toUpperCase();
     }
-
+    this.oItem.timestamp = "" + new Date().getTime() + this.oItem.id
     this.oItem.updated_mode = false;
 
     this.store.createdForceGenerateId(this.oItem, ServiceMovimentoItems.STORAGE_NAME)
@@ -89,11 +91,19 @@ export default class ServiceMovimentoItems {
   findInputMovNull(type: any = 'INPUT'): any[] {
 
     let listAll = [];
-
     listAll = this.store.findByDifferenceNameTo(
       ServiceMovimentoItems.STORAGE_NAME, 'moveType', type,
       'move', "NULL")
 
+    return listAll
+  }
+
+  async findMovNull(type: any = 'INPUT') {
+
+    let listAll = [];
+    listAll = this.store.findByDifferenceNameTo(
+      ServiceMovimentoItems.STORAGE_NAME, 'moveType', type,
+      'move', "NULL")
 
     return listAll
   }

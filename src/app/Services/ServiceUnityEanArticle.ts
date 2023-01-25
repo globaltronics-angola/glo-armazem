@@ -4,6 +4,7 @@ import { firstValueFrom } from "rxjs";
 import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
 import { Injectable } from "@angular/core";
+import {serverTimestamp} from "firebase/firestore";
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,8 @@ export default class ServiceUnityEanArticle {
     updated_at: moment().format('DD MM,YYYY HH:mm:ss'),
     updated_mode: false,
     deleted_at: "NULL",
-    email_auth: "NULL"
+    email_auth: "NULL",
+    updatedAt: serverTimestamp()
   }
 
   private window: any = (<any>window)
@@ -44,7 +46,7 @@ export default class ServiceUnityEanArticle {
       this.IObjectClass.id = this.store.getId().toUpperCase();
       this.IObjectClass.created_at = moment().format('DD MM,YYYY HH:mm:ss')
     }
-
+    this.IObjectClass.timestamp = "" + new Date().getTime() + this.IObjectClass.id
     this.IObjectClass.updated_mode = false;
 
     this.store.createdForceGenerateId(this.IObjectClass, ServiceUnityEanArticle.STORAGE_NAME)
