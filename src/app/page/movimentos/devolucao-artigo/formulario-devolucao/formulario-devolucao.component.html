@@ -80,14 +80,6 @@
                       data-hide-search="true"
                       #selectedProduct>
                 <option></option>
-                <option [value]="item.id" *ngFor="let item of items ">
-                  {{
-                  utilInst.convertJson(item.article).name + ', '
-                  + utilInst.convertJson(item.article).model + ' '
-                  }}
-                  ({{ 'Qt: ' + item.quantity }})
-                </option>
-                <optgroup label="Artigos requisitados"></optgroup>
               </select>
             </div>
             <span class="input-group-text"> <i class="fa fa-search"></i></span>
@@ -131,7 +123,7 @@
       </div>
 
 
-      <div class="col-12 col-lg-5 col-sm-8 mb-4">
+      <div class="col-12 col-lg-6 col-xl-5 col-sm-8 mb-4">
         <div class="d-flex flex-column fv-row fv-plugins-icon-container">
           <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="selectedArmazem">
             <span class="required">Armazem</span>
@@ -150,7 +142,7 @@
         </div>
       </div>
 
-      <div class="col-sm-3">
+      <div class="col-12 col-lg-6 col-xl-3 col-sm-8 mb-4">
         <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
           <label class="d-flex align-items-center fs-6 mb-2" for="selectedArmario">
             <span class="">Armário</span>
@@ -167,7 +159,7 @@
         </div>
       </div>
 
-      <div class="col-sm-2">
+      <div class="col-12 col-lg-6 col-xl-2 col-sm-8 mb-4">
         <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
           <label class="d-flex align-items-center fs-6  mb-2" for="selectedPrateleira">
             <span class="">Prateleira</span>
@@ -184,7 +176,7 @@
         </div>
       </div>
 
-      <div class="col-12 col-lg-2 col-sm-8 mb-4">
+      <div class="col-12 col-lg-6 col-xl-2 col-sm-8 mb-4">
         <div class="d-flex flex-column fv-row fv-plugins-icon-container">
           <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="selectedEstado">
             <span class="required">Estado</span>
@@ -199,7 +191,7 @@
         </div>
       </div>
 
-      <div class="col-12 col-lg-6 col-xxl-12">
+      <div class="col-12 col-lg-12 col-xxl-12">
         <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
           <label class="d-flex align-items-center fs-6 mb-2">
             <span class="">Motivos</span>

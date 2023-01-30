@@ -5,19 +5,20 @@ import * as Tagify from "@yaireo/tagify";
 import moment from "moment";
 import ServiceUtil from "../../../../Services/ServiceUtil";
 import ServiceMovimentoItems from "../../../../Services/ServiceMovimentoItems";
-import ServiceArmario from "../../../../Services/ServiceArmario";
-import ServicePrateleias from "../../../../Services/ServicePrateleias";
 import {ServiceEmitter} from "../../../../Services/ServiceEmitter";
-import {Observable, firstValueFrom, Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import ServiceStorage from '../../../../Services/ServiceStorage';
 import ServiceMovimento from 'src/app/Services/ServiceMovimento';
 import ServiceFornecedor from 'src/app/Services/ServiceFornecedor';
 import ServiceArticles from "../../../../Services/ServiceArticles";
 import {AuthService} from "../../../../shared/auth.service";
+
+
 //@ts-ignore
 import * as pdfMake from "pdfmake";
 import ServicePrintMove from "../../../../Services/ServicePrintMove";
 import {StorageValidateAnyService} from "../../../../shared/storage.validate.any.service";
+import {StorageServicePaginateService} from "../../../../shared/storage.service.paginate.service";
 
 
 @Component({
@@ -49,7 +50,8 @@ export class FormularioLancamentoComponent implements OnInit {
 
   dateRef: string = ""
   private validateAny: StorageValidateAnyService;
-
+  public dataSelect: any[] = []
+  public btnSend: boolean = false
 
   printerPdf() {
     this.window.print();
@@ -74,7 +76,6 @@ export class FormularioLancamentoComponent implements OnInit {
     this.utilService = new ServiceUtil();
     this.validateAny = new StorageValidateAnyService(this.store, ServiceMovimento.STORAGE_NAME)
 
-
     this.newRef();
     this.init();
 
@@ -96,23 +97,30 @@ export class FormularioLancamentoComponent implements OnInit {
     //console.log(this.itensCompra)
   }
 
-  save() {
-
+  async save() {
+    this.btnSend = true;
     this.move.oItem.items = this.listItems;
     this.move.oItem.moveType = this.TYPE_MOVEMENT;
 
-    if (this.move.oItem.items.length > 0) {
-      this.move.save().then(() => {
+    setTimeout(async () => {
+      if (this.move.oItem.items.length > 0) {
+        await this.move.save().then(() => {
 
-        this.printer.printFunctions(this.move.oItem.items, this.move)
-        this.newRef();
+          this.printer.printFunctions(this.move.oItem.items, this.move)
+          ServiceEmitter.get("actionSendMovimentoEntrada").emit("");
+          this.newRef();
 
-      }, err => {
-        this.window.sentMessageError.init(this.util.MESSAGE_ERROR)
-      });
-    } else {
-      this.window.sentMessageError.init("Não foi adicionado os artigos da entrada no armazém")
-    }
+        }, err => {
+          this.window.sentMessageError.init(this.util.MESSAGE_ERROR)
+        });
+
+        this.btnSend = false;
+      } else {
+        this.window.sentMessageError.init("Não foi adicionado os artigos da entrada no armazém")
+      }
+    }, 1000)
+
+
   }
 
 
@@ -125,12 +133,15 @@ export class FormularioLancamentoComponent implements OnInit {
       this.item.oItem.move = ServiceUtil.VALUE_AT_NULLABLE
       this.item.oItem.move_id = ServiceUtil.VALUE_AT_NULLABLE
 
-      this.item.save();
-      ServiceEmitter.get("actionSendMovimento").emit("");
+      await this.item.save();
       await this.init()
+      ServiceEmitter.get("actionSendMovimentoEntrada").emit("");
+
     } catch (e) {
       this.window.sentMessageError.init(e)
     }
+
+
   }
 
   async ngOnInit() {
@@ -220,12 +231,14 @@ export class FormularioLancamentoComponent implements OnInit {
       this.item.oItem.localCurrency = e.target.value
     })
 
-    this.window.$('#selectedProduct').select2().on('change', (e: any) => {
-      this.item.oItem.article = e.target.value
-      if (this.item.oItem.article) {
-        this.item.oItem.articleId = JSON.parse(this.item.oItem.article).id
-      }
-    })
+
+    this.window.$('#selectedProduct').select2()
+      .on('change', (e: any) => {
+        this.item.oItem.article = e.target.value
+        if (this.item.oItem.article) {
+          this.item.oItem.articleId = JSON.parse(this.item.oItem.article).id
+        }
+      })
 
     this.window.$("#select_data_movimento").flatpickr({
       dateFormat: "d, m Y",

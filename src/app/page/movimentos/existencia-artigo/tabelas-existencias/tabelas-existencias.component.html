@@ -15,9 +15,9 @@
     <thead class="fw-bold fs-6 text-gray-800 bg-light-primary ">
     <!--begin::Table row-->
     <tr class="text-gray-800">
-      <th class="w-auto">Referência</th>
       <th class="min-w-200px">Artigo</th>
       <th class="w-auto">Modelo</th>
+      <th class="w-auto">Referência</th>
       <th class="w-auto">Armazém</th>
       <th class="w-auto">Armário</th>
       <th class="w-auto">Prateleira</th>
@@ -31,23 +31,23 @@
     <tr class="border-bottom  border-gray-150 fs-5" *ngFor="let mov of this.page.listDataArray"
         style="vertical-align: top; ">
       <!--begin::Order ID-->
-      <td class="min-w-100px" style="max-width: 140px!important; min-width: 140px!important;">
-        <span class="small"
-              *ngIf="util.convertJson(mov.article.toString()).ean as eanAt;"> {{ eanAt.toUpperCase()  }}</span>
-        <span class="text-gray-400" *ngIf="!util.convertJson(mov.article.toString()).ean"> -- -- -- </span>
-      </td>
+
 
       <td>
-        <span class="badge badge-sm badge-light-dark"
+        <span class="badge badge-sm badge-light-dark {{mov.color }}"
               *ngIf="util.convertJson(mov.article.toString()).name as onlyName">{{ onlyName.charAt(0).toUpperCase() + onlyName.slice(1) }}
         </span>
-
       </td>
       <td>
         <span class="badge badge-sm badge-light-dark"
               *ngIf="util.convertJson(mov.article.toString()).model as onlyModel">{{ onlyModel.toUpperCase() }}
         </span>
         <span class="text-muted" *ngIf="!util.convertJson(mov.article.toString()).model"> -- -- -- </span>
+      </td>
+      <td class="min-w-100px" style="max-width: 140px!important; min-width: 140px!important;">
+        <span class="small "
+              *ngIf="util.convertJson(mov.article.toString()).ean as eanAt;"> {{ eanAt.toUpperCase()  }}</span>
+        <span class="text-gray-400" *ngIf="!util.convertJson(mov.article.toString()).ean"> -- -- -- </span>
       </td>
 
       <td>
@@ -87,8 +87,8 @@
   <span class="col-auto">Total Linhas: {{ pageTotal }}</span>
   <ul class="pagination pagination-circle d-flex flex-end">
     <li
-      class="page-item previous {{ !this.page.awaitingProcess?'disabled':''}}{{ !this.page.prevKeys?.length?'disabled':''}} ">
-      <button class="page-link" (click)="this.page.prevPage()" [disabled]="!this.page.prevKeys?.length"><i
+      class="page-item previous {{ !this.page.awaitingProcess?'disabled':''}}{{ !this.page.prevKeys.length?'disabled':''}} ">
+      <button class="page-link" (click)="this.page.prevPage()" [disabled]="!this.page.prevKeys.length"><i
         class="previous"></i></button>
     </li>
     <li class="page-item disabled">

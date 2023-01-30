@@ -19,9 +19,11 @@ export default class ServiceMovimento {
   static STORAGE_MOVE: string = "global-movimentos"
   static STORAGE_MOVE_ITEM: string = "global-move-items"
   static STORAGE_EXIST_ITEM: string = "global-existence"
+  static STORAGE_EXIST_STORAGE: string = "global-existence-storage"
 
   private userInfo: any
   private window = (<any>window)
+
 
   oItem: Movimento = {
     id: "NULL", title: "", details: "", dateOfMove: Timestamp.now(),
@@ -119,6 +121,7 @@ export default class ServiceMovimento {
 
       this.store.createForceMyId(itemMove, ServiceMovimento.STORAGE_MOVE_ITEM).then()
 
+      await this.inventory(item);
       await this.existArticle(item);
 
     })
@@ -133,7 +136,7 @@ export default class ServiceMovimento {
   }
 
 
-  async findAllMov(){
+  async findAllMov() {
     let listAll = [];
 
     listAll = await this.store.findOther(
@@ -143,6 +146,7 @@ export default class ServiceMovimento {
 
     return listAll
   }
+
   async findMovType(type: string = 'INPUT') {
 
     let listAll = [];
@@ -155,15 +159,6 @@ export default class ServiceMovimento {
     return listAll
   }
 
-  /**
-   *     id: undefined
-   *     localStorage: "",
-   *     localAmbry: "",
-   *     localShelf: "",
-   *     quantity: 0,
-   *
-   * @param attr
-   */
   async existArticle(attr: any) {
 
     let articleExist: any = {};
@@ -178,6 +173,7 @@ export default class ServiceMovimento {
     articleExist.localShelf = (attr.localShelf ? JSON.parse(attr.localShelf).name : '');
     articleExist.quantity = attr.quantity;
     articleExist.article = attr.article;
+    articleExist.articleId = JSON.parse(attr.article).id;
     articleExist.created_at = Timestamp.now();
     articleExist.updated_at = Timestamp.now();
     articleExist.deletad_at = "NULL";
@@ -206,6 +202,34 @@ export default class ServiceMovimento {
     this.store.createForceMyId(articleExist, ServiceMovimento.STORAGE_EXIST_ITEM).then(() => {
     });
 
+  }
+
+  private async inventory(attr: any) {
+    let articleExist: any = {};
+    articleExist.id = attr.articleId + JSON.parse(attr.localStorage).id
+
+    articleExist.localStorageId = JSON.parse(attr.localStorage).id;
+    articleExist.localStorage = JSON.parse(attr.localStorage).name;
+    articleExist.storageCode = JSON.parse(attr.localStorage).codigo;
+    articleExist.quantity = attr.quantity;
+    articleExist.article = attr.article;
+    articleExist.created_at = Timestamp.now();
+    articleExist.updated_at = Timestamp.now();
+    articleExist.deletad_at = "NULL";
+    articleExist.order = this.store.getId() + '-' + attr.quantity;
+    articleExist.articleName = attr.article ? JSON.parse(attr.article).name : '';
+
+    let artExir: any = await firstValueFrom(this.store
+      .findById(ServiceMovimento.STORAGE_EXIST_STORAGE, articleExist.id)).then((e) => {
+      return e
+    });
+
+    if (artExir?.quantity) {
+      articleExist.quantity = articleExist.quantity + artExir.quantity;
+      articleExist.order = this.store.getId() + '-' + articleExist.quantity;
+    }
+
+    this.store.createForceMyId(articleExist, ServiceMovimento.STORAGE_EXIST_STORAGE).then();
   }
 
 }

@@ -7,7 +7,16 @@ import {Injectable} from '@angular/core';
 import {ServiceEmitter} from "./ServiceEmitter";
 import firebase from "firebase/compat";
 import FieldValue = firebase.firestore.FieldValue;
-import {Timestamp} from "@angular/fire/firestore";
+import {
+  collection, getFirestore,
+  limit,
+  onSnapshot,
+  orderBy,
+  query,
+  QueryConstraint,
+  Timestamp,
+  where
+} from "@angular/fire/firestore";
 import ServiceRequisicao from "./ServiceRequisicao";
 
 
@@ -20,6 +29,8 @@ export default class ServiceDevolucao {
   static STORAGE_MOVE: string = "global-movimentos"
   static STORAGE_MOVE_ITEM: string = "global-move-items"
   static STORAGE_EXIST_ITEM: string = "global-existence-devolucao"
+  static STORAGE_EXIST_ITEM_ST: string = "global-existence"
+  static STORAGE_EXIST_ITEM_ST_DC: string = "global-existence-storage"
 
   private userInfo: any
   private window = (<any>window)
@@ -30,7 +41,7 @@ export default class ServiceDevolucao {
     timestamp: "", client: "", client_nif: "", items: [], docRef: "", dataRef: moment().format("DDMMYYYY"),
     created_at: "NULL", updated_at: moment().format('DD MM,YYYY HH:mm:ss'), updated_mode: false,
     deleted_at: "NULL", email_auth: "NULL", user: "NULL", status: true, moveType: "NULL", updatedAt: Timestamp.now(),
-    userDelete: "null"
+    userDelete: "null",
   }
 
 
@@ -54,6 +65,7 @@ export default class ServiceDevolucao {
     }
     this.oItem.timestamp = "" + new Date().getTime() + this.oItem.id
     this.oItem.updated_mode = false;
+
 
     this.updateItems()
 
@@ -139,7 +151,14 @@ export default class ServiceDevolucao {
 
       this.store.createForceMyId(itemMove, ServiceDevolucao.STORAGE_MOVE_ITEM).then()
 
-      await this.existArticle(item);
+      if (item.status == '200') {
+        await this.existArticleNewStoreDC(item)
+        await this.existArticleNewStore(item)
+      }
+
+      if (item.status == '404') {
+        await this.existArticle(item);
+      }
 
     })
 
@@ -152,15 +171,12 @@ export default class ServiceDevolucao {
     })
   }
 
-
   async findAllMov() {
     let listAll = [];
 
     listAll = await this.store.findOther(
       ServiceDevolucao.STORAGE_MOVE
     )
-
-
     return listAll
   }
 
@@ -172,19 +188,9 @@ export default class ServiceDevolucao {
       ServiceDevolucao.STORAGE_MOVE, 'moveType', type
     )
 
-
     return listAll
   }
 
-  /**
-   *     id: undefined
-   *     localStorage: "",
-   *     localAmbry: "",
-   *     localShelf: "",
-   *     quantity: 0,
-   *
-   * @param attr
-   */
   async existArticle(attr: any) {
 
     let articleExist: any = {};
@@ -195,6 +201,7 @@ export default class ServiceDevolucao {
 
     articleExist.localStorageId = JSON.parse(attr.localStorage).id;
     articleExist.localStorage = JSON.parse(attr.localStorage).name;
+    articleExist.storageCode = JSON.parse(attr.localStorage).codigo;
     articleExist.localAmbry = (attr.localAmbry ? JSON.parse(attr.localAmbry).ambry.name : '');
     articleExist.localShelf = (attr.localShelf ? JSON.parse(attr.localShelf).name : '');
     articleExist.quantity = attr.quantity;
@@ -206,22 +213,12 @@ export default class ServiceDevolucao {
     articleExist.articleName = attr.article ? JSON.parse(attr.article).name : '';
 
 
-    let usersArry: any = []
-    usersArry[this.userInfo.email] = {
-      'name': this.userInfo.displayName,
-      'photo': this.userInfo.photoURL,
-      'iteration': 1
-    };
-    articleExist.users = usersArry;
-
-
     let artExir: any = await firstValueFrom(this.store
       .findById(ServiceDevolucao.STORAGE_EXIST_ITEM, articleExist.id)).then((e) => {
       return e
     });
     if (artExir?.quantity) {
       articleExist.quantity = articleExist.quantity + artExir.quantity;
-      articleExist.users[this.userInfo.email].iteration += 1;
       articleExist.order = this.store.getId() + '-' + articleExist.quantity;
     }
     this.store.createForceMyId(articleExist, ServiceDevolucao.STORAGE_EXIST_ITEM).then(() => {
@@ -229,6 +226,62 @@ export default class ServiceDevolucao {
 
   }
 
+  async existArticleNewStore(attr: any) {
+
+    let articleExist: any = {};
+    articleExist.id = attr.articleId + JSON.parse(attr.localStorage).id
+      + (attr.localAmbry ? JSON.parse(attr.localAmbry).ambry.id + '-' : '')
+      + (attr.localShelf ? JSON.parse(attr.localShelf).id + '-' : '')
+
+    articleExist.localStorageId = JSON.parse(attr.localStorage).id;
+    articleExist.localStorage = JSON.parse(attr.localStorage).name;
+    articleExist.storageCode = JSON.parse(attr.localStorage).codigo;
+    articleExist.localAmbry = (attr.localAmbry ? JSON.parse(attr.localAmbry).ambry.name : '');
+    articleExist.localShelf = (attr.localShelf ? JSON.parse(attr.localShelf).name : '');
+    articleExist.quantity = attr.quantity;
+    articleExist.article = attr.article;
+    articleExist.color = "text-danger";
+    articleExist.created_at = Timestamp.now();
+    articleExist.updated_at = Timestamp.now();
+    articleExist.deletad_at = "NULL";
+    articleExist.order = this.store.getId() + '-' + attr.quantity;
+    articleExist.articleName = attr.article ? JSON.parse(attr.article).name : '';
+
+    let artExir: any = await firstValueFrom(this.store
+      .findById(ServiceDevolucao.STORAGE_EXIST_ITEM_ST, articleExist.id)).then((e) => {
+      return e
+    });
+
+    if (artExir?.quantity) {
+      articleExist.quantity = articleExist.quantity + artExir.quantity;
+      articleExist.order = this.store.getId() + '-' + articleExist.quantity;
+    }
+
+    this.store.createForceMyId(articleExist, ServiceDevolucao.STORAGE_EXIST_ITEM_ST).then(() => {
+    });
+
+  }
+
+  async existArticleNewStoreDC(attr: any) {
+
+    let articleExist: any = {};
+    articleExist.id = attr.articleId + JSON.parse(attr.localStorage).id
+
+
+    let artExir: any = await firstValueFrom(this.store
+      .findById(ServiceDevolucao.STORAGE_EXIST_ITEM_ST_DC, articleExist.id)).then((eX) => {
+      console.log(eX);
+      return eX
+    });
+
+    if (artExir.quantity) {
+      artExir.quantity = artExir.quantity + attr.quantity;
+      artExir.order = this.store.getId() + '-' + artExir.quantity;
+      this.store.createForceMyId(artExir, ServiceDevolucao.STORAGE_EXIST_ITEM_ST_DC).then();
+    }
+
+
+  }
 }
 
 export interface Movimento {

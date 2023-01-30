@@ -9,10 +9,10 @@ import {serverTimestamp} from "firebase/firestore";
 })
 export default class ServiceExistance {
   static STORAGE_NAME: string = "global-existence"
+  static STORAGE_STORAGE: string = "global-existence-storage"
 
   constructor(private store: StorageService) {
     let user = new ServiceUtil().getSession()
-    //updatedAt: serverTimestamp()
   }
 
   findAll() {

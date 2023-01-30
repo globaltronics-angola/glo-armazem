@@ -70,13 +70,22 @@ import {
   TabelaOcorrenciasComponent
 } from "./page/movimentos/ocorencias-artigo/tabela-ocorrencias/tabela-ocorrencias.component";
 import {MovimentosComponent} from "./page/movimentos/movimentos/movimentos.component";
+import {
+  FormalarioInventarioComponent
+} from "./page/movimentos/inventario/formalario-inventario/formalario-inventario.component";
+import {
+  RelatorioInventarioGeralComponent
+} from "./page/movimentos/inventario/relatorio-inventario-geral/relatorio-inventario-geral.component";
+import {BaixaArmazemComponent} from "./page/movimentos/baixa-armazem/baixa-armazem.component";
+import {FormularioBaixaComponent} from "./page/movimentos/baixa-armazem/formulario-baixa/formulario-baixa.component";
+import {TabelaBaixaComponent} from "./page/movimentos/baixa-armazem/tabela-baixa/tabela-baixa.component";
 
 
 const routes: Routes = [
   {
     path: '', component: MainAppComponent,
     children: [
-      {path: 'dashboard', component: DashboardComponent},
+      {path: '', component: DashboardComponent},
     ]
   },
   {
@@ -165,7 +174,20 @@ const routes: Routes = [
       {
         path: 'movimento', component: OcorenciasArtigoComponent,
         children: [
-          {path: 'tabela', component: MovimentosComponent}
+          {path: 'tabela', component: MovimentosComponent},
+          {path: 'inventario', component: RelatorioInventarioGeralComponent},
+        ]
+      }
+    ]
+  },
+  {
+    ///stock/inventario/tabela
+    path: 'stock', component: MainAppComponent,
+    children: [
+      {
+        path: 'inventario', component: OcorenciasArtigoComponent,
+        children: [
+          {path: 'tabela', component: RelatorioInventarioGeralComponent},
         ]
       }
     ]
@@ -202,8 +224,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'baixa', component: BaixaArmazemComponent,
+        children: [
+          {path: 'tabela', component: TabelaBaixaComponent},
+          {path: 'formulario', component: FormularioBaixaComponent}
+        ]
+      },
+      {
         path: 'inventario', component: InventarioComponent,
         children: [
+          {path: 'formulario', component: FormalarioInventarioComponent},
           {path: 'tabela', component: TabelaInventarioComponent}
         ]
       },

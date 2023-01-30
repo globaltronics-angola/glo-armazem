@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -6,13 +6,39 @@ import {Router} from "@angular/router";
   templateUrl: './ocorencias-artigo.component.html',
   styles: []
 })
-export class OcorenciasArtigoComponent {
-  public title: string = "Ocorrência";
+export class OcorenciasArtigoComponent implements OnInit {
+  public title: string = "Movimentos";
 
   constructor(private router: Router) {
+    this.functionInit()
+    setTimeout(() => {
+      this.functionInit();
+    }, 1000)
+  }
 
-    if ('/stock/movimento/tabela' == this.router.url) {
-      this.title = "Movimentos"
+  async ngOnInit() {
+
+    await this.functionInit()
+  }
+
+  functionInit() {
+    switch (this.router.url) {
+      case "/stock/movimento/inventario":
+        this.title = "Inventário";
+        break;
+
+      case "/stock/ocorrencias/tabela":
+        this.title = "Ocorrência";
+        break;
+
+      case "/stock/movimento/tabela":
+        this.title = "Movimento";
+        console.log(this.router.url)
+        break;
+
+      default:
+        this.title = "Inventário";
+
     }
   }
 }

@@ -11,6 +11,7 @@ import {ServiceEmitter} from "../../../../Services/ServiceEmitter";
 import moment from "moment";
 import {AuthService} from "../../../../shared/auth.service";
 import ServicePrintMove from "../../../../Services/ServicePrintMove";
+import {Timestamp} from "@angular/fire/firestore";
 
 @Component({
   selector: 'app-formulario-devolucao',
@@ -72,27 +73,43 @@ export class FormularioDevolucaoComponent implements OnInit {
         this.moveEntrada = this.listItems[0].moveInput
         this.items = this.listItems[0].moveInput.items
         this.movItems.oItem.moveInput = this.moveEntrada;
+
+        this.window.$('#devolucaoProduct').select2({
+          minimumResultsForSearch: -1,
+          data: this.items.map((e: any, index: number) => {
+            let a: any = {id: '', text: ''};
+            let art: any = JSON.parse(e.article);
+            a.id = index;
+            a.text = art.name + ' ' + art.model + ' Qt: ' + e.quantity + (e.devolvido ? ' | ' + ' Devolvido: ' + e.devolvido : '')
+            return a;
+
+          })
+        })
       }
     }, 4000)
 
   }
 
-  save() {
+  async save() {
+    await this.init()
     this.move.oItem.items = this.listItems;
     this.move.oItem.moveType = this.TYPE_MOVEMENT;
+    await this.devolution()
+    setTimeout(() => {
+      if (this.move.oItem.items.length > 0) {
+        this.move.save().then(() => {
 
-    if (this.move.oItem.items.length > 0) {
-      this.move.save().then(() => {
+          this.printer.printFunctionsDevolution(this.move.oItem.items, this.move)
+          this.newRef();
 
-        this.printer.printFunctionsDevolution(this.move.oItem.items, this.move)
-        this.newRef();
+        }, err => {
+          this.window.sentMessageError.init(this.util.MESSAGE_ERROR)
+        });
+      } else {
+        this.window.sentMessageError.init("Não foi adicionado os artigos da entrada no armazém")
+      }
+    }, 2000)
 
-      }, err => {
-        this.window.sentMessageError.init(this.util.MESSAGE_ERROR)
-      });
-    } else {
-      this.window.sentMessageError.init("Não foi adicionado os artigos da entrada no armazém")
-    }
   }
 
   cancelerMovement() {
@@ -122,6 +139,38 @@ export class FormularioDevolucaoComponent implements OnInit {
     this.movItems.oItem.moveInput = this.moveEntrada;
     await console.log(this.moveEntrada)
 
+    this.window.$('#devolucaoProduct').select2({
+      minimumResultsForSearch: -1,
+      data: this.items.map((e: any, index: number) => {
+        let a: any = {id: '', text: ''};
+        let art: any = JSON.parse(e.article);
+        a.id = index;
+        a.text = art.name + ' ' + art.model + ' Qt: ' + e.quantity
+        return a;
+      })
+    })
+
+
+  }
+
+  private devolution() {
+
+    this.moveEntrada.items.map((ar: any) => {
+      let ab: any = ar;
+      if (ab.devolucao) {
+        ab.devolucao += ab.quantity
+      } else {
+        this.move.oItem.items.map((e: any) => {
+          if (e.articleId == ar.articleId) {
+            ab.articleName = JSON.parse(e.article).name
+            ab.devolucao = e.quantity
+          }
+        })
+      }
+      ab.processo = "ativo"
+      return ab;
+    })
+
   }
 
   controllerQuantity() {
@@ -146,19 +195,28 @@ export class FormularioDevolucaoComponent implements OnInit {
     const status = this.window.$('#selectedEstado')
 
     articleSelect.select2({minimumResultsForSearch: -1}).on('change', (e: any) => {
-      const idContains = e.target.value;
-      let itemContains: any;
-      this.items.forEach(ea => {
-        if (ea.id == idContains) {
-          itemContains = ea;
-          return;
-        }
-      })
+      if (!e.target.value)
+        return;
+      let itemContains: any = this.moveEntrada.items[e.target.value];
+
+
+      if (itemContains.quantity == itemContains.devolvido) {
+        this.window.sentMessageWarning.init("Não é possível realizar novamente a devolução ")
+        throw "excedeu o limit de devolução neste item da lista"
+      }
+
 
       this.movItems.oItem.originalRequiest = e.target.value;
       this.movItems.oItem.articleId = JSON.parse(itemContains.article).id;
+      this.movItems.oItem.articleName = JSON.parse(itemContains.article).name;
+      this.movItems.oItem.dateOfPurchase = Timestamp.now()
       this.movItems.oItem.article = itemContains.article;
       this.temporalIntegerQuant = itemContains.quantity
+
+      this.movItems.oItem.primarySN = itemContains.SN;
+      this.movItems.oItem.primaryPN = itemContains.PN;
+
+
     })
 
     status.select2({minimumResultsForSearch: -1}).on('change', (e: any) => {
@@ -205,6 +263,7 @@ export class FormularioDevolucaoComponent implements OnInit {
     await this.validateAny.validateExiste(this.movItems.oItem.localStorage, 'localStorage',
       false, this.window.$('#selectedArmazemDev'), this.movItems.oItem.updated_mode, "", false, true)
 
+    await this.validarSN()
   }
 
   private onSetInfoDataSource() {
@@ -240,5 +299,21 @@ export class FormularioDevolucaoComponent implements OnInit {
     this.listItems = await new ServiceMovimentoItems(this.store).findMovNull(this.TYPE_MOVEMENT);
   }
 
+  private validarSN() {
+    if (this.movItems.oItem.primarySN != this.movItems.oItem.SN && this.movItems.oItem.primarySN != "") {
+      throw "O S/N da requisição não é compatível com o que pretendes inserir verifique o artigo..."
+    }
+
+    if (this.movItems.oItem.primaryPN != this.movItems.oItem.PN && this.movItems.oItem.primaryPN != "") {
+      throw "O P/N da requisição não é compatível com o que pretendes inserir verifique o artigo..."
+    }
+
+    if (this.movItems.oItem.primarySN == "") {
+      this.window.sentMessageWarning.init("Na requisição anterior não foi inserido o S/N, é importante inserir para manter o controle do artigo")
+    }
+    if (this.movItems.oItem.primaryPN == "") {
+      this.window.sentMessageWarning.init("Na requisição anterior não foi inserido o S/N, é importante inserir para manter o controle do artigo")
+    }
+  }
 
 }

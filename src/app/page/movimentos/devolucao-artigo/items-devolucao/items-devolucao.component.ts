@@ -17,7 +17,7 @@ export class ItemsDevolucaoComponent {
 
   constructor(private store: StorageService) {
     this.utilFunctions = new ServiceUtil();
-    this.findAllItemTemporal()
+    this.findAllItemTemporal();
     this.skow = ServiceEmitter.get('actionSendMovimento').subscribe(() => this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull("DEVOLUTION"))
 
   }

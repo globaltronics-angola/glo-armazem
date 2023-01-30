@@ -1,0 +1,114 @@
+<div class="card-title row w-100 justify-content-between">
+
+  <div class="col-auto col-sm-3 col-lg-6">
+    <button class="btn btn-sm  btn-secondary btn-active-primary mb-10 " (click)="pdfGenerator()">
+      <i class="bi bi-filetype-pdf"></i> Gerar Pdf
+    </button>
+  </div>
+  <div class="col-sm-9">
+    <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+      <div class="input-group input-group-sm">
+
+        <button class="input-group-text rounded-end-0" id="basic-addon2"
+                data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start" data-kt-menu-offset="30px, 30px">
+          <i class="fa fa-ellipsis-vertical"></i>&nbsp; Referência
+        </button>
+
+        <input type="text" name="name" class="form-control form-control-sm" autocomplete="off"
+               placeholder="pesquisar" id="articleName">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overflow-auto w-100 table-responsive" id="htmlData">
+
+  <table class="table table-row-bordered gy-2 gs-7 mb-0 pb-0" id="">
+    <!--begin::Table head-->
+    <thead class="fw-bold fs-6 text-gray-800 bg-light-primary ">
+    <!--begin::Table row-->
+    <tr class="text-gray-800">
+      <th class="w-auto">Artigo</th>
+      <th class="w-auto">Modelo</th>
+      <th class="w-auto">Referência</th>
+      <th class="w-auto">Armazém</th>
+      <th style="width: 120px!important;">Quantidade</th>
+    </tr>
+    </thead>
+
+    <tbody class="fw-light">
+
+    <tr class="border-bottom  border-gray-150 fs-5" *ngFor="let mov of this.page.listDataArray"
+        style="vertical-align: top; ">
+      <!--begin::Order ID-->
+
+
+      <td>
+        <span class="badge badge-sm badge-light-dark"
+              *ngIf="util.convertJson(mov.article.toString()).name as onlyName">{{ onlyName.charAt(0).toUpperCase() + onlyName.slice(1) }}
+        </span>
+
+      </td>
+      <td>
+        <span class="badge badge-sm badge-light-dark"
+              *ngIf="util.convertJson(mov.article.toString()).model as onlyModel">{{ onlyModel.toUpperCase() }}
+        </span>
+        <span class="text-muted" *ngIf="!util.convertJson(mov.article.toString()).model"> -- -- -- </span>
+      </td>
+      <td class="min-w-100px" style="max-width: 140px!important; min-width: 140px!important;">
+        <span class="small"
+              *ngIf="util.convertJson(mov.article.toString()).ean as eanAt;"> {{ eanAt.toUpperCase()  }}</span>
+        <span class="text-gray-400" *ngIf="!util.convertJson(mov.article.toString()).ean"> -- -- -- </span>
+      </td>
+      <td>
+        <span class="small">{{ mov.localStorage }}</span>
+      </td>
+
+      <td class="text-end">
+        <span class="badge badge-sm badge-light-dark">
+          {{ mov.quantity }}&nbsp;
+        </span>
+      </td>
+      <!--end::Profit-->
+
+
+    </tr>
+
+
+    </tbody>
+    <!--end::Table body-->
+  </table>
+
+</div>
+<div class="justify-content-between py-5 row">
+  <span class="col-auto">Total Linhas: {{ pageTotal }}</span>
+  <ul class="pagination pagination-circle d-flex flex-end">
+    <li
+      class="page-item previous {{ !this.page.awaitingProcess?'disabled':''}}{{ !this.page.prevKeys.length?'disabled':''}} ">
+      <button class="page-link" (click)="this.page.prevPage()" [disabled]="!this.page.prevKeys.length"><i
+        class="previous"></i></button>
+    </li>
+    <li class="page-item disabled">
+      <button class="page-link" disabled>1</button>
+    </li>
+
+    <li *ngFor="let a of this.page.prevKeys.slice(0,2);  let index = index  " class="page-item disabled">
+      <button class="page-link" disabled>{{ (index + 2) }}</button>
+    </li>
+    <li *ngIf="(this.page.countAt + 1) > 3 " class="page-item ">
+      <button class="page-link">...</button>
+    </li>
+
+    <li *ngIf="(this.page.countAt + 1) > 3 " disabled class="page-item ">
+      <button class="page-link">{{ (this.page.countAt + 1)}}</button>
+    </li>
+
+
+    <li class="page-item next {{!this.page.awaitingProcess?'disabled':''}}{{ !this.page.nextKey?'disabled':''}}">
+      <button class="page-link" (click)="this.page.nextPage()" [disabled]="!this.page.nextKey"><i class="next"></i>
+      </button>
+    </li>
+
+  </ul>
+</div>

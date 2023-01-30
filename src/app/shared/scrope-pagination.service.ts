@@ -10,6 +10,7 @@ import {
   FieldPath,
   WhereFilterOp,
   endAt,
+  collectionGroup,
   OrderByDirection,
   Timestamp,
   doc,
@@ -30,7 +31,6 @@ import * as _ from "lodash";
 import ServiceArticles from "../Services/ServiceArticles";
 import firebase from "firebase/compat";
 import {DocumentReference, fromDocRef} from "@angular/fire/compat/firestore";
-import {orderByValue} from "@angular/fire/database";
 
 
 type Options = '<' | '<=' | '==' | '!=' | '>=' | '>' | 'array-contains' | 'in' | 'array-contains-any' | 'not-in';
@@ -46,7 +46,7 @@ export class ScropePaginationService {
   public prevKey: string | undefined;
   private activeKey: string | undefined;
 
-  private typeOrder: OrderByDirection = "desc";
+  public typeOrder: OrderByDirection = "desc";
   private fieldSearch: string | undefined;
   private fieldContextSearch: string | undefined
   private listData: Observable<any> | undefined;
@@ -77,6 +77,18 @@ export class ScropePaginationService {
     this.pageDefault()
   }
 
+  private getQuerysListing(keyDisplay: string = "") {
+
+
+    let queryConditions: QueryConstraint[] = []
+
+    if (!this.filter) {
+      queryConditions.push(orderBy(this.fielderOrder, this.typeOrder))
+    }
+
+    //collectionGroup(this.pathCollection.toString())
+
+  }
 
   private list(eY: any[]) {
 
@@ -90,12 +102,19 @@ export class ScropePaginationService {
       return;
     }
 
+    this.activeKey = data[0] ? data[0][this.fieldSearch ?? this.fielderOrder] : 0;
+
     if (limitII < 2) {
       this.nextKey = undefined;
       return;
     }
-    this.activeKey = _.first(eY)
-    this.nextKey = _.last(eY)
+    if (!this.typeFieldSeach)
+      this.nextKey = data[this.offset] ? data[this.offset][this.fieldSearch ?? this.fielderOrder] : 0;
+    else {
+      this.activeKey = _.first(eY)
+      this.nextKey = _.last(eY)
+
+    }
   }
 
   public async nextPage() {
@@ -103,7 +122,10 @@ export class ScropePaginationService {
     this.awaitingProcess = false;
     this.prevKeys.push(this.activeKey)
 
-    await this.queryNext(this.nextKey);
+    if (!this.typeFieldSeach)
+      await this.getQuerysListing(this.nextKey);
+    else
+      await this.queryNext(this.nextKey);
 
 
     setTimeout(() => {
@@ -116,7 +138,11 @@ export class ScropePaginationService {
     this.awaitingProcess = false;
     const prevKey = _.last(this.prevKeys)
 
-    await this.queryNext(prevKey);
+
+    if (!this.typeFieldSeach)
+      await this.getQuerysListing(prevKey);
+    else
+      await this.queryNext(prevKey);
 
     setTimeout(() => {
       this.awaitingProcess = true;
@@ -126,7 +152,7 @@ export class ScropePaginationService {
   }
 
   public pageDefault() {
-    this.queryNext();
+    this.getQuerysListing();
   }
 
   public async findByFieldContext(fieldSearch: string, fieldContext: string) {
@@ -135,7 +161,7 @@ export class ScropePaginationService {
     this.fieldSearch = fieldSearch;
     this.fielderOrder = this.fieldSearch;
     this.fieldContextSearch = fieldContext;
-    await this.queryNext();
+    await this.getQuerysListing();
   }
 
 
@@ -152,14 +178,26 @@ export class ScropePaginationService {
 
   async queryNext(nextKey: any = null) {
 
-    let q = this.afs.getFirestore().collection('/' + this.pathCollection)
-      .where('moveType', '==', 'INPUT')
-      .limit(this.offset + 1)
-    await q.get().then(snap => {
-      this.list(snap.docs)
-    });
+    if (this.fieldContextSearch == "") {
+      this.typeFieldSeach = ""
+      this.fieldSearch = "";
+      await this.pageDefault();
+    } else {
 
+      let q = this.afs.getFirestore().collection('/' + this.pathCollection)
+        //@ts-ignore
+        .where(this.fieldSearch, 'array-contains', this.fieldContextSearch).limit(this.offset + 1)
 
+      if (!nextKey) {
+        await q.get().then(snap => {
+          this.list(snap.docs)
+        });
+      } else {
+        await q.startAt(nextKey).get().then(snap => {
+          this.list(snap.docs)
+        });
+      }
+    }
   }
 
   async changeDirection() {

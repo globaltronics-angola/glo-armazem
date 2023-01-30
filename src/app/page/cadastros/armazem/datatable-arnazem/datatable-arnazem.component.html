@@ -37,8 +37,10 @@
   <table id="kt_datatable_both_scrolls" class="table table-striped table-row-bordered gy-2 gs-7">
     <thead class="text-uppercase fw-bold bg-light-primary">
     <tr class="fs-6 text-gray-800">
-      <th class="w-auto" style="max-width: 200px!important;">Documento Ref</th>
+      <th class="w-auto" style="max-width: 200px!important;">Referência</th>
       <th style="min-width: 160px!important;">Nome</th>
+      <th class="w-auto" style="max-width: 100px!important;">Mínimo</th>
+      <th class="w-auto" style="max-width: 100px!important;">Máximo</th>
       <th style="min-width: 140px!important;">Endereço</th>
       <th>Detalhes</th>
       <th></th>
@@ -50,10 +52,12 @@
       <td class="w-auto">
         <span class="link-primary cursor-pointer" (click)="stringifyThenView(arm)"
               id="kt_drawer_example_basic_button">
-          {{ arm.id }}
+          {{ arm.codigo }}
         </span>
       </td>
       <td>{{ arm.name}}</td>
+      <td class="text-end"><span class="badge badge-light-danger">{{ arm.min}}</span></td>
+      <td class="text-end"><span class="badge badge-light-dark">{{ arm.max}}</span></td>
 
       <td>
         <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; " *ngIf="arm.address as address">
@@ -94,8 +98,8 @@
   <span class="col-auto">Total de Armazéns: {{ pageTotal }}</span>
   <ul class="pagination pagination-circle d-flex flex-end">
     <li
-      class="page-item previous {{ !this.page.awaitingProcess?'disabled':''}}{{ !this.page.prevKeys?.length?'disabled':''}} ">
-      <button class="page-link" (click)="this.page.prevPage()" [disabled]="!this.page.prevKeys?.length"><i
+      class="page-item previous {{ !this.page.awaitingProcess?'disabled':''}}{{ !this.page.prevKeys.length?'disabled':''}} ">
+      <button class="page-link" (click)="this.page.prevPage()" [disabled]="!this.page.prevKeys.length"><i
         class="previous"></i></button>
     </li>
     <li class="page-item disabled">

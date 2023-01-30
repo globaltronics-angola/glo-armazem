@@ -182,6 +182,9 @@ export class ArmazemFormGeralComponent implements OnInit {
     await this.validateAny.validateExiste(this.serviceStorage.IObjectClass.name, 'name',
       false, this.window.$('#nameArmazem'), this.serviceStorage.IObjectClass.updated_mode, "Já existem um armazém no sistema com o mesmo nome")
 
+    await this.validateAny.validateExiste(this.serviceStorage.IObjectClass.codigo, 'codigo',
+      false, this.window.$('#codigo'), this.serviceStorage.IObjectClass.updated_mode, "Já existem um armazém no sistema com o mesmo código")
+
     const addressInfo: string = await (this.shelf.length > 0 ? 'Active' : "");
     await this.validateAny.validateExiste(addressInfo, 'address',
       false, this.window.$('#address'), this.serviceStorage.IObjectClass.updated_mode, "", false, false, "addressLocal")

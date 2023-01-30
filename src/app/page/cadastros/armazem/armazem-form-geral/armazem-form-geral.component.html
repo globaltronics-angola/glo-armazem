@@ -1,7 +1,8 @@
 <div class="card-body p-0">
   <form id="kt_modal_new_target_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
     <div class="row" style="padding-right: 0!important; margin-right: 0!important;">
-      <div class="col-12 col-sm-9">
+
+      <div class="col-12 col-sm-12 col-lg-10">
         <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
           <!--begin::Label-->
           <label class="d-flex align-items-center fs-6 fw-bold mb-2">
@@ -13,6 +14,43 @@
           <div class="fv-plugins-message-container invalid-feedback"></div>
         </div>
       </div>
+      <div class="col-12 col-sm-12 col-lg-3">
+        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <span class="required">Ref.</span>
+          </label>
+          <!--end::Label-->
+          <input type="text" [(ngModel)]="serviceStorage.IObjectClass.codigo" id="codigo" name="codigo"
+                 class="form-control form-control-sm" placeholder="Insira a referência" maxlength="6">
+          <div class="fv-plugins-message-container fs-sm-8 fs-5 text-gray-500 mx-5"><span>Ex:</span> GBA-01</div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-lg-4">
+        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6  mb-2">
+            <span class="">Capacidade Minima</span>
+          </label>
+          <!--end::Label-->
+          <input type="number" [(ngModel)]="serviceStorage.IObjectClass.min" id="min" name="min"
+                 class="form-control form-control-sm" placeholder="Insira o mínimo a restar " maxlength="6">
+          <div class="fv-plugins-message-container fs-sm-8 fs-5 text-gray-500 mx-5"><span>Ex:</span> GBA-01</div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-lg-5">
+        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+          <!--begin::Label-->
+          <label class="d-flex align-items-center fs-6  mb-2">
+            <span class="">Capacidade Maxima</span>
+          </label>
+          <!--end::Label-->
+          <input type="number" [(ngModel)]="serviceStorage.IObjectClass.max" id="max" name="max"
+                 class="form-control form-control-sm" placeholder="Insira o máximo armazenamento" maxlength="6">
+          <div class="fv-plugins-message-container fs-sm-8 fs-5 text-gray-500 mx-5"><span>Ex:</span> GBA-01</div>
+        </div>
+      </div>
+
 
       <div class="col-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-8">
 

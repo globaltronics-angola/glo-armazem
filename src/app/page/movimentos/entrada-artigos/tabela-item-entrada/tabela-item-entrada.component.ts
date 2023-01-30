@@ -19,7 +19,7 @@ export class TabelaItemEntradaComponent implements OnInit, OnDestroy {
 
   constructor(private store: StorageService) {
     this.findAllItemTemporal()
-    this.skow = ServiceEmitter.get('actionSendMovimento').subscribe(() => this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull())
+    this.skow = ServiceEmitter.get('actionSendMovimentoEntrada').subscribe(() => this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull())
 
   }
 

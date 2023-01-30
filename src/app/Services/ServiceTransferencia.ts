@@ -18,16 +18,19 @@ export default class ServiceTransferencia {
   static STORAGE_MOVE: string = "global-movimentos"
   static STORAGE_MOVE_ITEM: string = "global-move-items"
   static STORAGE_EXIST_ITEM: string = "global-existence"
+  static STORAGE_EXIST_STORAGE: string = "global-existence-storage"
 
 
   private window = (<any>window)
 
-  oItem : Movimento = {id: "NULL", title: "", details: "", dateOfMove: Timestamp.now(),
-  financialCostTotal: 0, itemsQuantity: 0, itemsConversion: 0, localCurrency: "",
-  timestamp: "", client: "", client_nif: "", items: [], docRef: "", dataRef: moment().format("DDMMYYYY"),
-  created_at: "NULL", updated_at: moment().format('DD MM,YYYY HH:mm:ss'), updated_mode: false,
-  deleted_at: "NULL", email_auth: "NULL", user: "NULL", status: true, moveType: "NULL", updatedAt: Timestamp.now(),
-  userDelete: "null"}
+  oItem: Movimento = {
+    id: "NULL", title: "", details: "", dateOfMove: Timestamp.now(),
+    financialCostTotal: 0, itemsQuantity: 0, itemsConversion: 0, localCurrency: "",
+    timestamp: "", client: "", client_nif: "", items: [], docRef: "", dataRef: moment().format("DDMMYYYY"),
+    created_at: "NULL", updated_at: moment().format('DD MM,YYYY HH:mm:ss'), updated_mode: false,
+    deleted_at: "NULL", email_auth: "NULL", user: "NULL", status: true, moveType: "NULL", updatedAt: Timestamp.now(),
+    userDelete: "null"
+  }
 
   private userInfo: any;
 
@@ -112,7 +115,9 @@ export default class ServiceTransferencia {
       })
 
       this.existArticleNew(item).then();
+      this.existArticleNewStorage(item).then()
       this.existArticle(item).then();
+      this.removedGeralExistence(item).then()
     })
 
   }
@@ -147,13 +152,26 @@ export default class ServiceTransferencia {
     }
   }
 
+  async removedGeralExistence(attr: any) {
+    let articleExist: any = JSON.parse(attr.existence);
+    articleExist.id = attr.articleId + JSON.parse(attr.localStorage).id
+
+    let artExir: any = await firstValueFrom(this.store
+      .findById(ServiceTransferencia.STORAGE_EXIST_STORAGE, articleExist.id)).then((e) => {
+      return e
+    });
+    articleExist.quantity = artExir.quantity - attr.quantity;
+
+    this.store.createForceMyId(articleExist, ServiceTransferencia.STORAGE_EXIST_STORAGE).then(() => {
+    });
+  }
+
   async existArticleNew(attr: any) {
     try {
 
       let articleExist: any = {};
 
-      articleExist.id = attr.articleId + JSON.parse(attr.localStorage)
-          .id
+      articleExist.id = attr.articleId + JSON.parse(attr.localStorage).id
         + (attr.localAmbry ? JSON.parse(attr.localAmbry).ambry.id + '-' : '')
         + (attr.localShelf ? JSON.parse(attr.localShelf).id + '-' : '')
 
@@ -163,6 +181,7 @@ export default class ServiceTransferencia {
       articleExist.localShelf = (attr.localShelf ? JSON.parse(attr.localShelf).name : '');
       articleExist.quantity = attr.quantity;
       articleExist.article = attr.article;
+      articleExist.articleId = JSON.parse(attr.article).id;
       articleExist.created_at = Timestamp.now();
       articleExist.updated_at = Timestamp.now();
       articleExist.deletad_at = "NULL";
@@ -192,7 +211,50 @@ export default class ServiceTransferencia {
       this.store.createForceMyId(articleExist, ServiceTransferencia.STORAGE_EXIST_ITEM).then(() => {
       });
     } catch (e) {
+    }
+  }
 
+  async existArticleNewStorage(attr: any) {
+    try {
+
+      let articleExist: any = {};
+
+      articleExist.id = attr.articleId + JSON.parse(attr.localStorage).id
+
+      articleExist.localStorageId = JSON.parse(attr.localStorage).id;
+      articleExist.localStorage = JSON.parse(attr.localStorage).name;
+      articleExist.quantity = attr.quantity;
+      articleExist.article = attr.article;
+      articleExist.articleId = JSON.parse(attr.article).id;
+      articleExist.created_at = Timestamp.now();
+      articleExist.updated_at = Timestamp.now();
+      articleExist.deletad_at = "NULL";
+      articleExist.order = this.store.getId() + '-' + attr.quantity;
+      articleExist.articleName = attr.article ? JSON.parse(attr.article).name : '';
+
+      let usersArry: any = []
+      usersArry[this.userInfo.email] = {
+        'name': this.userInfo.displayName,
+        'photo': this.userInfo.photoURL,
+        'iteration': 1
+      };
+
+      articleExist.users = usersArry;
+
+      let artExir: any = await firstValueFrom(this.store
+        .findById(ServiceTransferencia.STORAGE_EXIST_STORAGE, articleExist.id)).then((e) => {
+        return e
+      });
+
+      if (artExir?.quantity) {
+        articleExist.quantity = articleExist.quantity + artExir.quantity;
+        articleExist.users[this.userInfo.email].iteration += 1;
+        articleExist.order = this.store.getId() + '-' + articleExist.quantity;
+      }
+
+      this.store.createForceMyId(articleExist, ServiceTransferencia.STORAGE_EXIST_STORAGE).then(() => {
+      });
+    } catch (e) {
     }
   }
 

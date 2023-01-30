@@ -49,6 +49,8 @@
             <span class="menu-heading fw-bold text-uppercase fs-7">&nbsp;</span>
           </div>
         </div>
+        <app-menu-item name="Início" routerLink="/"
+                       routerLinkTo="/#"></app-menu-item>
         <div data-kt-menu-trigger="click"
              class="menu-item {{ this.routerNav.url.toString().indexOf('cadastros')>0?'show':'' }}    menu-accordion">
 
@@ -69,7 +71,6 @@
 
             <span class="menu-arrow"></span>
           </span>
-
 
           <div class="menu-sub menu-sub-accordion">
 
@@ -154,8 +155,11 @@
             <app-menu-item name="Devoluções de Artigos" routerLink="/movimentos/devolucao/formulario"
                            routerLinkTo="/movimentos/devolucao/tabela"></app-menu-item>
 
-            <app-menu-item name="Inventário" routerLink="/movimentos/inventario/tabela"
+            <app-menu-item name="Inventário" routerLink="/movimentos/inventario/formulario"
                            routerLinkTo="/movimentos/inventario/tabela"></app-menu-item>
+
+            <app-menu-item name="Baixa no Armazém" routerLink="/movimentos/baixa/formulario"
+                           routerLinkTo="/movimentos/baixa/tabela"></app-menu-item>
 
 
           </div>
@@ -176,6 +180,9 @@
 
           <app-menu-item name="Movimentos" routerLink="/stock/movimento/tabela"
                          routerLinkTo="/stock/movimento/tabela"></app-menu-item>
+
+          <app-menu-item name="Inventário" routerLink="/stock/movimento/inventario"
+                         routerLinkTo="/stock/inventario/tabela"></app-menu-item>
           <!--end:Menu content-->
         </div>
 

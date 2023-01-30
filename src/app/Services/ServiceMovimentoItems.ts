@@ -4,6 +4,7 @@ import moment from "moment";
 import ServiceUtil from "./ServiceUtil";
 import {Injectable} from '@angular/core';
 import {serverTimestamp} from "firebase/firestore";
+import ServiceRequisicao from "./ServiceRequisicao";
 
 
 @Injectable({
@@ -59,16 +60,27 @@ export default class ServiceMovimentoItems {
     return this.store.findAll(ServiceMovimentoItems.STORAGE_NAME).pipe(map(this.convertToArticle))
   }
 
-  save(): void {
+  async save() {
 
     if (!this.oItem.updated_mode) {
       this.oItem.created_at = moment().format('DD MM,YYYY HH:mm:ss')
     }
+
     if ((this.oItem.id == "NULL")) {
       this.oItem.id = this.store.getId().toUpperCase();
     }
+
     this.oItem.timestamp = "" + new Date().getTime() + this.oItem.id
     this.oItem.updated_mode = false;
+
+    let al = new ServiceRequisicao(this.store);
+    al.oItem = this.oItem.moveInput
+
+    if (await (this.oItem.moveType == "DEVOLUTION")) {
+      await this.addValueTirado()
+      await al.save().then()
+    }
+
 
     this.store.createdForceGenerateId(this.oItem, ServiceMovimentoItems.STORAGE_NAME)
       .then(() => {
@@ -78,6 +90,7 @@ export default class ServiceMovimentoItems {
         err => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)
         })
+
 
   }
 
@@ -112,6 +125,26 @@ export default class ServiceMovimentoItems {
     this.store.deleted(ServiceMovimentoItems.STORAGE_NAME, this.oItem.id).then(() => {
       this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS_DELETE)
     });
+  }
+
+  private addValueTirado() {
+    let obj = this.oItem.moveInput;
+    //let ang = obj.items.indexOf(this.oItem)
+
+    obj.items.map((e: any) => {
+      if (e.articleId == this.oItem.articleId) {
+        let ay: any = e;
+        if (ay.devolvido) {
+          ay.devolvido += this.oItem.quantity;
+        } else {
+          ay.devolvido = this.oItem.quantity;
+        }
+
+        ay.processo = "pendente"
+        console.log(ay)
+      }
+    })
+    // console.log(this.oItem)
   }
 
 

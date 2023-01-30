@@ -14,7 +14,6 @@ import {
   Timestamp,
   doc,
   docSnapshots,
-
   QueryConstraint,
   onSnapshot,
   CollectionReference,
@@ -64,14 +63,13 @@ export class StorageServicePaginateService {
   isSearch: string = "Nome";
   typingName: string = "";
 
+  public listSearch: any[] = [];
 
   constructor(private afs: StorageService, private auth: AuthService,
               private pathCollection: String, public order: String = "timestamp",
               private filter: String = "") {
 
     this.reference = collection(getFirestore(), this.pathCollection.toString());
-    console.log(this.pathCollection.toString())
-
 
     this.fielderOrder = order.toString()
     this.pageDefault()
@@ -108,6 +106,21 @@ export class StorageServicePaginateService {
       this.list(s.docs)
     })
 
+  }
+
+  findName(name: string) {
+    let list: any[] = [];
+    let queryConditions: QueryConstraint[] = []
+
+    queryConditions.push(orderBy('name', 'asc'))
+    queryConditions.push(where('name', ">=", name))
+    queryConditions.push(where('name', "<=", name + '\uf8ff'))
+    queryConditions.push(limit(this.offset))
+    const q = query(this.reference, ...queryConditions);
+    onSnapshot(q, (s) => {
+      this.listSearch = s.docs.map(av => av.data())
+    })
+    return this.listSearch;
   }
 
   private list(eY: any[]) {

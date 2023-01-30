@@ -86,8 +86,8 @@
   <span class="col-auto">Total: {{ pageTotal }}</span>
   <ul class="pagination pagination-circle d-flex flex-end">
     <li
-      class="page-item previous {{ !this.page.awaitingProcess?'disabled':''}}{{ !this.page.prevKeys?.length?'disabled':''}} ">
-      <button class="page-link" (click)="this.page.prevPage()" [disabled]="!this.page.prevKeys?.length"><i
+      class="page-item previous {{ !this.page.awaitingProcess?'disabled':''}}{{ !this.page.prevKeys.length?'disabled':''}} ">
+      <button class="page-link" (click)="this.page.prevPage()" [disabled]="!this.page.prevKeys.length"><i
         class="previous"></i></button>
     </li>
     <li class="page-item disabled">

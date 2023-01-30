@@ -59,7 +59,6 @@ import {PedidosServicosComponent} from './page/movimentos/pedidos-servicos/pedid
 import {TransfernciaArtigosComponent} from './page/movimentos/transferncia-artigos/transferncia-artigos.component';
 import {RequisicaoArtigoComponent} from './page/movimentos/requisicao-artigo/requisicao-artigo.component';
 import {RequisicaoServicoComponent} from './page/movimentos/requisicao-servico/requisicao-servico.component';
-import {DevolucoesArtigoComponent} from './page/movimentos/devolucoes-artigo/devolucoes-artigo.component';
 import {FluxoCaixaComponent} from './page/movimentos/fluxo-caixa/fluxo-caixa.component';
 import {LancamentoComponent} from './page/movimentos/entrada-artigos/lancamento/lancamento.component';
 import {
@@ -119,6 +118,16 @@ import { TabelasExistenciasComponent } from './page/movimentos/existencia-artigo
 import { OcorenciasArtigoComponent } from './page/movimentos/ocorencias-artigo/ocorencias-artigo.component';
 import { TabelaOcorrenciasComponent } from './page/movimentos/ocorencias-artigo/tabela-ocorrencias/tabela-ocorrencias.component';
 import { MovimentosComponent } from './page/movimentos/movimentos/movimentos.component';
+import { FormalarioInventarioComponent } from './page/movimentos/inventario/formalario-inventario/formalario-inventario.component';
+import { RelatorioInventarioGeralComponent } from './page/movimentos/inventario/relatorio-inventario-geral/relatorio-inventario-geral.component';
+import { BaixaArmazemComponent } from './page/movimentos/baixa-armazem/baixa-armazem.component';
+import { FormularioBaixaComponent } from './page/movimentos/baixa-armazem/formulario-baixa/formulario-baixa.component';
+import { TabelaBaixaComponent } from './page/movimentos/baixa-armazem/tabela-baixa/tabela-baixa.component';
+import { HomePageComponent } from './page/Comuns/home-page.component';
+import { UsersListComponent } from './page/Comuns/users-list/users-list.component';
+import { UsersRulesComponent } from './page/Comuns/users-rules/users-rules.component';
+import { SearchingComponent } from './page/movimentos/inventario/components/searching.component';
+import { ItemInventarioComponent } from './page/movimentos/inventario/formalario-inventario/item-inventario/item-inventario.component';
 
 @NgModule({
   declarations: [
@@ -166,7 +175,6 @@ import { MovimentosComponent } from './page/movimentos/movimentos/movimentos.com
     TransfernciaArtigosComponent,
     RequisicaoArtigoComponent,
     RequisicaoServicoComponent,
-    DevolucoesArtigoComponent,
     FluxoCaixaComponent,
     LancamentoComponent,
     FormularioLancamentoComponent,
@@ -195,13 +203,22 @@ import { MovimentosComponent } from './page/movimentos/movimentos/movimentos.com
     OcorenciasArtigoComponent,
     TabelaOcorrenciasComponent,
     MovimentosComponent,
+    FormalarioInventarioComponent,
+    RelatorioInventarioGeralComponent,
+    BaixaArmazemComponent,
+    FormularioBaixaComponent,
+    TabelaBaixaComponent,
+    HomePageComponent,
+    UsersListComponent,
+    UsersRulesComponent,
+    SearchingComponent,
+    ItemInventarioComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule.enablePersistence(),
     ReactiveFormsModule,
     QRCodeModule,
     FormsModule,

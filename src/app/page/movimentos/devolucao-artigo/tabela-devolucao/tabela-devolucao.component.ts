@@ -191,10 +191,7 @@ export class TabelaDevolucaoComponent implements OnInit {
 
 
   async find() {
-
     await this.page.findByFieldContext('docRef', this.typingName.toUpperCase())
-
-
   }
 
   setSearch(attr: string) {

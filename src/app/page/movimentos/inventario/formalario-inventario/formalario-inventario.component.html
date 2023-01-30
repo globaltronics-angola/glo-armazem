@@ -1,0 +1,166 @@
+<div class="card-body p-0">
+  <form id="kt_modal_new_target_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#">
+    <div class="row justify-content-end">
+      <div class="col-12 col-lg-6 col-xxl-4 float-end">
+        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+          <label class="d-flex align-items-center fs-6 fw-bold">
+            <span class="required">Armazém</span>
+          </label>
+          <div class="d-flex align-items-center position-relative ">
+            <span class="svg-icon svg-icon-1 position-absolute ms-6">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1"
+                      transform="rotate(45 17.0365 15.1223)" fill="currentColor"/>
+                <path
+                  d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
+                  fill="currentColor"/>
+              </svg>
+            </span>
+            <input type="text" data-kt-customer-table-filter="search" name="docRefArmazem" [(ngModel)]="docRefArmazem"
+                   class="form-control form-control-solid w-100 ps-15" (keyup.enter)="searchSaida()"
+                   placeholder="Digite a referencia do documento"/>
+          </div>
+          <span class="fs-7 text-gray-600 mx-5">Tecla &lt;<span class="fw-bold">ENTER</span>&gt; para realizar a
+            pesquisa</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-lg-8 col-sm-8 mt-5 mt-md-0">
+        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+          <label class="d-flex align-items-center fs-6 fw-bold ">
+            <span class="">Ref : </span>&nbsp; <span class="text-danger"> {{ this.dateRef }} </span>
+          </label>
+        </div>
+      </div>
+
+      <div class="accordion accordion-icon-toggle" id="kt_accordion_2">
+        <div class="mb-10">
+          <div class="separator separator-dashed my-4"></div>
+          <div class="accordion-header d-flex" data-bs-toggle="collapse" data-bs-target="#kt_accordion_2_item_1">
+            <div class="fv-plugins-message-container text-primary mb-4"><i class="bi bi-bookmarks-fill"></i>
+              Outras informações do documento
+            </div>
+          </div>
+
+          <div id="kt_accordion_2_item_1" class="fs-6 collapse p-3" data-bs-parent="#kt_accordion_2">
+            <div class="row">
+              <div class="col-12 col-lg-10 col-sm-8 ">
+                <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                  <label class="d-flex align-items-center fs-6 mb-2">
+                    <span class="">Obs</span>
+                  </label>
+                  <textarea type="text" class="form-control form-control-sm" rows="5"
+                            placeholder="De uma descrição do relatório..."
+                            name="details"></textarea>
+                  <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-2 col-sm-4 justify-content-center text-center">
+                <qrcode [qrdata]="'idMovement'" [width]="150" colorLight="#ffffff00"></qrcode>
+              </div>
+            </div>
+          </div>
+          <div class="separator separator-dashed my-1"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class=" col-12 col-sm-8 col-md-8 col-lg-7 col-xxl-6">
+        <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <span class="required">Artigo</span>
+          </label>
+          <div class="input-group input-group-sm input-group-solid flex-nowrap">
+            <div class="overflow-hidden flex-grow-1">
+              <select class="form-select form-select-sm selector rounded-end-0" data-control="select2"
+                      data-allow-clear="true" data-placeholder="Selecciona o modelo" id="inventoryStorage">
+                <option></option>
+              </select>
+            </div>
+            <span class="input-group-text"> <i class="fa fa-search"></i></span>
+          </div>
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6 col-xxl-2">
+        <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <span class="required">Quantidade</span>
+          </label>
+          <input type="number" class="form-control form-control-sm " id="quantity" name="quantity"
+                 [(ngModel)]="this.itemMove.oItem.quantity"
+                 placeholder="Quantidade do item" readonly>
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6 col-xxl-2">
+        <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <span class="required">Qt Contado</span>
+          </label>
+          <input type="number" class="form-control form-control-sm " id="myCount" name="myCount"
+                 [(ngModel)]="this.itemMove.oItem.myCount"
+                 placeholder="Quantidade do item" (keyup)="calculerDiferenca()">
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6 col-xxl-2">
+        <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+          <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+            <span class="required">Diferência</span>
+          </label>
+          <input type="number" class="form-control form-control-sm " id="differenceCount" name="differenceCount"
+                 [(ngModel)]="this.itemMove.oItem.differenceCount"
+                 placeholder="Diferência" readonly>
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-12 col-xxl-12">
+        <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container">
+          <label class="d-flex align-items-center fs-6 mb-2">
+            <span class="">Motivos</span>
+          </label>
+          <textarea class="form-control form-control-sm" name="detailsItem"
+                    [(ngModel)]="this.itemMove.oItem.detailsItem"
+                    placeholder="Motivos da devolução"></textarea>
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-12 col-xxl-12 d-flex flex-right justify-content-end">
+        <div class="d-flex flex-column mb-4 fv-row fv-plugins-icon-container d-flex flex-end">
+          <button type="button" class="btn btn-sm btn-primary mb-2 btn-sm" (click)="addListItems()">
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+      </div>
+
+
+    </div>
+
+    <app-item-inventario></app-item-inventario>
+
+    <div class="col-12 mt-2 mb-4 position-fixed fixed-bottom " style="bottom: 5px; left: -35px; z-index: 110">
+      <div class="input-group text-end justify-content-end">
+
+        <button type="button" class="btn btn-sm btn-success btn-sm btn" (click)="save()">
+          {{ util.SAVE_TEXT}}
+        </button>
+
+        <button type="button" class="btn btn-sm btn-danger btn-sm" (click)="cancelerMovement()">
+          {{ util.CANCEL_TEXT}}
+        </button>
+      </div>
+    </div>
+
+  </form>
+
+</div>
+

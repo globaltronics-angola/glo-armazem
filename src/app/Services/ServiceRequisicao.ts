@@ -18,6 +18,7 @@ export default class ServiceRequisicao {
   static STORAGE_MOVE_ITEM: string = "global-move-items"
   static STORAGE_MOVE: string = "global-movimentos"
   static STORAGE_EXIST_ITEM: string = "global-existence"
+  static STORAGE_EXIST_STORAGE: string = "global-existence-storage"
 
 
   private window = (<any>window)
@@ -150,6 +151,7 @@ export default class ServiceRequisicao {
       })
 
       this.existArticle(item).then();
+      this.existArticleStorage(item).then()
 
     })
 
@@ -188,6 +190,25 @@ export default class ServiceRequisicao {
       let articleExist: any = JSON.parse(attr.existence);
       articleExist.quantity = articleExist.quantity - attr.quantity;
       this.store.createForceMyId(articleExist, ServiceRequisicao.STORAGE_EXIST_ITEM).then(() => {
+      });
+    } catch (e) {
+
+    }
+  }
+
+  async existArticleStorage(attr: any) {
+    try {
+      let articleExist: any = JSON.parse(attr.existence);
+      articleExist.id = attr.articleId + JSON.parse(attr.localStorage).id
+
+      let artExir: any = await firstValueFrom(this.store
+        .findById(ServiceRequisicao.STORAGE_EXIST_STORAGE, articleExist.id)).then((e) => {
+        return e
+      });
+
+      articleExist.quantity = artExir.quantity - attr.quantity;
+
+      this.store.createForceMyId(articleExist, ServiceRequisicao.STORAGE_EXIST_STORAGE).then(() => {
       });
     } catch (e) {
 
