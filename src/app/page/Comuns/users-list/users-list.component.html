@@ -1,1 +1,92 @@
-<p>users-list works!</p>
+<div id="kt_drawer_users_list_basic" class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true"
+  data-kt-drawer-toggle="#kt_drawer_users_list_basic_button" data-kt-drawer-close="#kt_drawer_users_list_basic_close"
+  data-kt-drawer-width="500px">
+
+  <div class="card w-100 rounded-0">
+    <!--begin::Card header-->
+    <div class="card-header pe-5">
+      <!--begin::Title-->
+      <div class="card-title">
+        <!--begin::User-->
+        <div class="d-flex justify-content-center flex-column me-3">
+          <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 lh-1">Utilizadores</a>
+        </div>
+        <!--end::User-->
+      </div>
+
+
+
+
+    </div>
+
+
+    <div class="card-body hover-scroll-overlay-y">
+
+
+      <form id="kt_modal_new_target_form my-5" class="form fv-plugins-bootstrap5 fv-plugins-framework">
+        <div class="row">
+
+
+          <div class="col-sm-12">
+            <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+              <!--begin::Label-->
+              <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                <span class="">Email</span>
+              </label>
+              <!--end::Label-->
+              <input type="text" name="description" class="form-control form-control-sm" placeholder="Digite o email ">
+              <div class="fv-plugins-message-container invalid-feedback"></div>
+            </div>
+          </div>
+
+          <div class="col-12 ">
+            <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+              <!--begin::Label-->
+              <label class="d-flex align-items-center fs-6 fw-bold mb-2" for="selectStorage">
+                <span class="required">Armazém inicial</span>
+              </label>
+              <!--end::Label-->
+              <select class="form-select form-select-sm selector" data-control="select2" data-hide-search="true"
+                data-allow-clear="true" data-placeholder="Selecciona o armazém" id="permition">
+                <option value="admin">Administrador</option>
+                <option value="user">Utilizador</option>
+              </select>
+
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+        <div class="col-12 mt-2 mb-4">
+          <div class="input-group text-right justify-content-end">
+            <button type="button" class="btn btn-sm btn-success mr-2">
+              Gravar
+            </button>
+          </div>
+        </div>
+      </form>
+
+
+      
+      <table class="table table-striped table-row-bordered gy-2 gs-7 fs-6" id="data_armazem_details">
+        <thead class="text-uppercase fw-bold bg-light-primary text-white">
+          <tr class=" text-white">
+            <th class="w-auto">Email</th>
+            <th class="w-auto">Acesso</th>
+            <th class="w-auto">&nabla;</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tbody>
+
+        </tbody>
+
+      </table>
+
+    </div>
+  </div>
+
+</div>

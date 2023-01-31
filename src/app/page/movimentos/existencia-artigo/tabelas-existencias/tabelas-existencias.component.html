@@ -1,4 +1,4 @@
-<div class="card-title row w-100 justify-content-between">
+<div class="card-title row w-100 ">
 
   <div class="col-auto col-sm-3 col-lg-6">
     <button class="btn btn-sm  btn-secondary btn-active-primary mb-10 " (click)="pdfGenerator()">
@@ -22,7 +22,6 @@
       <th class="w-auto">Armário</th>
       <th class="w-auto">Prateleira</th>
       <th style="width: 120px!important;">Quantidade</th>
-      <th class="min-w-100px" style="vertical-align: bottom; width: 10%">&nbsp;</th>
     </tr>
     </thead>
 
@@ -65,14 +64,6 @@
         <span class="badge badge-sm badge-light-dark">
           {{ mov.quantity }}&nbsp;
         </span>
-      </td>
-      <!--end::Profit-->
-      <td style="vertical-align: bottom; width: 10%">
-
-        <button type="button" (click)="printMov(mov)" id="editable"
-                class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1 float-end">
-          <span class="svg-icon"> <i class="fa fa-print"></i></span>
-        </button>
       </td>
 
     </tr>

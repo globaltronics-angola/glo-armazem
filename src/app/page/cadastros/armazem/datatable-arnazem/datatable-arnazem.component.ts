@@ -171,14 +171,14 @@ export class DatatableArnazemComponent implements OnInit {
           },
           {
             text: 'Data:' + moment().format('DD / MM / YYYY'),
-            fontSize: 11,
+            fontSize: 8,
             color: '#D7DBDD',
             bold: false,
             margin: [0, 20, 0, 0]
           },
           {
             text: 'Autor : ' + this.auth.user.displayName + '',
-            fontSize: 11,
+            fontSize: 8,
             color: '#D7DBDD',
             bold: false,
             margin: [0, 0, 0, 1]
@@ -191,7 +191,7 @@ export class DatatableArnazemComponent implements OnInit {
             color: '#515A5A',
           },
           span: {
-            fontSize: 11,
+            fontSize: 8,
             alignment: 'justify',
             color: '#E6B0AA'
           },
@@ -199,17 +199,17 @@ export class DatatableArnazemComponent implements OnInit {
             width: '1000px'
           },
           all: {
-            fontSize: 11,
+            fontSize: 8,
             alignment: 'justify',
             color: '#515A5A'
           },
           allInterno: {
-            fontSize: 11,
+            fontSize: 8,
             alignment: 'justify',
             color: '#515A5A',
           }
           , allR: {
-            fontSize: 11,
+            fontSize: 8,
             alignment: 'right',
             color: '#515A5A'
           },
