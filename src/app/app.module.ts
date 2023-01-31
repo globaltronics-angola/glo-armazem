@@ -128,6 +128,14 @@ import { UsersListComponent } from './page/Comuns/users-list/users-list.componen
 import { UsersRulesComponent } from './page/Comuns/users-rules/users-rules.component';
 import { SearchingComponent } from './page/movimentos/inventario/components/searching.component';
 import { ItemInventarioComponent } from './page/movimentos/inventario/formalario-inventario/item-inventario/item-inventario.component';
+import { ItemsBaixaComponent } from './page/movimentos/baixa-armazem/items-baixa/items-baixa.component';
+import { WdgetStorageComponent } from './page/dashboard/wdget-storage/wdget-storage.component';
+import { WdgetCounterComponent } from './page/dashboard/wdget-counter/wdget-counter.component';
+import { WdgetCounter2Component } from './page/dashboard/wdget-counter2/wdget-counter2.component';
+import { WdgetCounter3Component } from './page/dashboard/wdget-counter3/wdget-counter3.component';
+import { ImportAndExpComponent } from './page/dashboard/import-and-exp/import-and-exp.component';
+import { WdgetChartComponent } from './page/dashboard/wdget-chart/wdget-chart.component';
+import { WdgetTableComponent } from './page/dashboard/wdget-table/wdget-table.component';
 
 @NgModule({
   declarations: [
@@ -213,6 +221,14 @@ import { ItemInventarioComponent } from './page/movimentos/inventario/formalario
     UsersRulesComponent,
     SearchingComponent,
     ItemInventarioComponent,
+    ItemsBaixaComponent,
+    WdgetStorageComponent,
+    WdgetCounterComponent,
+    WdgetCounter2Component,
+    WdgetCounter3Component,
+    ImportAndExpComponent,
+    WdgetChartComponent,
+    WdgetTableComponent,
 
   ],
   imports: [

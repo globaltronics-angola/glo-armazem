@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import ServiceUtil from "../../../../Services/ServiceUtil";
 import {Observable, Subscription} from "rxjs";
 import ServiceStorage from "../../../../Services/ServiceStorage";
@@ -18,7 +18,7 @@ import {Timestamp} from "@angular/fire/firestore";
   templateUrl: './formulario-devolucao.component.html',
   styles: []
 })
-export class FormularioDevolucaoComponent implements OnInit {
+export class FormularioDevolucaoComponent implements OnInit, OnDestroy {
 
   window = (<any>window)
   listArticles: any[] = [];
@@ -54,6 +54,10 @@ export class FormularioDevolucaoComponent implements OnInit {
     this.newRef().then()
     this.onSetInfoDataSource();
 
+  }
+
+  ngOnDestroy() {
+    this.know?.unsubscribe()
   }
 
   async newRef() {
@@ -112,8 +116,7 @@ export class FormularioDevolucaoComponent implements OnInit {
 
   }
 
-  cancelerMovement() {
-  }
+  cancelerMovement() {  }
 
   async addListItems() {
     try {
@@ -123,7 +126,7 @@ export class FormularioDevolucaoComponent implements OnInit {
       this.movItems.oItem.move = ServiceUtil.VALUE_AT_NULLABLE
       this.movItems.oItem.move_id = ServiceUtil.VALUE_AT_NULLABLE
 
-      this.movItems.save();
+      await this.movItems.save();
       ServiceEmitter.get("actionSendMovimento").emit("");
       await this.init()
     } catch (e) {

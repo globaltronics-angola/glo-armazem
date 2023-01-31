@@ -6,11 +6,11 @@ import {ServiceEmitter} from "../../../../Services/ServiceEmitter";
 import ServiceMovimentoItems from "../../../../Services/ServiceMovimentoItems";
 
 @Component({
-  selector: 'app-items-devolucao',
-  templateUrl: './items-devolucao.component.html',
+  selector: 'app-items-baixa',
+  templateUrl: './items-baixa.component.html',
   styles: []
 })
-export class ItemsDevolucaoComponent implements OnInit{
+export class ItemsBaixaComponent implements OnInit {
   listItems: any[] = []
   utilFunctions: ServiceUtil
   skow: Subscription;
@@ -18,7 +18,7 @@ export class ItemsDevolucaoComponent implements OnInit{
   constructor(private store: StorageService) {
     this.utilFunctions = new ServiceUtil();
     this.findAllItemTemporal();
-    this.skow = ServiceEmitter.get('actionSendMovimento').subscribe(() => this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull("DEVOLUTION"))
+    this.skow = ServiceEmitter.get('actionSendMovimento').subscribe(() => this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull("DOWNLOAD"))
 
   }
 
@@ -28,7 +28,7 @@ export class ItemsDevolucaoComponent implements OnInit{
 
   findAllItemTemporal() {
 
-    this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull("DEVOLUTION")
+    this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull("DOWNLOAD")
 
   }
 
@@ -48,5 +48,4 @@ export class ItemsDevolucaoComponent implements OnInit{
   emitFunctionalityUp(attr: any) {
     ServiceEmitter.get('sendItemsMovimentoDevolution').emit(attr)
   }
-
 }

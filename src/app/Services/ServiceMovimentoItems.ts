@@ -76,7 +76,7 @@ export default class ServiceMovimentoItems {
     let al = new ServiceRequisicao(this.store);
     al.oItem = this.oItem.moveInput
 
-    if (await (this.oItem.moveType == "DEVOLUTION")) {
+    if (await (this.oItem.moveType == "DEVOLUTION") || await (this.oItem.moveType == "DOWNLOAD")) {
       await this.addValueTirado()
       await al.save().then()
     }

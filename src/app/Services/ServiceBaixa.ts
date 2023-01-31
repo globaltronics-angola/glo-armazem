@@ -7,23 +7,33 @@ import {Injectable} from '@angular/core';
 import {ServiceEmitter} from "./ServiceEmitter";
 import firebase from "firebase/compat";
 import FieldValue = firebase.firestore.FieldValue;
-import {Timestamp} from "@angular/fire/firestore";
+import {
+  collection, getFirestore,
+  limit,
+  onSnapshot,
+  orderBy,
+  query,
+  QueryConstraint,
+  Timestamp,
+  where
+} from "@angular/fire/firestore";
+import ServiceRequisicao from "./ServiceRequisicao";
+import ServiceMovimento from "./ServiceMovimento";
 
 
 @Injectable({
   providedIn: 'root'
 })
-export default class ServiceMovimento {
+export default class ServiceBaixa {
 
-  static STORAGE_NAME: string = "global-entradas-artigos"
+  static STORAGE_NAME: string = "global-baixa-artigos"
   static STORAGE_MOVE: string = "global-movimentos"
   static STORAGE_MOVE_ITEM: string = "global-move-items"
-  static STORAGE_EXIST_ITEM: string = "global-existence"
-  static STORAGE_EXIST_STORAGE: string = "global-existence-storage"
+  static STORAGE_EXIST_ITEM_ST: string = "global-existence"
+  static STORAGE_EXIST_ITEM_ST_DC: string = "global-existence-storage"
 
   private userInfo: any
   private window = (<any>window)
-
 
   oItem: Movimento = {
     id: "NULL", title: "", details: "", dateOfMove: Timestamp.now(),
@@ -31,7 +41,7 @@ export default class ServiceMovimento {
     timestamp: "", client: "", client_nif: "", items: [], docRef: "", dataRef: moment().format("DDMMYYYY"),
     created_at: "NULL", updated_at: moment().format('DD MM,YYYY HH:mm:ss'), updated_mode: false,
     deleted_at: "NULL", email_auth: "NULL", user: "NULL", status: true, moveType: "NULL", updatedAt: Timestamp.now(),
-    userDelete: "null"
+    userDelete: "null",
   }
 
 
@@ -42,7 +52,7 @@ export default class ServiceMovimento {
 
 
   findAll() {
-    return this.store.findAll(ServiceMovimento.STORAGE_NAME).pipe(map(this.convertToArticle))
+    return this.store.findAll(ServiceBaixa.STORAGE_NAME).pipe(map(this.convertToArticle))
   }
 
   save() {
@@ -56,9 +66,10 @@ export default class ServiceMovimento {
     this.oItem.timestamp = "" + new Date().getTime() + this.oItem.id
     this.oItem.updated_mode = false;
 
+
     this.updateItems()
 
-    this.store.createdForceGenerateId(this.oItem, ServiceMovimento.STORAGE_MOVE)
+    this.store.createdForceGenerateId(this.oItem, ServiceBaixa.STORAGE_MOVE)
       .then(() => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
           ServiceEmitter.get('actionSendMovimento').emit("");
@@ -69,7 +80,7 @@ export default class ServiceMovimento {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)
         })
 
-    return this.store.createdForceGenerateId(this.oItem, ServiceMovimento.STORAGE_NAME)
+    return this.store.createdForceGenerateId(this.oItem, ServiceBaixa.STORAGE_NAME)
       .then(() => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
           ServiceEmitter.get('actionSendMovimento').emit("");
@@ -85,7 +96,7 @@ export default class ServiceMovimento {
   async getRefId(type: string = "") {
     let db = this.store.getFirestore();
     let list: any[] = []
-    await db.collection('/' + ServiceMovimento.STORAGE_NAME)
+    await db.collection('/' + ServiceBaixa.STORAGE_NAME)
       .where('dataRef', "==", moment().format("DDMMYYYY"))
       .get()
       .then(snap => {
@@ -96,6 +107,25 @@ export default class ServiceMovimento {
       });
 
     return (list.length + 1);
+  }
+
+  async getDocRef(context: string = "") {
+
+    let db = this.store.getFirestore();
+
+    console.log("vaja isso " + context)
+    let list: any[] = []
+
+    await db.collection('/' + ServiceMovimento.STORAGE_NAME)
+      .where('docRef', "==", context).get()
+      .then(snap => {
+        snap.forEach(doc => {
+          list.push(doc.data())
+          return doc.data();
+        });
+      });
+
+    return list[0];
   }
 
   updateItems() {
@@ -119,10 +149,12 @@ export default class ServiceMovimento {
       itemMove.move_id = this.oItem.id;
       itemMove.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
 
-      this.store.createForceMyId(itemMove, ServiceMovimento.STORAGE_MOVE_ITEM).then()
+      this.store.createForceMyId(itemMove, ServiceBaixa.STORAGE_MOVE_ITEM).then()
 
-      await this.inventory(item);
-      await this.existArticle(item);
+        await this.existArticleNewStoreDC(item)
+        await this.existArticleNewStore(item)
+
+
 
     })
 
@@ -135,15 +167,12 @@ export default class ServiceMovimento {
     })
   }
 
-
   async findAllMov() {
     let listAll = [];
 
     listAll = await this.store.findOther(
-      ServiceMovimento.STORAGE_MOVE
+      ServiceBaixa.STORAGE_MOVE
     )
-
-
     return listAll
   }
 
@@ -152,87 +181,69 @@ export default class ServiceMovimento {
     let listAll = [];
 
     listAll = await this.store.findByOther(
-      ServiceMovimento.STORAGE_MOVE, 'moveType', type
+      ServiceBaixa.STORAGE_MOVE, 'moveType', type
     )
-
 
     return listAll
   }
 
-  async existArticle(attr: any) {
+
+  async existArticleNewStore(attr: any) {
 
     let articleExist: any = {};
-    articleExist.id = attr.articleId + JSON.parse(attr.localStorage)
-        .id
+    articleExist.id = attr.articleId + JSON.parse(attr.localStorage).id
       + (attr.localAmbry ? JSON.parse(attr.localAmbry).ambry.id + '-' : '')
       + (attr.localShelf ? JSON.parse(attr.localShelf).id + '-' : '')
 
     articleExist.localStorageId = JSON.parse(attr.localStorage).id;
     articleExist.localStorage = JSON.parse(attr.localStorage).name;
+    articleExist.storageCode = JSON.parse(attr.localStorage).codigo;
     articleExist.localAmbry = (attr.localAmbry ? JSON.parse(attr.localAmbry).ambry.name : '');
     articleExist.localShelf = (attr.localShelf ? JSON.parse(attr.localShelf).name : '');
     articleExist.quantity = attr.quantity;
     articleExist.article = attr.article;
-    articleExist.articleId = JSON.parse(attr.article).id;
+    articleExist.color = "text-danger";
     articleExist.created_at = Timestamp.now();
     articleExist.updated_at = Timestamp.now();
     articleExist.deletad_at = "NULL";
     articleExist.order = this.store.getId() + '-' + attr.quantity;
     articleExist.articleName = attr.article ? JSON.parse(attr.article).name : '';
 
-
-    let usersArry: any = []
-    usersArry[this.userInfo.email] = {
-      'name': this.userInfo.displayName,
-      'photo': this.userInfo.photoURL,
-      'iteration': 1
-    };
-    articleExist.users = usersArry;
-
-
     let artExir: any = await firstValueFrom(this.store
-      .findById(ServiceMovimento.STORAGE_EXIST_ITEM, articleExist.id)).then((e) => {
+      .findById(ServiceBaixa.STORAGE_EXIST_ITEM_ST, articleExist.id)).then((e) => {
       return e
     });
+
     if (artExir?.quantity) {
-      articleExist.quantity = articleExist.quantity + artExir.quantity;
-      articleExist.users[this.userInfo.email].iteration += 1;
+      articleExist.quantity = articleExist.quantity - artExir.quantity;
       articleExist.order = this.store.getId() + '-' + articleExist.quantity;
     }
-    this.store.createForceMyId(articleExist, ServiceMovimento.STORAGE_EXIST_ITEM).then(() => {
+
+    this.store.createForceMyId(articleExist, ServiceBaixa.STORAGE_EXIST_ITEM_ST).then(() => {
     });
 
   }
 
-  private async inventory(attr: any) {
+  async existArticleNewStoreDC(attr: any) {
+
     let articleExist: any = {};
-    articleExist.id = attr.articleId + JSON.parse(attr.article).id
+    articleExist.id = attr.articleId + JSON.parse(attr.localStorage).id
 
-    articleExist.localStorageId = JSON.parse(attr.localStorage).id;
-    articleExist.localStorage = JSON.parse(attr.localStorage).name;
-    articleExist.storageCode = JSON.parse(attr.localStorage).codigo;
-    articleExist.storage = JSON.parse(attr.localStorage);
-    articleExist.quantity = attr.quantity;
-    articleExist.article = attr.article;
-    articleExist.created_at = Timestamp.now();
-    articleExist.updated_at = Timestamp.now();
-    articleExist.deletad_at = "NULL";
-    articleExist.order = this.store.getId() + '-' + attr.quantity;
-    articleExist.articleName = attr.article ? JSON.parse(attr.article).name : '';
 
     let artExir: any = await firstValueFrom(this.store
-      .findById(ServiceMovimento.STORAGE_EXIST_STORAGE, articleExist.id)).then((e) => {
-      return e
+      .findById(ServiceBaixa.STORAGE_EXIST_ITEM_ST_DC, articleExist.id)).then((eX) => {
+      console.log(eX);
+      return eX
     });
 
-    if (artExir?.quantity) {
-      articleExist.quantity = articleExist.quantity + artExir.quantity;
-      articleExist.order = this.store.getId() + '-' + articleExist.quantity;
+    if (artExir.quantity) {
+      artExir.quantity = artExir.quantity - attr.quantity;
+      artExir.order = this.store.getId() + '-' + artExir.quantity;
+      this.store.createForceMyId(artExir, ServiceBaixa.STORAGE_EXIST_ITEM_ST_DC).then();
     }
 
-    this.store.createForceMyId(articleExist, ServiceMovimento.STORAGE_EXIST_STORAGE).then();
-  }
 
+  }
 }
 
 export interface Movimento {
