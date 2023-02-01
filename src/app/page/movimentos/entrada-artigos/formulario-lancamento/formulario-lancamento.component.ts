@@ -94,7 +94,7 @@ export class FormularioLancamentoComponent implements OnInit {
   }
 
   onTesting() {
-    //console.log(this.itensCompra)
+    //// console.log(this.itensCompra)
   }
 
   async save() {

@@ -88,7 +88,7 @@ export class DataTablesComponent implements OnInit, OnDestroy {
   }
 
   prevPage() {
-    console.log(this.prevKeys);
+    // console.log(this.prevKeys);
     const prevKey = _.last(this.prevKeys)
     this.prevKeys = _.dropRight(this.prevKeys)
 
@@ -153,7 +153,7 @@ export class DataTablesComponent implements OnInit, OnDestroy {
       .subscribe(async resp => {
 
         this.countAt += 1
-        console.log(this.totalPage, this.countAt)
+        // console.log(this.totalPage, this.countAt)
         if (this.countAt > (this.totalPage - 2)) {
           this.nextKey = false;
           this.list_articles = _.slice(resp, 0, this.offset)
@@ -183,7 +183,7 @@ export class DataTablesComponent implements OnInit, OnDestroy {
   }
 
   deleteArticle(attr: any) {
-    console.log(attr)
+    // console.log(attr)
     let Article = new ServiceArticles(this.store);
     Article.Article = attr
 

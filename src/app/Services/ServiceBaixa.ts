@@ -113,7 +113,7 @@ export default class ServiceBaixa {
 
     let db = this.store.getFirestore();
 
-    console.log("vaja isso " + context)
+    // console.log("vaja isso " + context)
     let list: any[] = []
 
     await db.collection('/' + ServiceMovimento.STORAGE_NAME)
@@ -232,7 +232,7 @@ export default class ServiceBaixa {
 
     let artExir: any = await firstValueFrom(this.store
       .findById(ServiceBaixa.STORAGE_EXIST_ITEM_ST_DC, articleExist.id)).then((eX) => {
-      console.log(eX);
+      // console.log(eX);
       return eX
     });
 

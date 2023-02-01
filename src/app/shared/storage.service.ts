@@ -25,7 +25,7 @@ export class StorageService {
   util: ServiceUtil;
 
   constructor(private afs: AngularFirestore) {
-    console.log('nova instancia')
+    // console.log('nova instancia')
     this.util = new ServiceUtil();
 
     this.user = this.util.getSession();

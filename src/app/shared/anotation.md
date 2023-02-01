@@ -7,7 +7,7 @@ getItems() {
     ).snapshotChanges()
       .subscribe(response => {
         if (!response.docs.length) {
-          console.log("No Data Available");
+          // console.log("No Data Available");
           return false;
         }
         this.firstInResponse = response.docs[0];
@@ -27,10 +27,10 @@ getItems() {
         // push first item to use for Previous action
         this.push_prev_startAt(this.firstInResponse);
       }, error => {
-        console.log(error);
+        // console.log(error);
       });
     }, error => {
-        console.log(error);
+        // console.log(error);
     });
 }
 

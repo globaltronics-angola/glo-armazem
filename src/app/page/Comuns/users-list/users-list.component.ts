@@ -60,7 +60,7 @@ export class UsersListComponent implements OnInit {
     this.userSer.Model = attr;
     this.window.$('#permission').val(attr.type).select2({minimumResultsForSearch: -1}).change()
 
-    console.log(attr.type)
+    // console.log(attr.type)
 
   }
 

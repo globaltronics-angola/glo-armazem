@@ -125,7 +125,7 @@ export class StorageServicePaginateService {
 
   private list(eY: any[]) {
 
-    console.log(eY)
+    // console.log(eY)
     const data: any[] = eY.map(v => v.data())
 
 
@@ -237,7 +237,7 @@ export class StorageServicePaginateService {
 
     this.typeOrder == 'asc' ? this.typeOrder = "desc" : this.typeOrder = 'asc'
 
-    console.log(this.typeOrder)
+    // console.log(this.typeOrder)
 
     await this.pageDefault()
   }

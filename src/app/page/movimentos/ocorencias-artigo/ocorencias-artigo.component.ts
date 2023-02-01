@@ -33,7 +33,7 @@ export class OcorenciasArtigoComponent implements OnInit {
 
       case "/stock/movimento/tabela":
         this.title = "Movimento";
-        console.log(this.router.url)
+        // console.log(this.router.url)
         break;
 
       default:

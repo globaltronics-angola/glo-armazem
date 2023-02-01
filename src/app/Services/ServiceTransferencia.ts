@@ -47,7 +47,7 @@ export default class ServiceTransferencia {
 
   save() {
 
-    console.log(this.oItem)
+    // console.log(this.oItem)
     if (!this.oItem.updated_mode) {
       this.oItem.created_at = moment().format('DD MM,YYYY HH:mm:ss')
     }

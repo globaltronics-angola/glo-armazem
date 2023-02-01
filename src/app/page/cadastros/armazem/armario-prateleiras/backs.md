@@ -60,7 +60,7 @@ export class ArmarioPrateleirasComponent implements OnInit {
 
     this.armarioO.name = this.armarioO.armario.toUpperCase()
 
-    await console.log(this.prateleiras + '  send success full')
+    await // console.log(this.prateleiras + '  send success full')
 
     await this.store.createForceMyId(this.armarioO, this.STORAGE_ARMARIOS).then(
       resp => {

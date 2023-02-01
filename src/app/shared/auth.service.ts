@@ -7,6 +7,7 @@ import {firstValueFrom} from "rxjs"
 import AuthLocal from "./auth.json"
 import {StorageService} from "./storage.service";
 import {StorageValidateAnyService} from "./storage.validate.any.service";
+import ServiceUsers from "../Services/ServiceUsers";
 
 
 @Injectable({
@@ -18,6 +19,7 @@ export class AuthService {
   user: any;
   private serviceU: StorageValidateAnyService;
   private window = (<any>window);
+  store: any
 
   constructor(private ngZone: NgZone, private fireAuth: AngularFireAuth,
               private router: Router, private fs: AngularFirestore) {
@@ -26,8 +28,8 @@ export class AuthService {
     if (userInfo != '')
       this.user = JSON.parse(userInfo);
 
-    let store = new StorageService(this.fs);
-    this.serviceU = new StorageValidateAnyService(store, 'users');
+    this.store = new StorageService(this.fs);
+    this.serviceU = new StorageValidateAnyService(this.store, 'users');
   }
 
 
@@ -40,6 +42,9 @@ export class AuthService {
         await firstValueFrom(this.fs.collection('/users').doc('/' + email).valueChanges())
           .then(async (as: any) => {
             dataUs.type = as.type;
+            if (!as.photo) {
+              await this.signInGoogleProvider()
+            }
           });
         this.router.navigate(['/']).then();
 
@@ -88,7 +93,7 @@ export class AuthService {
         this.user = resp.user;
       },
       err => {
-        console.log(err.message)
+        // console.log(err.message)
       }
     );
 
@@ -106,6 +111,12 @@ export class AuthService {
 
               (<any>window).sentMessageSuccess.init("Bem vindo ao sistema")
               this.user.type = as.type
+              if (!as.photo) {
+                let modeUse = new ServiceUsers(this.store)
+                modeUse.Model.photo = this.user.photoURL;
+                modeUse.Model.provaider = this.user;
+                modeUse.save()
+              }
 
             } else {
               this.router.navigate(['/auth/sign-in']).then();

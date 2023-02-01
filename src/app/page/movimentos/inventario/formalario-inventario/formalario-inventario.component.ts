@@ -137,7 +137,7 @@ export class FormalarioInventarioComponent implements OnInit {
 
       let itemContains: any = this.existanceStorage[e.target.value];
 
-      console.log(itemContains)
+      // console.log(itemContains)
       if (itemContains.quantity == itemContains.devolvido) {
         this.window.sentMessageWarning.init("Não é possível realizar novamente a devolução ")
         throw "excedeu o limit de devolução neste item da lista"

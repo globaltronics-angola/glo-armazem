@@ -15,7 +15,7 @@ export class ServiceEncryptDecriptSimples {
       .encrypt(content, ServiceEncryptDecriptSimples.key)
       .toString()
 
-    console.log(info);
+    // console.log(info);
 
     return info;
   }

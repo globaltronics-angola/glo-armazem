@@ -71,7 +71,7 @@ export class FormularioBaixaComponent implements OnInit, OnDestroy {
     this.initJQuerysFunctions()
 
     setTimeout(() => {
-      //console.log(this.listItems[0])
+      //// console.log(this.listItems[0])
       if (this.listItems.length > 0) {
         this.docRefAt = this.listItems[0].moveInput.docRef
         this.moveEntrada = this.listItems[0].moveInput
@@ -141,7 +141,7 @@ export class FormularioBaixaComponent implements OnInit, OnDestroy {
     this.moveEntrada = await this.move.getDocRef(this.docRefAt)
     this.items = this.moveEntrada.items;
     this.movItems.oItem.moveInput = this.moveEntrada;
-    await console.log(this.moveEntrada)
+    await // console.log(this.moveEntrada)
 
     this.window.$('#devolucaoProduct').select2({
       minimumResultsForSearch: -1,

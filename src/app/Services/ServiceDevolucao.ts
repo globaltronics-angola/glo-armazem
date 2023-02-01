@@ -113,7 +113,7 @@ export default class ServiceDevolucao {
 
     let db = this.store.getFirestore();
 
-    console.log("vaja isso " + context)
+    // console.log("vaja isso " + context)
     let list: any[] = []
 
     await db.collection('/' + ServiceRequisicao.STORAGE_NAME)
@@ -270,7 +270,7 @@ export default class ServiceDevolucao {
 
     let artExir: any = await firstValueFrom(this.store
       .findById(ServiceDevolucao.STORAGE_EXIST_ITEM_ST_DC, articleExist.id)).then((eX) => {
-      console.log(eX);
+      // console.log(eX);
       return eX
     });
 

@@ -70,7 +70,7 @@ export class ScropePaginationService {
               private filter: String = "") {
 
     this.reference = collection(getFirestore(), this.pathCollection.toString());
-    console.log(this.pathCollection.toString())
+    // console.log(this.pathCollection.toString())
 
 
     this.fielderOrder = order.toString()
@@ -92,7 +92,7 @@ export class ScropePaginationService {
 
   private list(eY: any[]) {
 
-    console.log(eY)
+    // console.log(eY)
     const data: any[] = eY.map(v => v.data())
 
 
@@ -204,7 +204,7 @@ export class ScropePaginationService {
 
     this.typeOrder == 'asc' ? this.typeOrder = "desc" : this.typeOrder = 'asc'
 
-    console.log(this.typeOrder)
+    // console.log(this.typeOrder)
 
     await this.pageDefault()
   }

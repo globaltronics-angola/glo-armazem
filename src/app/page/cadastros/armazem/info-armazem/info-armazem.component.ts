@@ -32,7 +32,7 @@ export class InfoArmazemComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     if (this.route.snapshot.paramMap.get('information')) {
       this.armazem = this.util.requestDataInfo(this.route)
-      console.log(this.armazem)
+      // console.log(this.armazem)
     }
   }
 
