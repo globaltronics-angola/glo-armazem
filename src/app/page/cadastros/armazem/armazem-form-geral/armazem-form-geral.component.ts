@@ -85,7 +85,6 @@ export class ArmazemFormGeralComponent implements OnInit {
 
     if (this.route.snapshot.paramMap.get('information')) {
       this.serviceStorage.IObjectClass = this.util.requestDataInfo(this.route)
-      console.log(this.serviceStorage.IObjectClass)
       this.window.$("#address").val(this.serviceStorage.IObjectClass.address);
 
       this.listArmariaShelf = this.serviceStorage.IObjectClass.ambry
@@ -128,7 +127,6 @@ export class ArmazemFormGeralComponent implements OnInit {
             temp.shelf[index].name = ad
           })
 
-          console.log(temp.shelf)
 
           this.listArmariaShelf[this.currentIdAmbry] = temp
           this.currentIdAmbry = -1;
@@ -158,7 +156,6 @@ export class ArmazemFormGeralComponent implements OnInit {
     let i = this.listArmariaShelf.indexOf(attr)
     // delete this.listArmariaShelf[i]
     this.listArmariaShelf.splice(i, 1);
-    console.log(this.listArmariaShelf);
     this.serviceStorage.IObjectClass.ambry = this.listArmariaShelf;
     sessionStorage.setItem('_listPrate', JSON.stringify(this.listArmariaShelf))
   }
@@ -175,7 +172,6 @@ export class ArmazemFormGeralComponent implements OnInit {
       this.window.$("#shelf").change()
     }, 1000)
 
-    console.log(a, i)
   }
 
   async validationViews() {

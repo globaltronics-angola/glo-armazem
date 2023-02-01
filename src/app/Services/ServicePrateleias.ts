@@ -101,12 +101,10 @@ export default class ServicePrateleias {
 
     if (ambry_id) {
 
-      console.log(ambry_id)
 
       const ambry = JSON.parse(ambry_id.toString())
       const list = await this.store.findByOther(ServicePrateleias.STORAGE_NAME, 'ambry', ambry);
 
-      console.log(list)
       return list
     }
 

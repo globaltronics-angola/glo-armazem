@@ -51,7 +51,7 @@ export class DatatableServicesComponent implements OnInit{
           })
 
           data.id = e.payload.doc.id;
-          console.log(data);
+
           return data;
         })
       },

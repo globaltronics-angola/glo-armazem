@@ -84,7 +84,6 @@ export class FormsGeralFornecedoresComponent implements OnInit {
 
     if(this.route.snapshot.paramMap.get('information')){
       this.serviceFornecedor.IObjectClass = this.ServiceUtil.requestDataInfo(this.route)
-      console.log(this.serviceFornecedor.IObjectClass)
       this.window.$("#addressClient").val(this.serviceFornecedor.IObjectClass.address);
       this.window.$("#phoneNumbers").val(this.serviceFornecedor.IObjectClass.phoneNumber);
       this.window.$("#emails").val(this.serviceFornecedor.IObjectClass.emails);

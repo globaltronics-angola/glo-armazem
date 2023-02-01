@@ -60,7 +60,7 @@ export class FormGeralComponent implements OnInit, OnDestroy {
         o.Article.updated_mode = true;
         o.Article.category_id = e?.category_id.split(',')
         o.save()
-        console.log('count')
+
 
       })
     }, 2000)

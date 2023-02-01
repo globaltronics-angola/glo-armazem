@@ -5,6 +5,8 @@ import {GoogleAuthProvider} from "@angular/fire/auth"
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {firstValueFrom} from "rxjs"
 import AuthLocal from "./auth.json"
+import {StorageService} from "./storage.service";
+import {StorageValidateAnyService} from "./storage.validate.any.service";
 
 
 @Injectable({
@@ -14,6 +16,8 @@ export class AuthService {
 
 
   user: any;
+  private serviceU: StorageValidateAnyService;
+  private window = (<any>window);
 
   constructor(private ngZone: NgZone, private fireAuth: AngularFireAuth,
               private router: Router, private fs: AngularFirestore) {
@@ -22,23 +26,27 @@ export class AuthService {
     if (userInfo != '')
       this.user = JSON.parse(userInfo);
 
-    console.log(this.user);
+    let store = new StorageService(this.fs);
+    this.serviceU = new StorageValidateAnyService(store, 'users');
   }
 
 
   // Sign In method
   signIn(email: string, password: string) {
     this.fireAuth.signInWithEmailAndPassword(email, password).then(
-      (resp: any) => {
+      async (resp: any) => {
         localStorage.setItem('token', resp.user?.refreshToken);
+        let dataUs = resp.user
+        await firstValueFrom(this.fs.collection('/users').doc('/' + email).valueChanges())
+          .then(async (as: any) => {
+            dataUs.type = as.type;
+          });
         this.router.navigate(['/']).then();
 
-
         this.user = resp.user;
-        sessionStorage.setItem('_user', JSON.stringify(resp.user));
+        sessionStorage.setItem('_user', JSON.stringify(dataUs));
       },
       err => {
-        console.log('email and password invalid');
         this.router.navigate(['/auth/sign-in']).then();
       }
     )
@@ -49,11 +57,9 @@ export class AuthService {
   signUp(email: string, password: string) {
     this.fireAuth.createUserWithEmailAndPassword(email, password).then(
       () => {
-        console.log('success full created user to firebase application ');
         this.router.navigate(['/auth/sign-in']).then();
       },
       err => {
-        console.log('email and password invalid');
         this.router.navigate(['/auth/sign-up']).then();
       }
     )
@@ -64,11 +70,9 @@ export class AuthService {
   signOut() {
     this.fireAuth.signOut().then(
       () => {
-        console.log('sign out success full')
         this.router.navigate(['/auth/sign-in']).then()
       },
       err => {
-        console.log(err.message)
       }
     )
   }
@@ -82,39 +86,37 @@ export class AuthService {
     const login = await this.fireAuth.signInWithPopup(new GoogleAuthProvider).then(
       async resp => {
         this.user = resp.user;
-        await this.router.navigate(['/']).then();
-        await localStorage.setItem('token', JSON.stringify(this.user?.uid))
-        await sessionStorage.setItem('_user', JSON.stringify(this.user));
-
-        (<any>window).sentMessageSuccess.init("Bem vindo ao sistema")
       },
       err => {
         console.log(err.message)
       }
     );
 
+    await this.serviceU.validateExiste(this.user.email, 'email',
+      false, this.window.$('#devolucaoProduct'), false, "", true, true)
 
-    /* */
+    await setTimeout(() => {
+      firstValueFrom(this.fs.collection('/users').doc('/' + this.user.email).valueChanges())
+        .then(async (as: any) => {
+          try {
+            if (as.email) {
+              await this.router.navigate(['/']).then()
+              await localStorage.setItem('token', JSON.stringify(this.user?.uid))
+              await sessionStorage.setItem('_user', JSON.stringify(this.user));
 
-    /*await firstValueFrom(this.fs.collection('/users').doc('/' + this.user.email).valueChanges())
-      .then(async (as: any) => {
-        try {
-          if (as.email) {
-            await this.router.navigate(['/']).then()
-            await localStorage.setItem('token', JSON.stringify(this.user?.uid))
-            await sessionStorage.setItem('_user', JSON.stringify(this.user));
+              (<any>window).sentMessageSuccess.init("Bem vindo ao sistema")
+              this.user.type = as.type
 
-            (<any>window).sentMessageSuccess.init("Bem vindo ao sistema")
-
-          } else {
-            this.router.navigate(['/auth/sign-in']).then();
+            } else {
+              this.router.navigate(['/auth/sign-in']).then();
+              (<any>window).sentMessageError.init("não foi autorizado a conectar se no sistema")
+            }
+          } catch (error) {
             (<any>window).sentMessageError.init("não foi autorizado a conectar se no sistema")
           }
-        } catch (error) {
-          (<any>window).sentMessageError.init("não foi autorizado a conectar se no sistema")
-        }
+        })
+    }, 2000)
 
-      })*/
 
   }
 

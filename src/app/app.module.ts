@@ -17,17 +17,11 @@ import {ServicosComponent} from './page/cadastros/servicos/servicos.component';
 import {ArmazemComponent} from './page/cadastros/armazem/armazem.component';
 import {TitleBarComponent} from './layout/title-bar/title-bar.component';
 import {FormGeralComponent} from './page/cadastros/artigos/form-geral/form-geral.component';
-import {EansComponent} from './page/cadastros/artigos/forms-eans/eans.component';
 import {DataTablesComponent} from './page/cadastros/artigos/data-tables/data-tables.component';
 import {AngularFireModule} from '@angular/fire/compat';
-import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
 import {environment} from "../environments/environment";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {ModelosComponent} from './page/cadastros/artigos/components/modelos/modelos.component';
 import {CategoriasComponent} from './comuns/categorias/categorias.component';
-import {TipoItemsComponent} from './page/cadastros/artigos/components/tipo-items/tipo-items.component';
-import {UnidadeMedidaComponent} from './page/cadastros/artigos/components/unidade-medida/unidade-medida.component';
-import {TabelaEanComponent} from './page/cadastros/artigos/tabela-ean/tabela-ean.component';
 import {ArmazemFormGeralComponent} from './page/cadastros/armazem/armazem-form-geral/armazem-form-geral.component';
 import {ArmarioPrateleirasComponent} from './page/cadastros/armazem/armario-prateleiras/armario-prateleiras.component';
 import {TabelaArmarioComponent} from './page/cadastros/armazem/tabela-armario/tabela-armario.component';
@@ -155,13 +149,8 @@ import { WdgetTableComponent } from './page/dashboard/wdget-table/wdget-table.co
     ArmazemComponent,
     TitleBarComponent,
     FormGeralComponent,
-    EansComponent,
     DataTablesComponent,
-    ModelosComponent,
     CategoriasComponent,
-    TipoItemsComponent,
-    UnidadeMedidaComponent,
-    TabelaEanComponent,
     ArmazemFormGeralComponent,
     ArmarioPrateleirasComponent,
     TabelaArmarioComponent,

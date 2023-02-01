@@ -82,7 +82,6 @@ export class FormRequisicaoComponent implements OnInit, OnDestroy {
 
   controllerQuantity() {
 
-    console.log(this.temporalIntegerQuant, this.item.oItem.quantity)
     // this.item.oItem.quantity
     if (this.temporalIntegerQuant < this.item.oItem.quantity) {
       this.window.$('#quantidadeItem').removeClass('is-valid')

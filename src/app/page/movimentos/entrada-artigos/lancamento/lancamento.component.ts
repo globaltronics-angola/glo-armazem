@@ -48,7 +48,6 @@ export class LancamentoComponent implements OnInit {
 
   somarGeral(dataArry: any) {
 
-    console.log(dataArry)
   }
 
 

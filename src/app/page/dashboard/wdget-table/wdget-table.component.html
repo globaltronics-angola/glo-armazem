@@ -29,7 +29,7 @@
         <!--begin::Table body-->
         <tbody>
         <tr *ngFor="let pa of this.page.listDataArray">
-          <td>
+          <td class="min-w-200px">
             <div class="d-flex align-items-center" *ngIf="util.convertJson(pa.article) as article">
               <div class="symbol symbol-50px me-3">
                 <img src="/assets/media/bg7-dark.jpg"
@@ -42,7 +42,7 @@
               </div>
             </div>
           </td>
-          <td class=" pe-0">
+          <td class="min-w-150px pe-0">
             <span class="text-gray-600 fw-bold fs-6">{{ pa.localStorage}}</span><br>
             <span class="text-gray-500 fs-7">informação geral</span>
           </td>

@@ -13,7 +13,6 @@ import {ArmazemComponent} from "./page/cadastros/armazem/armazem.component";
 import {FornecedorComponent} from "./page/cadastros/fornecedor/fornecedor.component";
 import {ServicosComponent} from "./page/cadastros/servicos/servicos.component";
 import {FormGeralComponent} from "./page/cadastros/artigos/form-geral/form-geral.component";
-import {EansComponent} from "./page/cadastros/artigos/forms-eans/eans.component";
 import {DataTablesComponent} from "./page/cadastros/artigos/data-tables/data-tables.component";
 import {ArmazemFormGeralComponent} from "./page/cadastros/armazem/armazem-form-geral/armazem-form-geral.component";
 import {ArmarioPrateleirasComponent} from "./page/cadastros/armazem/armario-prateleiras/armario-prateleiras.component";
@@ -105,7 +104,6 @@ const routes: Routes = [
         path: 'artigos', component: ArtigosComponent,
         children: [
           {path: 'geral', component: FormGeralComponent},
-          {path: 'eans', component: EansComponent},
           {path: 'todos', component: DataTablesComponent}
 
         ]

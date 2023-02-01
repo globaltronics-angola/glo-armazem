@@ -56,7 +56,6 @@ export class FormGeralServicoComponent implements OnInit {
 
     tiposSevico.select2().on('change', (event: any) => {
       this.window.instanceSelectedId = event.target.value
-      console.log(this.window.instanceSelectedId)
     })
 
     categorySevico.select2().on('change', (event: any) => {

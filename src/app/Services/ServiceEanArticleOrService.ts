@@ -54,7 +54,6 @@ export default class ServiceEanArticleOrService implements OnDestroy {
 
   public findArticles() {
     const res= this.store.findByDifferenceNameOperator(ServiceEanArticleOrService.STORAGE_NAME, 'type_id', 'PRODUCT', '==');
-    console.log({res});
     return res
 
   }
@@ -89,7 +88,6 @@ export default class ServiceEanArticleOrService implements OnDestroy {
       return list
     }
 
-    console.log(id)
     return []
   }
 

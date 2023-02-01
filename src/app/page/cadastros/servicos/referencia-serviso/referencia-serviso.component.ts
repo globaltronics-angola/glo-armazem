@@ -42,7 +42,6 @@ export class ReferenciaServisoComponent implements OnInit {
 
   save() {
 
-    console.log(this.ean.IObjectClass);
 
     this.ean.IObjectClass.article_id = JSON.parse(this.window.instanceSelectedIdProduct.toString());
 

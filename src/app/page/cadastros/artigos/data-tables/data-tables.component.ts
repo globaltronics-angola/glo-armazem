@@ -110,7 +110,7 @@ export class DataTablesComponent implements OnInit, OnDestroy {
   }
 
   async deleteArticle(attr: any) {
-    console.log(attr)
+
     let Article = new ServiceArticles(this.store);
     Article.Article = attr
     Article.delete()

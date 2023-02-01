@@ -141,7 +141,6 @@ export default class ServiceMovimentoItems {
         }
 
         ay.processo = "pendente"
-        console.log(ay)
       }
     })
     // console.log(this.oItem)
