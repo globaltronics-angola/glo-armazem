@@ -1,0 +1,212 @@
+[
+  {
+    "category": "Controlador",
+    "name": "System Controller",
+    "model": "BKP-210Z",
+    "qt": "1",
+    "local": ""
+  },
+  {
+    "category": "Canada",
+    "name": "Foresight Canada",
+    "model": "TTA111VT-2",
+    "qt": "50",
+    "local": ""
+  },
+  {
+    "category": "ROHS",
+    "name": "Foresight Smart CCTV Calling Solution",
+    "model": "TPAA016-2",
+    "qt": "2",
+    "local": ""
+  },
+  {
+    "category": "Transmissor receptor",
+    "name": "Foresight Smart CCTV Calling Solution",
+    "model": "TPA016A-2",
+    "qt": "6",
+    "local": ""
+  },
+  {
+    "category": "Camera",
+    "name": "Camera da Bosch",
+    "model": "",
+    "qt": "2",
+    "local": ""
+  },
+  {
+    "category": "Camera",
+    "name": "Camera Prolaine",
+    "model": "PR-7537IR",
+    "qt": "2",
+    "local": ""
+  },
+  {
+    "category": "Cabo",
+    "name": "Bobina de cabo SDI",
+    "model": "",
+    "qt": "4",
+    "local": ""
+  },
+  {
+    "category": "Transmissor receptor",
+    "name": "Foresight Smart CCTV Calling Solution",
+    "model": "TTA111VHA-2",
+    "qt": "14",
+    "local": ""
+  },
+  {
+    "category": "Transmissor receptor",
+    "name": "Foresight Smart CCTV Calling Solution",
+    "model": "TTA111VRA-1",
+    "qt": "18",
+    "local": ""
+  },
+  {
+    "category": "Transmissor activo",
+    "name": "Foresight Smart CCTV Calling Solution",
+    "model": "TTA111AV-2",
+    "qt": "10",
+    "local": ""
+  },
+  {
+    "category": "ROHS",
+    "name": "Foresight Smart CCTV Calling Solution",
+    "model": "WC414",
+    "qt": "52 ",
+    "local": ""
+  },
+  {
+    "category": "Transcivel",
+    "name": "Foresight Smart CCTV Calling Solution",
+    "model": "TPA016A-2",
+    "qt": "3 ",
+    "local": ""
+  },
+  {
+    "category": "Transcivel",
+    "name": "Foresight Smart CCTV Calling Solution",
+    "model": "SP016C",
+    "qt": "3 ",
+    "local": ""
+  },
+  {
+    "category": "Alterfalante",
+    "name": "Alterfalante TV",
+    "model": "FM 4-2",
+    "qt": "2",
+    "local": ""
+  },
+  {
+    "category": "Transcivel",
+    "name": "Foresight Smart CCTV Calling Solution",
+    "model": "TTA414VRA-2",
+    "qt": "18",
+    "local": ""
+  },
+  {
+    "category": "Transcivel",
+    "name": "Foresight Smart CCTV Calling Solution",
+    "model": "TDP414VP-2",
+    "qt": "19",
+    "local": ""
+  },
+  {
+    "category": "Transcivel",
+    "name": "Foresight Smart CCTV Calling Solution",
+    "model": "SP016T",
+    "qt": "5 ",
+    "local": ""
+  },
+  {
+    "category": "Transcivel",
+    "name": "Foresight Smart CCTV Calling Solution",
+    "model": "TDP414VP-2",
+    "qt": "20 ",
+    "local": ""
+  },
+  {
+    "category": "Quadro Splitter",
+    "name": "Digital quad splitter",
+    "model": "",
+    "qt": "2",
+    "local": ""
+  },
+  {
+    "category": "Transcivel",
+    "name": "Foresight Canada",
+    "model": "TPP016-RJ45",
+    "qt": "7",
+    "local": ""
+  },
+  {
+    "category": "Transcivel",
+    "name": "Foresight Canada",
+    "model": "TPA016A-2",
+    "qt": "4",
+    "local": ""
+  },
+  {
+    "category": "Transcivel",
+    "name": "Foresight Canada",
+    "model": "TTA111AV-2",
+    "qt": "40 ",
+    "local": ""
+  },
+  {
+    "category": "Extratores de cortina",
+    "name": "Extratore de cortina 2a 1m x 1m",
+    "model": "",
+    "qt": "20",
+    "local": ""
+  },
+  {
+    "category": "Motores de Braço 2 pares",
+    "name": "",
+    "model": "",
+    "qt": "4",
+    "local": ""
+  },
+  {
+    "category": "Transformador",
+    "name": "Foresight Smart CCTV Calling Solution",
+    "model": "SWP124200-2",
+    "qt": "3 ",
+    "local": ""
+  },
+  {
+    "category": "Isolador",
+    "name": "Foresight Smart CCTV Calling Solution",
+    "model": "GL001H",
+    "qt": "20 ",
+    "local": ""
+  },
+  {
+    "category": "DVR VIDEOPHONE",
+    "name": "Home manager since 1976",
+    "model": "KVR-A510; KVR-D510 Korea",
+    "qt": "2 ",
+    "local": ""
+  },
+  {
+    "category": "não identificado",
+    "name": "alerta de pro ñ identy",
+    "model": "",
+    "qt": "3",
+    "local": ""
+  },
+  {
+    "category": "UK Uma",
+    "name": "",
+    "model": "",
+    "qt": "2",
+    "local": ""
+  },
+  {
+    "category": "Switch",
+    "name": "controller switch",
+    "model": "AC 220V-60Hz",
+    "qt": "7",
+    "local": ""
+  }
+]

@@ -1,0 +1,131 @@
+[
+  {
+    "category": "CAMERA DÍA ENOITE WIFI",
+    "name": "EZVIZ",
+    "model": "CS-C6 (4MP.wz)",
+    "qt": "4",
+    "local": ""
+  }
+,{
+  "category": "CAMERA MINI PTZ",
+  "name": "HIKVISION",
+  "model": "HWP-N24041H-DE3",
+  "qt": "2",
+  "local": ""
+}
+,{
+  "category": "CAMERA DÍA ENOITE WIFI",
+  "name": "EZVIZ",
+  "model": "CS-CBPF (ZMP.WI)",
+  "qt": "3",
+  "local": ""
+},{
+  "category": "CENTRAL MAZMİTEK",
+  "name": "PROGUARD WK 820",
+  "model": "09756",
+  "qt": "3",
+  "local": ""
+},{
+  "category": "Detentor de Fumo MAZMİTEK",
+  "name": "SD 90E",
+  "model": "09652",
+  "qt": "3",
+  "local": ""
+},{
+  "category": "Remot control with\npanic button",
+  "name": "PROGUARD PRB11",
+  "model": "09754",
+  "qt": "5",
+  "local": ""
+},{
+  "category": "DOOR/WINDOW SENSOR",
+  "name": "PROGUARD DS 831",
+  "model": "09759",
+  "qt": "5",
+  "local": ""
+},{
+  "category": "TRINCO",
+  "name": "TRINCO ELÉCTRICO",
+  "model": "",
+  "qt": "4",
+  "local": ""
+},{
+  "category": "Fotocelula",
+  "name": "Motorline",
+  "model": "MR6 433.92 MAZ",
+  "qt": "7",
+  "local": ""
+},{
+  "category": "DIMMING MODULE",
+  "name": "MEESO",
+  "model": "",
+  "qt": "3",
+  "local": ""
+},{
+  "category": "NETWORK SWITCH",
+  "name": "Joong Ang CONTROL",
+  "model": "NV-3011a",
+  "qt": "13",
+  "local": ""
+},{
+  "category": "DIMMING SWITCH",
+  "name": "Joong Ang CONTROL",
+  "model": "AL-0406",
+  "qt": "4",
+  "local": ""
+},{
+  "category": "DIMMING SWITCH",
+  "name": "AQARA",
+  "model": "QBKG12LM",
+  "qt": "3",
+  "local": ""
+},{
+  "category": "EXTERNAL SIM DVD-RW",
+  "name": "ASUS",
+  "model": "SDRW-08D2S-ULITE",
+  "qt": "1",
+  "local": ""
+},{
+  "category": "Flush END CAP DARK",
+  "name": "BOSCH",
+  "model": "DCN-FEC-D",
+  "qt": "50",
+  "local": ""
+},{
+  "category": "TRANSFORMADOR",
+  "name": "TRANSFORMADOR 24v",
+  "model": "DRL-24 1000 AC",
+  "qt": "11",
+  "local": ""
+},{
+  "category": "HD MODULADOR lite",
+  "name": "EDISION",
+  "model": "830-8029",
+  "qt": "7",
+  "local": ""
+},{
+  "category": "DISCO DURO 2TB",
+  "name": "TOSHIBA",
+  "model": "HDW T 720",
+  "qt": "4",
+  "local": ""
+},{
+  "category": "CARTÃO MEM 128GB",
+  "name": "HIKVISION",
+  "model": "H3-TF-C1",
+  "qt": "4",
+  "local": ""
+},{
+  "category": "CARTÃO MEM 256GB",
+  "name": "HIKVISION",
+  "model": "H3-TF-C1",
+  "qt": "3",
+  "local": ""
+},{
+  "category": "NETWORK SWITCH",
+  "name": "Joong Ang CONTROL",
+  "model": "VS-3.0",
+  "qt": "1",
+  "local": ""
+}
+]
