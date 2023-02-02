@@ -21,6 +21,7 @@ import {DataTablesComponent} from './page/cadastros/artigos/data-tables/data-tab
 import {AngularFireModule} from '@angular/fire/compat';
 import {environment} from "../environments/environment";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {InserindoDadosComponent} from "./page/movimentos/inserindo-dados/inserindo-dados.component"
 import {CategoriasComponent} from './comuns/categorias/categorias.component';
 import {ArmazemFormGeralComponent} from './page/cadastros/armazem/armazem-form-geral/armazem-form-geral.component';
 import {ArmarioPrateleirasComponent} from './page/cadastros/armazem/armario-prateleiras/armario-prateleiras.component';
@@ -160,7 +161,7 @@ import { WdgetTableComponent } from './page/dashboard/wdget-table/wdget-table.co
     FormsGeralFornecedoresComponent,
     FornecedorNifEnderecosComponent,
     DatatableFornecedoresComponent,
-    DepartmentsComponent,
+    InserindoDadosComponent,
     TabelasNifAddressComponent,
     FormGeralServicoComponent,
     ReferenciaServisoComponent,

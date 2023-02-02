@@ -1,0 +1,71 @@
+<div class="row">
+  <table id="kt_datatable_both_scrolls" class="table table-striped table-row-bordered gy-2 gs-7">
+    <thead class="text-uppercase fw-bold bg-light-primary">
+      <tr class="fs-6 text-gray-800">
+        <th class="min-w-200px">Categoria</th>
+        <th class="min-w-200px">Nome</th>
+        <th class="min-w-200px">Modelo</th>
+        <th class="min-w-200px">Quantidade</th>
+        <th class="min-w-200px">Armazem</th>
+        <th class="min-w-200px">Armario</th>
+        <th class="min-w-200px">Prateleira</th>
+        <th class="min-w-100px"></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let mov of this.arrayData">
+        <td>{{ mov.category }}</td>
+        <td>{{ mov.name }}</td>
+        <td>{{ mov.model }}</td>
+        <td>{{ mov.qt }}</td>
+        <td>
+          <select class="form-select form-select-sm selector" data-control="select2" data-hide-search="true"
+            data-allow-clear="true" data-placeholder="Selecciona o armazém">
+            <option value="admin">Administrador</option>
+            <option value="user">Utilizador</option>
+          </select>
+        </td>
+        <td>
+          <select class="form-select form-select-sm selector" data-control="select2" data-hide-search="true"
+            data-allow-clear="true" data-placeholder="Selecciona o armazém" >
+            <option value="admin">Administrador</option>
+            <option value="user">Utilizador</option>
+          </select>
+        </td>
+        <td>
+          <select class="form-select form-select-sm selector" data-control="select2" data-hide-search="true"
+            data-allow-clear="true" data-placeholder="Selecciona o armazém" >
+            <option value="admin">Administrador</option>
+            <option value="user">Utilizador</option>
+          </select>
+        </td>
+        <td> </td>
+      </tr>
+
+      <!-- <tr class="border-bottom  border-gray-150 fs-5 gy-1" *ngFor="let mov of this.dataGeted"
+        style="vertical-align: top; ">
+      <td class="min-w-100px d-none d-lg-table-cell" style="max-width: 140px!important; min-width: 140px!important;">
+        <span class="text-hover-primary">{{ mov.created_at }}</span>
+      </td>
+
+      <td style="max-width: 80px!important; min-width: 80px!important; width:80px ; font-weight: lighter;">
+        <a href="">{{ mov.docRef }}</a>
+      </td>
+
+      <td class="text-end">
+        {{ mov.financialCostTotal + ' KZ' }}
+      </td>
+      <td class="d-none d-lg-table-cell" style="max-width:320px!important;">
+        <div
+          style=" width: 90%; display: inline-block; white-space: nowrap; overflow: hidden;
+         text-overflow: ellipsis; direction: ltr; max-width:1010px!important;">
+          {{ mov.details}}&nbsp;
+        </div>
+      </td>
+
+    </tr> -->
+
+    </tbody>
+  </table>
+</div>

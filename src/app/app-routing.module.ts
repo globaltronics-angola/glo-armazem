@@ -78,6 +78,7 @@ import {
 import {BaixaArmazemComponent} from "./page/movimentos/baixa-armazem/baixa-armazem.component";
 import {FormularioBaixaComponent} from "./page/movimentos/baixa-armazem/formulario-baixa/formulario-baixa.component";
 import {TabelaBaixaComponent} from "./page/movimentos/baixa-armazem/tabela-baixa/tabela-baixa.component";
+import { InserindoDadosComponent } from './page/movimentos/inserindo-dados/inserindo-dados.component';
 
 
 const routes: Routes = [
@@ -198,6 +199,12 @@ const routes: Routes = [
         children: [
           {path: 'tabela', component: LancamentoComponent},
           {path: 'entradas', component: FormularioLancamentoComponent}
+        ]
+      },
+      {
+        path: 'inserir', component: EntradaArtigosComponent,
+        children: [
+          {path: 'tabela', component: InserindoDadosComponent}
         ]
       },
       {

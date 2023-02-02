@@ -52,7 +52,7 @@
         <app-menu-item name="Início" routerLink="/"
                        routerLinkTo="/#"></app-menu-item>
 
-        <div *ngIf="auth.user.type == 'admin' " data-kt-menu-trigger="click"
+        <div *ngIf="this.auth.user.type == 'admin' " data-kt-menu-trigger="click"
              class="menu-item {{ this.routerNav.url.toString().indexOf('cadastros')>0?'show':'' }}    menu-accordion">
 
           <span class="menu-link">
@@ -116,7 +116,7 @@
           </div>
           <!--end:Menu sub-->
         </div>
-        <div *ngIf="auth.user.type == 'admin' " data-kt-menu-trigger="click"
+        <div *ngIf="this.auth.user.type == 'admin' " data-kt-menu-trigger="click"
              class="menu-item  {{ this.routerNav.url.toString().indexOf('movimentos')>0?'show':'' }} menu-accordion">
           <!--begin:Menu link-->
           <span class="menu-link">
@@ -185,7 +185,7 @@
           <!--end:Menu content-->
         </div>
 
-        <div class="menu-item pt-5" *ngIf="auth.user.type == 'admin' ">
+        <div class="menu-item pt-5" *ngIf="this.auth.user.type == 'admin' ">
           <!--begin:Menu content-->
           <div class="menu-content">
             <span class="menu-heading fw-bold text-uppercase fs-7">Ferramentas</span>
@@ -194,7 +194,7 @@
         </div>
 
         <app-menu-item name="Gerir Utilizador" id="kt_drawer_users_list_basic_button"
-                       *ngIf="auth.user.type == 'admin' "></app-menu-item>
+                       *ngIf="this.auth.user.type == 'admin' "></app-menu-item>
 
 
       </div>
