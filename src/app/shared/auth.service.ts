@@ -35,18 +35,18 @@ export class AuthService {
 
   // Sign In method
   signIn(email: string, password: string) {
-    console.log('esta aqui 1')
+
     try {
-      console.log('esta aqui 1.2')
+
       this.fireAuth.signInWithEmailAndPassword(email, password).then(
         async (resp: any) => {
-          console.log('esta aqui 2')
+
           localStorage.setItem('token', resp.user?.refreshToken);
           let dataUs = resp.user
           await firstValueFrom(this.fs.collection('/users').doc('/' + email).valueChanges())
             .then(async (as: any) => {
               dataUs.type = as?.type;
-              console.log('esta aqui 3')
+
               if (!as?.photo && email.includes('@gmail.com')) {
                 await this.signInGoogleProviderTo(as)
               }
@@ -61,6 +61,8 @@ export class AuthService {
           this.router.navigate(['/auth/sign-in']).then();
         }
       )
+
+
 
     } catch (e) {
       (<any>window).sentMessageError.init("não foi autorizado a conectar se no sistema")

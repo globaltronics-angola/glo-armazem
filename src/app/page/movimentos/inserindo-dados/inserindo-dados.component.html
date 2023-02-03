@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row overflow-auto">
   <table id="kt_datatable_both_scrolls" class="table table-striped table-row-bordered gy-2 gs-7">
     <thead class="text-uppercase fw-bold bg-light-primary">
       <tr class="fs-6 text-gray-800">
@@ -14,11 +14,23 @@
     </thead>
     <tbody>
 
-      <tr *ngFor="let mov of this.arrayData">
-        <td contenteditable="true">{{ mov.category }}</td>
-        <td contenteditable="true">{{ mov.name }}</td>
-        <td contenteditable="true">{{ mov.model }}</td>
-        <td contenteditable="true">{{ mov.qt }}</td>
+      <tr *ngFor="let mov of this.arrayData; let index = index" class="tableViews">
+        <td contenteditable="true">
+          <input type="text" class="form-control form-control-sm rounded-end-0"
+            [(ngModel)]="mov.category" [value]="mov.category" name="category">
+        </td>
+        <td contenteditable="true">
+          <input type="text" class="form-control form-control-sm rounded-end-0"
+          [(ngModel)]="mov.name"  [value]="mov.name" name="name">
+        </td>
+        <td contenteditable="true">
+          <input type="text" class="form-control form-control-sm rounded-end-0"
+          [(ngModel)]="mov.model" [value]="mov.model" name="model">
+        </td>
+        <td contenteditable="true">
+          <input type="text" class="form-control form-control-sm rounded-end-0"
+          [(ngModel)]="mov.qt" [value]="mov.qt" name="qt">
+        </td>
         <td>
           <select class="form-select form-select-sm selector" data-control="select2" data-hide-search="true"
             data-allow-clear="true" data-placeholder="Selecciona o armazém">
@@ -28,19 +40,24 @@
         </td>
         <td>
           <select class="form-select form-select-sm selector" data-control="select2" data-hide-search="true"
-            data-allow-clear="true" data-placeholder="Selecciona o armazém" >
+            data-allow-clear="true" data-placeholder="Selecciona o armazém">
             <option value="admin">Administrador</option>
             <option value="user">Utilizador</option>
           </select>
         </td>
         <td>
           <select class="form-select form-select-sm selector" data-control="select2" data-hide-search="true"
-            data-allow-clear="true" data-placeholder="Selecciona o armazém" >
+            data-allow-clear="true" data-placeholder="Selecciona o armazém">
             <option value="admin">Administrador</option>
             <option value="user">Utilizador</option>
           </select>
         </td>
-        <td> </td>
+        <td class="text-end min-w-125px">
+          <button type="button" (click)="dataRow(mov)"
+            class="btn btn-icon cursor-pointer btn-sm btn-light-success btn-active-success w-25px h-25px">
+            <span class="svg-icon"> <i class="fa fa-check"></i> </span>
+          </button>
+        </td>
       </tr>
 
       <!-- <tr class="border-bottom  border-gray-150 fs-5 gy-1" *ngFor="let mov of this.dataGeted"
