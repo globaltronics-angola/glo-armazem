@@ -43,9 +43,6 @@ export default class ServiceUtil {
     let userInfo = sessionStorage.getItem('_user') as string
     if (userInfo != '') {
       this.user = JSON.parse(userInfo);
-      //this.user.providerData = "";
-      //this.user.stsTokenManager = "";
-
 
       return this.user;
     }

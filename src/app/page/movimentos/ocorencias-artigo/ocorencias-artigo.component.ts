@@ -37,7 +37,7 @@ export class OcorenciasArtigoComponent implements OnInit {
         break;
 
       default:
-        this.title = "Inventário";
+        this.title = "";
 
     }
   }

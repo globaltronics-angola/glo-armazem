@@ -31,7 +31,7 @@ export default class ServiceStorage {
 
   constructor(private store: StorageService) {
     let user = new ServiceUtil().getSession()
-    this.IObjectClass.user = user.displayName;
+    this.IObjectClass.user = user.displayName ?? user.email;
     this.IObjectClass.email_auth = user.email;
   }
 
@@ -88,5 +88,21 @@ export default class ServiceStorage {
     });
   }
 
+
+}
+
+export default interface Armazem {
+
+  id: string,
+  name: string,
+  address: string,
+  ambry: [],
+  details: string,
+  created_at: string,
+  updated_at: string,
+  updated_mode: boolean,
+  deleted_at: string,
+  email_auth: string,
+  updatedAt: string
 
 }

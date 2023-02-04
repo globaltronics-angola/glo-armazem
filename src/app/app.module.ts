@@ -132,8 +132,12 @@ import { ImportAndExpComponent } from './page/dashboard/import-and-exp/import-an
 import { WdgetChartComponent } from './page/dashboard/wdget-chart/wdget-chart.component';
 import { WdgetTableComponent } from './page/dashboard/wdget-table/wdget-table.component';
 
+
+
+
 @NgModule({
   declarations: [
+
     AppComponent,
     DashboardComponent,
     SignInComponent,
@@ -219,6 +223,7 @@ import { WdgetTableComponent } from './page/dashboard/wdget-table/wdget-table.co
     ImportAndExpComponent,
     WdgetChartComponent,
     WdgetTableComponent,
+
 
   ],
   imports: [

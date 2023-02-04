@@ -31,6 +31,7 @@ export class ArmazemFormGeralComponent implements OnInit {
   private validateAny: StorageValidateAnyService;
   private currentIdAmbry: number = -1;
   private prateleira: any;
+  private adressInfo: string = ""
 
   constructor(private store: StorageService, private route: ActivatedRoute) {
     this.serviceStorage = new ServiceStorage(this.store);
@@ -39,7 +40,7 @@ export class ArmazemFormGeralComponent implements OnInit {
 
 
   async save() {
-
+    await this.window.$('#address').change();
     try {
       await this.validationViews();
 
@@ -54,7 +55,7 @@ export class ArmazemFormGeralComponent implements OnInit {
 
   initJQueryFunctions() {
 
-    const address = document.querySelector("#address");
+    const address = document.querySelector("#addressInfor");
     const shelf = document.querySelector("#shelf");
 
     ServiceUtil.myTagify([
@@ -66,12 +67,13 @@ export class ArmazemFormGeralComponent implements OnInit {
 
     // @ts-ignore
     address.addEventListener('change', (e: any) => {
-      this.serviceStorage.IObjectClass.address = e.target.value.split(',');
+      this.serviceStorage.IObjectClass.address = e.target.value.split(",");
     })
 
     this.prateleira = shelf;
     // @ts-ignore
     shelf.addEventListener('change', (e: any) => {
+
       this.shelf = e.target.value.split(',');
     })
 
@@ -84,6 +86,7 @@ export class ArmazemFormGeralComponent implements OnInit {
     this.window.InstanceAplication.init()
 
     if (this.route.snapshot.paramMap.get('information')) {
+
       this.serviceStorage.IObjectClass = this.util.requestDataInfo(this.route)
       this.window.$("#address").val(this.serviceStorage.IObjectClass.address);
 
@@ -175,16 +178,19 @@ export class ArmazemFormGeralComponent implements OnInit {
   }
 
   async validationViews() {
+
+
     await this.validateAny.validateExiste(this.serviceStorage.IObjectClass.name, 'name',
       false, this.window.$('#nameArmazem'), this.serviceStorage.IObjectClass.updated_mode, "Já existem um armazém no sistema com o mesmo nome")
 
     await this.validateAny.validateExiste(this.serviceStorage.IObjectClass.codigo, 'codigo',
       false, this.window.$('#codigo'), this.serviceStorage.IObjectClass.updated_mode, "Já existem um armazém no sistema com o mesmo código")
 
-    const addressInfo: string = await (this.shelf.length > 0 ? 'Active' : "");
-    await this.validateAny.validateExiste(addressInfo, 'address',
-      false, this.window.$('#address'), this.serviceStorage.IObjectClass.updated_mode, "", false, false, "addressLocal")
-
+    setTimeout(async () => {
+      const addressInfoA: string = await (this.serviceStorage.IObjectClass.address.length > 0 ? 'Active' : "");
+      await this.validateAny.validateExiste(addressInfoA, 'address',
+        false, this.window.$('#address'), this.serviceStorage.IObjectClass.updated_mode, "", false, false, "addressLocal")
+    }, 1000)
 
   }
 

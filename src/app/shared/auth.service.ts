@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {GoogleAuthProvider} from "@angular/fire/auth"
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {firstValueFrom} from "rxjs"
-import AuthLocal from "./auth.json"
+
 import {StorageService} from "./storage.service";
 import {StorageValidateAnyService} from "./storage.validate.any.service";
 import ServiceUsers from "../Services/ServiceUsers";
@@ -41,7 +41,7 @@ export class AuthService {
       this.fireAuth.signInWithEmailAndPassword(email, password).then(
         async (resp: any) => {
 
-          localStorage.setItem('token', resp.user?.refreshToken);
+
           let dataUs = resp.user
           await firstValueFrom(this.fs.collection('/users').doc('/' + email).valueChanges())
             .then(async (as: any) => {
@@ -50,18 +50,20 @@ export class AuthService {
               if (!as?.photo && email.includes('@gmail.com')) {
                 await this.signInGoogleProviderTo(as)
               }
-            });
-          this.router.navigate(['/']).then();
 
-          this.user = resp.user;
-          sessionStorage.setItem('_user', JSON.stringify(dataUs));
+              localStorage.setItem('token', resp.user?.refreshToken);
+              sessionStorage.setItem('_user', JSON.stringify(as));
+              this.router.navigate(['/']).then();
+              (<any>window).sentMessageSuccess.init("Bem vindo ao sistema")
+
+            });
+
         },
         err => {
           (<any>window).sentMessageError.init("não foi autorizado a conectar se no sistema")
           this.router.navigate(['/auth/sign-in']).then();
         }
       )
-
 
 
     } catch (e) {
@@ -83,6 +85,11 @@ export class AuthService {
 
   }
 
+
+  async resetPass(email: string) {
+    await this.fireAuth.sendPasswordResetEmail(email);
+  }
+
   // Sign Out method
   signOut() {
     this.fireAuth.signOut().then(
@@ -98,7 +105,7 @@ export class AuthService {
   // Sign In with Google provider service
   async signInGoogleProvider() {
 
-    this.user = AuthLocal.user;
+    //this.user = AuthLocal.user;
 
     const login = await this.fireAuth.signInWithPopup(new GoogleAuthProvider).then(
       async resp => {
@@ -127,7 +134,7 @@ export class AuthService {
                   (<any>window).sentMessageSuccess.init("Bem vindo ao sistema")
                   this.user.type = as.type
                   if (!as.photo) {
-                    this.createCont(as).then()
+                    this.createCont(as, this.user).then()
                   }
 
                 } else {
@@ -160,7 +167,7 @@ export class AuthService {
       await this.fireAuth.signInWithPopup(new GoogleAuthProvider).then(
         async resp => {
           this.user = resp.user;
-          this.createCont(users).then()
+          this.createCont(users, resp.user).then()
 
         },
         err => {
@@ -173,7 +180,7 @@ export class AuthService {
 
   }
 
-  private async createCont(users: any) {
+  private async createCont(users: any, instance: any) {
     try {
       let modeUse: any = {};
 
@@ -182,11 +189,18 @@ export class AuthService {
       modeUse.email = this.user.email;
       modeUse.id = this.user.email;
       modeUse.timestamp = new Date().getTime();
+      modeUse.displayName = instance.displayName;
+      modeUse.emailVerified = instance.emailVerified;
+      modeUse.uid = instance.uid;
+      modeUse.isAnonymous = instance.isAnonymous;
+      modeUse.photoURL = instance.photoURL;
 
 
       await this.fs.collection('/users').doc(modeUse.id).set(modeUse);
     } catch (e) {
+
       (<any>window).sentMessageError.init("não foi autorizado a conectar se no sistema")
+
     }
   }
 

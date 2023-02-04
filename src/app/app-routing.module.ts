@@ -202,7 +202,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'inserir', component: EntradaArtigosComponent,
+        path: 'inserir', component: OcorenciasArtigoComponent,
         children: [
           {path: 'tabela', component: InserindoDadosComponent}
         ]

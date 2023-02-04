@@ -175,23 +175,28 @@ export class FormularioLancamentoComponent implements OnInit {
 
       //this.window.$('#kt_accordion_2_item_1').addClass('show');
 
-      this.listArmarios = attr.localStorage ? await JSON.parse(attr.localStorage)?.ambry : []
-      this.listShelf = attr.localAmbry ? await JSON.parse(attr.localAmbry)?.shelf : []
+      await this.window.$(document).ready(async ($: any) => {
 
-      this.window.$('#selectedProduct').val(attr.article).select2().change();
 
-      this.window.$('#selectedArmazem').val(attr.localStorage).select2({minimumResultsForSearch: -1}).change();
-      setTimeout(() => {
-        this.window.$('#selectedArmario').val(attr.localAmbry).select2({minimumResultsForSearch: -1}).change();
-      }, 1000);
 
-      setTimeout(() => {
-        this.window.$('#selectedPrateleira').val(attr.localShelf).select2({minimumResultsForSearch: -1}).change();
-      }, 2000);
+        this.listArmarios = attr.localStorage ? await JSON.parse(attr.localStorage)?.ambry : []
+        this.listShelf = attr.localAmbry ? await JSON.parse(attr.localAmbry)?.shelf : []
 
-      this.item.oItem = attr;
-      this.item.oItem.updated_mode = true
+        $('#selectedProduct').val(attr.article).select2().trigger('change');
 
+        $('#selectedArmazem').val(attr.localStorage).select2({minimumResultsForSearch: -1}).change();
+        setTimeout(() => {
+          this.window.$('#selectedArmario').val(attr.localAmbry).select2({minimumResultsForSearch: -1}).change();
+        }, 1000);
+
+        setTimeout(() => {
+          $('#selectedPrateleira').val(attr.localShelf).select2({minimumResultsForSearch: -1}).change();
+        }, 2000);
+
+        this.item.oItem =  attr;
+        this.item.oItem.updated_mode = true
+        console.log(this.item.oItem);
+      });
     })
 
   }

@@ -84,16 +84,6 @@ export class StorageService {
     return this.afs.collection('/' + name).snapshotChanges();
   }
 
-  async nameSearching(name: string, collectionName: string) {
-
-    const order = orderBy('name');
-
-    const ref = collection(getFirestore(), collectionName);
-    // const q = query(ref, ...[order, startAt(name), endAt(name + '\uf8ff'), limit(10)]);
-    const q = query(ref, ...[order, where('name', '>=', name), where('name', '<=', name + '\uf8ff'), limit(10)]);
-    return await getDocs(q)
-
-  }
 
   // @ts-ignore
   findAllNext(name: string, lastStart: any) {

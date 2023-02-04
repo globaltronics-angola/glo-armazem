@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {AuthService} from "../../../shared/auth.service";
 
 @Component({
   selector: 'app-reset-password',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class ResetPasswordComponent {
 
+
+  email: string = ""
+
+  constructor(private auth: AuthService) {
+  }
+
+  async enviar() {
+    if (!this.email)
+      throw "infroduza um email"
+
+    await this.auth.resetPass(this.email);
+  }
 }
