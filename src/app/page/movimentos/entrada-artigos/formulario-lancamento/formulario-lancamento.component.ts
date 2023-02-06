@@ -197,6 +197,12 @@ export class FormularioLancamentoComponent implements OnInit {
 
         this.item.oItem = attr;
         this.item.oItem.updated_mode = true
+
+
+
+
+
+
         console.log(this.item.oItem);
       });
     })
