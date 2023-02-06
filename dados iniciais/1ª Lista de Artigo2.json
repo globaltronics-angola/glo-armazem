@@ -1,0 +1,86 @@
+[
+  {
+    "category": "Cabo",
+    "name": "Boss de fibra",
+    "model": "",
+    "qt": "7",
+    "local": ""
+  },
+  {
+    "category": "Conversor",
+    "name": "LINDY ANALOG-0B",
+    "model": "2690-0B",
+    "qt": "1",
+    "local": ""
+  },
+  {
+    "category": "Conversor",
+    "name": "LINDY ANALOG",
+    "model": "1",
+    "qt": "",
+    "local": ""
+  },
+  {
+    "category": "Adaptor",
+    "name": "AC Adaptor-0250TF",
+    "model": "MAH240250TF",
+    "qt": "1",
+    "local": ""
+  },
+  {
+    "category": "Mini Câmara",
+    "name": "Speed dome-spt10",
+    "model": "kzo-spt10",
+    "qt": "5",
+    "local": ""
+  },
+  {
+    "category": "Câmara",
+    "name": "Kocom-IP250",
+    "model": "kcc-ip250",
+    "qt": "5",
+    "local": ""
+  },
+  {
+    "category": "Câmara",
+    "name": "kocom-SPT271DP",
+    "model": "kzc-spt271DP",
+    "qt": "2",
+    "local": ""
+  },
+  {
+    "category": "Câmara",
+    "name": "Kocom",
+    "model": "kcc-MIP20",
+    "qt": "1",
+    "local": ""
+  },
+  {
+    "category": "Câmara",
+    "name": "Câmara",
+    "model": "",
+    "qt": "2",
+    "local": ""
+  },
+  {
+    "category": "Interface ",
+    "name": "Placa PC",
+    "model": "koc-MIP20",
+    "qt": "1",
+    "local": ""
+  },
+  {
+    "category": "EXTENDER",
+    "name": "70W CAT 6 LINDY HDMI 10.2 GD",
+    "model": "38208",
+    "qt": "3",
+    "local": ""
+  },
+  {
+    "category": "EXTENDER ",
+    "name": "SOM CAT.G LINDY HDMI & 18",
+    "model": "38144",
+    "qt": "2",
+    "local": ""
+  }
+]

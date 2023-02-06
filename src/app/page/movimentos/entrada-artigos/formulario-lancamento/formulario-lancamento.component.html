@@ -77,15 +77,15 @@
                   <!--end::Label-->
                   <div class="input-group input-group-sm input-group-solid flex-nowrap">
                     <!--end::Label-->
-                    <div class="overflow-hidden flex-grow-1">
-                      <select class="form-select form-select-sm selector " data-control="select2"
-                              data-allow-clear="true" data-placeholder="Selecciona o artigo" id="selectedProduct">
-                        <option></option>
-                        <option [value]="ean|json" *ngFor="let ean of listArticle|async">
-                          {{(ean.ean ? ean.ean + ' - ' : '') + ean.name + (ean.model ? ' - ' + ean.model : '') }}
-                        </option>
-                      </select>
-                    </div>
+
+                    <select class="form-select form-select-sm selector " data-control="select2"
+                            data-allow-clear="true" data-placeholder="Selecciona o artigo" id="selectedProduct">
+                      <option></option>
+                      <option [value]="ean|json" *ngFor="let ean of listArticle|async">
+                        {{(ean.ean ? ean.ean + ' - ' : '') + ean.name + (ean.model ? ' - ' + ean.model : '') }}
+                      </option>
+                    </select>
+
 
                   </div>
                   <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -267,11 +267,11 @@
     <div class="col-12 mt-2 mb-4 position-fixed fixed-bottom " style="bottom: 2px; left: -35px; z-index: 130">
       <div class="input-group text-right justify-content-end">
 
-        <button type="button" class="btn btn-sm btn-success btn-sm" *ngIf="listItems"
+        <button type="button" class="btn btn-sm btn-success btn-sm" *ngIf="!this.btnSend"
                 (click)="save()">
           {{ this.util.SAVE_TEXT }}
         </button>
-        <button type="button" class="btn btn-sm btn-success btn-sm" *ngIf="!listItems"
+        <button type="button" class="btn btn-sm btn-success btn-sm" *ngIf="this.btnSend"
                 (click)="save()" disabled>
 
           {{ this.util.SAVE_TEXT }}

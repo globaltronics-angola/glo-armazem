@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, NgZone} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-wdget-storage',
@@ -7,5 +8,8 @@ import { Component } from '@angular/core';
   ]
 })
 export class WdgetStorageComponent {
+
+  constructor( private ngZone: NgZone, private router: Router) {
+  }
 
 }

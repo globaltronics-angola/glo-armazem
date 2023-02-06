@@ -136,7 +136,7 @@ export default class ServicePrintMove {
         },
         span: {
           fontSize: 8,
-          alignment: 'justify',
+
           color: '#E6B0AA'
         },
         table: {
@@ -144,7 +144,7 @@ export default class ServicePrintMove {
         },
         all: {
           fontSize: 8,
-          alignment: 'justify',
+
           color: '#515A5A'
         },
         allEnd: {
@@ -316,7 +316,7 @@ export default class ServicePrintMove {
         },
         span: {
           fontSize: 8,
-          alignment: 'justify',
+
           color: '#E6B0AA'
         },
         table: {
@@ -324,7 +324,7 @@ export default class ServicePrintMove {
         },
         all: {
           fontSize: 8,
-          alignment: 'justify',
+
           color: '#515A5A'
         },
         allEnd: {
@@ -484,7 +484,7 @@ export default class ServicePrintMove {
         },
         span: {
           fontSize: 8,
-          alignment: 'justify',
+
           color: '#E6B0AA'
         },
         table: {
@@ -492,7 +492,7 @@ export default class ServicePrintMove {
         },
         all: {
           fontSize: 8,
-          alignment: 'justify',
+
           color: '#515A5A'
         },
         allEnd: {
@@ -640,7 +640,7 @@ export default class ServicePrintMove {
         },
         span: {
           fontSize: 8,
-          alignment: 'justify',
+
           color: '#E6B0AA'
         },
         table: {
@@ -648,7 +648,7 @@ export default class ServicePrintMove {
         },
         all: {
           fontSize: 8,
-          alignment: 'justify',
+
           color: '#515A5A'
         },
         allEnd: {
@@ -811,7 +811,7 @@ export default class ServicePrintMove {
         },
         span: {
           fontSize: 8,
-          alignment: 'justify',
+
           color: '#E6B0AA'
         },
         table: {
@@ -819,7 +819,7 @@ export default class ServicePrintMove {
         },
         all: {
           fontSize: 8,
-          alignment: 'justify',
+
           color: '#515A5A'
         },
         allEnd: {
@@ -968,7 +968,7 @@ export default class ServicePrintMove {
         },
         span: {
           fontSize: 8,
-          alignment: 'justify',
+
           color: '#E6B0AA'
         },
         table: {
@@ -976,7 +976,7 @@ export default class ServicePrintMove {
         },
         all: {
           fontSize: 8,
-          alignment: 'justify',
+
           color: '#515A5A'
         },
         allEnd: {

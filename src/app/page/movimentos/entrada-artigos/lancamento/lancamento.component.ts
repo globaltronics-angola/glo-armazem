@@ -178,7 +178,7 @@ export class LancamentoComponent implements OnInit {
         },
         span: {
           fontSize: 8,
-          alignment: 'justify',
+
           color: '#E6B0AA'
         },
         table: {
@@ -186,7 +186,7 @@ export class LancamentoComponent implements OnInit {
         },
         all: {
           fontSize: 8.5,
-          alignment: 'justify',
+
           color: '#515A5A'
         },
         allEnd: {

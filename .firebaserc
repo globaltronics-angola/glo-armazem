@@ -4,7 +4,8 @@
     "default": "global-tronic-storage-18502",
     "globaltronics": "global-tronic-storage-18502",
     "global": "global-tronic-storage-18502",
-    "global-tronic-storage": "global-tronic-storage-18502"
+    "global-tronic-storage": "global-tronic-storage-18502",
+    "Global Tronic": "global-tronic-storage-18502"
   },
   "targets": {},
   "etags": {}

@@ -145,7 +145,7 @@ export class TabelaTransferenciasComponent {
         },
         span: {
           fontSize: 8,
-          alignment: 'justify',
+
           color: '#E6B0AA'
         },
         table: {
@@ -153,7 +153,7 @@ export class TabelaTransferenciasComponent {
         },
         all: {
           fontSize: 8.5,
-          alignment: 'justify',
+
           color: '#515A5A'
         },
         allEnd: {

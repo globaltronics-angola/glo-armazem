@@ -56,7 +56,7 @@ export default class ServiceArticles {
     return this.store.getCounterInfo(ServiceArticles.STORAGE_ARTICLES);
   }
 
-  save(): void {
+  save() {
 
     if (!this.Article.updated_mode) {
       this.Article.id = this.store.getId().toUpperCase();
@@ -68,14 +68,16 @@ export default class ServiceArticles {
 
     this.store.createdForceGenerateId(this.Article, ServiceArticles.STORAGE_ARTICLES)
       .then(
-        () => {
+        (e) => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS)
+
         },
         err => {
           this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)
         }
       )
 
+    return this.Article;
   }
 
 

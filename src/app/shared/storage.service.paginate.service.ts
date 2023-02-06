@@ -51,7 +51,7 @@ export class StorageServicePaginateService {
   private listData: Observable<any> | undefined;
   private readonly reference: CollectionReference;
 
-  public offset: number = 10;
+  public offset: number = 29;
   public listDataArray: any[] = [];
   public prevKeys: any[] = [];
   public awaitingProcess: boolean = true;

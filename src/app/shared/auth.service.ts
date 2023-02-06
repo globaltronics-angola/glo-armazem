@@ -8,6 +8,8 @@ import {firstValueFrom} from "rxjs"
 import {StorageService} from "./storage.service";
 import {StorageValidateAnyService} from "./storage.validate.any.service";
 import ServiceUsers from "../Services/ServiceUsers";
+import firebase from "firebase/compat";
+import User = firebase.User;
 
 
 @Injectable({
@@ -20,6 +22,8 @@ export class AuthService {
   private serviceU: StorageValidateAnyService;
   private window = (<any>window);
   store: any
+  public usersLis: any;
+  public userCount: number = 0;
 
   constructor(private ngZone: NgZone, private fireAuth: AngularFireAuth,
               private router: Router, private fs: AngularFirestore) {
@@ -27,6 +31,8 @@ export class AuthService {
     let userInfo = sessionStorage.getItem('_user') as string
     if (userInfo != '')
       this.user = JSON.parse(userInfo);
+
+    this.listUsers()
 
     this.store = new StorageService(this.fs);
     this.serviceU = new StorageValidateAnyService(this.store, 'users');
@@ -53,6 +59,7 @@ export class AuthService {
 
               localStorage.setItem('token', resp.user?.refreshToken);
               sessionStorage.setItem('_user', JSON.stringify(as));
+              this.user = as;
               this.router.navigate(['/']).then();
               (<any>window).sentMessageSuccess.init("Bem vindo ao sistema")
 
@@ -95,6 +102,7 @@ export class AuthService {
     this.fireAuth.signOut().then(
       () => {
         this.router.navigate(['/auth/sign-in']).then()
+        sessionStorage.setItem('_user', "");
       },
       err => {
       }
@@ -204,6 +212,12 @@ export class AuthService {
     }
   }
 
+
+  listUsers() {
+    this.fireAuth.authState.subscribe((users: User | null) => {
+      this.usersLis = users;
+    });
+  }
 
 }
 

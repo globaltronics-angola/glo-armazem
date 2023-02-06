@@ -29,15 +29,15 @@
     "local": ""
   },
   {
-    "category": "Camera",
-    "name": "Camera da Bosch",
+    "category": "Câmara",
+    "name": "Câmara da Bosch",
     "model": "",
     "qt": "2",
     "local": ""
   },
   {
-    "category": "Camera",
-    "name": "Camera Prolaine",
+    "category": "Câmara",
+    "name": "Câmara Prolaine",
     "model": "PR-7537IR",
     "qt": "2",
     "local": ""

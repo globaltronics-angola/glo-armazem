@@ -11,6 +11,11 @@ import _ from "lodash";
 import ServiceUtil from "../../../Services/ServiceUtil";
 import moment from "moment";
 
+// @ts-ignore
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
+import {FileWriteService} from "../../../shared/file-write.service";
+
 
 @Component({
   selector: 'app-inserindo-dados',
@@ -31,7 +36,7 @@ export class InserindoDadosComponent implements OnInit, PipeTransform {
   private listItems: any[];
 
 
-  constructor(private store: StorageService, private http: HttpClient) {
+  constructor(private store: StorageService, private http: HttpClient, private filewrite: FileWriteService) {
 
     this.listStorage = new ServiceStorage(this.store).findAll();
     this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull()
@@ -39,58 +44,114 @@ export class InserindoDadosComponent implements OnInit, PipeTransform {
 
   ngOnInit(): void {
     this.initJQuerysFunctions()
+
   }
 
   public async dataRow(attr: any, index: number) {
+    try {
+      let data: any = {
+        'category_id': [attr.category],
+        'name': attr.name,
+        'model': attr.model,
+        deleted_at: "NULL"
+      }
+
+      const key = attr.category.toUpperCase().replace(" ", "-").replace(" ", "-").replace(" ", "-")
+        + attr.name.toUpperCase().replace(" ", "-").replace(" ", "-").replace(" ", "-")
+        + attr.model.toUpperCase().replace(" ", "-").replace(" ", "-").replace(" ", "-");
+
+      data.key = this.transform(key);
+
+      data.id = this.store.getId();
+      let articleCreated: any = data;
+      let articleArr: any[] = await this.store.findByOther(ServiceArticles.STORAGE_ARTICLES, 'key', data.key);
+      if (articleArr.length > 0) {
+        articleCreated = articleArr[0]
+      }
+
+      if (!articleCreated.created_at) {
+        let serviceArticle = new ServiceArticles(this.store)
+        serviceArticle.Article = data;
+        articleCreated = await serviceArticle.save();
+      }
 
 
-    let data: any = {
-      'category_id': [attr.category],
-      'name': attr.name,
-      'model': attr.model,
-      deleted_at: "NULL"
+      let movementItem = new ServiceMovimentoItems(this.store);
+
+      movementItem.oItem.article = JSON.stringify(articleCreated);
+      movementItem.oItem.articleId = articleCreated?.id;
+      movementItem.oItem.articleName = articleCreated?.name;
+      movementItem.oItem.quantity = attr.qt;
+      movementItem.oItem.localStorage = attr.localStorage;
+      movementItem.oItem.localAmbry = attr.localAmbry;
+      movementItem.oItem.localShelf = attr.localShelf;
+      movementItem.oItem.moveType = this.TYPE_MOVEMENT;
+      movementItem.oItem.dateOfPurchase = moment().format('DD, MM YYYY');
+      movementItem.oItem.index = index
+
+      movementItem.oItem.move = ServiceUtil.VALUE_AT_NULLABLE
+      movementItem.oItem.move_id = ServiceUtil.VALUE_AT_NULLABLE
+
+      await movementItem.save();
+      this.readJson()
+    } catch (e) {
+      this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR + 'Tenta novamente')
     }
 
-    const key = attr.category.toUpperCase().replace(" ", "-").replace(" ", "-").replace(" ", "-")
-      + attr.name.toUpperCase().replace(" ", "-").replace(" ", "-").replace(" ", "-")
-      + attr.model.toUpperCase().replace(" ", "-").replace(" ", "-").replace(" ", "-");
+  }
 
-    data.key = this.transform(key);
+   saveall() {
+     this.arrayData.forEach(async (attr: any, index: number) => {
+      try {
+        let data: any = {
+          'category_id': [attr.category],
+          'name': attr.name,
+          'model': attr.model,
+          deleted_at: "NULL"
+        }
 
-    data.id = this.store.getId();
-    let articleCreated: any = data;
-    let articleArr: any[] = await this.store.findByOther(ServiceArticles.STORAGE_ARTICLES, 'key', data.key);
-    if (articleArr.length > 0) {
-      articleCreated = articleArr[0]
-    }
+        const key = attr.category.toUpperCase().replace(" ", "-").replace(" ", "-").replace(" ", "-")
+          + attr.name.toUpperCase().replace(" ", "-").replace(" ", "-").replace(" ", "-")
+          + attr.model.toUpperCase().replace(" ", "-").replace(" ", "-").replace(" ", "-");
 
-    if (!articleCreated.created_at) {
-      let serviceArticle = new ServiceArticles(this.store)
-      serviceArticle.Article = data;
-      await serviceArticle.save();
-    }
+        data.key = this.transform(key);
 
+        data.id = this.store.getId();
+        let articleCreated: any = data;
+        let articleArr: any[] = await this.store.findByOther(ServiceArticles.STORAGE_ARTICLES, 'key', data.key);
+        if (articleArr.length > 0) {
+          articleCreated = articleArr[0]
+        }
 
-    let movementItem = new ServiceMovimentoItems(this.store);
-
-    movementItem.oItem.article = JSON.stringify(articleCreated);
-    movementItem.oItem.articleId = articleCreated?.id;
-    movementItem.oItem.articleName = articleCreated?.name;
-    movementItem.oItem.quantity = attr.qt;
-    movementItem.oItem.localStorage = attr.localStorage;
-    movementItem.oItem.localAmbry = attr.localAmbry;
-    movementItem.oItem.localShelf = attr.localShelf;
-    movementItem.oItem.moveType = this.TYPE_MOVEMENT;
-    movementItem.oItem.dateOfPurchase = moment().format('DD, MM YYYY');
-    movementItem.oItem.index = index
-
-    movementItem.oItem.move = ServiceUtil.VALUE_AT_NULLABLE
-    movementItem.oItem.move_id = ServiceUtil.VALUE_AT_NULLABLE
-
-    await movementItem.save();
-    this.arrayData.splice(index, 1);
+        if (!articleCreated.created_at) {
+          let serviceArticle = new ServiceArticles(this.store)
+          serviceArticle.Article = data;
+          articleCreated = await serviceArticle.save();
+        }
 
 
+        let movementItem = new ServiceMovimentoItems(this.store);
+
+        movementItem.oItem.article = JSON.stringify(articleCreated);
+        movementItem.oItem.articleId = articleCreated?.id;
+        movementItem.oItem.articleName = articleCreated?.name;
+        movementItem.oItem.quantity = attr.qt;
+        movementItem.oItem.localStorage = attr.localStorage;
+        movementItem.oItem.localAmbry = attr.localAmbry;
+        movementItem.oItem.localShelf = attr.localShelf;
+        movementItem.oItem.moveType = this.TYPE_MOVEMENT;
+        movementItem.oItem.dateOfPurchase = moment().format('DD, MM YYYY');
+        movementItem.oItem.index = index
+
+        movementItem.oItem.move = ServiceUtil.VALUE_AT_NULLABLE
+        movementItem.oItem.move_id = ServiceUtil.VALUE_AT_NULLABLE
+
+        await movementItem.save();
+        this.readJson()
+      } catch (e) {
+        this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR + 'Tenta novamente')
+      }
+    })
   }
 
 
@@ -168,6 +229,69 @@ export class InserindoDadosComponent implements OnInit, PipeTransform {
     };
     reader.readAsText(this.selectedFile);
 
+  }
+
+  downloadXLSX() {
+
+    /* data deve ser um objeto JavaScript ou array e filename é o nome do arquivo a ser baixado */
+    const ws = XLSX.utils.json_to_sheet(this.arrayData.map((a: any) => {
+      let data: any = {}
+      data.Categoria = a.category
+      data.Nome = a.name
+      data.Modelo = a.model
+      data.Quantidade = a.qt
+      data.Armazem = a.localStorage ? JSON.parse(a.localStorage).name : '';
+      data.Armario = a.localAmbry ? JSON.parse(a.localAmbry).ambry.name : '';
+      data.Prateleira = a.localShelf ? JSON.parse(a.localShelf).name : '';
+      data.Data = moment().format('DD, MM YYYY');
+      return data;
+    }));
+    const wb = XLSX.utils.book_new();
+
+    /*const headerRow = Object.keys(this.arrayData[0]);
+    headerRow.forEach((header, index) => {
+      const cell = XLSX.utils.encode_cell({c: index, r: 0});
+      ws[cell] = {
+        v: header.toUpperCase(),
+        s: {
+          font: {sz: 14, bold: true},
+          fill: {bgColor: {rgb: "00FF0000"}},
+          width: '150px'
+        }
+      };
+    });*/
+
+    XLSX.utils.book_append_sheet(wb, ws, "Primeira folha");
+
+    XLSX.writeFile(wb, 'Artigos.xlsx');
+  }
+
+  onFileChange(ev: any) {
+    let workBook: any = null;
+    let jsonData: any = null;
+    const reader = new FileReader();
+    const file = ev.target.files[0];
+    reader.onload = (event) => {
+      const data = reader.result;
+      workBook = XLSX.read(data, {type: 'binary'});
+      jsonData = workBook.SheetNames.reduce((initial: any, name: any) => {
+        const sheet = workBook.Sheets[name];
+        initial[name] = XLSX.utils.sheet_to_json(sheet);
+        return initial;
+      }, {});
+
+      this.arrayData = jsonData['Primeira folha'].map((a: any) => {
+        let dataInfo: any = {}
+        dataInfo.category = a.Categoria
+        dataInfo.name = a.Nome
+        dataInfo.model = a.Modelo
+        dataInfo.qt = a.Quantidade
+
+        return dataInfo;
+      });
+      this.initJQuerysFunctions()
+    };
+    reader.readAsBinaryString(file);
   }
 
   otherContext() {

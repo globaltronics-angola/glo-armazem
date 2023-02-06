@@ -32,6 +32,7 @@ export class ArmazemFormGeralComponent implements OnInit {
   private currentIdAmbry: number = -1;
   private prateleira: any;
   private adressInfo: string = ""
+  private shelfTemporal: any[] = [];
 
   constructor(private store: StorageService, private route: ActivatedRoute) {
     this.serviceStorage = new ServiceStorage(this.store);
@@ -88,7 +89,7 @@ export class ArmazemFormGeralComponent implements OnInit {
     if (this.route.snapshot.paramMap.get('information')) {
 
       this.serviceStorage.IObjectClass = this.util.requestDataInfo(this.route)
-      this.window.$("#address").val(this.serviceStorage.IObjectClass.address);
+      this.window.$("#addressInfor").val(this.serviceStorage.IObjectClass.address);
 
       this.listArmariaShelf = this.serviceStorage.IObjectClass.ambry
       /*this.window.$("#phoneNumbers").val(this.serviceStorage.IObjectClass.phoneNumber);
@@ -122,12 +123,20 @@ export class ArmazemFormGeralComponent implements OnInit {
             })
           }
           this.listArmariaShelf.push(shelf)
+
         } else {
           let temp = this.listArmariaShelf[this.currentIdAmbry]
           temp.ambry.name = this.ambry;
 
           this.shelf.forEach((ad: string, index: number) => {
-            temp.shelf[index].name = ad
+            if (temp.shelf[index]?.id) {
+              temp.shelf[index].name = ad
+            } else {
+              temp.shelf[index] = {
+                id: this.store.getId().toUpperCase(),
+                name: ad
+              }
+            }
           })
 
 
@@ -167,6 +176,7 @@ export class ArmazemFormGeralComponent implements OnInit {
     let i = this.listArmariaShelf.indexOf(a)
     this.currentIdAmbry = i;
     this.ambry = a.ambry?.name
+    this.shelfTemporal = a.shelf;
     this.window.$("#shelf").change()
     setTimeout(() => {
       this.window.$('#shelf').val(a.shelf.map((e: any) => {

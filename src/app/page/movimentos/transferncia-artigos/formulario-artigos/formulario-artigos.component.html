@@ -62,7 +62,7 @@
             <span class="required">Armazém inicial</span>
           </label>
           <!--end::Label-->
-          <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
+          <select class="form-select form-select-sm" data-control="select2" data-allow-clear="true"
                   data-placeholder="Selecciona o armazém" id="selectStorage">
             <option></option>
             <option [value]="item|json" *ngFor="let item of listSorage|async">
@@ -83,7 +83,7 @@
           <div class="input-group input-group-sm input-group-solid flex-nowrap">
             <!--end::Label-->
             <div class="overflow-hidden flex-grow-1">
-              <select class="form-select form-select-sm selector" data-control="select2"
+              <select class="form-select form-select-sm " data-control="select2"
                       data-allow-clear="true" data-placeholder="Selecciona o artigo" id="selectedArticle23"
                       #selectedProduct>
                 <option></option>
@@ -148,7 +148,7 @@
             <span class="required">2º Armazem</span>
           </label>
           <!--end::Label-->
-          <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
+          <select class="form-select form-select-sm " data-control="select2" data-allow-clear="true"
                   data-placeholder="Selecciona o armazém" id="selectedStorageTo">
             <option></option>
             <option [value]="item|json" *ngFor="let item of listSorage|async">
@@ -167,7 +167,7 @@
             <span class="">2º Armário</span>
           </label>
           <!--end::Label-->
-          <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
+          <select class="form-select form-select-sm " data-control="select2" data-allow-clear="true"
                   data-placeholder="Selecciona o armário" id="selectedArmario">
             <option></option>
             <option [value]="armario|json" *ngFor="let armario of this.listArmarios">
@@ -184,7 +184,7 @@
             <span class="">2º Prateleira</span>
           </label>
           <!--end::Label-->
-          <select class="form-select form-select-sm selector" data-control="select2" data-allow-clear="true"
+          <select class="form-select form-select-sm " data-control="select2" data-allow-clear="true"
                   data-placeholder="Selecciona a prateleira" id="selectedPrateleira">
             <option></option>
             <option [value]="pro|json" *ngFor="let pro of listShelf">

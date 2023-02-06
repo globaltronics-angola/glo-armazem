@@ -29,10 +29,8 @@ export class MainAppComponent implements OnInit {
   }
 
   async ngOnInit() {
-
     this.window.InstanceAplication.init()
     this.photoUrl = await this.user.photoURL
-
   }
 
 

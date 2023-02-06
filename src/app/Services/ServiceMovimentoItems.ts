@@ -81,16 +81,18 @@ export default class ServiceMovimentoItems {
       await al.save().then()
     }
 
-
-    this.store.createdForceGenerateId(this.oItem, ServiceMovimentoItems.STORAGE_NAME)
-      .then(() => {
-          this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS);
-          this.oItem.id = this.store.getId();
-        },
-        err => {
-          this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)
-        })
-
+    try {
+      this.store.createdForceGenerateId(this.oItem, ServiceMovimentoItems.STORAGE_NAME)
+        .then(() => {
+            this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_SUCCESS);
+            this.oItem.id = this.store.getId();
+          },
+          err => {
+            this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR)
+          })
+    } catch (e) {
+      this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR + 'Tenta novamente')
+    }
 
   }
 

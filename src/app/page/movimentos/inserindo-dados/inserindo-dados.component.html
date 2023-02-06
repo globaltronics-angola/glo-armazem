@@ -1,100 +1,93 @@
-<div class="row overflow-auto">
+<div class="row overflow-hidden">
   <div class="row p-0">
     <div class="col-auto">
-      <input type="file" class="form-control form-control-sm" (change)="onFileSelected($event)">
+      <label class="fs-8">Selecione JSON:</label>
+      <input type="file" class="form-control form-control-sm" placeholder="Insere ficheiro json"
+             (change)="onFileSelected($event)">
+    </div>
+    <div class="col-auto">
+      <label class="fs-8">Selecione XLSX:</label>
+      <input type="file" class="form-control form-control-sm" aria-labelledby="file-label"
+             (change)="onFileChange($event)">
+    </div>
+    <div class="col-auto">
+      <label class="fs-8">&nbsp;</label>
+      <button type="button" class="btn btn-sm btn-light-primary w-100" (click)="downloadXLSX()">Exportar XLS</button>
+    </div>
+    <div class="col-auto">
+      <label class="fs-8">&nbsp;</label>
+      <button type="button" class="btn btn-sm btn-success w-100" (click)="saveall();">Envia E. Dados</button>
     </div>
 
   </div>
-  <table id="kt_datatable_both_scrolls" class="table table-striped table-row-bordered gy-2 gs-7">
-    <thead class="text-uppercase fw-bold bg-light-primary">
-    <tr class="fs-6 text-gray-800">
-      <th class="min-w-200px">Categoria</th>
-      <th class="min-w-200px">Nome</th>
-      <th class="min-w-200px">Modelo</th>
-      <th class="min-w-200px">Quantidade</th>
-      <th class="min-w-200px">Armazem</th>
-      <th class="min-w-200px">Armario</th>
-      <th class="min-w-200px">Prateleira</th>
-      <th class="min-w-100px"></th>
-    </tr>
-    </thead>
-    <tbody>
+  <div style="max-height:550px!important; overflow-y:scroll; height:550px!important;" class="p-0 m-0 my-5 ">
+    <table id="kt_datatable_both_scrolls" class="table table-striped table-row-bordered gy-2 gs-7 ">
+      <thead class="text-uppercase fw-bold bg-light-primary" style="position:sticky; top:0; z-index: 999">
+      <tr class="fs-6 text-gray-800 bg-light-primary">
+        <th class="min-w-200px bg-light-primary">Categoria</th>
+        <th class="min-w-200px bg-light-primary">Nome</th>
+        <th class="min-w-200px bg-light-primary">Modelo</th>
+        <th class="min-w-auto bg-light-primary">Quantidade</th>
+        <th class="min-w-200px bg-light-primary">Armazem</th>
+        <th class="min-w-200px bg-light-primary">Armario</th>
+        <th class="min-w-200px bg-light-primary">Prateleira</th>
+        <th class="min-w-100px bg-light-primary"></th>
+      </tr>
+      </thead>
+      <tbody>
 
-    <tr *ngFor="let mov of this.arrayData; let index = index" class="tableViews">
-      <td contenteditable="true">
-        <input type="text" class="form-control form-control-sm rounded-end-0"
-               [(ngModel)]="mov.category" [value]="mov.category" name="category">
-      </td>
-      <td contenteditable="true">
-        <input type="text" class="form-control form-control-sm rounded-end-0"
-               [(ngModel)]="mov.name" [value]="mov.name" name="name">
-      </td>
-      <td contenteditable="true">
-        <input type="text" class="form-control form-control-sm rounded-end-0"
-               [(ngModel)]="mov.model" [value]="mov.model" name="model">
-      </td>
-      <td contenteditable="true">
-        <input type="text" class="form-control form-control-sm rounded-end-0"
-               [(ngModel)]="mov.qt" [value]="mov.qt" name="qt">
-      </td>
-      <td>
-        <select class="form-select form-select-sm selector" [value]="mov.localStorage"
-                [id]="'select'+ index" data-control="select2" name="armazem"
-                data-hide-search="true" data-allow-clear="true" [attr.data-attribute]="mov.armazem"
-                data-placeholder="Selecciona o armazém">
-          <option></option>
-          <option [value]="i|json" *ngFor="let i of this.listStorage|async">{{ i.name }}</option>
-        </select>
-      </td>
-      <td>
-        <select class="form-select form-select-sm selector" [id]="'armario'+ index"
-                data-control="select2" data-hide-search="true"
-                data-allow-clear="true" data-placeholder="Selecciona o armazém">
-          <option value=""></option>
-          <option [value]="i|json" *ngFor="let i of this.listArmarios[index]">{{ i.ambry.name }}</option>
-        </select>
-      </td>
-      <td>
+      <tr *ngFor="let mov of this.arrayData; let index = index" class="tableViews">
+        <td contenteditable="true">
+          <input type="text" class="form-control form-control-sm form-control-transparent"
+                 [(ngModel)]="mov.category" [value]="mov.category" name="category">
+        </td>
+        <td contenteditable="true">
+          <input type="text" class="form-control form-control-sm form-control-transparent"
+                 [(ngModel)]="mov.name" [value]="mov.name" name="name">
+        </td>
+        <td contenteditable="true">
+          <input type="text" class="form-control form-control-sm form-control-transparent"
+                 [(ngModel)]="mov.model" [value]="mov.model" name="model">
+        </td>
+        <td contenteditable="true">
+          <input type="text" class="form-control form-control-sm form-control-transparent"
+                 [(ngModel)]="mov.qt" [value]="mov.qt" name="qt">
+        </td>
+        <td>
+          <select class="form-select form-select-sm selector form-select-transparent" [value]="mov.localStorage"
+                  [id]="'select'+ index" data-control="select2" name="armazem"
+                  data-hide-search="true" data-allow-clear="true" [attr.data-attribute]="mov.armazem"
+                  data-placeholder="Selecciona o armazém">
+            <option></option>
+            <option [value]="i|json" *ngFor="let i of this.listStorage|async">{{ i.name }}</option>
+          </select>
+        </td>
+        <td>
+          <select class="form-select form-select-sm selector form-select-transparent" [id]="'armario'+ index"
+                  data-control="select2" data-hide-search="true"
+                  data-allow-clear="true" data-placeholder="Selecciona o Armário">
+            <option value=""></option>
+            <option [value]="i|json" *ngFor="let i of this.listArmarios[index]">{{ i.ambry.name }}</option>
+          </select>
+        </td>
+        <td>
 
-        <select class="form-select form-select-sm selector" [id]="'prate'+ index"
-                data-control="select2" data-hide-search="true"
-                data-allow-clear="true" data-placeholder="Selecciona o armazém">
-          <option value=""></option>
-          <option [value]="i|json" *ngFor="let i of this.listShelf[index]">{{ i.name }}</option>
-        </select>
+          <select class="form-select form-select-sm selector form-select-transparent" [id]="'prate'+ index"
+                  data-control="select2" data-hide-search="true"
+                  data-allow-clear="true" data-placeholder="Selecciona o Prateleira">
+            <option value=""></option>
+            <option [value]="i|json" *ngFor="let i of this.listShelf[index]">{{ i.name }}</option>
+          </select>
 
-      </td>
-      <td class="text-end min-w-125px">
-        <button type="button" (click)="dataRow(mov, index)"
-                class="btn btn-icon cursor-pointer btn-sm btn-light-success btn-active-success w-25px h-25px">
-          <span class="svg-icon"> <i class="fa fa-check"></i> </span>
-        </button>
-      </td>
-    </tr>
-
-    <!-- <tr class="border-bottom  border-gray-150 fs-5 gy-1" *ngFor="let mov of this.dataGeted"
-      style="vertical-align: top; ">
-    <td class="min-w-100px d-none d-lg-table-cell" style="max-width: 140px!important; min-width: 140px!important;">
-      <span class="text-hover-primary">{{ mov.created_at }}</span>
-    </td>
-
-    <td style="max-width: 80px!important; min-width: 80px!important; width:80px ; font-weight: lighter;">
-      <a href="">{{ mov.docRef }}</a>
-    </td>
-
-    <td class="text-end">
-      {{ mov.financialCostTotal + ' KZ' }}
-    </td>
-    <td class="d-none d-lg-table-cell" style="max-width:320px!important;">
-      <div
-        style=" width: 90%; display: inline-block; white-space: nowrap; overflow: hidden;
-       text-overflow: ellipsis; direction: ltr; max-width:1010px!important;">
-        {{ mov.details}}&nbsp;
-      </div>
-    </td>
-
-  </tr> -->
-
-    </tbody>
-  </table>
+        </td>
+        <td class="text-end min-w-125px">
+          <button type="button" (click)="dataRow(mov, index)"
+                  class="btn btn-icon cursor-pointer btn-sm btn-light-success btn-active-success w-25px h-25px">
+            <span class="svg-icon"> <i class="fa fa-check"></i> </span>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

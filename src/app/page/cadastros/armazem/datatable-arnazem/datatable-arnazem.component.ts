@@ -192,7 +192,7 @@ export class DatatableArnazemComponent implements OnInit {
           },
           span: {
             fontSize: 8,
-            alignment: 'justify',
+
             color: '#E6B0AA'
           },
           table: {
@@ -200,12 +200,12 @@ export class DatatableArnazemComponent implements OnInit {
           },
           all: {
             fontSize: 8,
-            alignment: 'justify',
+
             color: '#515A5A'
           },
           allInterno: {
             fontSize: 8,
-            alignment: 'justify',
+
             color: '#515A5A',
           }
           , allR: {

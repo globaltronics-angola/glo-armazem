@@ -151,7 +151,7 @@ export class InfoArmazemComponent implements OnInit, OnDestroy {
         },
         span: {
           fontSize: 11,
-          alignment: 'justify',
+
           color: '#E6B0AA'
         },
         table: {
@@ -159,12 +159,12 @@ export class InfoArmazemComponent implements OnInit, OnDestroy {
         },
         all: {
           fontSize: 11,
-          alignment: 'justify',
+
           color: '#515A5A'
         },
         allInterno: {
           fontSize: 11,
-          alignment: 'justify',
+
           color: '#515A5A',
         }
         , allR: {

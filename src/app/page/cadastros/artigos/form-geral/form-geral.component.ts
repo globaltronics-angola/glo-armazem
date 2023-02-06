@@ -114,8 +114,9 @@ export class FormGeralComponent implements OnInit, OnDestroy {
 
       setTimeout(() => {
 
-        this.article.save();
         this.article.Article.updated_mode = true;
+
+        this.article.save();
 
         this.flag = true;
       }, 2000);

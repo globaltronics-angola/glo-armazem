@@ -1,22 +1,27 @@
-
-
 [
   {
-    "category": "Camera",
+    "category": "Câmara",
     "name": "Biometrico Digital de segurança",
     "model": "BD-6322",
     "qt": "3 ",
     "local": ""
   },
   {
-    "category": "Camera",
+    "category": "Câmara",
+    "name": "Biometrico Digital de segurança",
+    "model": "BD-6322",
+    "qt": "3 ",
+    "local": ""
+  },
+  {
+    "category": "Câmara",
     "name": "Biometrico Digital de segurança",
     "model": "BD-6322",
     "qt": "1",
     "local": ""
   },
   {
-    "category": "Camera",
+    "category": "Câmara",
     "name": "Proline UK",
     "model": "PR 7636",
     "qt": "2",
@@ -30,7 +35,7 @@
     "local": ""
   },
   {
-    "category": "cabo de áudio",
+    "category": "Cabo de áudio",
     "name": "Dap audio 09 20",
     "model": "",
     "qt": "1",
@@ -65,15 +70,15 @@
     "local": ""
   },
   {
-    "category": "consola",
+    "category": "Consola",
     "name": "16 channel lighting desk SM 8/2",
     "model": "SM 8/2 50700",
     "qt": "1",
     "local": ""
   },
   {
-    "category": "chaves 6° varas",
-    "name": "Varas industriais",
+    "category": "Chaves",
+    "name": "6° Varas industriais",
     "model": "",
     "qt": "2",
     "local": ""

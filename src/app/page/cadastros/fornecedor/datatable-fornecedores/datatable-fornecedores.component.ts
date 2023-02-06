@@ -150,7 +150,7 @@ export class DatatableFornecedoresComponent implements OnInit {
           },
           span: {
             fontSize: 11,
-            alignment: 'justify',
+
             color: '#E6B0AA'
           },
           table: {
@@ -158,7 +158,7 @@ export class DatatableFornecedoresComponent implements OnInit {
           },
           all: {
             fontSize: 11,
-            alignment: 'justify',
+
             color: '#515A5A'
           },
           header: {

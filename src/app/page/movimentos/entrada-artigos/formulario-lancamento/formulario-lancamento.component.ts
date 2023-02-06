@@ -19,6 +19,7 @@ import * as pdfMake from "pdfmake";
 import ServicePrintMove from "../../../../Services/ServicePrintMove";
 import {StorageValidateAnyService} from "../../../../shared/storage.validate.any.service";
 import {StorageServicePaginateService} from "../../../../shared/storage.service.paginate.service";
+import {collection, getFirestore, onSnapshot, query, QueryConstraint, where} from "@angular/fire/firestore";
 
 
 @Component({
@@ -52,6 +53,8 @@ export class FormularioLancamentoComponent implements OnInit {
   private validateAny: StorageValidateAnyService;
   public dataSelect: any[] = []
   public btnSend: boolean = false
+
+  tempArticles: any[] = [];
 
   printerPdf() {
     this.window.print();
@@ -178,7 +181,6 @@ export class FormularioLancamentoComponent implements OnInit {
       await this.window.$(document).ready(async ($: any) => {
 
 
-
         this.listArmarios = attr.localStorage ? await JSON.parse(attr.localStorage)?.ambry : []
         this.listShelf = attr.localAmbry ? await JSON.parse(attr.localAmbry)?.shelf : []
 
@@ -193,7 +195,7 @@ export class FormularioLancamentoComponent implements OnInit {
           $('#selectedPrateleira').val(attr.localShelf).select2({minimumResultsForSearch: -1}).change();
         }, 2000);
 
-        this.item.oItem =  attr;
+        this.item.oItem = attr;
         this.item.oItem.updated_mode = true
         console.log(this.item.oItem);
       });
@@ -235,6 +237,7 @@ export class FormularioLancamentoComponent implements OnInit {
     this.window.$('#selectedCountry').select2().on('change', (e: any) => {
       this.item.oItem.localCurrency = e.target.value
     })
+
 
 
     this.window.$('#selectedProduct').select2()

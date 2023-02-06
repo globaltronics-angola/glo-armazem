@@ -292,7 +292,7 @@ export class DataTablesComponent implements OnInit, OnDestroy {
           },
           span: {
             fontSize: 9,
-            alignment: 'justify',
+            
             color: '#E6B0AA'
           },
           table: {
@@ -300,7 +300,7 @@ export class DataTablesComponent implements OnInit, OnDestroy {
           },
           all: {
             fontSize: 9,
-            alignment: 'justify',
+            
             color: '#515A5A'
           },
           header: {

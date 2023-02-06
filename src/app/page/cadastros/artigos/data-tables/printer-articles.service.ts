@@ -20,7 +20,9 @@ export class PrinterArticlesService {
 
 
   pdfGenerator() {
-    firstValueFrom(this.Article.findAll()).then((a: any[]) => {
+    firstValueFrom(this.Article.findAll()).then(
+
+      (a: any[]) => {
       let highchartSvg = ServiceUtil.IconGlo;
 
       let content = [
@@ -105,7 +107,7 @@ export class PrinterArticlesService {
           },
           span: {
             fontSize: 9,
-            alignment: 'justify',
+
             color: '#E6B0AA'
           },
           table: {
@@ -113,7 +115,7 @@ export class PrinterArticlesService {
           },
           all: {
             fontSize: 9,
-            alignment: 'justify',
+
             color: '#515A5A'
           },
           header: {
@@ -138,6 +140,8 @@ export class PrinterArticlesService {
       pdf.download('article' + moment().format('DD_MM_YYYY_HH_mm_ss') + "");
 
 
-    })
+    }
+
+    )
   }
 }

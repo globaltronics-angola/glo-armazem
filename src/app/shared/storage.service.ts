@@ -153,6 +153,22 @@ export class StorageService {
     return list;
   }
 
+  async findByOtherTo(collect: string, nameField: string = "", context: string = "") {
+    const dataStore = this.afs.firestore;
+    let list: any[] = []
+    await dataStore.collection('/' + collect)
+      .where(nameField, "==", context)
+      .get()
+      .then(snap => {
+        snap.forEach(doc => {
+          list.push(doc.data())
+          return doc.data();
+        });
+      });
+
+    return list;
+  }
+
   async findOther(collect: string) {
     const dataStore = this.afs.firestore;
     let list: any[] = []
