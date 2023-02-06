@@ -184,7 +184,7 @@ export class FormularioLancamentoComponent implements OnInit {
         this.listArmarios = attr.localStorage ? await JSON.parse(attr.localStorage)?.ambry : []
         this.listShelf = attr.localAmbry ? await JSON.parse(attr.localAmbry)?.shelf : []
 
-        $('#selectedProduct').val(attr.article).select2().trigger('change');
+
 
         $('#selectedArmazem').val(attr.localStorage).select2({minimumResultsForSearch: -1}).change();
         setTimeout(() => {
@@ -202,6 +202,7 @@ export class FormularioLancamentoComponent implements OnInit {
     })
 
   }
+
 
   initJQuerysFunctions() {
 
@@ -237,16 +238,6 @@ export class FormularioLancamentoComponent implements OnInit {
     this.window.$('#selectedCountry').select2().on('change', (e: any) => {
       this.item.oItem.localCurrency = e.target.value
     })
-
-
-
-    this.window.$('#selectedProduct').select2()
-      .on('change', (e: any) => {
-        this.item.oItem.article = e.target.value
-        if (this.item.oItem.article) {
-          this.item.oItem.articleId = JSON.parse(this.item.oItem.article).id
-        }
-      })
 
     this.window.$("#select_data_movimento").flatpickr({
       dateFormat: "d, m Y",
@@ -288,5 +279,34 @@ export class FormularioLancamentoComponent implements OnInit {
       false, this.window.$('#selectedArmazem'), this.item.oItem.updated_mode, "", false, true)
 
 
+  }
+
+  getThidValue(ats: any) {
+    this.window.$('#listProduct').addClass('d-none')
+    this.item.oItem.article = JSON.stringify(ats);
+    this.item.oItem.articleId = ats.id;
+    this.item.oItem.articleName = ats.name;
+
+    console.log(this.item.oItem.articleName)
+
+  }
+
+  keyupArticle(e: any) {
+    if (e.target.value.length > 4) {
+      this.window.$('#listProduct').removeClass('d-none')
+
+      let queryConditions: QueryConstraint[] = []
+      queryConditions.push(where('name', ">=", e.target.value))
+      queryConditions.push(where('name', "<=", e.target.value + '\uf8ff'))
+      const q = query(collection(getFirestore(), ServiceArticles.STORAGE_ARTICLES), ...queryConditions);
+
+      onSnapshot(q, (s) => {
+        this.tempArticles = s.docs.map(at => {
+          return at.data()
+        })
+      })
+    } else {
+      this.window.$('#listProduct').addClass('d-none')
+    }
   }
 }

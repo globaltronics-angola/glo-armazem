@@ -1,0 +1,19 @@
+````html
+<select class="form-select form-select-sm selector " data-control="select2"
+        data-allow-clear="true" data-placeholder="Selecciona o artigo" id="selectedProduct">
+  <option></option>
+  <option [value]="ean|json" *ngFor="let ean of listArticle|async">
+    {{(ean.ean ? ean.ean + ' - ' : '') + ean.name + (ean.model ? ' - ' + ean.model : '') }}
+  </option>
+</select>
+````
+
+````ts
+this.window.$('#selectedProduct').select2()
+.on('change', (e: any) => {
+  this.item.oItem.article = e.target.value
+  if (this.item.oItem.article) {
+    this.item.oItem.articleId = JSON.parse(this.item.oItem.article).id
+  }
+})
+````

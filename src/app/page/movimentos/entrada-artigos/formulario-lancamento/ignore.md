@@ -87,7 +87,7 @@ this.tempArticles.forEach(e => {
   })
 })
 ````
-
+````html
   <div class="w-100 p-0 m-0 position-absolute">
                       <input type="text" class="form-control form-control-sm " placeholder="Pesquisar o Artigo"
                              name="financialCost" id="selectedProduct">
@@ -118,3 +118,4 @@ this.tempArticles.forEach(e => {
                         </ul>
                       </div>
                     </div>
+````

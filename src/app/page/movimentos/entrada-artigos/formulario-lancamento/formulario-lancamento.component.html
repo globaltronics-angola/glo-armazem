@@ -78,13 +78,40 @@
                   <div class="input-group input-group-sm input-group-solid flex-nowrap">
                     <!--end::Label-->
 
-                    <select class="form-select form-select-sm selector " data-control="select2"
-                            data-allow-clear="true" data-placeholder="Selecciona o artigo" id="selectedProduct">
-                      <option></option>
-                      <option [value]="ean|json" *ngFor="let ean of listArticle|async">
-                        {{(ean.ean ? ean.ean + ' - ' : '') + ean.name + (ean.model ? ' - ' + ean.model : '') }}
-                      </option>
-                    </select>
+                    <div class="w-100 p-0 m-0 position-absolute">
+                      <input type="text" class="form-control form-control-sm" placeholder="Pesquisar o Artigo"
+                             id="selectedProduct"
+                             name="articleName"  (keyup)="this.keyupArticle($event)" [value]="item.oItem.articleName"
+                             [(ngModel)]="item.oItem.articleName">
+
+
+
+                      <ul class="position-absolute w-100 p-5 z-index-3 bg-white overflow-auto d-none"
+                          style="max-height: 350px;" id="listProduct">
+
+                        <li class="d-flex align-items-center p-3
+                          rounded-3 border-hover border border-dashed border-gray-300 cursor-pointer mb-1 "
+                            (click)="getThidValue(ats)"
+                            data-kt-search-element="customer" *ngFor="let ats of this.tempArticles"
+                        >
+
+                          <!--begin::Avatar-->
+                          <div class="symbol symbol-20px symbol-circle me-3">
+                            <span
+                              class="symbol-label bg-light-warning text-warning fw-semibold">{{ ats.name.slice(0, 1) }}</span>
+                          </div>
+
+                          <div class="fw-semibold">
+                            <span class="fs-6 text-gray-800 me-2">{{ ats.name}}</span>
+                            <span class="badge badge-light">{{ ats.model }}</span> &nbsp;
+                            <span class="badge badge-light-success">{{ ats.category_id[0] }}</span>
+                          </div>
+
+                        </li>
+
+
+                      </ul>
+                    </div>
 
 
                   </div>
