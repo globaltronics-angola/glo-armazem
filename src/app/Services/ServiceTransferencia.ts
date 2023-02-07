@@ -47,7 +47,6 @@ export default class ServiceTransferencia {
 
   save() {
 
-    // console.log(this.oItem)
     if (!this.oItem.updated_mode) {
       this.oItem.created_at = moment().format('DD MM,YYYY HH:mm:ss')
     }
@@ -145,8 +144,7 @@ export default class ServiceTransferencia {
     try {
       let articleExist: any = JSON.parse(attr.existence);
       articleExist.quantity = articleExist.quantity - attr.quantity;
-      this.store.createForceMyId(articleExist, ServiceTransferencia.STORAGE_EXIST_ITEM).then(() => {
-      });
+      this.store.createForceMyId(articleExist, ServiceTransferencia.STORAGE_EXIST_ITEM).then(() => {});
     } catch (e) {
 
     }
@@ -162,8 +160,7 @@ export default class ServiceTransferencia {
     });
     articleExist.quantity = artExir.quantity - attr.quantity;
 
-    this.store.createForceMyId(articleExist, ServiceTransferencia.STORAGE_EXIST_STORAGE).then(() => {
-    });
+    this.store.createForceMyId(articleExist, ServiceTransferencia.STORAGE_EXIST_STORAGE).then(() => {});
   }
 
   async existArticleNew(attr: any) {

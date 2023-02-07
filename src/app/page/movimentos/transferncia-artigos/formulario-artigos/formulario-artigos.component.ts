@@ -11,6 +11,7 @@ import moment from "moment";
 import ServiceTransferencia from "../../../../Services/ServiceTransferencia";
 import ServicePrintMove from "../../../../Services/ServicePrintMove";
 import {StorageValidateAnyService} from "../../../../shared/storage.validate.any.service";
+import { collection, getFirestore, onSnapshot, query, QueryConstraint, where } from "@angular/fire/firestore";
 
 @Component({
   selector: 'app-formulario-artigos',
@@ -39,6 +40,9 @@ export class FormularioArtigosComponent implements OnInit, OnDestroy {
   move: ServiceTransferencia;
   private know: any = Subscription;
   private validateAny: StorageValidateAnyService;
+
+  private tempStorage:string = "";
+
 
 
   constructor(private auth: AuthService, private store: StorageService, private printer: ServicePrintMove) {
@@ -79,7 +83,6 @@ export class FormularioArtigosComponent implements OnInit, OnDestroy {
     if (this.listItems.length > 0) {
       this.move.save().then(() => {
 
-        // this.printer.printFunctionsTransfer(this.move.oItem.items, this.move)
         this.documentRef();
 
       });
@@ -109,6 +112,39 @@ export class FormularioArtigosComponent implements OnInit, OnDestroy {
     this.initQuery()
   }
 
+  keyupArticle(e: any) {
+    if (e.target.value.length > 4) {
+      this.window.$('#listProduct').removeClass('d-none')
+
+      let queryConditions: QueryConstraint[] = []
+      queryConditions.push(where('name', ">=", e.target.value))
+      queryConditions.push(where('name', "<=", e.target.value + '\uf8ff'))
+      //queryConditions.push(where('localStorageId', "==",  this.item.oItem.localStorageExistance ))
+      const q = query(collection(getFirestore(), ServiceArticles.STORAGE_ARTICLES), ...queryConditions);
+
+      onSnapshot(q, (s) => {
+        this.listArticle = s.docs.map(at => {
+
+          console.log(at.data());
+
+          return at.data()
+        })
+      })
+    } else {
+      this.window.$('#listProduct').addClass('d-none')
+    }
+  }
+
+  getThidValue(ats: any) {
+    this.window.$('#listProduct').addClass('d-none')
+    this.item.oItem.article = JSON.stringify(ats);
+    this.item.oItem.articleId = ats.id;
+    this.item.oItem.articleName = ats.name;
+
+    console.log(this.item.oItem.articleName)
+
+  }
+
   initQuery() {
     const selectStorage = this.window.$('#selectStorage');
     const selectedArticle = this.window.$('#selectedArticle23');
@@ -118,8 +154,11 @@ export class FormularioArtigosComponent implements OnInit, OnDestroy {
 
     selectStorage.select2({minimumResultsForSearch: -1}).on('change', async (e: any) => {
       try {
+        this.listArticle = [];
         this.item.oItem.localStorageExistance = e.target.value;
-        this.listArticle = await ServiceArticles.searchingArticle(JSON.parse(e.target.value).id, this.store)
+
+
+        //this.listArticle = await ServiceArticles.searchingArticle(JSON.parse(e.target.value).id, this.store)
       } catch (e) {
       }
     })
@@ -178,7 +217,6 @@ export class FormularioArtigosComponent implements OnInit, OnDestroy {
       this.window.$('#quantidadeItem').addClass('is-valid')
     }
 
-
   }
 
   async documentRef() {
@@ -213,7 +251,6 @@ export class FormularioArtigosComponent implements OnInit, OnDestroy {
       await setTimeout(() => {
         this.window.$('#selectedPrateleira').val(attr.localShelf).select2({minimumResultsForSearch: -1}).change();
       }, 2000);
-
 
     })
   }

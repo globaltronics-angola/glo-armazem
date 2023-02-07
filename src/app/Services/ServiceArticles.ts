@@ -121,6 +121,7 @@ export default class ServiceArticles {
     let listArticle: any[] = [];
     await store.getForeStore().collection(ServiceMovimento.STORAGE_EXIST_ITEM)
       .where('localStorageId', '==', attr)
+      //.where('quantity', '!=', '0')
       .get()
       .then(snap => {
         snap.forEach(doc => {

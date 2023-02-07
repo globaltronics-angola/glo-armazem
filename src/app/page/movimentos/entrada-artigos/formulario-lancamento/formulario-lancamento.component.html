@@ -81,7 +81,7 @@
                     <div class="w-100 p-0 m-0 position-absolute">
                       <input type="text" class="form-control form-control-sm" placeholder="Pesquisar o Artigo"
                              id="selectedProduct"
-                             name="articleName"  (keyup)="this.keyupArticle($event)" [value]="item.oItem.articleName"
+                             name="articleName"  (keyup.enter)="this.keyupArticle($event)" [value]="item.oItem.articleName"
                              [(ngModel)]="item.oItem.articleName">
 
 
@@ -115,6 +115,7 @@
 
 
                   </div>
+
                   <div class="fv-plugins-message-container invalid-feedback"></div>
                 </div>
               </div>

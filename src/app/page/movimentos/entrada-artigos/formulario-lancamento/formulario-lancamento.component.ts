@@ -1,25 +1,25 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import ServiceCountry from "../../../../Services/ServiceCountry";
-import {StorageService} from "../../../../shared/storage.service";
+import { StorageService } from "../../../../shared/storage.service";
 import * as Tagify from "@yaireo/tagify";
 import moment from "moment";
 import ServiceUtil from "../../../../Services/ServiceUtil";
 import ServiceMovimentoItems from "../../../../Services/ServiceMovimentoItems";
-import {ServiceEmitter} from "../../../../Services/ServiceEmitter";
-import {Observable, Subscription} from 'rxjs';
+import { ServiceEmitter } from "../../../../Services/ServiceEmitter";
+import { Observable, Subscription } from 'rxjs';
 import ServiceStorage from '../../../../Services/ServiceStorage';
 import ServiceMovimento from 'src/app/Services/ServiceMovimento';
 import ServiceFornecedor from 'src/app/Services/ServiceFornecedor';
 import ServiceArticles from "../../../../Services/ServiceArticles";
-import {AuthService} from "../../../../shared/auth.service";
+import { AuthService } from "../../../../shared/auth.service";
 
 
 //@ts-ignore
 import * as pdfMake from "pdfmake";
 import ServicePrintMove from "../../../../Services/ServicePrintMove";
-import {StorageValidateAnyService} from "../../../../shared/storage.validate.any.service";
-import {StorageServicePaginateService} from "../../../../shared/storage.service.paginate.service";
-import {collection, getFirestore, onSnapshot, query, QueryConstraint, where} from "@angular/fire/firestore";
+import { StorageValidateAnyService } from "../../../../shared/storage.validate.any.service";
+import { StorageServicePaginateService } from "../../../../shared/storage.service.paginate.service";
+import { collection, getFirestore, onSnapshot, query, QueryConstraint, where } from "@angular/fire/firestore";
 
 
 @Component({
@@ -96,9 +96,7 @@ export class FormularioLancamentoComponent implements OnInit {
     this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull();
   }
 
-  onTesting() {
-    //// console.log(this.itensCompra)
-  }
+  onTesting() { }
 
   async save() {
     this.btnSend = true;
@@ -144,7 +142,6 @@ export class FormularioLancamentoComponent implements OnInit {
       this.window.sentMessageError.init(e)
     }
 
-
   }
 
   async ngOnInit() {
@@ -173,37 +170,25 @@ export class FormularioLancamentoComponent implements OnInit {
 
   onSetInfoDataSource(): void {
 
-
     this.know = ServiceEmitter.get('sendItemsMovimento').subscribe(async (attr: any) => {
 
-      //this.window.$('#kt_accordion_2_item_1').addClass('show');
-
       await this.window.$(document).ready(async ($: any) => {
-
 
         this.listArmarios = attr.localStorage ? await JSON.parse(attr.localStorage)?.ambry : []
         this.listShelf = attr.localAmbry ? await JSON.parse(attr.localAmbry)?.shelf : []
 
-
-
-        $('#selectedArmazem').val(attr.localStorage).select2({minimumResultsForSearch: -1}).change();
+        $('#selectedArmazem').val(attr.localStorage).select2({ minimumResultsForSearch: -1 }).change();
         setTimeout(() => {
-          this.window.$('#selectedArmario').val(attr.localAmbry).select2({minimumResultsForSearch: -1}).change();
+          this.window.$('#selectedArmario').val(attr.localAmbry).select2({ minimumResultsForSearch: -1 }).change();
         }, 1000);
 
         setTimeout(() => {
-          $('#selectedPrateleira').val(attr.localShelf).select2({minimumResultsForSearch: -1}).change();
+          $('#selectedPrateleira').val(attr.localShelf).select2({ minimumResultsForSearch: -1 }).change();
         }, 2000);
 
         this.item.oItem = attr;
         this.item.oItem.updated_mode = true
 
-
-
-
-
-
-        console.log(this.item.oItem);
       });
     })
 
@@ -212,19 +197,19 @@ export class FormularioLancamentoComponent implements OnInit {
 
   initJQuerysFunctions() {
 
-    this.window.$('#selectedArmazem').select2({minimumResultsForSearch: -1}).on('change', async (e: any) => {
+    this.window.$('#selectedArmazem').select2({ minimumResultsForSearch: -1 }).on('change', async (e: any) => {
 
       this.item.oItem.localStorage = e.target.value;
       if (e.target.value) this.listArmarios = JSON.parse(e.target.value).ambry;
 
     });
 
-    this.window.$('#selectedArmario').select2({minimumResultsForSearch: -1}).on('change', async (e: any) => {
+    this.window.$('#selectedArmario').select2({ minimumResultsForSearch: -1 }).on('change', async (e: any) => {
       this.item.oItem.localAmbry = e.target.value
       if (e.target.value) this.listShelf = JSON.parse(e.target.value).shelf;
     })
 
-    this.window.$('#selectedPrateleira').select2({minimumResultsForSearch: -1}).on('change', (e: any) => {
+    this.window.$('#selectedPrateleira').select2({ minimumResultsForSearch: -1 }).on('change', (e: any) => {
       this.item.oItem.localShelf = e.target.value
     })
 
@@ -268,7 +253,6 @@ export class FormularioLancamentoComponent implements OnInit {
 
   async validationName() {
 
-
     await this.validateAny.validateExiste(this.item.oItem.article, 'articleName',
       false, this.window.$('#selectedProduct'), this.item.oItem.updated_mode, "", false, true)
 
@@ -283,7 +267,6 @@ export class FormularioLancamentoComponent implements OnInit {
 
     await this.validateAny.validateExiste(this.item.oItem.localStorage, 'localStorage',
       false, this.window.$('#selectedArmazem'), this.item.oItem.updated_mode, "", false, true)
-
 
   }
 
