@@ -1,9 +1,26 @@
 <div class="card-title row w-100 ">
 
-  <div class="col-auto col-sm-3 col-lg-6">
+  <div class="col-auto col-sm-3 col-lg-auto">
     <button class="btn btn-sm  btn-secondary btn-active-primary mb-10 " (click)="pdfGenerator()">
       <i class="bi bi-filetype-pdf"></i> Gerar Pdf
     </button>
+  </div>
+
+  <div class="col-sm-9">
+    <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+      <div class="input-group input-group-sm">
+
+        <button class="input-group-text rounded-end-0" id="basic-addon2"
+                data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start" data-kt-menu-offset="30px, 30px">
+          <i class="fa fa-ellipsis-vertical"></i>&nbsp; Nome
+        </button>
+
+        <input type="text" name="name" class="form-control form-control-sm" autocomplete="off"
+               (keyup.enter)="find()" [(ngModel)]="typingName"
+               placeholder="pesquisar" id="articleName">
+
+      </div>
+    </div>
   </div>
 
 </div>

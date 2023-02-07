@@ -24,6 +24,7 @@
     <table id="kt_datatable_both_scrolls" class="table table-striped table-row-bordered gy-2 gs-7 ">
       <thead class="text-uppercase fw-bold bg-light-primary" style="position:sticky; top:0; z-index: 999">
       <tr class="fs-6 text-gray-800 bg-light-primary">
+        <th class="min-w-200px bg-light-primary">#</th>
         <th class="min-w-200px bg-light-primary">Categoria</th>
         <th class="min-w-200px bg-light-primary">Nome</th>
         <th class="min-w-200px bg-light-primary">Modelo</th>
@@ -37,6 +38,7 @@
       <tbody>
 
       <tr *ngFor="let mov of this.arrayData; let index = index" class="tableViews">
+        <td>{{ index + 1 }}</td>
         <td contenteditable="true">
           <input type="text" class="form-control form-control-sm form-control-transparent"
                  [(ngModel)]="mov.category" [value]="mov.category" name="category">

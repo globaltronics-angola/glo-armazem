@@ -1,14 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {StorageServicePaginateService} from "../../../../shared/storage.service.paginate.service";
-import {StorageService} from "../../../../shared/storage.service";
-import {AuthService} from "../../../../shared/auth.service";
-import {Router} from "@angular/router";
-import {DomSanitizer} from "@angular/platform-browser";
+import { Component, OnInit } from '@angular/core';
+import { StorageServicePaginateService } from "../../../../shared/storage.service.paginate.service";
+import { StorageService } from "../../../../shared/storage.service";
+import { AuthService } from "../../../../shared/auth.service";
+import { Router } from "@angular/router";
+import { DomSanitizer } from "@angular/platform-browser";
 import ServiceClients from "../../../../Services/ServiceClients";
 import ServiceExistance from "../../../../Services/ServiceExistance";
 import ServiceUtil from "../../../../Services/ServiceUtil";
 import moment from "moment";
-import {Timestamp, FieldValue} from "@angular/fire/firestore";
+import { Timestamp, FieldValue } from "@angular/fire/firestore";
 import firebase from "firebase/compat";
 // @ts-ignore
 import * as pdfMake from "pdfmake";
@@ -50,12 +50,12 @@ export class TabelasExistenciasComponent implements OnInit {
 
     let content = [
       [
-        {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: '#', style: 'tableHeader'},
-        {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'NOME DO ARTIGO', style: 'tableHeader'},
-        {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'MODELO', style: 'tableHeader'},
-        {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'REFERÊNCIA', style: 'tableHeader'},
-        {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'QT', style: 'tableHeader'},
-        {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'LOCAL', style: 'tableHeader'},
+        { margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: '#', style: 'tableHeader' },
+        { margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'NOME DO ARTIGO', style: 'tableHeader' },
+        { margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'MODELO', style: 'tableHeader' },
+        { margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'REFERÊNCIA', style: 'tableHeader' },
+        { margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'QT', style: 'tableHeader' },
+        { margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'LOCAL', style: 'tableHeader' },
       ]
     ]
 
@@ -66,19 +66,19 @@ export class TabelasExistenciasComponent implements OnInit {
       let localStorage: string = g.localStorage + ' ' + g.localAmbry + ' ' + g.localShelf
 
       content.push([
-        {margin: [2, 1, 1, 1], fillColor: '#fff', text: (index + 1), style: 'all'},
-        {margin: [2, 1, 1, 1], fillColor: '#fff', text: article.name, style: 'all'},
+        { margin: [2, 1, 1, 1], fillColor: '#fff', text: (index + 1), style: 'all' },
+        { margin: [2, 1, 1, 1], fillColor: '#fff', text: article.name, style: 'all' },
 
         {
           margin: [2, 1, 1, 1],
           fillColor: '#fff',
-          text: article.model ? article.model : {text: '-- -- -- --', style: 'span'},
+          text: article.model ? article.model : { text: '-- -- -- --', style: 'span' },
           style: 'all'
         },
         {
           margin: [2, 1, 1, 1],
           fillColor: '#fff',
-          text: article.ean ? article.ean : {text: '-- -- -- --', style: 'span'},
+          text: article.ean ? article.ean : { text: '-- -- -- --', style: 'span' },
           style: 'all'
         },
         {
@@ -105,7 +105,7 @@ export class TabelasExistenciasComponent implements OnInit {
           height: 30,
           margin: [0, 2, 2, 2]
         },
-        {text: 'Lista de Artigos Cadastrados', fontSize: 14, bold: true, margin: [0, 20, 0, 10]},
+        { text: 'Lista de Artigos Cadastrados', fontSize: 14, bold: true, margin: [0, 20, 0, 10] },
         {
           style: 'tableExample',
           table: {
@@ -199,20 +199,7 @@ export class TabelasExistenciasComponent implements OnInit {
   }
 
   async find() {
-    if (this.isSearch == 'Nome') {
-      await this.page.findByFieldContext('name', this.typingName)
-    }
-    if (this.isSearch == 'Tipo...') {
-      if (this.typingName.toLowerCase() == 'colectivo' || this.typingName.toLowerCase() == 'coletivo')
-        await this.page.findByFieldContext('type', '2')
-      else if (this.typingName.toLowerCase() == 'individual')
-        await this.page.findByFieldContext('type', '1')
-
-    }
-
-    if (this.isSearch == 'Nif...') {
-      await this.page.findByFieldContext('identityClient', this.typingName)
-    }
+    await this.page.findByFieldContext('articleName', this.typingName);
   }
 
   setSearch(attr: string) {
