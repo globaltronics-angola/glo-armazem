@@ -58,7 +58,7 @@ export class DatatableRequisicaoComponent implements OnInit {
   printMov(attr: any) {
     let move: ServiceMovimento = new ServiceMovimento(this.store)
     move.oItem = attr
-    this.printer.printFunctions(move.oItem.items, move);
+    this.printer.printFunctionsRequisition(move.oItem.items, move);
   }
 
   pdfGenerator() {

@@ -233,41 +233,86 @@ export default class ServicePrintMove {
           margin: [0, 2, 2, 2]
         },
         {
-          text: 'Ref : ' + move.oItem.docRef,
-          fontSize: 8,
+          text: 'Contribuinte nº 5417106372 ',
+          fontSize: 7,
           bold: false,
-          margin: [0, 0, 0, 10],
-          alignment: 'justify'
+          color: '#515A5A',
+          margin: [0, 0, 0, 2],
+        },
+        {
+          text: 'Endereço: Bº Benfica Pista Lote 249 ' ,
+          fontSize: 7,
+          bold: false,
+          color: '#515A5A',
+          margin: [0, 0, 0, 2],
         },
 
+
         {
-          text: client.name ? ('Cliente : ').toUpperCase() + client.name : '',
-          fontSize: 9,
+          text: ('Cliente : ').toUpperCase(),
+          fontSize: 10,
           alignment: 'right',
           bold: false,
           margin: [0, 0, 0, 3]
         },
         {
-          text: client.identityClient ? ('Nif : ').toUpperCase() + client.identityClient : '',
-          fontSize: 9,
+          text: client.name,
+          fontSize: 10,
           alignment: 'right',
           bold: false,
-          margin: [0, 0, 0, 10]
+          margin: [0, 0, 0, 3]
         },
         {
-          text: move.oItem.title ? ('Requesição: ').toUpperCase() + move.oItem.title.toUpperCase() : '',
+          text: client.identityClient ? 'Contribuinte nº 5417106372 ' + client.identityClient : '',
+          fontSize: 7,
+          bold: false,
+          alignment: 'right',
+          color: '#515A5A',
+          margin: [0, 0, 0, 2],
+        },
+        {
+          text: 'Luanda - Angola',
           fontSize: 9,
-          bold: true,
-          margin: [0, 10, 0, 0]
+          bold: false,
+          alignment: 'right',
+          color: '#515A5A',
+          margin: [0, 0, 0, 2],
         },
         {
-          text: move.oItem.details,
+          text: 'Data de Emissão.: ' + moment().format('DD / MM / YYYY HH:mm'),
           fontSize: 8,
           bold: false,
-          margin: [0, 5, 0, 10],
-          alignment: 'justify'
+          margin: [0, 0, 0, 2],
         },
-        {text: ('Artigos da requisição').toUpperCase(), fontSize: 9, bold: true, margin: [0, 20, 0, 10]},
+        {
+          text: 'Documento. Ref.: ' + move.oItem.docRef,
+          fontSize: 8,
+          bold: false,
+          margin: [0, 0, 0, 2],
+        },
+        {
+          text: 'Requisitante.: ' + this.auth.user.displayName,
+          fontSize: 8,
+          bold: false,
+          margin: [0, 0, 0, 2],
+        },
+        {
+          text: ('Nota de Entrega: ').toUpperCase(),
+          fontSize: 12,
+          alignment: 'center',
+          bold: true,
+          margin: [0, 15, 0, 5]
+        },
+        {
+          text: 'Viemos por intermédio desta, proceder a entrega dos equipamentos à baixo listados, ao cliente acima mensionado (' + client.name + '), em bom estado de funcionamento.',
+          fontSize: 10,
+          lineSpacing: 2,
+          bold: false,
+          alignment: '',
+          color: '#222323',
+          margin: [0, 10, 0, 15],
+        },
+
         {
           style: 'tableExample',
           table: {
@@ -285,24 +330,42 @@ export default class ServicePrintMove {
           alignment: 'justify'
         },
         {
-          qr: move.oItem.docRef,
-          fit: 80,
-          alignment: 'right',
-          foreground: '#D7D5D5'
-        },
-        {
-          text: 'Data: ' + moment().format('DD / MM / YYYY HH:mm.s'),
-          fontSize: 11,
-          color: '#D7DBDD',
+          text: 'Entreguei',
+          fontSize: 9,
+          color: '#232323',
           bold: false,
           margin: [0, 20, 0, 0]
         },
         {
-          text: 'Autor : ' + this.auth.user.displayName + '',
-          fontSize: 11,
-          color: '#D7DBDD',
+          text: '_________________________',
+          fontSize: 9,
+          color: '#232323',
           bold: false,
-          margin: [0, 0, 0, 1]
+          margin: [0, 10, 0, 0]
+        },
+        {
+          text: 'Recebi',
+          fontSize: 9,
+          alignment: 'right',
+          color: '#232323',
+          bold: false,
+          margin: [0, 20, 0, 0]
+        },
+        {
+          text: '_________________________',
+          fontSize: 9,
+          alignment: 'right',
+          color: '#232323',
+          bold: false,
+          margin: [0, 10, 0, 0]
+        },
+
+
+        {
+          qr: move.oItem.docRef,
+          fit: 60,
+          alignment: 'right',
+          foreground: '#D7D5D5'
         },
       ],
       styles: {
