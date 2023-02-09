@@ -44,7 +44,6 @@ export class InserindoDadosComponent implements OnInit, PipeTransform {
 
   ngOnInit(): void {
     this.initJQuerysFunctions()
-
   }
 
   public async dataRow(attr: any, index: number) {
@@ -107,6 +106,7 @@ export class InserindoDadosComponent implements OnInit, PipeTransform {
           'category_id': [attr.category],
           'name': attr.name,
           'model': attr.model,
+          'marquee': attr.marquee,
           deleted_at: "NULL"
         }
 
@@ -152,6 +152,15 @@ export class InserindoDadosComponent implements OnInit, PipeTransform {
         this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR + 'Tenta novamente')
       }
     })
+  }
+
+  addRow(){
+      this.arrayData.push({
+        'category_id': [],
+        'name': '',
+        'model': '',
+        deleted_at: moment().format('DD MM YYYY HH:mm')
+      })
   }
 
 
