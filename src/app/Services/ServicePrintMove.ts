@@ -121,7 +121,7 @@ export default class ServicePrintMove {
           margin: [0, 20, 0, 0]
         },
         {
-          text: 'Autor : ' + this.auth.user.displayName + '',
+          text: 'Operador: ' + this.auth.user.displayName + '',
           fontSize: 11,
           color: '#D7DBDD',
           bold: false,
@@ -586,7 +586,7 @@ export default class ServicePrintMove {
           margin: [0, 20, 0, 0]
         },
         {
-          text: 'Autor : ' + this.auth.user.displayName + '',
+          text: 'Operador: ' + this.auth.user.displayName + '',
           fontSize: 11,
           color: '#D7DBDD',
           bold: false,
@@ -745,7 +745,7 @@ export default class ServicePrintMove {
           margin: [0, 20, 0, 0]
         },
         {
-          text: 'Autor : ' + this.auth.user.displayName + '',
+          text: 'Operador: ' + this.auth.user.displayName + '',
           fontSize: 11,
           color: '#D7DBDD',
           bold: false,
@@ -916,7 +916,7 @@ export default class ServicePrintMove {
           margin: [0, 20, 0, 0]
         },
         {
-          text: 'Autor : ' + this.auth.user.displayName + '',
+          text: 'Operador: ' + this.auth.user.displayName + '',
           fontSize: 11,
           color: '#D7DBDD',
           bold: false,
@@ -1073,7 +1073,7 @@ export default class ServicePrintMove {
           margin: [0, 20, 0, 0]
         },
         {
-          text: 'Autor : ' + this.auth.user.displayName + '',
+          text: 'Operador: ' + this.auth.user.displayName + '',
           fontSize: 11,
           color: '#D7DBDD',
           bold: false,
