@@ -1,0 +1,175 @@
+[
+  {
+    "marquee": "Lenovo",
+    "category": "Computador Portátil",
+    "name": "KIDEAPAD FLEX5 15ALC-088",
+    "model": "82HV008KPG",
+    "qt":15
+  },
+  {
+    "marquee": "Intel",
+    "category": "",
+    "name": "NUC Kit NUC 1017FNHN",
+    "model": "BXBUC1017FNHN2",
+    "qt":5
+  }
+,
+  {
+    "marquee": "Symetrix",
+    "category": "",
+    "name": "Fonte de Alimentação GST24A24",
+    "model": "Fonte Alim. 24V",
+    "qt":2
+  }
+,
+  {
+    "marquee": "Lindy",
+    "category": "",
+    "name": "Adaptador USB 3.1 Tipo C para HDMI",
+    "model": "43339",
+    "qt":8
+  }
+,
+  {
+    "marquee": "Lindy",
+    "category": "",
+    "name": "Cabo USB Ativo 8.0M",
+    "model": "42780 USB 2.0",
+    "qt":1
+  }
+,
+  {
+    "marquee": "Lindy",
+    "category": "",
+    "name": "Cabo USB Ativo 2.0M",
+    "model": "36693",
+    "qt":1
+  }
+,
+  {
+    "marquee": "",
+    "category": "",
+    "name": "Cabo audio Splitter 2x3.5mm",
+    "model": "EC1640",
+    "qt":8
+  }
+,
+  {
+    "marquee": "Black Magic",
+    "category": "",
+    "name": "Micro Conversor HDMI to SDI 3G",
+    "model": "HDMI to SDI 3G",
+    "qt":1
+  }
+,
+  {
+    "marquee": "Cordial",
+    "category": "",
+    "name": "Cabo HDMI/M to HDMI/M com 7.5M",
+    "model": "CHDMI 7.5M",
+    "qt":8
+  }
+,
+  {
+    "marquee": "Lindy",
+    "category": "",
+    "name": "Bi-directional Wireless IR Extender",
+    "model": "38181",
+    "qt":6
+  }
+,
+  {
+    "marquee": "Lindy",
+    "category": "",
+    "name": "HDMI Gigabit IP Extender 1080p",
+    "model": "38126",
+    "qt":24
+  }
+,
+  {
+    "marquee": "BlackMagic",
+    "category": "",
+    "name": "Micro Conversor HDMI to SDI 3G",
+    "model": "HDMI to SDI 3G",
+    "qt":4
+  },
+  {
+    "marquee": "BlackMagic",
+    "category": "",
+    "name": "Mini Converter Optical Fiber 12G-SDI",
+    "model": "",
+    "qt":5
+  }
+,
+  {
+    "marquee": "BlackMagic",
+    "category": "",
+    "name": "Adapter-3G SFP Optical Module",
+    "model": "",
+    "qt":5
+  }
+,
+  {
+    "marquee": "Samsung",
+    "category": "",
+    "name": "Display Profissional LED 55\" 700cd m2",
+    "model": "LH55UDEHLBB",
+    "qt":1
+  }
+,
+  {
+    "marquee": "Monitor Audio",
+    "category": "",
+    "name": "Barra de som",
+    "model": "SB4",
+    "qt":1
+  }
+,
+  {
+    "marquee": "Monitor Audio",
+    "category": "",
+    "name": "Colunas para teto",
+    "model": "C265 IDC",
+    "qt":2
+  }
+,
+  {
+    "marquee": "REL",
+    "category": "",
+    "name": "Subwoofer",
+    "model": "HT/1003",
+    "qt":1
+  }
+,
+  {
+    "marquee": "Marantz",
+    "category": "",
+    "name": "Receiver AV Cinema",
+    "model": "Cinema 70B",
+    "qt":1
+  }
+,
+  {
+    "marquee": "Monitor Audio",
+    "category": "BSB",
+    "name": "Suporte Mural para Barra de Som",
+    "model": "",
+    "qt":1
+  }
+,
+  {
+    "marquee": "Denon",
+    "category": "",
+    "name": "Emissor / Recetoe HIFI",
+    "model": "DN202WT+WR",
+    "qt":1
+  }
+,
+  {
+    "marquee": "Projet",
+    "category": "",
+    "name": "Mini Amplificador",
+    "model": "PJ-AmpBox",
+    "qt":1
+  }
+]
