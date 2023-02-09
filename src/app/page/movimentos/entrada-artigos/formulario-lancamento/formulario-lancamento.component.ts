@@ -254,7 +254,7 @@ export class FormularioLancamentoComponent implements OnInit {
   async validationName() {
 
     await this.validateAny.validateExiste(this.item.oItem.article, 'articleName',
-      false, this.window.$('#selectedProduct'), this.item.oItem.updated_mode, "", false, true)
+      false, this.window.$('#selectedProduct'), this.item.oItem.updated_mode, "", false, false)
 
     await this.validateAny.numberValidate(this.item.oItem.financialCost, 'quantity',
       false, this.window.$('#inputFinancialCost'), this.item.oItem.updated_mode,

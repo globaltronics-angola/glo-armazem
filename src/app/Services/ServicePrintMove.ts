@@ -21,6 +21,76 @@ export default class ServicePrintMove {
 
   printFunctions(listItems: any[], move: any) {
 
+    let headerBetwin = [
+      [
+        {
+          text: '',
+          borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+        }, {
+        text: '',
+        borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+      }, {
+        text: '',
+        borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+      }
+      ],
+      [
+        {
+          text: [
+            {
+              text: '' + '\n',
+              fontSize: 10,
+              bold: false,
+              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+              margin: [0, 0, 0, 2],
+
+            },
+            {
+              text: '' + '\n',
+              fontSize: 9,
+              bold: false,
+              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+              margin: [0, 0, 0, 2],
+
+            },
+            {
+              text: '' + '\n',
+              fontSize: 8,
+              bold: false,
+              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+              margin: [0, 0, 0, 2],
+            }
+
+          ],
+          border: [false, false, false, false]
+        },
+        {text: '', border: [false, false, false, false]},
+        {
+          text: [
+            {
+              text: 'Data.: ' + moment().format('DD / MM / YYYY HH:mm') + '\n',
+              fontSize: 10,
+              color: '#454545',
+              bold: false,
+              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+              margin: [0, 0, 0, 2],
+
+            },
+            {
+              text: 'Ref.: ' + move.oItem.docRef + '\n',
+              fontSize: 9,
+              color: '#797979',
+              bold: false,
+              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+              margin: [0, 0, 0, 2],
+
+            }
+          ],
+          border: [false, false, false, false]
+        },
+
+      ]
+    ];
 
     let content = [
       [
@@ -32,6 +102,35 @@ export default class ServicePrintMove {
 
       ]
     ]
+
+    let footer = [
+      [
+        {
+          text: {
+            text: 'Entreguei\n\n __________________________________',
+            fontSize: 9,
+            color: '#515A5A',
+            alignment: 'center',
+            bold: false,
+            margin: [0, 0, 0, 2],
+          },
+          borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+        }, {
+        text: '',
+        borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+      }, {
+        text: {
+          text: 'Recebi\n\n __________________________________',
+          fontSize: 9,
+          color: '#515A5A',
+          bold: false,
+          alignment: 'center',
+          margin: [0, 0, 0, 2],
+        },
+        borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+      }
+      ]
+    ];
 
     listItems.forEach((g) => {
 
@@ -77,24 +176,33 @@ export default class ServicePrintMove {
           margin: [0, 2, 2, 2]
         },
         {
-          text: 'Ref : ' + move.oItem.docRef,
-          fontSize: 8,
+          text: 'Contribuinte nº 5417106372 ',
+          fontSize: 7,
           bold: false,
-          margin: [0, 0, 0, 10],
-          alignment: 'justify'
+          color: '#515A5A',
+          margin: [0, 0, 0, 2],
         },
         {
-          text: move.oItem.details,
-          fontSize: 8,
+          text: 'Endereço: Bº Benfica Pista Lote 249 ',
+          fontSize: 7,
           bold: false,
-          margin: [0, 20, 0, 10],
-          alignment: 'justify'
+          color: '#515A5A',
+          margin: [0, 0, 0, 2],
         },
-        {text: ('Artigos do movimento de entrada').toUpperCase(), fontSize: 9, bold: true, margin: [0, 20, 0, 10]},
+        {
+          margin: [-2, 15, 0, 15],
+          table: {
+            widths: [160, 160, 160],
+            body: headerBetwin
+
+          }
+        },
+
+        {text: ('Entrada de Artigos').toUpperCase(), fontSize: 9, alignment: 'center',  bold: true, margin: [0, 20, 0, 25]},
         {
           style: 'tableExample',
           table: {
-            widths: [140, 40, 110, 70, 90],
+            widths: [182, 30, 110, 60, 70],
             headerRows: 1,
             body: content
           },
@@ -107,6 +215,13 @@ export default class ServicePrintMove {
           margin: [20, 20, 20, 20],
           alignment: 'justify'
         },
+
+        {
+          text: 'Obs:' +  move.oItem.details,
+          fontSize: 8,
+          bold: false,
+          margin: [0, 5, 5, 5]
+        },
         {
           qr: move.oItem.docRef,
           fit: 80,
@@ -115,19 +230,30 @@ export default class ServicePrintMove {
         },
         {
           text: 'Data: ' + moment().format('DD / MM / YYYY HH:mm.s'),
-          fontSize: 11,
-          color: '#D7DBDD',
+          fontSize: 7,
+          color: '#454545',
           bold: false,
           margin: [0, 20, 0, 0]
         },
         {
           text: 'Operador: ' + this.auth.user.displayName + '',
-          fontSize: 11,
-          color: '#D7DBDD',
+          fontSize: 7,
+          color: '#454545',
           bold: false,
           margin: [0, 0, 0, 1]
         },
       ],
+      footer: {
+        columns: [
+          {
+            text: 'Projectos e instalação domesticas «» Segurança electrónica - cctv, videofone-proteiro - alarmes de intrusão, fumo, gás e inundação «» Automação - portões cortinas «» Iluminação inteligente «» Centrais de Tv p/ condominios e edificios «» Centrais telefónicas «» Som ambiente e etc.',
+            alignment: 'center',
+            fontSize: 7,
+            margin: [40, 20, 40, 20],
+            color: '#7f8690',
+          }
+        ]
+      },
       styles: {
         tableHeader: {
           bold: true,
@@ -167,8 +293,6 @@ export default class ServicePrintMove {
           fontSize: 8
         }
       },
-
-
     }
 
     var pdf = pdfMake.createPdf(dd);

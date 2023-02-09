@@ -103,10 +103,10 @@ export class InserindoDadosComponent implements OnInit, PipeTransform {
      this.arrayData.forEach(async (attr: any, index: number) => {
       try {
         let data: any = {
-          'category_id': [attr.category],
-          'name': attr.name,
-          'model': attr.model,
-          'marquee': attr.marquee,
+          'category_id': [attr.category??''],
+          'name': attr.name??'',
+          'model': attr.model??'',
+          'marquee': attr.marquee??'',
           deleted_at: "NULL"
         }
 
@@ -137,8 +137,8 @@ export class InserindoDadosComponent implements OnInit, PipeTransform {
         movementItem.oItem.articleName = articleCreated?.name;
         movementItem.oItem.quantity = attr.qt;
         movementItem.oItem.localStorage = attr.localStorage;
-        movementItem.oItem.localAmbry = attr.localAmbry;
-        movementItem.oItem.localShelf = attr.localShelf;
+        movementItem.oItem.localAmbry = attr?.localAmbry;
+        movementItem.oItem.localShelf = attr?.localShelf;
         movementItem.oItem.moveType = this.TYPE_MOVEMENT;
         movementItem.oItem.dateOfPurchase = moment().format('DD, MM YYYY');
         movementItem.oItem.index = index
@@ -257,19 +257,6 @@ export class InserindoDadosComponent implements OnInit, PipeTransform {
       return data;
     }));
     const wb = XLSX.utils.book_new();
-
-    /*const headerRow = Object.keys(this.arrayData[0]);
-    headerRow.forEach((header, index) => {
-      const cell = XLSX.utils.encode_cell({c: index, r: 0});
-      ws[cell] = {
-        v: header.toUpperCase(),
-        s: {
-          font: {sz: 14, bold: true},
-          fill: {bgColor: {rgb: "00FF0000"}},
-          width: '150px'
-        }
-      };
-    });*/
 
     XLSX.utils.book_append_sheet(wb, ws, "Primeira folha");
 
