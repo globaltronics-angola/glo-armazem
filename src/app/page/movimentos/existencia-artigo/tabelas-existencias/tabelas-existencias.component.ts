@@ -105,7 +105,7 @@ export class TabelasExistenciasComponent implements OnInit {
           height: 30,
           margin: [0, 2, 2, 2]
         },
-        { text: 'Lista de Artigos Cadastrados', fontSize: 14, bold: true, margin: [0, 20, 0, 10] },
+        { text: 'Existencia no Armazém', fontSize: 14, bold: true, margin: [0, 20, 0, 10] },
         {
           style: 'tableExample',
           table: {
