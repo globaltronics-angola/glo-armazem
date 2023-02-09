@@ -180,6 +180,120 @@ export default class ServicePrintMove {
   printFunctionsRequisition(listItems: any[], move: any) {
 
     let client: any = move.oItem.client ? JSON.parse(move.oItem.client) : {}
+    let headerBetwin = [
+      [
+        {
+          text: '',
+          borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+        }, {
+        text: '',
+        borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+      }, {
+        text: '',
+        borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+      }
+      ],
+      [
+        {
+          text: [
+            {
+              text: 'Data.: ' + moment().format('DD / MM / YYYY HH:mm') + '\n',
+              fontSize: 10,
+              bold: false,
+              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+              margin: [0, 0, 0, 2],
+
+            },
+            {
+              text: 'Ref.: ' + move.oItem.docRef + '\n',
+              fontSize: 9,
+              bold: false,
+              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+              margin: [0, 0, 0, 2],
+
+            },
+            {
+              text: 'Requisitante.: ' + this.auth.user.displayName + '\n',
+              fontSize: 8,
+              bold: false,
+              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+              margin: [0, 0, 0, 2],
+            }
+
+          ],
+          border: [false, false, false, false]
+        },
+        {text: '', border: [false, false, false, false]},
+        {
+          text: [
+            {
+              text: ('Cliente : ').toUpperCase() + '\n',
+              fontSize: 10,
+              bold: false,
+              colSpan: 3,
+              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+              margin: [0, 0, 0, 3]
+            },
+            {
+              text: client.name + '\n',
+              fontSize: 10,
+              colSpan: 3,
+              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+              bold: false,
+              margin: [0, 0, 0, 3]
+            },
+            {
+              text: (client.identityClient ? 'Contribuinte nº 5417106372 ' + client.identityClient : '') + '\n',
+              fontSize: 7,
+              bold: false,
+              colSpan: 3,
+              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+              color: '#515A5A',
+              margin: [0, 0, 0, 2],
+            },
+            {
+              text: 'Luanda - Angola' + '\n',
+              fontSize: 9,
+              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+              color: '#515A5A',
+              margin: [0, 0, 0, 2],
+            }
+          ],
+          borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+
+        }
+
+      ]
+    ];
+
+    let footer = [
+      [
+        {
+          text: {
+            text: 'Entreguei\n\n __________________________________',
+            fontSize: 9,
+            color: '#515A5A',
+            alignment: 'center',
+            bold: false,
+            margin: [0, 0, 0, 2],
+          },
+          borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+        }, {
+        text: '',
+        borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+      }, {
+        text: {
+          text: 'Recebi\n\n __________________________________',
+          fontSize: 9,
+          color: '#515A5A',
+          bold: false,
+          alignment: 'center',
+          margin: [0, 0, 0, 2],
+        },
+        borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+      }
+      ]
+    ];
 
     let content = [
       [
@@ -240,61 +354,19 @@ export default class ServicePrintMove {
           margin: [0, 0, 0, 2],
         },
         {
-          text: 'Endereço: Bº Benfica Pista Lote 249 ' ,
+          text: 'Endereço: Bº Benfica Pista Lote 249 ',
           fontSize: 7,
           bold: false,
           color: '#515A5A',
           margin: [0, 0, 0, 2],
         },
+        {
+          margin: [-2, 15, 0, 15],
+          table: {
+            widths: [160, 160, 160],
+            body: headerBetwin
 
-
-        {
-          text: ('Cliente : ').toUpperCase(),
-          fontSize: 10,
-          alignment: 'right',
-          bold: false,
-          margin: [0, 0, 0, 3]
-        },
-        {
-          text: client.name,
-          fontSize: 10,
-          alignment: 'right',
-          bold: false,
-          margin: [0, 0, 0, 3]
-        },
-        {
-          text: client.identityClient ? 'Contribuinte nº 5417106372 ' + client.identityClient : '',
-          fontSize: 7,
-          bold: false,
-          alignment: 'right',
-          color: '#515A5A',
-          margin: [0, 0, 0, 2],
-        },
-        {
-          text: 'Luanda - Angola',
-          fontSize: 9,
-          bold: false,
-          alignment: 'right',
-          color: '#515A5A',
-          margin: [0, 0, 0, 2],
-        },
-        {
-          text: 'Data de Emissão.: ' + moment().format('DD / MM / YYYY HH:mm'),
-          fontSize: 8,
-          bold: false,
-          margin: [0, 0, 0, 2],
-        },
-        {
-          text: 'Documento. Ref.: ' + move.oItem.docRef,
-          fontSize: 8,
-          bold: false,
-          margin: [0, 0, 0, 2],
-        },
-        {
-          text: 'Requisitante.: ' + this.auth.user.displayName,
-          fontSize: 8,
-          bold: false,
-          margin: [0, 0, 0, 2],
+          }
         },
         {
           text: ('Nota de Entrega: ').toUpperCase(),
@@ -330,44 +402,34 @@ export default class ServicePrintMove {
           alignment: 'justify'
         },
         {
-          text: 'Entreguei',
-          fontSize: 9,
-          color: '#232323',
-          bold: false,
+          table: {
+            widths: [160, 160, 160],
+            body: footer
+
+          },
           margin: [0, 20, 0, 0]
         },
         {
-          text: '_________________________',
-          fontSize: 9,
-          color: '#232323',
-          bold: false,
-          margin: [0, 10, 0, 0]
-        },
-        {
-          text: 'Recebi',
-          fontSize: 9,
-          alignment: 'right',
-          color: '#232323',
-          bold: false,
-          margin: [0, 20, 0, 0]
-        },
-        {
-          text: '_________________________',
-          fontSize: 9,
-          alignment: 'right',
-          color: '#232323',
-          bold: false,
-          margin: [0, 10, 0, 0]
-        },
-
-
-        {
+          margin: [0, 40, 0, 0],
           qr: move.oItem.docRef,
           fit: 60,
           alignment: 'right',
           foreground: '#D7D5D5'
         },
       ],
+      footer: {
+        columns: [
+          {
+            text: 'Projectos e instalação domesticas «» Segurança electrónica - cctv, videofone-proteiro - alarmes de intrusão, fumo, gás e inundação «» Automação - portões cortinas «» Iluminação inteligente «» Centrais de Tv p/ condominios e edificios «» Centrais telefónicas «» Som ambiente e etc.',
+            alignment: 'center',
+            fontSize: 7,
+            margin: [40, 20, 40, 20],
+            color: '#7f8690',
+          }
+        ]
+      }
+
+      ,
       styles: {
         tableExample: {
           width: 1000
@@ -379,15 +441,10 @@ export default class ServicePrintMove {
         },
         span: {
           fontSize: 8,
-
           color: '#E6B0AA'
-        },
-        table: {
-          width: '1000px'
         },
         all: {
           fontSize: 8,
-
           color: '#515A5A'
         },
         allEnd: {
