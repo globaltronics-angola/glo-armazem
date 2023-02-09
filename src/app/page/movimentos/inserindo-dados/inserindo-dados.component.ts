@@ -99,14 +99,14 @@ export class InserindoDadosComponent implements OnInit, PipeTransform {
 
   }
 
-   saveall() {
-     this.arrayData.forEach(async (attr: any, index: number) => {
+  saveall() {
+    this.arrayData.forEach(async (attr: any, index: number) => {
       try {
         let data: any = {
-          'category_id': [attr.category??''],
-          'name': attr.name??'',
-          'model': attr.model??'',
-          'marquee': attr.marquee??'',
+          'category_id': [attr.category ?? ''],
+          'name': attr.name ?? '',
+          'model': attr.model ?? '',
+          'marquee': attr.marquee ?? '',
           deleted_at: "NULL"
         }
 
@@ -154,16 +154,20 @@ export class InserindoDadosComponent implements OnInit, PipeTransform {
     })
   }
 
-  addRow(){
-      this.arrayData.push({
-        'category_id': [],
-        'name': '',
-        'model': '',
-        deleted_at: moment().format('DD MM YYYY HH:mm')
-      })
-      this.initJQuerysFunctions()
+  addRow() {
+    this.arrayData.push({
+      'category_id': [],
+      'name': '',
+      'model': '',
+      deleted_at: moment().format('DD MM YYYY HH:mm')
+    })
+    this.initJQuerysFunctions()
   }
 
+  // para rever se é important
+  removRow(attr: number) {
+    this.arrayData
+  }
 
   initJQuerysFunctions() {
     //this.window.$('input[name="selectedArmazem2022"]')
