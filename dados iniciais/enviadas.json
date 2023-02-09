@@ -1,0 +1,71 @@
+[
+  {
+    "marquee": "Intel",
+    "category": "",
+    "name": "NUC Kit NUC 1017FNHN",
+    "model": "BXBUC1017FNHN2",
+    "qt":3
+  },
+  {
+    "marquee": "Symetrix",
+    "category": "",
+    "name": "Fonte de Alimentação GST24A24",
+    "model": "Fonte Alim. 24V",
+    "qt":1
+  }
+,
+  {
+    "marquee": "Lindy",
+    "category": "",
+    "name": "Adaptador USB 3.1 Tipo C para HDMI",
+    "model": "43339",
+    "qt":1
+  }
+,
+  {
+    "marquee": "Lindy",
+    "category": "",
+    "name": "Cabo USB Ativo 8.0M",
+    "model": "42780 USB 2.0",
+    "qt":1
+  }
+,
+  {
+    "marquee": "Lindy",
+    "category": "",
+    "name": "Cabo USB Ativo 2.0M",
+    "model": "36693",
+    "qt":1
+  }
+,
+  {
+    "marquee": "",
+    "category": "",
+    "name": "Cabo audio Splitter 2x3.5mm",
+    "model": "EC1640",
+    "qt":1
+  }
+,
+  {
+    "marquee": "Black Magic",
+    "category": "",
+    "name": "Micro Conversor HDMI to SDI 3G",
+    "model": "HDMI to SDI 3G",
+    "qt":1
+  },
+  {
+    "marquee": "Lindy",
+    "category": "",
+    "name": "Bi-directional Wireless IR Extender",
+    "model": "38181",
+    "qt":1
+  }
+,
+  {
+    "marquee": "Lindy",
+    "category": "",
+    "name": "HDMI Gigabit IP Extender 1080p",
+    "model": "38126",
+    "qt":1
+  }
+  ]

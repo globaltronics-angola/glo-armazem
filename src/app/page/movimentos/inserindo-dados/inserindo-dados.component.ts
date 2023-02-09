@@ -161,6 +161,7 @@ export class InserindoDadosComponent implements OnInit, PipeTransform {
         'model': '',
         deleted_at: moment().format('DD MM YYYY HH:mm')
       })
+      this.initJQuerysFunctions()
   }
 
 
