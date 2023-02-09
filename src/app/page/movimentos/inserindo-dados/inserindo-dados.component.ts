@@ -82,8 +82,8 @@ export class InserindoDadosComponent implements OnInit, PipeTransform {
       movementItem.oItem.articleName = articleCreated?.name;
       movementItem.oItem.quantity = attr.qt;
       movementItem.oItem.localStorage = attr.localStorage;
-      movementItem.oItem.localAmbry = attr.localAmbry;
-      movementItem.oItem.localShelf = attr.localShelf;
+      movementItem.oItem.localAmbry = attr?.localAmbry;
+      movementItem.oItem.localShelf = attr?.localShelf;
       movementItem.oItem.moveType = this.TYPE_MOVEMENT;
       movementItem.oItem.dateOfPurchase = moment().format('DD, MM YYYY');
       movementItem.oItem.index = index

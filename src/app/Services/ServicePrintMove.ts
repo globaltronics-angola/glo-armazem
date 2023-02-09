@@ -308,13 +308,13 @@ export default class ServicePrintMove {
       [
         {
           text: '',
-          borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+          borderColor: ['#ffffff', '#d8d8d8', '#ffffff', '#ffffff'],
         }, {
         text: '',
-        borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+        borderColor: ['#ffffff', '#d8d8d8', '#ffffff', '#ffffff'],
       }, {
         text: '',
-        borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+        borderColor: ['#ffffff', '#d8d8d8', '#ffffff', '#ffffff'],
       }
       ],
       [
@@ -354,38 +354,40 @@ export default class ServicePrintMove {
               text: ('Cliente : ').toUpperCase() + '\n',
               fontSize: 10,
               bold: false,
-              colSpan: 3,
-              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
-              margin: [0, 0, 0, 3]
+              borderColor: ['#ffffff', '#d8d8d8', '#ffffff', '#ffffff'],
+              margin: [0, 0, 0, 2],
+
             },
             {
               text: client.name + '\n',
               fontSize: 10,
-              colSpan: 3,
-              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
               bold: false,
-              margin: [0, 0, 0, 3]
+              borderColor: ['#ffffff', '#d8d8d8', '#ffffff', '#ffffff'],
+              margin: [0, 0, 0, 2],
+
             },
             {
               text: (client.identityClient ? 'Contribuinte nº 5417106372 ' + client.identityClient : '') + '\n',
               fontSize: 7,
-              bold: false,
-              colSpan: 3,
-              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
               color: '#515A5A',
+              bold: false,
+              borderColor: ['#ffffff', '#d8d8d8', '#ffffff', '#ffffff'],
               margin: [0, 0, 0, 2],
             },
             {
               text: 'Luanda - Angola' + '\n',
               fontSize: 9,
-              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
               color: '#515A5A',
+              bold: false,
+              borderColor: ['#ffffff', '#d8d8d8', '#ffffff', '#ffffff'],
               margin: [0, 0, 0, 2],
             }
-          ],
-          borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
 
-        }
+          ],
+          border: [false, false, false, false]
+        },
+
+
 
       ]
     ];
