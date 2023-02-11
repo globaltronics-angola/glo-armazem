@@ -99,6 +99,15 @@ export default class ServiceUtil {
 
     return ans;
   }
+  public  textToColor(text: string): string {
+    let color = "";
+    for (let i = 0; i < text.length; i++) {
+      let hex = text.charCodeAt(i).toString(16);
+      color += hex.length == 1 ? "0" + hex : hex;
+    }
+
+    return '#'+ color.slice(3,9) + '65';
+  }
 
   static IconGlo = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="507.5" height="97.02" viewBox="0 0 507.5 97.02">
   <defs>

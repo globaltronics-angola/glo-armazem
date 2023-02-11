@@ -140,10 +140,7 @@ const routes: Routes = [
           {path: 'eans', component: ReferenciaServisoComponent},
           {path: 'todos', component: DatatableServicesComponent},
         ]
-      },
-
-
-    ]
+      },    ]
   },
   {
     path: 'stock', component: MainAppComponent,
@@ -153,23 +150,19 @@ const routes: Routes = [
         children: [
           {path: 'tabela', component: TabelasExistenciasComponent}
         ]
-      }
-    ]
-  },
-  {
-    path: 'stock', component: MainAppComponent,
-    children: [
+      },
       {
         path: 'ocorrencias', component: OcorenciasArtigoComponent,
         children: [
           {path: 'tabela', component: TabelaOcorrenciasComponent}
         ]
-      }
-    ]
-  },
-  {
-    path: 'stock', component: MainAppComponent,
-    children: [
+      },
+      {
+        path: 'inventario', component: OcorenciasArtigoComponent,
+        children: [
+          {path: 'tabela', component: RelatorioInventarioGeralComponent},
+        ]
+      },
       {
         path: 'movimento', component: OcorenciasArtigoComponent,
         children: [
@@ -179,18 +172,7 @@ const routes: Routes = [
       }
     ]
   },
-  {
-    ///stock/inventario/tabela
-    path: 'stock', component: MainAppComponent,
-    children: [
-      {
-        path: 'inventario', component: OcorenciasArtigoComponent,
-        children: [
-          {path: 'tabela', component: RelatorioInventarioGeralComponent},
-        ]
-      }
-    ]
-  },
+
   {
     path: 'movimentos', component: MainAppComponent,
     children: [

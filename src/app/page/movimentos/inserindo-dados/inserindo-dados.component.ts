@@ -166,7 +166,8 @@ export class InserindoDadosComponent implements OnInit, PipeTransform {
 
   // para rever se é important
   removRow(attr: number) {
-    this.arrayData
+
+    this.arrayData.splice(attr, 1);
   }
 
   initJQuerysFunctions() {

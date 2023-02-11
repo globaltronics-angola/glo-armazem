@@ -29,7 +29,7 @@ export class WdgetTableComponent implements OnInit {
 
   constructor(private store: StorageService, private auth: AuthService, private router: Router, private sanitizer: DomSanitizer) {
     this.existance = new ServiceExistance(this.store);
-    this.page = new StorageServicePaginateService(this.store, this.auth, ServiceExistance.STORAGE_STORAGE, 'order')
+    this.page = new StorageServicePaginateService(this.store, this.auth, ServiceExistance.STORAGE_STORAGE, 'quantity')
     this.page.offset = 5;
     this.util = new ServiceUtil();
   }
