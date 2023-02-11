@@ -2,8 +2,8 @@
   <div class="card-header pt-5 ">
     <div class="card-title d-flex flex-column">
       <div class="d-flex align-items-center">
-        <span class="fs-4 fw-semibold text-gray-400 me-1 align-self-start">$</span>
-        <span class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">69,700</span>
+        <span class="fs-4 fw-semibold text-gray-400 me-1 align-self-start"></span>
+        <span class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">{{ totalProdutos }}</span>
         <span class="badge badge-light-success fs-base">
           <span class="svg-icon svg-icon-5 svg-icon-success ms-n1">
             <svg width="24" height="24" viewBox="0 0 24 24"
@@ -16,33 +16,33 @@
                 fill="currentColor"/>
             </svg>
           </span>
-          2.2%</span>
+          {{ (widget.qt * (100 / 5000)).toFixed(1)}}%</span>
       </div>
-      <span class="text-gray-400 pt-1 fw-semibold fs-6">Projects Earnings in April</span>
+      <span class="text-gray-400 pt-1 fw-semibold fs-6">Movimentos </span>
     </div>
   </div>
   <div class="card-body pt-2 pb-4 d-flex flex-wrap align-items-center ">
     <div class="d-flex flex-center me-5 pt-2">
-      <div id="kt_card_widget_17_chart"
-           style="min-width: 70px; min-height: 70px" data-kt-size="70"
-           data-kt-line="11"></div>
+      <div id="kt_card_widget_17_chart123"
+           style="min-width: 70px; min-height: 70px" data-kt-size="120"
+           data-kt-line="12"></div>
     </div>
     <div class="d-flex flex-column content-justify-center flex-row-fluid">
       <div class="d-flex fw-semibold align-items-center">
         <div class="bullet w-8px h-3px rounded-2 bg-success me-3"></div>
-        <div class="text-gray-500 flex-grow-1 me-4">Leaf CRM</div>
-        <div class="fw-bolder text-gray-700 text-xxl-end">$7,660</div>
+        <div class="text-gray-500 flex-grow-1 me-4">Entradas</div>
+        <div class="fw-bolder text-gray-700 text-xxl-end">{{ totalEntradas }}</div>
       </div>
       <div class="d-flex fw-semibold align-items-center my-3">
         <div class="bullet w-8px h-3px rounded-2 bg-primary me-3"></div>
-        <div class="text-gray-500 flex-grow-1 me-4">Mivy App</div>
-        <div class="fw-bolder text-gray-700 text-xxl-end">$2,820</div>
+        <div class="text-gray-500 flex-grow-1 me-4">Saidas</div>
+        <div class="fw-bolder text-gray-700 text-xxl-end">{{ totalSaida }}</div>
       </div>
       <div class="d-flex fw-semibold align-items-center">
         <div class="bullet w-8px h-3px rounded-2 me-3"
              style="background-color: #E4E6EF"></div>
-        <div class="text-gray-500 flex-grow-1 me-4">Others</div>
-        <div class="fw-bolder text-gray-700 text-xxl-end">$45,257</div>
+        <div class="text-gray-500 flex-grow-1 me-4">Transferênce</div>
+        <div class="fw-bolder text-gray-700 text-xxl-end">{{ totalIntras }}</div>
       </div>
     </div>
   </div>
