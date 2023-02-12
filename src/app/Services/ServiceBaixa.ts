@@ -190,23 +190,11 @@ export default class ServiceBaixa {
   async existArticleNewStore(attr: any) {
 
     let articleExist: any = {};
-    articleExist.id = attr.articleId + JSON.parse(attr.localStorage).id
-      + (attr.localAmbry ? JSON.parse(attr.localAmbry).ambry.id + '-' : '')
-      + (attr.localShelf ? JSON.parse(attr.localShelf).id + '-' : '')
+    articleExist.id = attr.articleId + JSON.parse(attr.localStorageEntrada).id
+      + (attr.localAmbryEntrada ? JSON.parse(attr.localAmbryEntrada).ambry.id + '-' : '')
+      + (attr.localShelfEntrada ? JSON.parse(attr.localShelfEntrada).id + '-' : '')
 
-    articleExist.localStorageId = attr.localStorage ? JSON.parse(attr.localStorage).id : '';
-    articleExist.localStorage = attr.localStorage ? JSON.parse(attr.localStorage).name : '';
-    articleExist.storageCode = attr.localStorage ? JSON.parse(attr.localStorage).codigo : '';
-    articleExist.localAmbry = (attr.localAmbry ? JSON.parse(attr.localAmbry).ambry.name : '');
-    articleExist.localShelf = (attr.localShelf ? JSON.parse(attr.localShelf).name : '');
-    articleExist.quantity = attr.quantity;
-    articleExist.article = attr.article;
-    articleExist.color = "text-danger";
-    articleExist.created_at = Timestamp.now();
-    articleExist.updated_at = Timestamp.now();
-    articleExist.deletad_at = "NULL";
-    articleExist.order = this.store.getId() + '-' + attr.quantity;
-    articleExist.articleName = attr.article ? JSON.parse(attr.article).name : '';
+
 
     let artExir: any = await firstValueFrom(this.store
       .findById(ServiceBaixa.STORAGE_EXIST_ITEM_ST, articleExist.id)).then((e) => {
@@ -214,11 +202,10 @@ export default class ServiceBaixa {
     });
 
     if (artExir?.quantity) {
-      articleExist.quantity -= artExir.quantity;
-      articleExist.order = this.store.getId() + '-' + articleExist.quantity;
+      artExir.quantity -=  attr.quantity;
+      artExir.order = this.store.getId() + '-' + artExir.quantity;
 
-      console.log(artExir)
-      this.store.createForceMyId(articleExist, ServiceBaixa.STORAGE_EXIST_ITEM_ST).then();
+      this.store.createForceMyId(artExir, ServiceBaixa.STORAGE_EXIST_ITEM_ST).then();
     }
 
 
@@ -228,12 +215,11 @@ export default class ServiceBaixa {
 
 
     let articleExist: any = {};
-    articleExist.id = attr.articleId + (attr.localStorage ? JSON.parse(attr.localStorage).id : '')
+    articleExist.id = attr.articleId + JSON.parse(attr.localStorageEntrada).id
 
 
     let artExir: any = await firstValueFrom(this.store
       .findById(ServiceBaixa.STORAGE_EXIST_ITEM_ST_DC, articleExist.id)).then((eX) => {
-      // console.log(eX);
       return eX
     });
 
@@ -246,6 +232,7 @@ export default class ServiceBaixa {
 
 
   }
+
 }
 
 export interface Movimento {

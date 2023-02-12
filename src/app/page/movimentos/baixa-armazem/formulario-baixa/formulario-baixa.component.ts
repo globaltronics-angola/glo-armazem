@@ -210,8 +210,6 @@ export class FormularioBaixaComponent implements OnInit, OnDestroy {
         throw "excedeu o limit de devolução neste item da lista"
       }
 
-      console.log(JSON.parse(e.target.value))
-
       this.movItems.oItem.originalRequiest = e.target.value;
       this.movItems.oItem.articleId = JSON.parse(itemContains.article).id;
       this.movItems.oItem.articleName = JSON.parse(itemContains.article).name;
@@ -222,7 +220,9 @@ export class FormularioBaixaComponent implements OnInit, OnDestroy {
       this.movItems.oItem.primarySN = itemContains.SN;
       this.movItems.oItem.primaryPN = itemContains.PN;
 
-
+      this.movItems.oItem.localStorageEntrada = itemContains.localStorage;
+      this.movItems.oItem.localAmbryEntrada = itemContains.localAmbry
+      this.movItems.oItem.localShelfEntrada = itemContains.localShelf
     })
 
     status.select2({minimumResultsForSearch: -1}).on('change', (e: any) => {

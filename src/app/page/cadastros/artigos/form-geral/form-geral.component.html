@@ -85,7 +85,7 @@
             <input type="text" class="form-control form-control-sm"
                    style="letter-spacing: 8px" maxlength="13" id="eanArticle" (keyup)="ngTyping()"
                    placeholder="código de referencia do produto" [(ngModel)]="article.Article.ean" name="ean">
-            <span class="input-group-text cursor-pointer" (click)="generateRef()" id="generate_key">
+            <span class="input-group-text cursor-pointer" (click)="startScanner()" id="generate_key">
               <i class="fa fa-sync-alt"></i>
             </span>
           </div>
@@ -126,5 +126,6 @@
 
     </div>
   </form>
-
+  <div id="interactive" class="viewport"></div>
+  <div id="scanner"></div>
 </div>

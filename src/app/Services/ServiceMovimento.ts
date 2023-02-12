@@ -206,7 +206,7 @@ export default class ServiceMovimento {
 
   private async inventory(attr: any) {
     let articleExist: any = {};
-    articleExist.id = attr.articleId + JSON.parse(attr.article).id
+    articleExist.id = attr.articleId + JSON.parse(attr.localStorage).id
 
     articleExist.localStorageId = JSON.parse(attr.localStorage).id;
     articleExist.localStorage = JSON.parse(attr.localStorage).name;

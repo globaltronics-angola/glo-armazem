@@ -7,6 +7,7 @@ import ServiceRequisicao from "../../../Services/ServiceRequisicao";
 import ServiceTransferencia from "../../../Services/ServiceTransferencia";
 import ServiceUtil from "../../../Services/ServiceUtil";
 import ServiceDevolucao from "../../../Services/ServiceDevolucao";
+import ServiceBaixa from "../../../Services/ServiceBaixa";
 
 @Component({
   selector: 'app-wdget-counter3',
@@ -24,8 +25,8 @@ export class WdgetCounter3Component implements OnInit {
   static saida: number = 0;
   static trnasf: number = 0;
   static devolu: number = 0;
-
   static baixa: number = 0;
+
   totalEntradas: string = "";
   totalSaida: string = "";
   totalIntras: string = "";
@@ -89,6 +90,17 @@ export class WdgetCounter3Component implements OnInit {
     }
     WdgetCounter3Component.devolu = quantyDe;
     WdgetCounter3Component.listMovimento.push(quantyDe);
+
+    const snapBaixa = await getCountFromServer(collection(getFirestore(), ServiceBaixa.STORAGE_NAME));
+    const quantyBai = snapBaixa.data().count;
+
+    if (quantyBai >= 1000) {
+      this.totalIntras = (quantyBai / 1000).toFixed(1) + 'k';
+    } else {
+      this.totalIntras = "" + quantyBai;
+    }
+    WdgetCounter3Component.baixa = quantyBai;
+    WdgetCounter3Component.listMovimento.push(quantyBai);
 
     this.initChart()
 
@@ -162,24 +174,32 @@ export class WdgetCounter3Component implements OnInit {
         drawCircle('#E4E6EF', options.lineWidth, WdgetCounter3Component.qt / WdgetCounter3Component.qt);
         // @ts-ignore
         drawCircle('#E4E6EF', options.lineWidth,
-          ((WdgetCounter3Component.entrada + (WdgetCounter3Component.trnasf + WdgetCounter3Component.saida + WdgetCounter3Component.devolu)) / WdgetCounter3Component.qt).toFixed(1));
+          ((WdgetCounter3Component.entrada + (WdgetCounter3Component.trnasf + WdgetCounter3Component.saida + WdgetCounter3Component.devolu + WdgetCounter3Component.baixa)) / WdgetCounter3Component.qt));
+
+
         // @ts-ignore
         drawCircle(KTUtil.getCssVariableValue('--kt-success'), options.lineWidth,
           (
-            ((WdgetCounter3Component.trnasf + WdgetCounter3Component.saida + WdgetCounter3Component.devolu)) / WdgetCounter3Component.qt).toFixed(1)
+            ((WdgetCounter3Component.trnasf + WdgetCounter3Component.saida + WdgetCounter3Component.devolu + WdgetCounter3Component.baixa)) / WdgetCounter3Component.qt)
         );
 
 
         // @ts-ignore
         drawCircle(KTUtil.getCssVariableValue('--kt-primary'), options.lineWidth,
-          ((WdgetCounter3Component.saida + WdgetCounter3Component.devolu) / WdgetCounter3Component.qt).toFixed(1)
+          ((WdgetCounter3Component.saida + WdgetCounter3Component.devolu + WdgetCounter3Component.baixa) / WdgetCounter3Component.qt)
         );
 
 
         // @ts-ignore
         drawCircle(KTUtil.getCssVariableValue('--kt-danger'), options.lineWidth,
-          (WdgetCounter3Component.devolu / WdgetCounter3Component.qt).toFixed(1)
+          ((WdgetCounter3Component.baixa + WdgetCounter3Component.devolu ) / WdgetCounter3Component.qt)
         );
+
+        // @ts-ignore
+        drawCircle(KTUtil.getCssVariableValue('--kt-warning'), options.lineWidth,
+          ((WdgetCounter3Component.baixa )/ WdgetCounter3Component.qt)
+        );
+
 
       }
 

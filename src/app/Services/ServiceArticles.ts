@@ -63,8 +63,14 @@ export default class ServiceArticles {
       this.Article.created_at = moment().format('DD MM,YYYY HH:mm:ss')
     }
 
-    this.Article.timestamp = "" + new Date().getTime() + this.Article.id
-    this.Article.updated_mode = false;
+    if (this.Article.id != 'NULL') {
+      this.Article.timestamp = "" + new Date().getTime() + this.Article.id
+      this.Article.updated_mode = false;
+    } else {
+      this.Article.id = this.store.getId()
+      this.Article.timestamp = "" + new Date().getTime() + this.Article.id
+      this.Article.updated_mode = false;
+    }
 
     this.store.createdForceGenerateId(this.Article, ServiceArticles.STORAGE_ARTICLES)
       .then(

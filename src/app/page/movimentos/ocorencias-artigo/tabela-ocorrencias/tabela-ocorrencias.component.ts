@@ -214,20 +214,7 @@ export class TabelaOcorrenciasComponent implements OnInit {
   }
 
   async find() {
-    if (this.isSearch == 'Nome') {
-      await this.page.findByFieldContext('name', this.typingName)
-    }
-    if (this.isSearch == 'Tipo...') {
-      if (this.typingName.toLowerCase() == 'colectivo' || this.typingName.toLowerCase() == 'coletivo')
-        await this.page.findByFieldContext('type', '2')
-      else if (this.typingName.toLowerCase() == 'individual')
-        await this.page.findByFieldContext('type', '1')
-
-    }
-
-    if (this.isSearch == 'Nif...') {
-      await this.page.findByFieldContext('identityClient', this.typingName)
-    }
+      await this.page.findByFieldContext('articleName', this.typingName)
   }
 
   setSearch(attr: string) {

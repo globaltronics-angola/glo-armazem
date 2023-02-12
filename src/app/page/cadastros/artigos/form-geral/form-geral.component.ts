@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ElementRef } from '@angular/core';
 import {AuthService} from "../../../../shared/auth.service";
 import {StorageService} from "../../../../shared/storage.service";
 import ServiceArticles from 'src/app/Services/ServiceArticles';
@@ -7,14 +7,13 @@ import ServiceCategories from 'src/app/Services/ServiceCategories';
 import ServiceUtil from 'src/app/Services/ServiceUtil';
 //@ts-ignore
 import articleJson from './articles_generated.json';
-
-
 import {ActivatedRoute} from "@angular/router";
 import * as Tagify from "@yaireo/tagify";
 import {ServiceEncryptDecriptSimples} from 'src/app/Services/service-encrypt-decript-simples';
 import {StorageValidateAnyService} from "../../../../shared/storage.validate.any.service";
 
-// import * as _ from  "lodash";
+//@ts-ignore
+import * as Quagga from 'quagga';
 
 
 @Component({
@@ -22,7 +21,7 @@ import {StorageValidateAnyService} from "../../../../shared/storage.validate.any
   templateUrl: './form-geral.component.html',
   styleUrls: ['./form-geral.component.css']
 })
-export class FormGeralComponent implements OnInit, OnDestroy {
+export class FormGeralComponent implements OnInit, OnDestroy, AfterViewInit  {
 
 
   listCategories: Observable<any> | null = null;
@@ -39,10 +38,11 @@ export class FormGeralComponent implements OnInit, OnDestroy {
 
   flag: boolean = true
   private validations: StorageValidateAnyService
+  private scannedCode: string = "";
 
 
   constructor(private auth: AuthService, private store: StorageService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,private elementRef: ElementRef) {
 
     this.article = new ServiceArticles(this.store);
 
@@ -69,6 +69,7 @@ export class FormGeralComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
+
 
     this.window.InstanceAplication.init()
     try {
@@ -161,6 +162,19 @@ export class FormGeralComponent implements OnInit, OnDestroy {
     this.window.$('#eanArticle').removeClass('is-invalid');
     this.window.$('#eanArticle').removeClass('is-valid');
     this.flag = true;
+  }
+
+  scanBarcode() {
+    //@ts-ignore
+
+  }
+
+  ngAfterViewInit(): void {
+
+  }
+
+  startScanner() {
+
   }
 
 }

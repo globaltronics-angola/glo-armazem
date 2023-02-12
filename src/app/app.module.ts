@@ -102,10 +102,6 @@ import {TabelaInventarioComponent} from './page/movimentos/inventario/tabela-inv
 
 import {HttpClientModule} from "@angular/common/http";
 
-import { USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/compat/auth';
-import { USE_EMULATOR as USE_DATABASE_EMULATOR } from '@angular/fire/compat/database';
-import { USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/compat/firestore';
-import { USE_EMULATOR as USE_FUNCTIONS_EMULATOR } from '@angular/fire/compat/functions';
 import { DatatableArnazemComponent } from './page/cadastros/armazem/datatable-arnazem/datatable-arnazem.component';
 import { InfoArmazemComponent } from './page/cadastros/armazem/info-armazem/info-armazem.component';
 import { ExistenciaArtigoComponent } from './page/movimentos/existencia-artigo/existencia-artigo.component';
@@ -131,6 +127,8 @@ import { WdgetCounter3Component } from './page/dashboard/wdget-counter3/wdget-co
 import { ImportAndExpComponent } from './page/dashboard/import-and-exp/import-and-exp.component';
 import { WdgetChartComponent } from './page/dashboard/wdget-chart/wdget-chart.component';
 import { WdgetTableComponent } from './page/dashboard/wdget-table/wdget-table.component';
+
+
 
 
 

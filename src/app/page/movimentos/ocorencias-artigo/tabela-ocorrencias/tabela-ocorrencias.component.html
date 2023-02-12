@@ -1,11 +1,26 @@
-<div class="card-title row w-100 justify-content-between">
+<div class="card-title row w-100 ">
 
-  <div class="col-auto col-sm-3 col-lg-6">
+  <div class="col-auto col-sm-auto col-lg-auto">
     <button class="btn btn-sm  btn-secondary btn-active-primary mb-10 " (click)="pdfGenerator()">
       <i class="bi bi-filetype-pdf"></i> Gerar Pdf
     </button>
   </div>
+  <div class="col-sm-8">
+    <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+      <div class="input-group input-group-sm">
 
+        <button class="input-group-text rounded-end-0" id="basic-addon2"
+                data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start" data-kt-menu-offset="30px, 30px">
+          <i class="fa fa-ellipsis-vertical"></i>&nbsp;Nome
+        </button>
+
+        <input type="text" name="name" class="form-control form-control-sm" autocomplete="off"
+               [(ngModel)]="typingName" (keyup.enter)="find()"
+               placeholder="pesquisar" id="articleName">
+
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="overflow-auto w-100 table-responsive overflow-auto h-450px" id="htmlData">
@@ -28,7 +43,7 @@
     </thead>
 
     <tbody class="fw-light">
-    <tr class="border-bottom  border-gray-150 fs-6" *ngFor="let mov of this.page.listDataArray"
+    <tr class="border-bottom  border-gray-150 fs-7" *ngFor="let mov of this.page.listDataArray"
         style="vertical-align: top; ">
       <td>
         <span class="badge badge-sm badge-light-dark" *ngIf="mov.moveType == 'INPUT'">
@@ -42,6 +57,9 @@
         </span>
         <span class="badge badge-sm badge-light-info" *ngIf="mov.moveType == 'TRANSFER'">
           Transferência
+        </span>
+        <span class="badge badge-sm badge-light-danger" *ngIf="mov.moveType == 'DOWNLOAD'">
+          Baixa no Stock
         </span>
       </td>
       <td>
@@ -67,20 +85,21 @@
         <span class="text-muted" *ngIf="!util.convertJson(mov.article.toString()).model"> -- -- -- </span>
       </td>
       <td class="text-gray-700 min-w-200px">
-
-        {{ util.convertJson(mov.localStorage.toString()).name }}
-
+        <span *ngIf="util.convertJson(mov.localStorage.toString()) as store">{{ store.name }}</span>
+        <span class="text-muted" *ngIf="!util.convertJson(mov.localStorage.toString())">--- ----- -----  ----</span>
       </td>
       <td class="text-center text-gray-600">
         <span class="badge badge-sm badge-light-dark"
               *ngIf="util.convertJson(mov.localAmbry.toString()).ambry as ambry ">
           {{ ambry.name }}
         </span>
+        <span class="text-muted" *ngIf="!util.convertJson(mov.localAmbry.toString())">---- ----- ----- ---- </span>
       </td>
       <td class="text-center text-gray-600">
-        <span class="small">
-          {{ util.convertJson(mov.localShelf.toString()).name }}
+        <span class="small" *ngIf="util.convertJson(mov.localShelf.toString()) as shelf">
+          {{ shelf.name }}
         </span>
+        <span class="text-muted" *ngIf="!util.convertJson(mov.localShelf.toString())">---- ----- ----- ---- </span>
       </td>
 
 

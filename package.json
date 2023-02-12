@@ -36,6 +36,7 @@
     "ng-pdf-make": "^0.1.1",
     "ngx-tagify": "^0.7.3",
     "pdfmake": "^0.2.7",
+    "quagga": "^0.12.1",
     "rxfire": "^6.0.3",
     "rxjs": "~7.5.0",
     "select2": "^4.1.0-rc.0",

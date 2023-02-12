@@ -29,20 +29,21 @@
     <span class="text-gray-800 fs-6 fw-bold text-danger text-muted mt-5 {{ (awaitingProcess?'d-none':'') }}">&nbsp;Aguarde...</span>
   </div>
 
-  <div class="row">
+  <div class="row overflow-auto h-450px">
     <table id="kt_datatable_both_scrolls" class="table table-striped table-row-bordered gy-2 gs-7">
-      <thead class="text-uppercase fw-bold bg-light-primary">
+      <thead class="text-uppercase fw-bold bg-light-primary position-sticky top-0">
       <tr class="fs-6 text-gray-800">
-        <th class="min-w-200px">Data</th>
-        <th class="min-w-200px">Referencia</th>
-        <th class="min-w-200px">Total</th>
-        <th class="min-w-200px">Detalhes</th>
+        <th class="min-w-100px" style="max-width: 170px!important; width: 170px!important; ">Data</th>
+        <th style="max-width: 160px!important; width: 160px!important; ">Referencia</th>
+        <th class="" style="max-width: 120px!important; width: 120px!important; ">Total</th>
+        <th class="" style="max-width: 120px!important; width: 120px!important; ">Qt Artigos</th>
+        <th class="min-w-100px">Detalhes</th>
         <th class="min-w-100px"></th>
       </tr>
       </thead>
       <tbody>
 
-      <tr class="border-bottom  border-gray-150 fs-5 gy-1" *ngFor="let mov of this.page.listDataArray"
+      <tr class="border-bottom  border-gray-150 fs-6 gy-1" *ngFor="let mov of this.page.listDataArray"
           style="vertical-align: top; ">
         <!--begin::Order ID-->
         <td class="min-w-100px d-none d-lg-table-cell" style="max-width: 140px!important; min-width: 140px!important;">
@@ -55,6 +56,9 @@
 
         <td class="text-end">
           {{ mov.financialCostTotal + ' KZ' }}
+        </td>
+        <td class="text-end">
+         <span class="badge  badge-light-dark"> {{ mov.items.length  }}</span>
         </td>
         <td class="d-none d-lg-table-cell" style="max-width:320px!important;">
           <div
