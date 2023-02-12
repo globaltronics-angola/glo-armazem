@@ -116,7 +116,8 @@ export class FormularioDevolucaoComponent implements OnInit, OnDestroy {
 
   }
 
-  cancelerMovement() {  }
+  cancelerMovement() {
+  }
 
   async addListItems() {
     try {
@@ -138,20 +139,28 @@ export class FormularioDevolucaoComponent implements OnInit, OnDestroy {
   async searchSaida() {
 
     this.moveEntrada = await this.move.getDocRef(this.docRefAt)
+
+    console.log(this.moveEntrada)
+
+    if (!this.moveEntrada) {
+      return;
+    }
     this.items = this.moveEntrada.items;
     this.movItems.oItem.moveInput = this.moveEntrada;
+
+
     await // console.log(this.moveEntrada)
 
-    this.window.$('#devolucaoProduct').select2({
-      minimumResultsForSearch: -1,
-      data: this.items.map((e: any, index: number) => {
-        let a: any = {id: '', text: ''};
-        let art: any = JSON.parse(e.article);
-        a.id = index;
-        a.text = art.name + ' ' + art.model + ' Qt: ' + e.quantity
-        return a;
+      this.window.$('#devolucaoProduct').select2({
+        minimumResultsForSearch: -1,
+        data: this.items.map((e: any, index: number) => {
+          let a: any = {id: '', text: ''};
+          let art: any = JSON.parse(e.article);
+          a.id = index;
+          a.text = art.name + ' ' + art.model + ' Qt: ' + e.quantity
+          return a;
+        })
       })
-    })
 
 
   }

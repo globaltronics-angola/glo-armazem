@@ -120,6 +120,7 @@ export class FormularioBaixaComponent implements OnInit, OnDestroy {
   }
 
   async addListItems() {
+
     try {
       await this.validationAny()
 
@@ -143,16 +144,16 @@ export class FormularioBaixaComponent implements OnInit, OnDestroy {
     this.movItems.oItem.moveInput = this.moveEntrada;
     await // console.log(this.moveEntrada)
 
-    this.window.$('#devolucaoProduct').select2({
-      minimumResultsForSearch: -1,
-      data: this.items.map((e: any, index: number) => {
-        let a: any = {id: '', text: ''};
-        let art: any = JSON.parse(e.article);
-        a.id = index;
-        a.text = art.name + ' ' + art.model + ' Qt: ' + e.quantity
-        return a;
+      this.window.$('#devolucaoProduct').select2({
+        minimumResultsForSearch: -1,
+        data: this.items.map((e: any, index: number) => {
+          let a: any = {id: '', text: ''};
+          let art: any = JSON.parse(e.article);
+          a.id = index;
+          a.text = art.name + ' ' + art.model + ' Qt: ' + e.quantity
+          return a;
+        })
       })
-    })
 
 
   }
@@ -198,7 +199,7 @@ export class FormularioBaixaComponent implements OnInit, OnDestroy {
 
     const status = this.window.$('#selectedEstado')
 
-    articleSelect.select2({minimumResultsForSearch: -1}).on('change', (e: any) => {
+    articleSelect.select2().on('change', (e: any) => {
       if (!e.target.value)
         return;
       let itemContains: any = this.moveEntrada.items[e.target.value];
@@ -209,6 +210,7 @@ export class FormularioBaixaComponent implements OnInit, OnDestroy {
         throw "excedeu o limit de devolução neste item da lista"
       }
 
+      console.log(JSON.parse(e.target.value))
 
       this.movItems.oItem.originalRequiest = e.target.value;
       this.movItems.oItem.articleId = JSON.parse(itemContains.article).id;

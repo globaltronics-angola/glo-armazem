@@ -130,8 +130,8 @@ export default class ServiceBaixa {
 
   updateItems() {
 
-    this.oItem.items.forEach(async (item: any) => {
 
+    this.oItem.items.forEach(async (item: any) => {
 
       this.oItem.itemsQuantity += item.quantity
       this.oItem.localCurrency = item.localCurrency
@@ -151,9 +151,8 @@ export default class ServiceBaixa {
 
       this.store.createForceMyId(itemMove, ServiceBaixa.STORAGE_MOVE_ITEM).then()
 
-        await this.existArticleNewStoreDC(item)
-        await this.existArticleNewStore(item)
-
+      await this.existArticleNewStoreDC(item)
+      await this.existArticleNewStore(item)
 
 
     })
@@ -195,9 +194,9 @@ export default class ServiceBaixa {
       + (attr.localAmbry ? JSON.parse(attr.localAmbry).ambry.id + '-' : '')
       + (attr.localShelf ? JSON.parse(attr.localShelf).id + '-' : '')
 
-    articleExist.localStorageId = JSON.parse(attr.localStorage).id;
-    articleExist.localStorage = JSON.parse(attr.localStorage).name;
-    articleExist.storageCode = JSON.parse(attr.localStorage).codigo;
+    articleExist.localStorageId = attr.localStorage ? JSON.parse(attr.localStorage).id : '';
+    articleExist.localStorage = attr.localStorage ? JSON.parse(attr.localStorage).name : '';
+    articleExist.storageCode = attr.localStorage ? JSON.parse(attr.localStorage).codigo : '';
     articleExist.localAmbry = (attr.localAmbry ? JSON.parse(attr.localAmbry).ambry.name : '');
     articleExist.localShelf = (attr.localShelf ? JSON.parse(attr.localShelf).name : '');
     articleExist.quantity = attr.quantity;
@@ -215,19 +214,21 @@ export default class ServiceBaixa {
     });
 
     if (artExir?.quantity) {
-      articleExist.quantity = articleExist.quantity - artExir.quantity;
+      articleExist.quantity -= artExir.quantity;
       articleExist.order = this.store.getId() + '-' + articleExist.quantity;
+
+      console.log(artExir)
+      this.store.createForceMyId(articleExist, ServiceBaixa.STORAGE_EXIST_ITEM_ST).then();
     }
 
-    this.store.createForceMyId(articleExist, ServiceBaixa.STORAGE_EXIST_ITEM_ST).then(() => {
-    });
 
   }
 
   async existArticleNewStoreDC(attr: any) {
 
+
     let articleExist: any = {};
-    articleExist.id = attr.articleId + JSON.parse(attr.localStorage).id
+    articleExist.id = attr.articleId + (attr.localStorage ? JSON.parse(attr.localStorage).id : '')
 
 
     let artExir: any = await firstValueFrom(this.store
@@ -237,9 +238,10 @@ export default class ServiceBaixa {
     });
 
     if (artExir.quantity) {
-      artExir.quantity = artExir.quantity - attr.quantity;
+      artExir.quantity -= attr.quantity;
       artExir.order = this.store.getId() + '-' + artExir.quantity;
       this.store.createForceMyId(artExir, ServiceBaixa.STORAGE_EXIST_ITEM_ST_DC).then();
+      console.log(artExir)
     }
 
 

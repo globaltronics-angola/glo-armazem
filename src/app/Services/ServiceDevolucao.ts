@@ -158,6 +158,7 @@ export default class ServiceDevolucao {
 
       if (item.status == '404') {
         await this.existArticle(item);
+
       }
 
     })
@@ -282,6 +283,10 @@ export default class ServiceDevolucao {
 
 
   }
+
+
+
+
 }
 
 export interface Movimento {

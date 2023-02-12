@@ -29,20 +29,24 @@
     </div>
     <div class="d-flex flex-column content-justify-center flex-row-fluid">
       <div class="d-flex fw-semibold align-items-center">
-        <div class="bullet w-8px h-3px rounded-2 bg-success me-3"></div>
+        <div class="bullet w-8px h-3px rounded-2 me-3" style="background-color: #E4E6EF"></div>
         <div class="text-gray-500 flex-grow-1 me-4">Entradas</div>
-        <div class="fw-bolder text-gray-700 text-xxl-end">{{ totalEntradas }}</div>
+        <div class="fw-bolder text-gray-700 text-xxl-end">{{ widget.entrada }}</div>
+      </div>
+      <div class="d-flex fw-semibold align-items-center my-3">
+        <div class="bullet w-8px h-3px rounded-2 bg-success me-3"></div>
+        <div class="text-gray-500 flex-grow-1 me-4">Transferênce</div>
+        <div class="fw-bolder text-gray-700 text-xxl-end">{{ widget.trnasf }}</div>
       </div>
       <div class="d-flex fw-semibold align-items-center my-3">
         <div class="bullet w-8px h-3px rounded-2 bg-primary me-3"></div>
-        <div class="text-gray-500 flex-grow-1 me-4">Saidas</div>
-        <div class="fw-bolder text-gray-700 text-xxl-end">{{ totalSaida }}</div>
+        <div class="text-gray-500 flex-grow-1 me-4">Saida</div>
+        <div class="fw-bolder text-gray-700 text-xxl-end">{{ widget.saida }}</div>
       </div>
       <div class="d-flex fw-semibold align-items-center">
-        <div class="bullet w-8px h-3px rounded-2 me-3"
-             style="background-color: #E4E6EF"></div>
-        <div class="text-gray-500 flex-grow-1 me-4">Transferênce</div>
-        <div class="fw-bolder text-gray-700 text-xxl-end">{{ totalIntras }}</div>
+        <div class="bullet w-8px h-3px rounded-2 bg-danger me-3"></div>
+        <div class="text-gray-500 flex-grow-1 me-4">Devolução</div>
+        <div class="fw-bolder text-gray-700 text-xxl-end">{{ widget.devolu }}</div>
       </div>
     </div>
   </div>

@@ -5,6 +5,8 @@ import ServiceMovimento from "../../../Services/ServiceMovimento";
 import ServiceMovimentoItems from "../../../Services/ServiceMovimentoItems";
 import ServiceRequisicao from "../../../Services/ServiceRequisicao";
 import ServiceTransferencia from "../../../Services/ServiceTransferencia";
+import ServiceUtil from "../../../Services/ServiceUtil";
+import ServiceDevolucao from "../../../Services/ServiceDevolucao";
 
 @Component({
   selector: 'app-wdget-counter3',
@@ -21,8 +23,9 @@ export class WdgetCounter3Component implements OnInit {
   static entrada: number = 0;
   static saida: number = 0;
   static trnasf: number = 0;
-  static baixa: number = 0;
+  static devolu: number = 0;
 
+  static baixa: number = 0;
   totalEntradas: string = "";
   totalSaida: string = "";
   totalIntras: string = "";
@@ -37,6 +40,7 @@ export class WdgetCounter3Component implements OnInit {
     } else {
       this.totalProdutos = "" + quanty;
     }
+    WdgetCounter3Component.qt = quanty;
     WdgetCounter3Component.listMovimento.push(quanty);
 
 
@@ -48,6 +52,7 @@ export class WdgetCounter3Component implements OnInit {
     } else {
       this.totalEntradas = "" + quantyEntra;
     }
+    WdgetCounter3Component.entrada = quantyEntra
     WdgetCounter3Component.listMovimento.push(quantyEntra);
 
 
@@ -59,6 +64,7 @@ export class WdgetCounter3Component implements OnInit {
     } else {
       this.totalSaida = "" + quantySaidas;
     }
+    WdgetCounter3Component.saida = quantySaidas
     WdgetCounter3Component.listMovimento.push(quantySaidas);
 
 
@@ -70,7 +76,19 @@ export class WdgetCounter3Component implements OnInit {
     } else {
       this.totalIntras = "" + quantyTrans;
     }
+    WdgetCounter3Component.trnasf = quantyTrans
     WdgetCounter3Component.listMovimento.push(quantyTrans);
+
+    const snapDevo = await getCountFromServer(collection(getFirestore(), ServiceDevolucao.STORAGE_NAME));
+    const quantyDe = snapDevo.data().count;
+
+    if (quantyDe >= 1000) {
+      this.totalIntras = (quantyDe / 1000).toFixed(1) + 'k';
+    } else {
+      this.totalIntras = "" + quantyDe;
+    }
+    WdgetCounter3Component.devolu = quantyDe;
+    WdgetCounter3Component.listMovimento.push(quantyDe);
 
     this.initChart()
 
@@ -141,17 +159,28 @@ export class WdgetCounter3Component implements OnInit {
         };
 
         // Init
-        drawCircle('#E4E6EF', options.lineWidth, 100 / 100);
+        drawCircle('#E4E6EF', options.lineWidth, WdgetCounter3Component.qt / WdgetCounter3Component.qt);
         // @ts-ignore
-        drawCircle(KTUtil.getCssVariableValue('--kt-success'), options.lineWidth, (WdgetCounter3Component.entrada / WdgetCounter3Component.qt).toFixed(1));
+        drawCircle('#E4E6EF', options.lineWidth,
+          ((WdgetCounter3Component.entrada + (WdgetCounter3Component.trnasf + WdgetCounter3Component.saida + WdgetCounter3Component.devolu)) / WdgetCounter3Component.qt).toFixed(1));
         // @ts-ignore
-        drawCircle(KTUtil.getCssVariableValue('--kt-danger'), options.lineWidth, (WdgetCounter3Component.trnasf / WdgetCounter3Component.qt).toFixed(1));
+        drawCircle(KTUtil.getCssVariableValue('--kt-success'), options.lineWidth,
+          (
+            ((WdgetCounter3Component.trnasf + WdgetCounter3Component.saida + WdgetCounter3Component.devolu)) / WdgetCounter3Component.qt).toFixed(1)
+        );
+
 
         // @ts-ignore
-        drawCircle(KTUtil.getCssVariableValue('--kt-primary'), options.lineWidth, (WdgetCounter3Component.saida / WdgetCounter3Component.qt).toFixed(1));
+        drawCircle(KTUtil.getCssVariableValue('--kt-primary'), options.lineWidth,
+          ((WdgetCounter3Component.saida + WdgetCounter3Component.devolu) / WdgetCounter3Component.qt).toFixed(1)
+        );
+
 
         // @ts-ignore
-        //// drawCircle(KTUtil.getCssVariableValue('--kt-danger'), options.lineWidth, WdgetCounter3Component.saida / WdgetCounter3Component.qt);
+        drawCircle(KTUtil.getCssVariableValue('--kt-danger'), options.lineWidth,
+          (WdgetCounter3Component.devolu / WdgetCounter3Component.qt).toFixed(1)
+        );
+
       }
 
       // Public methods
@@ -167,6 +196,5 @@ export class WdgetCounter3Component implements OnInit {
     KTCardsWidget17.init();
   }
 
-  
 
 }
