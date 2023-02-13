@@ -16,7 +16,7 @@ export default class ServiceUsers {
   Model: Users = {
     id: "NULL",
     email: "",
-    name: "",
+    displayName: "",
     timestamp: 0,
     status: "",
     type: "",
@@ -98,7 +98,7 @@ export default class ServiceUsers {
 export interface Users {
   id: string,
   email: string,
-  name: string,
+  displayName: string,
   timestamp: number,
   status: string,
   type: string,
