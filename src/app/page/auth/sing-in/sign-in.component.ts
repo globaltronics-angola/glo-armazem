@@ -39,7 +39,11 @@ export class SignInComponent implements OnInit {
 
   async validate() {
     await this.validateAny.validateExiste(this.email, 'email',
-      false, this.window.$('#devolucaoProduct'), false, "", false, true)
+      false, this.window.$('#email'), false, "", true, false)
+
+
+    await this.validateAny.validateExiste(this.password, 'password',
+      false, this.window.$('#password'), false, "", false, false)
   }
 
   private resetAttributes() {

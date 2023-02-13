@@ -32,7 +32,7 @@ export class RelatorioInventarioGeralComponent implements OnInit {
 
   constructor(private store: StorageService, private auth: AuthService, private router: Router, private sanitizer: DomSanitizer) {
     this.existance = new ServiceExistance(this.store);
-    this.page = new StorageServicePaginateService(this.store, this.auth, ServiceExistance.STORAGE_STORAGE, 'order')
+    this.page = new StorageServicePaginateService(this.store, this.auth, ServiceExistance.STORAGE_STORAGE, 'quantity')
     this.util = new ServiceUtil();
   }
 
