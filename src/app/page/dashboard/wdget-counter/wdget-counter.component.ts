@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {collection, getCountFromServer, getFirestore} from "@angular/fire/firestore";
 import ServiceArticles from "../../../Services/ServiceArticles";
+import ServiceUtil from "../../../Services/ServiceUtil";
 
 @Component({
   selector: 'app-wdget-counter',
@@ -11,6 +12,7 @@ export class WdgetCounterComponent implements OnInit {
 
   totalProdutos: string = "0";
   qt:number= 0;
+  utili: any =ServiceUtil;
 
   constructor() {}
 

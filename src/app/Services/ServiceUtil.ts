@@ -99,14 +99,23 @@ export default class ServiceUtil {
 
     return ans;
   }
-  public  textToColor(text: string): string {
+
+  static numberConvertToPad(attr: number, pad: string = '00') {
+    var str = "" + attr;
+
+    var ans = pad.substring(0, pad.length - str.length) + str
+
+    return ans;
+  }
+
+  public textToColor(text: string): string {
     let color = "";
     for (let i = 0; i < text.length; i++) {
       let hex = text.charCodeAt(i).toString(16);
       color += hex.length == 1 ? "0" + hex : hex;
     }
 
-    return '#'+ color.slice(3,9) + '65';
+    return '#' + color.slice(3, 9) + '65';
   }
 
   static sortArrayDescending(numbers: number[]) {

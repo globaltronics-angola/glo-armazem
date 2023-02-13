@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {collection, getCountFromServer, getFirestore} from "@angular/fire/firestore";
 import {MetricsService} from "../../../shared/metrics.service";
 import {AuthService} from "../../../shared/auth.service";
+import ServiceUtil from "../../../Services/ServiceUtil";
 
 
 
@@ -16,7 +17,8 @@ import {AuthService} from "../../../shared/auth.service";
 })
 export class WdgetCounter2Component implements OnInit{
   public utilizadores: Observable<any>;
-  public countUsers: number = 0;
+  public countUsers: string = "0";
+  public numCountUsers:number = 0;
 
   constructor(private store:StorageService, public auth: AuthService) {
     this.utilizadores = new ServiceUsers(this.store).findAll()
@@ -24,8 +26,9 @@ export class WdgetCounter2Component implements OnInit{
 
  async ngOnInit() {
 
-    this.countUsers = await this.getCounterInfo();
-  }
+    this.numCountUsers = await this.getCounterInfo()
+   this.countUsers = ServiceUtil.numberConvertToPad( this.numCountUsers,"000");
+ }
 
   async getCounterInfo() {
     const snapsHost = await getCountFromServer(collection(getFirestore(), 'users'));
@@ -41,6 +44,8 @@ export class WdgetCounter2Component implements OnInit{
 
     return '#'+ color.slice(3,9) + '65';
   }
+
+
 
 
 

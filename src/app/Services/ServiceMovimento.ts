@@ -31,7 +31,7 @@ export default class ServiceMovimento {
     timestamp: "", client: "", client_nif: "", items: [], docRef: "", dataRef: moment().format("DDMMYYYY"),
     created_at: "NULL", updated_at: moment().format('DD MM,YYYY HH:mm:ss'), updated_mode: false,
     deleted_at: "NULL", email_auth: "NULL", user: "NULL", status: true, moveType: "NULL", updatedAt: Timestamp.now(),
-    userDelete: "null"
+    userDelete: "null", mouth: moment().format('MM')
   }
 
 
@@ -259,5 +259,6 @@ export interface Movimento {
   status: boolean,
   moveType: string,
   updatedAt: FieldValue,
-  userDelete: any
+  userDelete: any,
+  mouth: string
 }
