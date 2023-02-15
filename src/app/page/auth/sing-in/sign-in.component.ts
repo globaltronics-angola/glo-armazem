@@ -14,6 +14,7 @@ export class SignInComponent implements OnInit {
   password: string = ""
   private validateAny: StorageValidateAnyService;
   window: any = (<any>window);
+  typeElement: string = "password";
 
   constructor(private auth: AuthService, private store: StorageService) {
     this.validateAny = new StorageValidateAnyService(this.store, 'users')
@@ -49,5 +50,12 @@ export class SignInComponent implements OnInit {
   private resetAttributes() {
     this.email = ""
     this.password = ""
+  }
+
+  prevElementType() {
+    if (this.typeElement == 'password')
+      return this.typeElement = 'text';
+
+    return this.typeElement = 'password'
   }
 }
