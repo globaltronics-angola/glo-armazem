@@ -12,10 +12,12 @@ export class SignUpComponent implements OnInit {
   password: string = ""
   passwordConfirm: string = ""
 
+
   constructor(private auth: AuthService) {
   }
 
   ngOnInit(): void {
+    (<any>window).InstanceAplication.init();
   }
 
   signUp(): void {
