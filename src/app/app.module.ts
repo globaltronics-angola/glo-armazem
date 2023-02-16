@@ -127,6 +127,7 @@ import { WdgetCounter3Component } from './page/dashboard/wdget-counter3/wdget-co
 import { ImportAndExpComponent } from './page/dashboard/import-and-exp/import-and-exp.component';
 import { WdgetChartComponent } from './page/dashboard/wdget-chart/wdget-chart.component';
 import { WdgetTableComponent } from './page/dashboard/wdget-table/wdget-table.component';
+import { JsonImportAndExpComponent } from './page/movimentos/inserindo-dados/json-import-and-exp/json-import-and-exp.component';
 
 
 
@@ -221,6 +222,7 @@ import { WdgetTableComponent } from './page/dashboard/wdget-table/wdget-table.co
     ImportAndExpComponent,
     WdgetChartComponent,
     WdgetTableComponent,
+    JsonImportAndExpComponent,
 
 
   ],

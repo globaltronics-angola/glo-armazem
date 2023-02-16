@@ -36,7 +36,7 @@ export class DatatableRequisicaoComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.listMove = await new ServiceMovimento(this.store).findMovType("DEVOLUTION");
+    this.listMove = await new ServiceMovimento(this.store).findMovType("OUTPUT");
     this.pageTotal = await this.page.getCounterInfo()
     this.awaitingProcess = true;
   }
@@ -56,9 +56,33 @@ export class DatatableRequisicaoComponent implements OnInit {
   }
 
   printMov(attr: any) {
-    let move: ServiceMovimento = new ServiceMovimento(this.store)
-    move.oItem = attr
-    this.printer.printFunctionsRequisition(move.oItem.items, move);
+
+    //@ts-ignore
+    Swal.fire({
+      html: `Selecciona o tipo de requisição que pretendes <strong>imprimir</strong>
+             A baixo temos <span class="badge badge-primary">listados:</span>`,
+      //icon: "info",
+      buttonsStyling: false,
+      showCancelButton: true,
+      confirmButtonText: "Nota de Entrega".toUpperCase(),
+      cancelButtonText: 'Folha de Obra'.toUpperCase(),
+      customClass: {
+        confirmButton: "btn btn-primary",
+        cancelButton: 'btn btn-success'
+      }
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+        let move: ServiceMovimento = new ServiceMovimento(this.store)
+        move.oItem = attr
+        this.printer.printFunctionsRequisition(move.oItem.items, move);
+      } else {
+        let move: ServiceMovimento = new ServiceMovimento(this.store)
+        move.oItem = attr
+        this.printer.printFunctionsRequisitionObra(move.oItem.items, move);
+      }
+    });
+
+
   }
 
   pdfGenerator() {
@@ -206,5 +230,9 @@ export class DatatableRequisicaoComponent implements OnInit {
 
   setSearch(attr: string) {
     this.isSearch = attr;
+  }
+
+  downloadJSON(mov: any) {
+
   }
 }

@@ -132,7 +132,7 @@
                       data-allow-clear="true" data-placeholder="Selecciona o artigo" id="selectedArticle">
                 <option></option>
                 <option [value]="ean|json" *ngFor="let ean of listArticle">
-                  {{ ean?.localAmbry + ' - ' + ean?.localShelf + ' : ' }}
+                  {{ (ean?.localAmbry ?? '') + ' - ' + (ean?.localShelf ?? '' + ' : ') }}
                   {{
                   (this.serviceUtil.convertJson(ean.article).ean ? this.serviceUtil.convertJson(ean.article).ean + ' - ' : '')
                   + this.serviceUtil.convertJson(ean.article).name +

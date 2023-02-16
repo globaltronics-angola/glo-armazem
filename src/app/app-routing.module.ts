@@ -79,6 +79,9 @@ import {BaixaArmazemComponent} from "./page/movimentos/baixa-armazem/baixa-armaz
 import {FormularioBaixaComponent} from "./page/movimentos/baixa-armazem/formulario-baixa/formulario-baixa.component";
 import {TabelaBaixaComponent} from "./page/movimentos/baixa-armazem/tabela-baixa/tabela-baixa.component";
 import { InserindoDadosComponent } from './page/movimentos/inserindo-dados/inserindo-dados.component';
+import {
+  JsonImportAndExpComponent
+} from "./page/movimentos/inserindo-dados/json-import-and-exp/json-import-and-exp.component";
 
 
 const routes: Routes = [
@@ -186,7 +189,8 @@ const routes: Routes = [
       {
         path: 'inserir', component: OcorenciasArtigoComponent,
         children: [
-          {path: 'tabela', component: InserindoDadosComponent}
+          {path: 'tabela', component: InserindoDadosComponent},
+          {path: 'json', component: JsonImportAndExpComponent}
         ]
       },
       {

@@ -1,0 +1,35 @@
+{
+  "details": "Produto em teste",
+  "updated_at": "07 02,2023 12:22:25",
+  "name": "Entrada Teste 2023 Para",
+  "updated_mode": false,
+  "timestamp": "1676576780998pIaMEDaNZaSMeGg9kBHq",
+  "marquee": "Teste",
+  "category_id": [
+    "Teste"
+  ],
+  "user": {
+    "uid": "SZA0BREAalOsUZ6n9GaR5UmCorp2",
+    "emailVerified": true,
+    "timestamp": 1675460910918,
+    "status": "active",
+    "type": "admin",
+    "photo": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+    "displayName": "Glory Ntemo",
+    "email": "glory.ntemo@gmail.com",
+    "photoURL": "https://lh3.googleusercontent.com/a/AEdFTp6IGoepJVhwPo0-BIlpl8F6oOht2ULhd_m8PU6L=s96-c",
+    "id": "glory.ntemo@gmail.com",
+    "isAnonymous": false
+  },
+  "updatedAt": {
+    "nanoseconds": 640000000,
+    "seconds": 1675769129
+  },
+  "created_at": "NULL",
+  "id": "pIaMEDaNZaSMeGg9kBHq",
+  "deleted_at": "NULL",
+  "model": "Teste 2023",
+  "quantity": -2505,
+  "email_auth": "NULL",
+  "ean": "12345"
+}

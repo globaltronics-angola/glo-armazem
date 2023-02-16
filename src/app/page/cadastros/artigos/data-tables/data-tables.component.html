@@ -43,7 +43,7 @@
           </div>
 
           <input type="text" name="name" class="form-control form-control-sm" autocomplete="off"
-                 (keyup)="find()" [(ngModel)]="typingName"
+                 (keyup.enter)="find()" [(ngModel)]="typingName"
                  placeholder="pesquisar " id="articleName">
 
         </div>

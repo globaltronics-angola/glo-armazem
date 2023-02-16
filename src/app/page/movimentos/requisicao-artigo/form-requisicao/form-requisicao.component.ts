@@ -114,8 +114,26 @@ export class FormRequisicaoComponent implements OnInit, OnDestroy {
 
         if (this.listItems.length > 0) {
           this.move.save().then(() => {
-
-            this.printer.printFunctionsRequisition(this.move.oItem.items, this.move)
+            //@ts-ignore
+            Swal.fire({
+              html: `Selecciona o tipo de requisição que pretendes <strong>imprimir</strong>
+             A baixo temos <span class="badge badge-primary">listados:</span>`,
+              //icon: "info",
+              buttonsStyling: false,
+              showCancelButton: true,
+              confirmButtonText: "Nota de Entrega".toUpperCase(),
+              cancelButtonText: 'Folha de Obra'.toUpperCase(),
+              customClass: {
+                confirmButton: "btn btn-primary",
+                cancelButton: 'btn btn-success'
+              }
+            }).then((result: any) => {
+              if (result.isConfirmed) {
+                this.printer.printFunctionsRequisition(this.move.oItem.items, this.move);
+              } else {
+                this.printer.printFunctionsRequisitionObra(this.move.oItem.items, this.move);
+              }
+            });
             this.documentRef();
 
           });
@@ -261,7 +279,7 @@ export class FormRequisicaoComponent implements OnInit, OnDestroy {
       false, this.window.$('#inputFinancialCost'), this.item.oItem.updated_mode,
       "A quantidade é inferior a 0, é permitido ao menos 0 kz indicando ausência de custo do item comprada", false, "", 0)
 
-    if (!await this.controllerQuantity()){
+    if (!await this.controllerQuantity()) {
       throw "Excedeu o limite da quantidade de item admissível"
     }
 

@@ -198,7 +198,13 @@ export default class ServicePrintMove {
           }
         },
 
-        {text: ('Entrada de Artigos').toUpperCase(), fontSize: 9, alignment: 'center',  bold: true, margin: [0, 20, 0, 25]},
+        {
+          text: ('Entrada de Artigos').toUpperCase(),
+          fontSize: 9,
+          alignment: 'center',
+          bold: true,
+          margin: [0, 20, 0, 25]
+        },
         {
           style: 'tableExample',
           table: {
@@ -217,7 +223,7 @@ export default class ServicePrintMove {
         },
 
         {
-          text: 'Obs:' +  move.oItem.details,
+          text: 'Obs:' + move.oItem.details,
           fontSize: 8,
           bold: false,
           margin: [0, 5, 5, 5]
@@ -388,7 +394,6 @@ export default class ServicePrintMove {
         },
 
 
-
       ]
     ];
 
@@ -501,6 +506,7 @@ export default class ServicePrintMove {
           bold: true,
           margin: [0, 15, 0, 5]
         },
+
         {
           text: 'Viemos por intermédio desta, proceder a entrega dos equipamentos à baixo listados, ao cliente acima mensionado (' + client.name + '), em bom estado de funcionamento.',
           fontSize: 10,
@@ -534,6 +540,260 @@ export default class ServicePrintMove {
 
           },
           margin: [0, 20, 0, 0]
+        },
+        {
+          margin: [0, 40, 0, 0],
+          qr: move.oItem.docRef,
+          fit: 60,
+          alignment: 'right',
+          foreground: '#D7D5D5'
+        },
+      ],
+      footer: {
+        columns: [
+          {
+            text: 'Projectos e instalação domesticas «» Segurança electrónica - cctv, videofone-proteiro - alarmes de intrusão, fumo, gás e inundação «» Automação - portões cortinas «» Iluminação inteligente «» Centrais de Tv p/ condominios e edificios «» Centrais telefónicas «» Som ambiente e etc.',
+            alignment: 'center',
+            fontSize: 7,
+            margin: [40, 20, 40, 20],
+            color: '#7f8690',
+          }
+        ]
+      }
+
+      ,
+      styles: {
+        tableExample: {
+          width: 1000
+        },
+        tableHeader: {
+          bold: true,
+          fontSize: 9,
+          color: '#0a0a0a',
+        },
+        span: {
+          fontSize: 8,
+          color: '#E6B0AA'
+        },
+        all: {
+          fontSize: 8,
+          color: '#515A5A'
+        },
+        allEnd: {
+          fontSize: 8,
+          alignment: 'right',
+          color: '#515A5A'
+        },
+        header: {
+          fontSize: 18,
+          bold: true
+        },
+        subheader: {
+          fontSize: 15,
+          bold: true,
+        },
+        quote: {
+          italics: true
+        },
+        small: {
+          fontSize: 8
+        }
+      },
+
+
+    }
+
+    var pdf = pdfMake.createPdf(dd);
+    pdf.print();
+
+
+  }
+
+  printFunctionsRequisitionObra(listItems: any[], move: any) {
+
+    let client: any = move.oItem.client ? JSON.parse(move.oItem.client) : {}
+    let headerBetwin = [
+      [
+        {
+          text: '',
+          borderColor: ['#ffffff', '#d8d8d8', '#ffffff', '#ffffff'],
+        }, {
+        text: '',
+        borderColor: ['#ffffff', '#d8d8d8', '#ffffff', '#ffffff'],
+      }, {
+        text: '',
+        borderColor: ['#ffffff', '#d8d8d8', '#ffffff', '#ffffff'],
+      }
+      ],
+      [
+        {
+          text: [
+            {
+              text: 'Data.: ' + moment().format('DD / MM / YYYY HH:mm') + '\n',
+              fontSize: 10,
+              bold: false,
+              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+              margin: [0, 0, 0, 2],
+
+            },
+            {
+              text: 'Ref.: ' + move.oItem.docRef + '\n',
+              fontSize: 9,
+              bold: false,
+              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+              margin: [0, 0, 0, 2],
+
+            },
+            {
+              text: 'Requisitante.: ' + this.auth.user.displayName + '\n',
+              fontSize: 8,
+              bold: false,
+              borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+              margin: [0, 0, 0, 2],
+            }
+
+          ],
+          border: [false, false, false, false]
+        },
+        {text: '', border: [false, false, false, false]},
+        {
+          text: [
+            {
+              text: ('Cliente : ').toUpperCase() + '\n',
+              fontSize: 10,
+              bold: false,
+              borderColor: ['#ffffff', '#d8d8d8', '#ffffff', '#ffffff'],
+              margin: [0, 0, 0, 2],
+
+            },
+            {
+              text: client.name + '\n',
+              fontSize: 10,
+              bold: false,
+              borderColor: ['#ffffff', '#d8d8d8', '#ffffff', '#ffffff'],
+              margin: [0, 0, 0, 2],
+
+            },
+            {
+              text: (client.identityClient ? 'Contribuinte nº 5417106372 ' + client.identityClient : '') + '\n',
+              fontSize: 7,
+              color: '#515A5A',
+              bold: false,
+              borderColor: ['#ffffff', '#d8d8d8', '#ffffff', '#ffffff'],
+              margin: [0, 0, 0, 2],
+            },
+            {
+              text: 'Luanda - Angola' + '\n',
+              fontSize: 9,
+              color: '#515A5A',
+              bold: false,
+              borderColor: ['#ffffff', '#d8d8d8', '#ffffff', '#ffffff'],
+              margin: [0, 0, 0, 2],
+            }
+
+          ],
+          border: [false, false, false, false]
+        },
+
+
+      ]
+    ];
+
+    let content = [
+      [
+        {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'REFERÊNCIA', style: 'tableHeader'},
+        {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'NOME', style: 'tableHeader'},
+        {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'MODELO', style: 'tableHeader'},
+        {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'S/N', style: 'tableHeader'},
+        {margin: [2, 1, 1, 1], fillColor: '#eeeeee', text: 'QT', style: 'tableHeader'},
+      ]
+    ]
+
+    listItems.forEach((g) => {
+
+      let article = g.article ? JSON.parse(g.article) : {};
+
+      content.push([
+        {
+          margin: [1, 1, 1, 1], fillColor: '#fff',
+          text: article.ean ? article.ean : {text: '-- -- -- --', style: 'span'},
+          style: 'all'
+        },
+        {margin: [1, 1, 1, 1], fillColor: '#fff', text: article?.name, style: 'all'},
+        {
+          margin: [1, 1, 1, 1],
+          fillColor: '#fff',
+          text: article.model ? article.model.toUpperCase() : {text: '-- -- -- --', style: 'span'},
+          style: 'all'
+        },
+        {
+          margin: [1, 1, 1, 1],
+          fillColor: '#fff',
+          text: g.SN ? g.SN.toUpperCase() : {text: '-- -- -- --', style: 'span'},
+          style: 'all'
+        },
+        {
+          margin: [1, 1, 10, 1],
+          fillColor: '#fff',
+          text: g.quantity ? g.quantity : {text: '-- -- --', style: 'span'},
+          style: 'allEnd',
+
+        }
+      ])
+    })
+
+    var dd = {
+      content: [
+        {
+          svg: ServiceUtil.IconGlo,
+          width: 100,
+          height: 30,
+          margin: [0, 2, 2, 2]
+        },
+        {
+          text: 'Contribuinte nº 5417106372 ',
+          fontSize: 7,
+          bold: false,
+          color: '#515A5A',
+          margin: [0, 0, 0, 2],
+        },
+        {
+          text: 'Endereço: Bº Benfica Pista Lote 249 ',
+          fontSize: 7,
+          bold: false,
+          color: '#515A5A',
+          margin: [0, 0, 0, 2],
+        },
+        {
+          margin: [-2, 15, 0, 15],
+          table: {
+            widths: [160, 160, 160],
+            body: headerBetwin
+
+          }
+        },
+        {
+          text: ('Folha de Obra: ').toUpperCase(),
+          fontSize: 12,
+          alignment: 'center',
+          bold: true,
+          margin: [0, 15, 0, 15]
+        },
+        {
+          style: 'tableExample',
+          table: {
+            widths: [70, 125, 90, 107, 60],
+            headerRows: 1,
+            body: content
+          },
+          layout: 'lightHorizontalLines'
+        },
+        {
+          text: '',
+          fontSize: 8,
+          bold: false,
+          margin: [20, 20, 20, 20],
+          alignment: 'justify'
         },
         {
           margin: [0, 40, 0, 0],
@@ -1263,4 +1523,6 @@ export default class ServicePrintMove {
       return data;
     })
   }
+
+
 }

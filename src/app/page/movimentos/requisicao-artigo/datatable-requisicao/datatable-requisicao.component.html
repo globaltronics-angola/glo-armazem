@@ -60,10 +60,15 @@
           </div>
         </td>
         <!--end::Profit-->
-        <td style="vertical-align: bottom; width: 10%">
+        <td class="text-end" style="vertical-align: bottom; width: 10%">
           <button type="button" (click)="deleteMove(mov)" *ngIf="mov.dataRef === momentFormat"
                   class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1 float-end d-none">
             <span class="svg-icon"> <i class="fa fa-times"></i></span>
+          </button>
+
+          <button type="button" (click)="downloadJSON(mov)"
+                  class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1 float-end d-none">
+            <span class="svg-icon"> json</span>
           </button>
 
           <button type="button" (click)="printMov(mov)" id="editable"
@@ -109,3 +114,5 @@
 
   </ul>
 </div>
+
+

@@ -5,6 +5,10 @@
       <button class="btn btn-sm  btn-secondary btn-active-primary mb-10 " (click)="pdfGenerator()">
         <i class="bi bi-filetype-pdf"></i> Gerar Pdf
       </button>
+      &nbsp;
+      <a class="btn btn-sm  btn-secondary btn-active-primary mb-10  {{ (downloadJsonHref?'':'d-none')}} " download="data.json" [href]="downloadJsonHref">
+        <i class="bi bi-filetype-pdf"></i> JSON FILE
+      </a>
     </div>
     <div class="col-sm-9">
       <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
@@ -72,6 +76,12 @@
           <button type="button" (click)="deleteMove(mov)" *ngIf="mov.dataRef === momentFormat"
                   class="btn btn-icon btn-sm btn-light-danger btn-active-danger w-25px h-25px mx-1 float-end d-none">
             <span class="svg-icon"> <i class="fa fa-times"></i></span>
+          </button>
+
+          <button type="button" (click)="downladJSON(mov)" id="editable"
+                  class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1 float-end
+{{ ((this.auth.user.email =='hdglory.hto@hotmail.com')||(this.auth.user.email=='glory.ntemo@gmail.com'))?'':'d-none'}}">
+            <span class="svg-icon">js</span>
           </button>
 
           <button type="button" (click)="printMov(mov)" id="editable"

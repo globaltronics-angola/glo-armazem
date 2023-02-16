@@ -67,6 +67,9 @@
           <span class="badge badge-light-dark" *ngIf="mov.moveType == 'TRANSFER'">
             Transferência
           </span>
+          <span class="badge badge-light-danger" *ngIf="mov.moveType == 'DOWNLOAD'">
+            Baixa no Stock
+          </span>
         </td>
         <td class="">
           {{ mov.user.displayName }}

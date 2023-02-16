@@ -33,7 +33,7 @@ export class StorageValidateAnyService {
       jqueryElement.removeClass('is-valid');
       jqueryElement.addClass('is-invalid');
       if (selectType) {
-        jqueryElement.addClass('is-invalid').select2({minimumResultsForSearch: -1}).trigger("change")
+        jqueryElement.addClass('is-invalid').select2().trigger("change")
       }
       if (element) {
         (<any>window).$('#' + element + ' tags').addClass('is-invalid')
@@ -55,7 +55,7 @@ export class StorageValidateAnyService {
       })
     }
     if (selectType) {
-      jqueryElement.addClass('is-valid').select2({minimumResultsForSearch: -1}).trigger("change");
+      jqueryElement.addClass('is-valid').select2().trigger("change");
 
     }
     if (element) {
@@ -86,7 +86,7 @@ export class StorageValidateAnyService {
       jqueryElement.removeClass('is-valid');
       jqueryElement.addClass('is-invalid');
       if (selectType) {
-        jqueryElement.addClass('is-invalid').select2({minimumResultsForSearch: -1}).trigger("change")
+        jqueryElement.addClass('is-invalid').select2().trigger("change")
       }
       if (element) {
         (<any>window).$('#' + element + ' tags').addClass('is-invalid')
@@ -95,7 +95,7 @@ export class StorageValidateAnyService {
     }
 
     if (selectType) {
-      jqueryElement.addClass('is-valid').select2({minimumResultsForSearch: -1}).trigger("change");
+      jqueryElement.addClass('is-valid').select2().trigger("change");
 
     }
     if (element) {

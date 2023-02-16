@@ -11,6 +11,8 @@ import * as pdfMake from "pdfmake";
 import {StorageServicePaginateService} from "../../../../shared/storage.service.paginate.service";
 import ServiceFornecedor from "../../../../Services/ServiceFornecedor";
 import {ScropePaginationService} from "../../../../shared/scrope-pagination.service";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {HttpClient} from "@angular/common/http";
 
 
 @Component({
@@ -33,8 +35,10 @@ export class LancamentoComponent implements OnInit {
   isSearch: string = "Nome"
   awaitingProcess: boolean = false;
   public page: StorageServicePaginateService;
+   downloadJsonHref: any = '';
 
-  constructor(private store: StorageService, private auth: AuthService, private print: ServicePrintMove) {
+  constructor(private store: StorageService, public auth: AuthService, private print: ServicePrintMove,
+              private sanitizer: DomSanitizer, private http: HttpClient) {
     this.momentFormat = moment().format('DDMMYYYY');
     this.page = new StorageServicePaginateService(this.store, this.auth, ServiceMovimento.STORAGE_NAME, 'id')
   }
@@ -231,6 +235,7 @@ export class LancamentoComponent implements OnInit {
   printMov(attr: any) {
 
     let move: ServiceMovimento = new ServiceMovimento(this.store)
+
     move.oItem = attr
     if (attr.moveType == "INPUT")
       this.print.printFunctions(move.oItem.items, move);
@@ -238,16 +243,20 @@ export class LancamentoComponent implements OnInit {
       this.print.printFunctionsRequisition(move.oItem.items, move);
     if (attr.moveType == "TRANSFER")
       this.print.printFunctionsTransfer(move.oItem.items, move);
+
   }
 
   async find() {
-
     await this.page.findByFieldContext('docRef', this.typingName.toUpperCase())
-
-
   }
 
   setSearch(attr: string) {
     this.isSearch = attr;
+  }
+
+  downladJSON(mov: any) {
+    var theJSON = JSON.stringify(mov, null, 2);
+    var uri = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(theJSON));
+    this.downloadJsonHref = uri;
   }
 }

@@ -52,7 +52,25 @@ export class MovimentosComponent {
   printMov(attr: any) {
     let move: ServiceMovimento = new ServiceMovimento(this.store)
     move.oItem = attr
-    this.printer.printFunctionsRequisition(move.oItem.items, move);
+    switch (attr.moveType) {
+      case 'OUTPUT':
+        this.printer.printFunctionsRequisition(move.oItem.items, move);
+        break;
+      case 'INPUT':
+        this.printer.printFunctions(move.oItem.items, move)
+        break;
+      case 'DOWNLOAD':
+        this.printer.printFunctionsBaixa(move.oItem.items, move)
+        break;
+      case 'DEVOLUTION':
+        this.printer.printFunctionsDevolution(move.oItem.items, move)
+        break;
+      case 'TRANSFER':
+        this.printer.printFunctionsTransfer(move.oItem.items, move)
+        break;
+    }
+
+
   }
 
   pdfGenerator() {
@@ -191,10 +209,7 @@ export class MovimentosComponent {
   }
 
   async find() {
-
     await this.page.findByFieldContext('docRef', this.typingName.toUpperCase())
-
-
   }
 
   setSearch(attr: string) {

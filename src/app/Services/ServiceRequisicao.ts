@@ -7,6 +7,7 @@ import {Injectable} from '@angular/core';
 import {ServiceEmitter} from "./ServiceEmitter";
 import ServiceArticles from "./ServiceArticles";
 import {serverTimestamp} from "firebase/firestore";
+import firebase from "firebase/compat";
 
 
 @Injectable({
@@ -49,7 +50,7 @@ export default class ServiceRequisicao {
   }
 
 
-  constructor(private store: StorageService) {
+  constructor(private store: StorageService,) {
     let user = new ServiceUtil().getSession()
 
     this.oItem.user = user;
@@ -70,18 +71,18 @@ export default class ServiceRequisicao {
    *
    *  @method updateItems
    */
-  save() {
+  async save() {
 
-    if (!this.oItem.updated_mode) {
-      this.oItem.created_at = moment().format('DD MM,YYYY HH:mm:ss')
-    }
+    this.oItem.created_at = moment().format('DD MM,YYYY HH:mm:ss')
     if ((this.oItem.id == "NULL")) {
       this.oItem.id = this.store.getId().toUpperCase();
     }
     this.oItem.timestamp = "" + new Date().getTime() + this.oItem.id
     this.oItem.updated_mode = false;
 
-    this.updateItems()
+    await this.updateItems()
+
+    throw "informação importante";
 
     this.store.createdForceGenerateId(this.oItem, ServiceRequisicao.STORAGE_NAME)
       .then(() => {
@@ -122,9 +123,10 @@ export default class ServiceRequisicao {
     return (list.length + 1);
   }
 
-  updateItems() {
+  async updateItems() {
 
-    this.oItem.items.forEach(async (item: any) => {
+    for (const item of this.oItem.items) {
+      const index: number = this.oItem.items.indexOf(item);
       this.oItem.itemsQuantity -= item.quantity
       let itemMove = item;
       itemMove.move = {
@@ -136,24 +138,13 @@ export default class ServiceRequisicao {
 
       itemMove.move_id = this.oItem.id;
       itemMove.updated_at = moment().format('DD MM,YYYY HH:mm:ss')
+      this.store.createForceMyId(itemMove, ServiceRequisicao.STORAGE_MOVE_ITEM).then()
+    }
 
 
-      let article = new ServiceArticles(this.store);
-      await firstValueFrom(this.store.findById(ServiceArticles.STORAGE_ARTICLES, itemMove.articleId)).then((e) => {
+    await this.existArticle(this.oItem.items).then();
+    await this.existArticleStorage(this.oItem.items).then()
 
-        article.Article = e;
-        article.Article.updated_mode = true;
-        article.Article.quantity -= item.quantity;
-
-        article.save()
-      })
-      this.store.createForceMyId(itemMove, ServiceRequisicao.STORAGE_MOVE_ITEM).then(() => {
-      })
-
-      this.existArticle(item).then();
-      this.existArticleStorage(item).then()
-
-    })
 
   }
 
@@ -176,42 +167,45 @@ export default class ServiceRequisicao {
     return listAll
   }
 
-  /**
-   * id: undefined
-   * localStorage: "",
-   * localAmbry: "",
-   * localShelf: "",
-   * quantity: 0,
-   *
-   * @param attr
-   */
-  async existArticle(attr: any) {
-    try {
+  async existArticle(attrArray: any[]) {
+
+    for (const attr of attrArray) {
       let articleExist: any = JSON.parse(attr.existence);
-      articleExist.quantity = articleExist.quantity - attr.quantity;
-      this.store.createForceMyId(articleExist, ServiceRequisicao.STORAGE_EXIST_ITEM).then(() => {
-      });
-    } catch (e) {
+
+      let artExir: any = await firstValueFrom(this.store.findById(ServiceRequisicao.STORAGE_EXIST_ITEM, articleExist.id));
+
+      try {
+        if (artExir) {
+          artExir.quantity -= attr.quantity;
+          await this.store.createForceMyId(artExir, ServiceRequisicao.STORAGE_EXIST_ITEM).then(
+            () => {
+            }, error => {
+            });
+        }
+      } catch (error) {
+      }
 
     }
   }
 
-  async existArticleStorage(attr: any) {
-    try {
+  async existArticleStorage(attrArray: any[]) {
+    for (const attr of attrArray) {
       let articleExist: any = JSON.parse(attr.existence);
-      articleExist.id = attr.articleId + JSON.parse(attr.localStorage).id
 
-      let artExir: any = await firstValueFrom(this.store
-        .findById(ServiceRequisicao.STORAGE_EXIST_STORAGE, articleExist.id)).then((e) => {
-        return e
-      });
+      let artExir: any = await firstValueFrom(this.store.findById(ServiceRequisicao.STORAGE_EXIST_STORAGE, articleExist.id));
 
-      articleExist.quantity = artExir.quantity - attr.quantity;
-
-      this.store.createForceMyId(articleExist, ServiceRequisicao.STORAGE_EXIST_STORAGE).then(() => {
-      });
-    } catch (e) {
-
+      try {
+        if (artExir) {
+          artExir.quantity -= attr.quantity;
+          await this.store.createForceMyId(artExir, ServiceRequisicao.STORAGE_EXIST_STORAGE).then(
+            () => {
+            }, error => {
+            }
+          );
+        }
+      } catch (error) {
+        // Lida com a exceção de acordo com sua necessidade
+      }
     }
   }
 
