@@ -10,6 +10,7 @@ import {StorageValidateAnyService} from "./storage.validate.any.service";
 import ServiceUsers from "../Services/ServiceUsers";
 import firebase from "firebase/compat";
 import User = firebase.User;
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 
 @Injectable({
@@ -40,7 +41,7 @@ export class AuthService {
 
 
   // Sign In method
-  signIn(email: string, password: string) {
+  signInXCD(email: string, password: string) {
 
     try {
 
@@ -76,6 +77,34 @@ export class AuthService {
     } catch (e) {
       (<any>window).sentMessageError.init("não foi autorizado a conectar se no sistema")
     }
+  }
+
+  async signIn(email: string, password: string) {
+    let user: any = {};
+    await firstValueFrom(this.fs.collection('/users').doc('/' + email).valueChanges())
+      .then(async (as: any) => {
+        if (!as?.photo && email.includes('@gmail.com') && (as.email == email)) {
+          await this.signInGoogleProviderTo(as, email)
+        }
+        user = as;
+      });
+
+    if (!user) {
+      (<any>window).sentMessageError.init("não foi autorizado a conectar se no sistema")
+      throw new Error('Email não encontrado.');
+    }
+
+
+    this.fireAuth.signInWithEmailAndPassword(email, password).then(async (resp: any) => {
+      this.user = user
+      localStorage.setItem('token', resp.user?.refreshToken);
+      sessionStorage.setItem('_user', JSON.stringify(user));
+      (<any>window).sentMessageSuccess.init("Bem vindo ao sistema")
+      return this.router.navigate(['/']).then();
+    }, error => {
+      (<any>window).sentMessageError.init("não foi autorizado a conectar se no sistema, verifique se o email ou senha está correto ")
+    })
+
   }
 
 
@@ -170,10 +199,15 @@ export class AuthService {
     return JSON.parse(atob(_token.split('.')[1]))
   }
 
-  async signInGoogleProviderTo(users: any) {
+  async signInGoogleProviderTo(users: any, email: string = "") {
     try {
       await this.fireAuth.signInWithPopup(new GoogleAuthProvider).then(
         async resp => {
+          if (email != resp.user?.email) {
+            (<any>window).sentMessageError.init("não foi autorizado a conectar se no sistema porque o email de login não é compatível com a provedora ")
+            throw 'O email não é seu';
+          }
+
           this.user = resp.user;
           this.createCont(users, resp.user).then()
 
@@ -219,6 +253,9 @@ export class AuthService {
     });
   }
 
+  callRouter() {
+    this.router.navigate(['/']).then();
+  }
 }
 
 

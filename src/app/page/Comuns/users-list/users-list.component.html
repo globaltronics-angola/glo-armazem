@@ -30,7 +30,7 @@
                 <span class="">Nome</span>
               </label>
               <!--end::Label-->
-              <input type="text" name="description" [(ngModel)]="userSer.Model.displayName"
+              <input type="text" name="displayName" maxlength="20" [(ngModel)]="userSer.Model.displayName"
                      class="form-control form-control-sm" placeholder="Digite o email ">
               <div class="fv-plugins-message-container invalid-feedback"></div>
             </div>
@@ -43,7 +43,7 @@
                 <span class="">Email</span>
               </label>
               <!--end::Label-->
-              <input type="text" name="description" [(ngModel)]="userSer.Model.email"
+              <input type="text" name="email" [(ngModel)]="userSer.Model.email"
                      class="form-control form-control-sm" placeholder="Digite o email ">
               <div class="fv-plugins-message-container invalid-feedback"></div>
             </div>
@@ -81,6 +81,7 @@
         <thead class="text-uppercase fw-bold bg-light-primary ">
         <tr class="">
           <th class="w-auto">Email</th>
+          <th class="w-auto">Nome</th>
           <th class="w-auto">Acesso</th>
           <th class="w-auto"></th>
         </tr>
@@ -89,8 +90,9 @@
         <tbody>
         <tr class="" *ngFor="let or of this.page.listDataArray">
           <td class="w-auto">{{ or.email }}</td>
+          <td class="min-w-150px">{{ or?.displayName }}</td>
           <td class="w-auto">{{ or.type}}</td>
-          <td class="text-end">
+          <td class="text-end min-w-100px">
             <button type="button" (click)="edited(or)"
                     class="btn btn-icon btn-sm btn-light-primary btn-active-primary w-25px h-25px mx-1">
               <span class="svg-icon"> <i class="fa fa-edit"></i></span>

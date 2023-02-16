@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../shared/auth.service";
 import {StorageValidateAnyService} from "../../../shared/storage.validate.any.service";
 import {StorageService} from "../../../shared/storage.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sing-in',
@@ -16,11 +17,15 @@ export class SignInComponent implements OnInit {
   window: any = (<any>window);
   typeElement: string = "password";
 
-  constructor(private auth: AuthService, private store: StorageService) {
+  constructor(private router: Router, private auth: AuthService, private store: StorageService ) {
     this.validateAny = new StorageValidateAnyService(this.store, 'users')
+
   }
 
   ngOnInit(): void {
+    if (this.auth.user){
+     this.auth.callRouter()
+    }
   }
 
   /**
@@ -40,7 +45,7 @@ export class SignInComponent implements OnInit {
 
   async validate() {
     await this.validateAny.validateExiste(this.email, 'email',
-      false, this.window.$('#email'), false, "", true, false)
+      false, this.window.$('#email'), false, "", false, false)
 
 
     await this.validateAny.validateExiste(this.password, 'password',

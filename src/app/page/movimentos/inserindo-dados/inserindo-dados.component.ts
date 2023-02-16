@@ -39,7 +39,7 @@ export class InserindoDadosComponent implements OnInit, PipeTransform {
   constructor(private store: StorageService, private http: HttpClient, private filewrite: FileWriteService) {
 
     this.listStorage = new ServiceStorage(this.store).findAll();
-    this.listItems = new ServiceMovimentoItems(this.store).findInputMovNull()
+    this.listItems = new ServiceMovimentoItems(this.store)?.findInputMovNull()
   }
 
   ngOnInit(): void {
