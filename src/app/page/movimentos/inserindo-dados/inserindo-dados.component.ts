@@ -35,6 +35,8 @@ export class InserindoDadosComponent implements OnInit, PipeTransform {
   private selectedFile: any;
   private listItems: any[];
 
+  blockBtn: boolean = false;
+
 
   constructor(private store: StorageService, private http: HttpClient, private filewrite: FileWriteService) {
 
@@ -99,8 +101,10 @@ export class InserindoDadosComponent implements OnInit, PipeTransform {
 
   }
 
-  saveall() {
-    this.arrayData.forEach(async (attr: any, index: number) => {
+  async saveall() {
+    this.blockBtn = true;
+    for (const attr of this.arrayData) {
+      const index: number = this.arrayData.indexOf(attr);
       try {
         let data: any = {
           'category_id': [attr.category ?? ''],
@@ -149,9 +153,11 @@ export class InserindoDadosComponent implements OnInit, PipeTransform {
         await movementItem.save();
         this.readJson()
       } catch (e) {
-        this.window.sentMessageSuccess.init(ServiceUtil.MESSAGE_ERROR + 'Tenta novamente')
+        this.window.sentMessageError.init(ServiceUtil.MESSAGE_ERROR + 'Tenta novamente')
       }
-    })
+    }
+
+    this.blockBtn = false;
   }
 
   addRow() {

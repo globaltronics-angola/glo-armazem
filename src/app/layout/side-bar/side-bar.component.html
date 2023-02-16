@@ -29,6 +29,7 @@
 
   </div>
 
+
   <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
     <div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper hover-scroll-overlay-y my-5" data-kt-scroll="true"
          data-kt-scroll-activate="true" data-kt-scroll-height="auto"
@@ -37,13 +38,37 @@
 
       <div class="menu menu-column menu-rounded menu-sub-indention px-3" id="#kt_app_sidebar_menu" data-kt-menu="true"
            data-kt-menu-expand="false">
-
-        <div class="menu-item pt-5">
+        <div class="menu-item ">
+          <div class="menu-content">
+            <span class="menu-heading fw-bold  fs-3">{{ this.auth.user.displayName}}</span> <br>
+            <span class="menu-heading  text-success fs-8">Utilizador - {{ this.auth.user.type}}</span>
+          </div>
+        </div>
+        <div class="menu-item ">
           <div class="menu-content">
             <span class="menu-heading fw-bold text-uppercase fs-7">&nbsp;</span>
           </div>
         </div>
-        <app-menu-item name="Início" routerLink="/" routerLinkTo="/#"></app-menu-item>
+        <div class="menu-item">
+          <!--begin:Menu link-->
+          <a class="menu-link " routerLink="/"
+             routerLink="/">
+              <span class="menu-icon">
+
+                <span class="svg-icon svg-icon-2">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="2" width="9" height="9" rx="2" fill="currentColor"/>
+                    <rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2" fill="currentColor"/>
+                    <rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2" fill="currentColor"/>
+                    <rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2" fill="currentColor"/>
+                  </svg>
+                </span>
+
+              </span>
+              <span class="menu-title text-uppercase">Início</span>
+          </a>
+          <!--end:Menu link-->
+        </div>
 
         <div *ngIf="this.auth.user.type == 'admin'" data-kt-menu-trigger="click"
              class="menu-item {{ this.routerNav.url.toString().indexOf('cadastros')>0?'show':'' }}    menu-accordion">

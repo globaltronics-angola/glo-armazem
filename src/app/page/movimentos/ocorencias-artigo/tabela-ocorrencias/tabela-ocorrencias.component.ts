@@ -128,7 +128,7 @@ export class TabelaOcorrenciasComponent implements OnInit {
           height: 30,
           margin: [0, 2, 2, 2]
         },
-        {text: 'Lista de Artigos Cadastrados', fontSize: 14, bold: true, margin: [0, 20, 0, 10]},
+        {text: 'Ocorrências no Armazém', fontSize: 14, bold: true, margin: [0, 20, 0, 10]},
         {
           style: 'tableExample',
           table: {

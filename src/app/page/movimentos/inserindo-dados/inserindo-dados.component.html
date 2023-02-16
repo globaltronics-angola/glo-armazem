@@ -16,7 +16,10 @@
     </div>
     <div class="col-auto">
       <label class="fs-8">&nbsp;</label>
-      <button type="button" class="btn btn-sm btn-success w-100" (click)="saveall();">Envia E. Dados</button>
+      <button type="button" class="btn btn-sm btn-success w-100" *ngIf="!this.blockBtn" (click)="saveall();">Envia E.
+        Dados
+      </button>
+      <button type="button" class="btn btn-sm btn-success w-100" *ngIf="this.blockBtn" disabled>Aguarde...</button>
     </div>
     <div class="col-auto">
       <label class="fs-8">&nbsp;</label>
@@ -40,7 +43,7 @@
       </thead>
       <tbody>
 
-      <tr *ngFor="let mov of this.arrayData; let index = index" >
+      <tr *ngFor="let mov of this.arrayData; let index = index">
         <td style="max-width:80px!important;  vertical-align: middle;">{{ index + 1 }}</td>
         <td contenteditable="true">
           <input type="text" class="form-control form-control-sm "
@@ -86,10 +89,10 @@
 
         </td>
         <td class="text-end min-w-125px" style="vertical-align: middle;">
-          <button type="button" (click)="dataRow(mov, index)"
+          <!--<button type="button" (click)="dataRow(mov, index)"
                   class="btn btn-icon cursor-pointer btn-sm btn-light-success btn-active-success w-25px h-25px">
             <span class="svg-icon"> <i class="fa fa-check"></i> </span>
-          </button>
+          </button>-->
           &nbsp;
           <button type="button" (click)="removRow(index)"
                   class="btn btn-icon cursor-pointer btn-sm btn-light-danger btn-active-danger w-25px h-25px">

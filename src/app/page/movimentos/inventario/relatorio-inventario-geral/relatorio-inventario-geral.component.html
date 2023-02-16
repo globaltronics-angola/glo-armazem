@@ -31,6 +31,7 @@
     <!--begin::Table row-->
     <tr class="text-gray-800">
       <th class="w-auto">Artigo</th>
+      <th class="w-auto">Marca</th>
       <th class="w-auto">Modelo</th>
       <th class="w-auto">Referência</th>
       <th class="w-auto">Armazém</th>
@@ -51,6 +52,14 @@
         </span>
 
       </td>
+
+      <td>
+        <span class="badge badge-sm badge-light-dark"
+              *ngIf="util.convertJson(mov.article.toString()).marquee as onlyModel">{{ onlyModel }}
+        </span>
+        <span class="text-muted" *ngIf="!util.convertJson(mov.article.toString()).marquee"> -- -- -- </span>
+      </td>
+
       <td>
         <span class="badge badge-sm badge-light-dark"
               *ngIf="util.convertJson(mov.article.toString()).model as onlyModel">{{ onlyModel.toUpperCase() }}

@@ -26,7 +26,7 @@ export default class ServiceUtil {
 
   static MESSAGE_SUCCESS = "Foi inserido a informação com sucesso!"
   static MESSAGE_SUCCESS_DELETE = "Foi removido a informação com sucesso!"
-  static MESSAGE_ERROR = "Não foi inserido a informação com sucesso, possivel ocorrência de erro!"
+  static MESSAGE_ERROR = "Não foi inserido a informação!, possível ocorrência de erro!"
 
   static SAVE_TEXT = "Gravar"
   static CANCEL_TEXT = "Cancelar"
