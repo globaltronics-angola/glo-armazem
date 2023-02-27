@@ -30,6 +30,7 @@
     <thead class="fw-bold fs-6 text-gray-800 bg-light-primary position-sticky top-0">
     <!--begin::Table row-->
     <tr class="text-gray-800">
+      <th class="w-auto">ID</th>
       <th class="w-auto">Artigo</th>
       <th class="w-auto">Marca</th>
       <th class="w-auto">Modelo</th>
@@ -45,7 +46,12 @@
         style="vertical-align: top; ">
       <!--begin::Order ID-->
 
+      <td>
+        <span class="badge badge-sm badge-light-dark"
+              *ngIf="util.convertJson(mov.article.toString()).id as onlyId">{{ onlyId }}
+        </span>
 
+      </td>
       <td>
         <span class="badge badge-sm badge-light-dark"
               *ngIf="util.convertJson(mov.article.toString()).name as onlyName">{{ onlyName.charAt(0).toUpperCase() + onlyName.slice(1) }}
