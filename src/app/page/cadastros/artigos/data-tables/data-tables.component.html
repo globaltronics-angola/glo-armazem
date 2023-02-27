@@ -73,6 +73,7 @@
         <th class="" style="max-width: 70px!important; min-width: 70px!important; width: 70px!important;"><i
           class="cursor-pointer bi bi-arrow-down-up" (click)="page.changeDirection()"></i>&nbsp;&nbsp; #
         </th>
+        <th class=" min-w-200px">ID</th>
         <th class=" min-w-200px">Nome</th>
         <th class="min-w-auto d-none d-lg-table-cell">Referência</th>
         <th class="d-none d-lg-table-cell">Marca</th>
@@ -89,7 +90,7 @@
         <td class=""
             style="max-width: 70px!important; min-width: 70px!important; width: 70px!important;"><span
           class="float-end">{{ staticUtil.numberConvertTo((index + 1)) }}</span></td>
-
+          <td>{{ article.id.toUpperCase()}}</td>
         <td>{{ article.name}}</td>
 
 
